@@ -13,6 +13,6 @@ To develop a Vehicle Renting Web Application by adopting an iterative developmen
 * Sai Charan Duduka - charan140494@gmail.com
 * Sourabh Rajeev Badagandi - sourabh.rajeev@gmail.com
 
-# Techology Used
+# Technology Used
 * Database: MySQL
 * Server-side Application: Java with Spring
