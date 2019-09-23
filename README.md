@@ -11,7 +11,7 @@ To develop a Vehicle Renting Web Application by adopting an iterative developmen
 * Basant Gera - basantgera29@gmail.com
 * Koteswara Rao Panchumarthy - kotichowdary18@gmail.com
 * Sai Charan Duduka - charan140494@gmail.com
-* Sourabh Rajeev Badagandi - sourabh.rajeev@gmail.com
+* Sourabh Rajeev Badagandi - sourabh.rajeev@gmail.com - Team Leader(Iteration 2)
 
 # Technology Used
 * Database: MySQL
