@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+	
+<style>
+
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+.PageHeadingCenter {
+	font-family: Segoe UI Light, Helvetica Neue, Verdana;
+	font-size: 25px;
+	color: #009be1;
+	margin-right: 1px;
+}
+
+.buttonClass {
+	font-size: 9pt;
+	vertical-align: middle;
+	cursor: hand;
+	color: white;
+	font-style: normal;
+	FONT-FAMILY: Helvetica Neue, Verdana;
+	text-align: center;
+	width: 90px;
+	border-radius: 5px;
+	border: 1px solid rgb(255, 95, 1);
+	background-color: rgb(255, 95, 1);
+}
+
+.mainSearchContentPanel {
+	border: 1px solid #DDD;
+	background-color: #F9F9F9;
+	border-radius: 5px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+}
+
+.mainSearchContentPanel {
+	border: 1px solid #DDD;
+	background-color: #F9F9F9;
+	border-radius: 5px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row PageHeadingCenter ">
+			<div class="col-sm-12" style="height: 150px;"></div>
+
+		</div>
+
+		<div class="row PageHeadingCenter">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<label for="lblCartype">Add/Edit Client Information </label>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+		
+		<div class="mainSearchContentPanel">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Client First Name</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblModel">Client Last Name</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+
+			</div>
+			
+			<div style="padding: 5px;"></div>
+			
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Driving License No.</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblModel">Driving License Expired Date (If any)</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+
+			</div>
+			
+			<div style="padding: 5px;"></div>
+			
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Vehicle Owned</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblModel">Phone No.</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+
+			</div>
+			
+			<div style="padding: 5px;"></div>
+			
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Reservation Start Date</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblModel">Return End Date</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="email" class="form-control"
+						id="exampleDropdownFormEmail2">
+				</div>
+				<div class="col-sm-1"></div>
+
+			</div>
+			
+			<div style="padding: 5px;"></div>
+			<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-2">
+			<button type="button" class="buttonClass">Save</button>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="buttonClass">Update</button>
+			</div>
+
+
+		</div>
+			
+		</div>
+
+
+	</div>
+
+</body>
+</html>
