@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -79,10 +80,12 @@
 
 
 </style>
+
 <meta charset="ISO-8859-1">
 <title>User Registration</title>
 </head>
 <body>
+<form action = "@{/registrationpage}" th:object = "${registerform}" method = "POST">
 	<div class="container">
 		<div class="row PageHeadingCenter ">
 			<div class="col-sm-12" style="height: 160px;"></div>
@@ -107,11 +110,11 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">FirstName:</label>
+					<label for="firstname">FirstName:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" style = "width: 150px"  class="form-control"
-						id="exampleDropdownFormEmail2">
+					<input type="text" style = "width: 150px"  class="form-control"
+						id="firstname" name = "firstname" autofocus = "autofocus">
 				</div></div>
 			
 			<div style="padding: 5px;"></div>
@@ -120,40 +123,35 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">LastName:</label>
+					<label for="lastname">LastName:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" style = "width: 150px" class="form-control"
-						id="exampleDropdownFormEmail2">
-				</div>			
-
-			</div>
+					<input type="text" style = "width: 150px"  class="form-control"
+						id="lastname" name = "lastname" autofocus = "autofocus">
+				</div></div>
 			<div style="padding: 5px;"></div>
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">UserName:</label>
+					<label for="username">UserName:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" style = "width: 150px" class="form-control"
-						id="exampleDropdownFormEmail2">
-				</div>	
-			</div>
+					<input type="text" style = "width: 150px"  class="form-control"
+						id="username" name = "username" autofocus = "autofocus">
+				</div></div>
 					
 <div style="padding: 5px;"></div>
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">Password:</label>
+					<label for="password">Password:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" style = "width: 150px" class="form-control"
-						id="exampleDropdownFormEmail2">
-				</div>			
-
-			</div>
+					<input type="passowrd" style = "width: 150px"  class="form-control"
+						id="password"  name = "password">
+				</div></div>
 			<div style="padding: 5px;"></div>
 			
 			<div class="row">
@@ -164,7 +162,7 @@
 				</div>
 				<div class="col-sm-2">
 					<input type="email" style = "width: 150px" class="form-control"
-						id="exampleDropdownFormEmail2">
+						name = "email" id="exampleDropdownFormEmail2">
 				<div class="col-sm-1"></div>
                </div>
 			</div>
@@ -174,14 +172,12 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">ClerkID:</label>
+					<label for="clerkid">ClerkID:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" style = "width: 150px" class="form-control"
-						id="exampleDropdownFormEmail2">
-				<div class="col-sm-1"></div>
-
-			</div>
+					<input type="text" style = "width: 150px"  class="form-control"
+						id="clerkid" name = "clerkid" autofocus = "autofocus">
+				</div></div>
 			<div style="padding: 5px;"></div>
 			
 			<div class="row">
@@ -224,12 +220,11 @@
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2"></div>
-			<div class="col-sm-3"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-			<button type="button" class="buttonClass">Register</button>
-			</div>
 			
+			
+			<div class="col-sm-2">
+				<input type="submit"  value = "Register"></input>
+			</div>		
 
 
 		</div>
@@ -238,6 +233,6 @@
 
 
 	</div>
-
+</form>
 </body>
 </html>
