@@ -7,28 +7,40 @@ import javax.persistence.Id;
 
 @Entity
 public class Clients {
-	private Long client_id;
+	private Long clientid;
 	private String first_name;
 	private String last_name;
 	private String licence_number;
 	private String licence_validity;
 	private String phone;
+	private Long clerkid;
 	
 	
 	protected Clients() {
 
+	}
+	
+	public Clients(Long id, String first_name, String last_name, String licence_number, 
+			String licence_validity, String phone, Long clerkid) {
+		this.clientid = id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.licence_number = licence_number;
+		this.licence_validity = licence_validity;
+		this.phone = phone;
+		this.clerkid = clerkid;
 	}
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getClientID() {
-		return client_id;
+		return clientid;
 	}
 
 
 	public void setClientID(Long clientID) {
-		this.client_id = clientID;
+		this.clientid = clientID;
 	}
 
 
@@ -79,6 +91,14 @@ public class Clients {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public Long getClerkID() {
+		return clerkid;
+	}
+
+	public void setClerkID(Long clerkid) {
+		this.clerkid = clerkid;
 	}
 
 }
