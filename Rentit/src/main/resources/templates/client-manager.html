@@ -99,6 +99,18 @@
 </style>
 <meta charset="ISO-8859-1">
 <title>Client Manager</title>
+
+<script>
+function showmenu(elmnt)
+{
+document.getElementById(elmnt).style.visibility="visible";
+}
+function hidemenu(elmnt)
+{
+document.getElementById(elmnt).style.visibility="hidden";
+}
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -139,40 +151,57 @@
 
 
 		</div>
-		<div style="padding: 5px;"></div>
+		<div style="padding: 3px;"></div>
 
-		<div style="padding: 5px;"></div>
+		<div style="padding: 3px;"></div>
 
 		<table id="customers">
 			<tr>
-				<th><input type="checkbox" checked="checked"></th>
 				<th>Client ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Licence Number</th>
 				<th>Licence Validity</th>
 				<th>Phone Number</th>
-				<th>Booking Clerk ID</th>
+				<th>Booking ID</th>
+				<th>Start Date</th>
+				<th>Due Date</th>
+				<th>Booked On</th>
+				<th>Status</th>
+				<th>Options</th>
+				
 				
 			
 			</tr>
 			
 			<tr th:each="client : ${clients}">
-				<td><input type="checkbox"></td>
-				<td th:text="${client.getClientID()}"></td>
-				<td th:text="${client.getFirstName()}"></td>
-				<td th:text="${client.getLastName()}"></td>
-				<td th:text="${client.getLicenceNumber()}"></td>
-				<td th:text="${client.getLicenceValidity()}"></td>
-				<td th:text="${client.getPhone()}"></td>
-				<td th:text="${client.getClerkID()}"></td>
+				<td th:text="${client.get(0)}"></td>
+				<td th:text="${client.get(1)}"></td>
+				<td th:text="${client.get(2)}"></td>
+				<td th:text="${client.get(3)}"></td>
+				<td th:text="${client.get(4)}"></td>
+				<td th:text="${client.get(5)}"></td>
+				<td th:text="${client.get(6)}"></td>
+				<td th:text="${client.get(7)}"></td>
+				<td th:text="${client.get(8)}"></td>
+				<td th:text="${client.get(9)}"></td>
+				<td th:text="${client.get(10)}"></td>
+				<td>
+					<a th:href="@{'/return/' + ${client.get(0)}}">Return</a>
+					&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/cancel/' + ${client.get(0)}}">Cancel</a>
+					&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/modify/' + ${client.get(0)}}">Modify</a>
+					
+				</td>
 			</tr>
 		
 
 			
-			
+
 
 		</table>
 	</div>
 </body>
+
 </html>
