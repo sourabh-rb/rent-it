@@ -16,7 +16,7 @@ public class Vehicles    {
 	
 	
 	 
-	public Vehicles(String id,String Make, String Model,String iYear,String Type) {
+	public Vehicles(int id,String Make, String Model,String iYear,String Type) {
 		super();
 		this.id = index ++;
 		this.Make = Make;
