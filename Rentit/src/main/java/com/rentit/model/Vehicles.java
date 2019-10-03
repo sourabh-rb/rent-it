@@ -2,7 +2,7 @@ package com.rentit.model;
 
 import java.util.ArrayList;
 
-public class Vehicles   {
+public class Vehicles    {
 	private Integer id;
 	private String LicPlate;
 	private String Type;

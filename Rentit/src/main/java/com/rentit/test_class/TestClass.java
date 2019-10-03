@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-//import com.rentit.model.Bookings;
+import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 
@@ -19,34 +19,48 @@ public class TestClass {
 	// private static ArrayList<Bookings> bookingList;
 	private static TestClass testData;
 
+
+	private static ArrayList<Bookings> bookingList;
+	
+	//private static  TestClass testData = null;
+	
 	public TestClass() {
 		populateClientList();
 		populateVechileList();
-
-		// populateBookinList();
+		populateBookinList();
+		
 	}
-
+	
 //	public TestClass getInstance() {
-//		if(testData == null) {	
+//		if(testData == null) {
 //			testData = new TestClass();
-//			populateClientList();
+//			
 //		}
+//		
 //		return testData;
 //	}
 
-//	private static void populateBookinList() {
-//		bookingList = new ArrayList<Bookings>();
-//		
-//		Bookings booking1 = new Bookings(999L, "2019-09-20 8:38:12", null, "2019-09-25", "2019-09-27", null, 1L);
-//		Bookings booking2 = new Bookings(929L, "2019-09-15 12:38:12", "2019-09-23", "2019-09-20", "2019-09-23", null, 2L);
-//		Bookings booking3 = new Bookings(939L, "2019-09-10 6:38:12", null, "2019-09-28", "2019-09-29", "2019-09-27", 3L);
-//		Bookings booking4 = new Bookings(949L, "2019-09-05 14:38:12", null, "2019-09-06", "2019-09-10", null, 4L);
-//		Bookings booking5 = new Bookings(959L, "2019-09-06 22:38:12", null, "2019-09-10", "2019-09-27", null, 5L);
-//		
-//	}
+
+
+	private static void populateBookinList() {
+		
+		bookingList = new ArrayList<Bookings>();
+		
+		Bookings booking1 = new Bookings(999L, "2019-09-20 8:38:12", null, "2019-09-25", "2019-09-27", null, 1L);
+		Bookings booking2 = new Bookings(929L, "2019-09-15 12:38:12", "2019-09-23", "2019-09-20", "2019-09-23", null, 2L);
+		Bookings booking3 = new Bookings(939L, "2019-09-10 6:38:12", null, "2019-09-28", "2019-09-29", "2019-09-27", 3L);
+		Bookings booking4 = new Bookings(949L, "2019-09-05 14:38:12", null, "2019-09-06", "2019-09-10", null, 4L);
+		Bookings booking5 = new Bookings(959L, "2019-09-06 22:38:12", null, "2019-09-10", "2019-09-27", null, 5L);
+		
+		bookingList.add(booking1);
+		bookingList.add(booking2);
+		bookingList.add(booking3);
+		bookingList.add(booking4);
+		bookingList.add(booking5);
+		
+	}
 
 	private void populateVechileList() {
-		// TODO Auto-generated method stub
 		
 		//public Vehicles(String id,String Make, String Model,String iYear,String Type) {
 		vechileList = new ArrayList<Vehicles>();
@@ -65,8 +79,6 @@ public class TestClass {
         
         
         						 
-   
-        
         vechileList.add(vehicles1);
         vechileList.add(vehicles2);
         vechileList.add(vehicles3);
@@ -95,6 +107,7 @@ public class TestClass {
 	}
 
 	private static void populateClientList() {
+		
 		clientList = new ArrayList<Clients>();
 
 		Clients client1 = new Clients(1L, "Andrew", "Neo", "A-1234-123456-12", "2020-09-20", "1234567890", 100L);
@@ -116,43 +129,36 @@ public class TestClass {
 	}
 
 	
+	public List<Bookings> getBookingTestData() {
+		return bookingList;
+	}
+	
 	public List<Vehicles> getVehiclesTestData() {
 		return vechileList;
 	}
 
 	public List<Vehicles> getVehiclesTestDatAfterSearch(String make,String type, String model, String iYear) {
 		// TODO Auto-generated method stub
-		/*
-		 * System.out.print("make :" +make); System.out.print("\n");
-		 * System.out.print("model :" +model); System.out.print("\n");
-		 * System.out.print("iyear :" +iYear); System.out.print("\n");
-		 * System.out.print("type :" +type); System.out.print("\n");
-		 * System.out.print("<---------------------------->"); System.out.print("\n");
-		 */
 	
 		if((make==""||make.equals(null)) && (model==""||model.equals(null)) && (iYear==""||iYear.equals(null)) && (type==""||type.equals(null))) {
 			vechileList=vechileListDummy;
 			return vechileList;
 		}
-		//else if((!(model.equals(""))||!(model.equals(null)))) {
 		else if(!model.isEmpty()) {
 			List<Vehicles> result = vechileList.stream()
 				    .filter(b -> Objects.equals(b.getModel(), model))
 				    .collect(Collectors.toList());
 			
 		vechileList=(ArrayList<Vehicles>) result;
-		//System.out.print(vechileList);
 		return vechileList;
 		
 		}
-		//else if((!(make.equals(""))||!(make.equals(null)))) {
 		else if(!make.isEmpty()) {
 			List<Vehicles> result = vechileList.stream()
 				    .filter(a -> Objects.equals(a.getMake(), make))
 				    .collect(Collectors.toList());
 			
 		vechileList=(ArrayList<Vehicles>) result;
-		//System.out.print(vechileList);
 		return vechileList;
 		
 		}
@@ -162,7 +168,6 @@ public class TestClass {
 				    .collect(Collectors.toList());
 			
 		vechileList=(ArrayList<Vehicles>) result;
-		//System.out.print(vechileList);
 		return vechileList;
 		
 		}
@@ -172,7 +177,6 @@ public class TestClass {
 				    .collect(Collectors.toList());
 			
 		vechileList=(ArrayList<Vehicles>) result;
-		//System.out.print(vechileList);
 		return vechileList;
 		
 		}
@@ -184,6 +188,32 @@ public class TestClass {
 
 	}
 
+
+	
+	public void setReturnDate(Long id, String date) {
+		for(Bookings booking : bookingList) {
+			if(id == booking.getClientID()) {
+				if(booking.getReturnDate() == null) {
+				booking.setReturnDate(date);
+				}
+			}
+		}
+	}
+	
+	public void setCancelDate(Long id, String date) {
+		for(Bookings booking : bookingList) {
+			if(id == booking.getClientID()) {
+				if(booking.getCancelDate() == null) {
+				booking.setCancelDate(date);
+				}
+			}
+		}
+	}
+
+	/*
+	 * public List<Vehicles> getVehiclesTestDatAfterSort(String sColHeaderPressed,
+	 * String sOrder) { // TODO Auto-generated method stub return null; }
+	 */
 	
 
 }

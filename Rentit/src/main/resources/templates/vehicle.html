@@ -202,7 +202,7 @@ function toggle(source) {
             <td th:text="${vehicle.getiYear()}"></td>
              <td th:text="${vehicle.getType()}"></td>
             <td>
-            <button  id="btnViewDetails"  type="button" class="buttonClass">View Details</button>
+            <button  th:href="@{'/tnViewDetails/' + ${vehicle.getId()}}"    type="button" class="buttonClass">View Details</button>
             </td>
            
 		</tr>
