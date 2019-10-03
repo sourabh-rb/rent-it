@@ -25,12 +25,18 @@ public class LoginController {
  public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
     String username=loginForm.getUsername();
     String password=loginForm.getPassword();
-    if("admin".equals(username) && "admin".equals(password)) {
-      return "redirect:/vehicle";
+    Login l = new Login();
+    if(l.checkPassword(username, password)) {
+    	return "redirect:/vehicle";
+    }else {
+    	model.addAttribute("Invalid Credentials", true);
+    	return "redirect:/LoginPage";
     }
-    model.addAttribute("Invalid Credentials", true);
-    return "redirect:/LoginPage";
+//    if("admin".equals(username) && "admin".equals(password)) {
+//      return "redirect:/vehicle";
+    }
+
  
    
- }
+ 
 }
