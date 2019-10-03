@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.rentit.form;
+package com.rentit.model;
 
 /**
  * @author kotic
  *
  */
-public class LoginForm {
+public class Login {
   private String username;
   private String password;
  public String getUsername() {
