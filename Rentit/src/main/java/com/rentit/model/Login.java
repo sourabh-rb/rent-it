@@ -3,6 +3,8 @@
  */
 package com.rentit.model;
 
+import java.util.HashMap;
+
 /**
  * @author kotic
  *
@@ -10,6 +12,9 @@ package com.rentit.model;
 public class Login {
   private String username;
   private String password;
+  
+  private static HashMap<String, String> credHashMap = new HashMap<String, String>();
+  
  public String getUsername() {
    return username;
  }
@@ -23,4 +28,19 @@ public class Login {
    this.password=Password;
  }
  
+ public void addCredentials(String username, String password) {
+	 
+	 credHashMap.put(username, password);
+	}
+	
+public boolean checkPassword(String username, String password) {
+		if(credHashMap.containsKey(username)) {
+			if(password.equals(credHashMap.get(username))) 
+				return true;
+			return false;
+		}
+		return false;
+		
+	}
+
 }
