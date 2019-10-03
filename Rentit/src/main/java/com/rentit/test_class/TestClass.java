@@ -1,7 +1,11 @@
 package com.rentit.test_class;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 //import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
@@ -11,6 +15,7 @@ public class TestClass {
 
 	private static ArrayList<Clients> clientList;
 	private static ArrayList<Vehicles> vechileList;
+	private static ArrayList<Vehicles> vechileListDummy;
 	// private static ArrayList<Bookings> bookingList;
 	private static TestClass testData;
 
@@ -43,18 +48,22 @@ public class TestClass {
 	private void populateVechileList() {
 		// TODO Auto-generated method stub
 		
+		//public Vehicles(String id,String Make, String Model,String iYear,String Type) {
 		vechileList = new ArrayList<Vehicles>();
-        Vehicles vehicles1= new Vehicles("1","AB12345","Sumo","Alto","Creta");
-        Vehicles vehicles2=new Vehicles("2","BC12345","Sumo1","Alto1","Creta1");
-        Vehicles vehicles3=new Vehicles("3","DE12345","Sumo2","Alto2","Creta2");
-        Vehicles vehicles4=new Vehicles("4","FG12345","Sumo3","Alto3","Creta3");
-        Vehicles vehicles5=new Vehicles("5","HI12345","Sumo4","Alto4","Creta4");
-        Vehicles vehicles6=new Vehicles("6","AB12345","Sumo","Alto","Creta");
-        Vehicles vehicles7=new Vehicles("7","BC12345","Sumo1","Alto1","Creta1");
-        Vehicles vehicles8=new Vehicles ("8","DE12345","Sumo2","Alto2","Creta2");
-        Vehicles vehicles9=new Vehicles ("9","FG12345","Sumo3","Alto3","Creta3");
-        Vehicles vehicles10=new Vehicles ("10","HI12345","Sumo4","Alto4","Creta4");
-        Vehicles vehicles11=new Vehicles ("11","AB12345","Sumo","Alto","Creta");
+		vechileListDummy = new ArrayList<Vehicles>();
+        Vehicles vehicles1= new Vehicles("1","alto","wrangler","2019","suv");
+        Vehicles vehicles2=new Vehicles("2","balto","xs","2020","muv");
+        Vehicles vehicles3=new Vehicles("3","calto","ml","2120","RUV");
+        Vehicles vehicles4=new Vehicles("4","dalto","fbg","2023","kuv");
+        Vehicles vehicles5=new Vehicles("5","ealto","gal","1900","creta4");
+        Vehicles vehicles6=new Vehicles("6","felto","mal","2013","fuv");
+        Vehicles vehicles7=new Vehicles("7","celtoi","ik","2012","kol");
+        Vehicles vehicles8=new Vehicles ("8","belto","jk","2011","lki");
+        Vehicles vehicles9=new Vehicles ("9","alto","ujk","2018","noi");
+        Vehicles vehicles10=new Vehicles ("10","alto","liu","2020","moi");
+        Vehicles vehicles11=new Vehicles ("11","alto","bo","2003","eri");
+        
+        
         						 
    
         
@@ -69,6 +78,19 @@ public class TestClass {
         vechileList.add(vehicles9);
         vechileList.add(vehicles10);
         vechileList.add(vehicles11);
+        
+        vechileListDummy.add(vehicles1);
+        vechileListDummy.add(vehicles2);
+        vechileListDummy.add(vehicles3);
+        vechileListDummy.add(vehicles4);
+        vechileListDummy.add(vehicles5);
+        vechileListDummy.add(vehicles6);
+        vechileListDummy.add(vehicles7);
+        vechileListDummy.add(vehicles8);
+        vechileListDummy.add(vehicles9);
+        vechileListDummy.add(vehicles10);
+        vechileListDummy.add(vehicles11);
+        
 ;
 	}
 
@@ -93,13 +115,75 @@ public class TestClass {
 		return clientList;
 	}
 
-//	public List<Bookings> getBookingTestData() {
-//		return bookingList;
-//	}
 	
 	public List<Vehicles> getVehiclesTestData() {
 		return vechileList;
 	}
 
+	public List<Vehicles> getVehiclesTestDatAfterSearch(String make,String type, String model, String iYear) {
+		// TODO Auto-generated method stub
+		/*
+		 * System.out.print("make :" +make); System.out.print("\n");
+		 * System.out.print("model :" +model); System.out.print("\n");
+		 * System.out.print("iyear :" +iYear); System.out.print("\n");
+		 * System.out.print("type :" +type); System.out.print("\n");
+		 * System.out.print("<---------------------------->"); System.out.print("\n");
+		 */
+	
+		if((make==""||make.equals(null)) && (model==""||model.equals(null)) && (iYear==""||iYear.equals(null)) && (type==""||type.equals(null))) {
+			vechileList=vechileListDummy;
+			return vechileList;
+		}
+		//else if((!(model.equals(""))||!(model.equals(null)))) {
+		else if(!model.isEmpty()) {
+			List<Vehicles> result = vechileList.stream()
+				    .filter(b -> Objects.equals(b.getModel(), model))
+				    .collect(Collectors.toList());
+			
+		vechileList=(ArrayList<Vehicles>) result;
+		//System.out.print(vechileList);
+		return vechileList;
+		
+		}
+		//else if((!(make.equals(""))||!(make.equals(null)))) {
+		else if(!make.isEmpty()) {
+			List<Vehicles> result = vechileList.stream()
+				    .filter(a -> Objects.equals(a.getMake(), make))
+				    .collect(Collectors.toList());
+			
+		vechileList=(ArrayList<Vehicles>) result;
+		//System.out.print(vechileList);
+		return vechileList;
+		
+		}
+		else if(!type.isEmpty()) {
+			List<Vehicles> result = vechileList.stream()
+				    .filter(c -> Objects.equals(c.getType(), type))
+				    .collect(Collectors.toList());
+			
+		vechileList=(ArrayList<Vehicles>) result;
+		//System.out.print(vechileList);
+		return vechileList;
+		
+		}
+		else if(!iYear.isEmpty()) {
+			List<Vehicles> result = vechileList.stream()
+				    .filter(d -> Objects.equals(d.getiYear(), iYear))
+				    .collect(Collectors.toList());
+			
+		vechileList=(ArrayList<Vehicles>) result;
+		//System.out.print(vechileList);
+		return vechileList;
+		
+		}
+		
+		else {
+			vechileList=vechileListDummy;
+			return vechileList;
+		}
+
+	}
+
+	
 
 }

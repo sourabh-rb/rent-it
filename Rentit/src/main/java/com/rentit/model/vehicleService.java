@@ -18,4 +18,8 @@ public class vehicleService {
 		return testData.getVehiclesTestData();
 	}
 
+    public List<Vehicles> ListAllSearches(String Make,String Type,String Model,String iYear){
+
+		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear);
+	}
 }

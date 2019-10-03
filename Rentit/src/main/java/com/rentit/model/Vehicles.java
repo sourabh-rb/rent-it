@@ -1,6 +1,8 @@
 package com.rentit.model;
 
-public class Vehicles {
+import java.util.ArrayList;
+
+public class Vehicles   {
 	private Integer id;
 	private String LicPlate;
 	private String Type;
@@ -12,6 +14,8 @@ public class Vehicles {
 	public  int index = 0;
 	
 	
+	
+	 
 	public Vehicles(String id,String Make, String Model,String iYear,String Type) {
 		super();
 		this.id = index ++;
@@ -83,8 +87,11 @@ public class Vehicles {
 		Color = color;
 	}
 
-
-	
+	@Override
+	public String toString() {
+		return "Vehicles [id=" + id + ", LicPlate=" + LicPlate + ", Type=" + Type + ", Make=" + Make + ", Model="
+				+ Model + ", iYear=" + iYear + ", Color=" + Color + ", index=" + index + "]";
+	}
 	
 	
 
