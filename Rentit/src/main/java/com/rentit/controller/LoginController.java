@@ -23,7 +23,7 @@ public class LoginController {
     String username=loginForm.getUsername();
     String password=loginForm.getPassword();
     if("admin".equals(username) && "admin".equals(password)) {
-      return "FrmClientInformation";
+      return "vehicle";
     }
     model.addAttribute("Invalid Credentials", true);
     return "LoginPage";
