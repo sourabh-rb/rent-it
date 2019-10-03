@@ -3,7 +3,7 @@ package com.rentit.test_class;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rentit.model.Bookings;
+//import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 
@@ -11,47 +11,37 @@ public class TestClass {
 
 	private static ArrayList<Clients> clientList;
 	private static ArrayList<Vehicles> vechileList;
-	private static ArrayList<Bookings> bookingList;
-	
-	//private static  TestClass testData = null;
-	
+	// private static ArrayList<Bookings> bookingList;
+	private static TestClass testData;
+
 	public TestClass() {
 		populateClientList();
 		populateVechileList();
-		populateBookinList();
-		
+
+		// populateBookinList();
 	}
-	
+
 //	public TestClass getInstance() {
-//		if(testData == null) {
+//		if(testData == null) {	
 //			testData = new TestClass();
-//			
+//			populateClientList();
 //		}
-//		
 //		return testData;
 //	}
 
-
-
-	private static void populateBookinList() {
-		
-		bookingList = new ArrayList<Bookings>();
-		
-		Bookings booking1 = new Bookings(999L, "2019-09-20 8:38:12", null, "2019-09-25", "2019-09-27", null, 1L);
-		Bookings booking2 = new Bookings(929L, "2019-09-15 12:38:12", "2019-09-23", "2019-09-20", "2019-09-23", null, 2L);
-		Bookings booking3 = new Bookings(939L, "2019-09-10 6:38:12", null, "2019-09-28", "2019-09-29", "2019-09-27", 3L);
-		Bookings booking4 = new Bookings(949L, "2019-09-05 14:38:12", null, "2019-09-06", "2019-09-10", null, 4L);
-		Bookings booking5 = new Bookings(959L, "2019-09-06 22:38:12", null, "2019-09-10", "2019-09-27", null, 5L);
-		
-		bookingList.add(booking1);
-		bookingList.add(booking2);
-		bookingList.add(booking3);
-		bookingList.add(booking4);
-		bookingList.add(booking5);
-		
-	}
+//	private static void populateBookinList() {
+//		bookingList = new ArrayList<Bookings>();
+//		
+//		Bookings booking1 = new Bookings(999L, "2019-09-20 8:38:12", null, "2019-09-25", "2019-09-27", null, 1L);
+//		Bookings booking2 = new Bookings(929L, "2019-09-15 12:38:12", "2019-09-23", "2019-09-20", "2019-09-23", null, 2L);
+//		Bookings booking3 = new Bookings(939L, "2019-09-10 6:38:12", null, "2019-09-28", "2019-09-29", "2019-09-27", 3L);
+//		Bookings booking4 = new Bookings(949L, "2019-09-05 14:38:12", null, "2019-09-06", "2019-09-10", null, 4L);
+//		Bookings booking5 = new Bookings(959L, "2019-09-06 22:38:12", null, "2019-09-10", "2019-09-27", null, 5L);
+//		
+//	}
 
 	private void populateVechileList() {
+		// TODO Auto-generated method stub
 		
 		vechileList = new ArrayList<Vehicles>();
         Vehicles vehicles1= new Vehicles("1","AB12345","Sumo","Alto","Creta");
@@ -66,6 +56,8 @@ public class TestClass {
         Vehicles vehicles10=new Vehicles ("10","HI12345","Sumo4","Alto4","Creta4");
         Vehicles vehicles11=new Vehicles ("11","AB12345","Sumo","Alto","Creta");
         						 
+   
+        
         vechileList.add(vehicles1);
         vechileList.add(vehicles2);
         vechileList.add(vehicles3);
@@ -81,7 +73,6 @@ public class TestClass {
 	}
 
 	private static void populateClientList() {
-		
 		clientList = new ArrayList<Clients>();
 
 		Clients client1 = new Clients(1L, "Andrew", "Neo", "A-1234-123456-12", "2020-09-20", "1234567890", 100L);
@@ -101,35 +92,14 @@ public class TestClass {
 	public List<Clients> getClientTestData() {
 		return clientList;
 	}
-	
-	public List<Bookings> getBookingTestData() {
-		return bookingList;
-	}
+
+//	public List<Bookings> getBookingTestData() {
+//		return bookingList;
+//	}
 	
 	public List<Vehicles> getVehiclesTestData() {
 		return vechileList;
 	}
-	
-	public void setReturnDate(Long id, String date) {
-		for(Bookings booking : bookingList) {
-			if(id == booking.getClientID()) {
-				if(booking.getReturnDate() == null) {
-				booking.setReturnDate(date);
-				}
-			}
-		}
-	}
-	
-	public void setCancelDate(Long id, String date) {
-		for(Bookings booking : bookingList) {
-			if(id == booking.getClientID()) {
-				if(booking.getCancelDate() == null) {
-				booking.setCancelDate(date);
-				}
-			}
-		}
-	}
-	
-	
+
 
 }
