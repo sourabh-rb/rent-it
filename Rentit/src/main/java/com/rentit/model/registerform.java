@@ -1,4 +1,4 @@
-package com.rentit.controller;
+package com.rentit.model;
 
 public class registerform {
 
