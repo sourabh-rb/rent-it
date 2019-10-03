@@ -12,7 +12,7 @@ function toggle(source) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
     }
-}
+   
 </script>
 <style>
 #customers td, #customers th {
@@ -109,10 +109,10 @@ function toggle(source) {
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">CarType</label>
+					<label for="lblCartype">Vehicles Type</label>
 				</div>
 				<div class="col-sm-2">					
-					<input type="text" class="form-control"   Placeholder=" Enter Car Type"  name="Type">
+					<input type="text" class="form-control"   Placeholder="Enter Vehicle Type"  name="Type">
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
@@ -131,7 +131,7 @@ function toggle(source) {
 					<label for="lblCartype">Year</label>
 				</div>
 				<div class="col-sm-2">
-				<input type="text" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear">
+				<input type="text" pattern="\d{4}" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear">
 				
 				</div>
 				<div class="col-sm-1"></div>
@@ -169,17 +169,25 @@ function toggle(source) {
 		</div>
 		<div style="padding: 5px;"></div>
 		<div class="row">
-			<div class="col-sm-1"></div>
 			<div class="col-sm-2">
-				<button  type="submit" value="Submit" id="btnClientManager" class="buttonClass" style="width:auto;">Client Manager</button>
+			<button  type="submit" value="Submit" id="btnClientManager" class="buttonClass">Client Manager</button>
 			</div>
-			<div class="col-sm-3"></div>
-			<div class="col-sm-4"></div>
 			<div class="col-sm-2">
-				<button type="submit" value="Search"  id="btnClientManager" class="buttonClass">Search </button>
+			<button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Sort by Make </button>
 			</div>
- 
-
+			<div class="col-sm-2">
+			<button type="submit" value="Submit"  name="btnSortModel" id="btnSortModel" class="buttonClass">Sort by Model </button>
+			</div>
+			<div class="col-sm-2">
+			<button type="submit" value="Submit"  name="btnSortYear" id="btnSortYear" class="buttonClass" >Sort by Year </button>
+			</div>
+			<div class="col-sm-2">
+			<button type="submit" value="Submit" name="btnSortVechicles"  id="btnSortVechicles" class="buttonClass" >sort by Vehicles </button>
+			</div>
+			<div class="col-sm-2">
+			<button type="submit" value="Search"  id="btnClientManager" class="buttonClass">Search </button>
+			</div>
+			
 		</div>
 		
 	
@@ -187,16 +195,16 @@ function toggle(source) {
 		<table class="table"  id="customers"  style="width:100%;max-height:230px;overflow-y:scroll;display:block;">	<thead class = "thead-light">
         <tr>
         <th style="width:3%;"><input onclick="toggle(this);" type="checkbox"></th>
-            <th class="text-center" style="width:30%">Make</th>
-            <th class="text-center" style="width:30%"> Model</th>
+            <th class="text-center" name="make" style="width:30%">Make</th>
+            <th class="text-center" style="width:30%">Model</th>
             <th class="text-center" style="width:30%">Year</th>
-            <th class="text-center" style="width:22%">Type</th>
+            <th class="text-center" style="width:22%">Vehicles Type</th>
             <th class="text-center" style="width:12%">View Details</th>
         </tr>
     </thead>
 	<tbody>   
 		  <tr th:each="vehicle : ${vehicle}">
-		    <td><input name="select" id="chk_${vehicle.getId()}" type="checkbox"></td>
+		    <td><input name="select" id="${vehicle.getId()}" type="checkbox"></td>
             <td th:text="${vehicle.getMake()}"></td>
             <td th:text="${vehicle.getModel()}"></td>
             <td th:text="${vehicle.getiYear()}"></td>
