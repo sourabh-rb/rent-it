@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.Login;
-import com.rentit.model.registerform;
+import com.rentit.model.Register;
 
 
 @Controller
@@ -18,16 +18,16 @@ public class RegisterController {
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.GET)
 	public ModelAndView getUserDetails() {
 		ModelAndView model = new  ModelAndView("registrationpage");
-		 registerform obj = new registerform();
+		 Register obj = new Register();
 		 model.addObject("register", obj);
 		return model;
 		 
 	}
 	
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
-     public String getDetail(@ModelAttribute("register") registerform registerform) {
+     public String getDetail(@ModelAttribute("register") Register register) {
              Login login = new Login();
-			login.addCredentials(registerform.getUSername(), registerform.getPassword());
+			login.addCredentials(register.getUSername(), register.getPassword());
 			 return "redirect:/LoginPage"; 
 	}
 	

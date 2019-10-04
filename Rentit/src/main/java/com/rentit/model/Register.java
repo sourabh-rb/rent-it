@@ -1,6 +1,6 @@
 package com.rentit.model;
 
-public class registerform {
+public class Register {
 
 	private String firstname;
 	private String lastname;
