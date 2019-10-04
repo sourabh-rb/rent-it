@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.rentit.form.LoginForm;
+import com.rentit.model.Login;
 
 /**
  * @author kotic
@@ -22,14 +23,16 @@ public class LoginController {
    return "LoginPage"; 
   }
   @RequestMapping(value="/LoginPage",method=RequestMethod.POST)
- public @ResponseBody String LoginPage(@ModelAttribute(name="loginForm") LoginForm loginForm,Model model) {
+  public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
     String username=loginForm.getUsername();
     String password=loginForm.getPassword();
-    if("admin".equals(username) && "admin".equals(password)) {
-      return "vehicle";
+    Login l = new Login();
+    if(l.checkPassword(username, password)) {
+    	return "redirect:/vehicle";
+    }else {
+    	model.addAttribute("Invalid Credentials", true);
+    	return "redirect:/LoginPage";
     }
-    model.addAttribute("Invalid Credentials", true);
-    return "LoginPage";
  
    
  }

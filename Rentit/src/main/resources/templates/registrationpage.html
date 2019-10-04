@@ -85,7 +85,7 @@
 <title>User Registration</title>
 </head>
 <body>
-<form action = "@{/registrationpage}" th:object = "${registerform}" method = "POST">
+<form th:action = "@{/registrationpage}" th:object = "${registerform}" method = "POST">
 	<div class="container">
 		<div class="row PageHeadingCenter ">
 			<div class="col-sm-12" style="height: 160px;"></div>
@@ -178,6 +178,7 @@
 					<input type="text" style = "width: 150px"  class="form-control"
 						id="clerkid" name = "clerkid" autofocus = "autofocus">
 				</div></div>
+				</form>
 			<div style="padding: 5px;"></div>
 			
 			<div class="row">
@@ -233,6 +234,6 @@
 
 
 	</div>
-</form>
+
 </body>
 </html>
