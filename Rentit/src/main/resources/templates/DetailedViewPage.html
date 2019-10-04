@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" type="text/css"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</link>	
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 <style>
 
@@ -106,6 +104,7 @@
 <title>Detailed View</title>
 </head>
 <body>
+<form action="#" th:action="@{/saveRec}" th:object="${modify}" method="post">
 	<div class="container">
 		<div class="row PageHeadingCenter ">
 			<div class="col-sm-12" style="height: 150px;"></div>
@@ -127,8 +126,7 @@
 					<label for="vehicleType">Vehicle type:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text" th:field="*{Type}"  class="form-control"></input>
 				</div>
 				<div class="col-sm-7"></div>
 				
@@ -141,8 +139,7 @@
 					<label for="vehicleMake">Make:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text"  th:field="*{Make}"  class="form-control"></input>
 				</div>
 				<div class="col-sm-7"></div>
 				
@@ -154,14 +151,13 @@
 					<label for="vehicleModel">Model:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text" th:field="*{Model}" class="form-control"></input>
 				</div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<div class="col-sm-2"><button type="button" id="btnBook" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button></div>
+					<div class="col-sm-2"><button type="submit"       style="margin-bottom:10px;" class="submitButtonClass">Book Now</button></div>
 				</div>
 				<div class="col-sm-1"></div>
 				
@@ -173,8 +169,7 @@
 					<label for="vehicleYear">Year:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text"  th:field="*{iYear}"  class="form-control" ></input>
 				</div>
 				<div class="col-sm-7"></div>
 				
@@ -187,8 +182,7 @@
 					<label for="vehicleColor">Color:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text"  class="form-control" ></input>
 				</div>
 				<div class="col-sm-7"></div>
 				
@@ -200,8 +194,7 @@
 					<label for="vehicleLicense">License Plate:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="email" class="form-control"
-						id="exampleDropdownFormEmail2"></input>
+					<input type="text"  class="form-control" ></input>
 				</div>
 				<div class="col-sm-1"></div>
 				
@@ -222,6 +215,6 @@
 		
 			</div>
 	</div>
-
+</form>
 </body>
 </html>

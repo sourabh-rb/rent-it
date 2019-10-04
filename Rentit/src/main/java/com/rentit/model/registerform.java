@@ -28,22 +28,22 @@ public class registerform {
 		return clerkid;
 	}
 	
-	public void setFirstname( String firstname) {
+	public void setFirstname() {
 		this.firstname  = firstname;
 	}
-	public void setLastname(String lastname) {
+	public void setLastname() {
 		this.lastname = lastname;
 	}
-	public void setUsername(String username) {
+	public void setUsername() {
 		this.username = username;
 	}
-	public void setPassword(String password) {
+	public void setPassword() {
 		this.password = password;
 	}
-	public void setEmailId(String emailid) {
+	public void setEmailId() {
 		this.emailid = emailid;
 	}
-	public void setClerkId(String clerkid) {
+	public void setClerkId() {
 		this.clerkid = clerkid;
 	}
 }

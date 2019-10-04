@@ -23,13 +23,38 @@ public class vehicleService {
 		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear);
 	}
 
-	/*
-	 * public List<Vehicles> sortListBasedOnCodn(String sColHeaderPressed, String
-	 * sOrder) { // TODO Auto-generated method stub return
-	 * testData.getVehiclesTestDatAfterSort(sColHeaderPressed,sOrder);
-	 * 
-	 * }
-	 */
+
+	
+	public Vehicles getVechileInfo(long id) {
+		for(Vehicles vehicle : testData.getVehiclesTestData()) {
+			if(id == vehicle.getId()) {
+				return vehicle;
+			}
+		}
+		
+		return null;
+	
+	}
+
+	public void UpdateVehicleInfo(Vehicles vechileDetails) {
+		// TODO Auto-generated method stub
+		
+		for(Vehicles vechile : testData.getVehiclesTestData()) {
+			if(vechileDetails.getId() == vechile.getId()) {
+				System.out.print("Basant  : "+vechileDetails.getId() );
+				System.out.print("Gera : "+vechile.getId());
+				System.out.print("year  : "+vechile.getiYear());
+				System.out.print("iYear : "+vechileDetails.getiYear());
+				vechile.setiYear(vechileDetails.getiYear());
+				vechile.setMake(vechileDetails.getMake());
+				vechile.setModel(vechileDetails.getModel());
+				vechile.setType(vechileDetails.getType());
+				
+			}
+		}
+		
+	}
+
     
     
 }

@@ -185,7 +185,7 @@ function toggle(source) {
 			<button type="submit" value="Submit" name="btnSortVechicles"  id="btnSortVechicles" class="buttonClass" >sort by Vehicles </button>
 			</div>
 			<div class="col-sm-2">
-			<button type="submit" value="Search"  id="btnClientManager" class="buttonClass">Search </button>
+			<button type="submit" value="Submit"   name ="ClientManager" id="btnClientManager" class="buttonClass">Search </button>
 			</div>
 			
 		</div>
@@ -196,10 +196,10 @@ function toggle(source) {
         <tr>
         <th style="width:3%;"><input onclick="toggle(this);" type="checkbox"></th>
             <th class="text-center" name="make" style="width:30%">Make</th>
-            <th class="text-center" style="width:30%">Model</th>
-            <th class="text-center" style="width:30%">Year</th>
-            <th class="text-center" style="width:22%">Vehicles Type</th>
-            <th class="text-center" style="width:12%">View Details</th>
+            <th class="text-center" style="width:10%">Model</th>
+            <th class="text-cen	ter" style="width:15%">Year</th>
+            <th class="text-center" style="width:32%">Vehicles Type</th>
+            <th class="text-center" style="width:28%">View Details</th>
         </tr>
     </thead>
 	<tbody>   
@@ -210,7 +210,7 @@ function toggle(source) {
             <td th:text="${vehicle.getiYear()}"></td>
              <td th:text="${vehicle.getType()}"></td>
             <td>
-            <button  th:href="@{'/tnViewDetails/' + ${vehicle.getId()}}"    type="button" class="buttonClass">View Details</button>
+            <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a>
             </td>
            
 		</tr>
