@@ -41,14 +41,12 @@ public class vehicleService {
 		
 		for(Vehicles vechile : testData.getVehiclesTestData()) {
 			if(vechileDetails.getId() == vechile.getId()) {
-				System.out.print("Basant  : "+vechileDetails.getId() );
-				System.out.print("Gera : "+vechile.getId());
-				System.out.print("year  : "+vechile.getiYear());
-				System.out.print("iYear : "+vechileDetails.getiYear());
 				vechile.setiYear(vechileDetails.getiYear());
 				vechile.setMake(vechileDetails.getMake());
 				vechile.setModel(vechileDetails.getModel());
 				vechile.setType(vechileDetails.getType());
+				vechile.setColor(vechileDetails.getColor());
+				vechile.setLicPlate(vechileDetails.getLicPlate());
 				
 			}
 		}

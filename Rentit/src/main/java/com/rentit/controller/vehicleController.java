@@ -47,6 +47,8 @@ public class vehicleController {
 		String sType = VehiclesAttributes.getType();
 		String sModel = VehiclesAttributes.getModel();
 		String sYear = VehiclesAttributes.getiYear();
+		String sColor=VehiclesAttributes.getColor();
+		String sLicPlate=VehiclesAttributes.getLicPlate();
 		int iSize = listVehicles.size();
 		if (!(iSize == 0) || !(listVehicles.equals(null))) {
 
