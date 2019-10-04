@@ -85,8 +85,7 @@
 <title>Login Form</title>
 </head>
 <body>
-<form th:action = "@{/LoginPage}" th:object =   "${Login}" method = "POST">
-
+<form action = "@{/LoginPage}" th:object = "${LoginForm}" method = "POST">
     <div class="container">
         <div class="row PageHeadingCenter ">
             <div class="col-sm-12" style="height: 160px;"></div>
@@ -127,10 +126,10 @@
                     <label for="Password">password:</label>
                 </div>
                 <div class="col-sm-2">
-                    <input type="password" style = "width: 150px"  class="form-control"
-                        id="Password" name = "Password"  autofocus = "autofocus">
+                    <input type="text" style = "width: 150px"  class="form-control"
+                        id="Password" name = "Password" autofocus = "autofocus">
                 </div></div>
-      </form>    
+          
             <div style="padding: 5px;"></div>
             
             <div class="row">
@@ -186,6 +185,6 @@
 
 
     </div>
-
+</form>
 </body>
 </html>

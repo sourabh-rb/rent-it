@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 import com.rentit.model.vehicleService;
 
@@ -26,6 +28,7 @@ public class vehicleController {
 	
 	@Autowired
 	private vehicleService vehicleService;
+	long idDummy;
 
 	@RequestMapping("/vehicle")
 	public String listClient(Model model) {
@@ -134,5 +137,27 @@ public class vehicleController {
 		return "vehicle";
 
 	}
+	
+	
+	@RequestMapping("/VehilceId/{id}")
+		public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id,Model model) {
+		System.out.print(id);
+		idDummy=id;
+		 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
+		    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+		    sDetailsmav.addObject("modify", VechilesDetails);
+		    return sDetailsmav;
+	}
+	
+	@RequestMapping(value = "/saveRec", method = RequestMethod.POST)
+	public String saveEdit(@ModelAttribute("modify") Vehicles vechileDetails) {
+		//System.out.print(id);
+		vehicleService.UpdateVehicleInfo(vechileDetails);
+	     
+	    return "redirect:/vehicle";
+	}
+	
+	
+	
 
 }

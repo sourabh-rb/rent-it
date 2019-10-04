@@ -11,14 +11,14 @@ public class Vehicles    {
 	private String iYear;
 	private String Color;
 	
-	public  int index = 0;
+	public  int index;
 	
 	
 	
 	 
 	public Vehicles(int id,String Make, String Model,String iYear,String Type) {
 		super();
-		this.id = index ++;
+		this.id = id;
 		this.Make = Make;
 		this.Model= Model;
 		this.Type = Type;
