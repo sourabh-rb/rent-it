@@ -16,13 +16,15 @@ public class Vehicles    {
 	
 	
 	 
-	public Vehicles(int id,String Make, String Model,String iYear,String Type) {
+	public Vehicles(int id,String Make, String Model,String iYear,String Type,String Color,String LicPlate) {
 		super();
 		this.id = id;
 		this.Make = Make;
 		this.Model= Model;
 		this.Type = Type;
 		this.iYear = iYear;
+		this.Color = Color;
+		this.LicPlate = LicPlate;
 	}
 	
 	

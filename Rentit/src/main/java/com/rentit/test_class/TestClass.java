@@ -65,19 +65,19 @@ public class TestClass {
 		//public Vehicles(String id,String Make, String Model,String iYear,String Type) {
 		vechileList = new ArrayList<Vehicles>();
 		vechileListDummy = new ArrayList<Vehicles>();
-        Vehicles vehicles1= new Vehicles(1,"alto","wrangler","2019","suv");
-        Vehicles vehicles2=new Vehicles(2,"balto","xs","2020","muv");
-        Vehicles vehicles3=new Vehicles(3,"calto","ml","2120","RUV");
-        Vehicles vehicles4=new Vehicles(4,"dalto","fbg","2023","kuv");
-        Vehicles vehicles5=new Vehicles(5,"ealto","gal","1900","creta4");
-        Vehicles vehicles6=new Vehicles(6,"felto","mal","2013","fuv");
-        Vehicles vehicles7=new Vehicles(7,"celtoi","ik","2012","kol");
-        Vehicles vehicles8=new Vehicles (8,"belto","jk","2011","lki");
-        Vehicles vehicles9=new Vehicles (9,"alto","ujk","2018","noi");
-        Vehicles vehicles10=new Vehicles (10,"alto","liu","2020","moi");
-        Vehicles vehicles11=new Vehicles (11,"alto","bo","2003","eri");
-        Vehicles vehicles12=new Vehicles (13,"alto","jk","2020","moi");
-        Vehicles vehicles13=new Vehicles (15,"zlto","jk","2003","eri");
+        Vehicles vehicles1= new Vehicles(1,"alto","wrangler","2019","suv","black","XCB 468");
+        Vehicles vehicles2=new Vehicles(2,"balto","xs","2020","muv","yellow","H3G 2H8");
+        Vehicles vehicles3=new Vehicles(3,"calto","ml","2120","RUV","red","XH8 LKJ");
+        Vehicles vehicles4=new Vehicles(4,"dalto","fbg","2023","kuv","blue","HF6 7HF");
+        Vehicles vehicles5=new Vehicles(5,"ealto","gal","1900","creta4","green","JHV TD7");
+        Vehicles vehicles6=new Vehicles(6,"felto","mal","2013","fuv","purple","GTD 8T8");
+        Vehicles vehicles7=new Vehicles(7,"celtoi","ik","2012","kol","white","BD6 TS3");
+        Vehicles vehicles8=new Vehicles (8,"belto","jk","2011","lki","black","TD7 VB8");
+        Vehicles vehicles9=new Vehicles (9,"alto","ujk","2018","noi","magenta","TCX 9IK");
+        Vehicles vehicles10=new Vehicles (10,"alto","liu","2020","moi","pink","75G BGJ");
+        Vehicles vehicles11=new Vehicles (11,"alto","bo","2003","eri","blue","H3H 14T");
+        Vehicles vehicles12=new Vehicles (13,"alto","jk","2020","moi","black","78G H5D");
+        Vehicles vehicles13=new Vehicles (15,"zlto","jk","2003","eri","silver","8HF JH4");
         
         
         						 
