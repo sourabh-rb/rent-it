@@ -11,7 +11,7 @@ public class Bookings {
 	private String cancelDate;
 	private Long clientid;
 	
-	protected Bookings() {}
+	public Bookings() {}
 	
 	public Bookings(Long id, String bookingTS, String returnDate, String startDate, 
 			String dueDate, String cancelDate, Long clientid) {

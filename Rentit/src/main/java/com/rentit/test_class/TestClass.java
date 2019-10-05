@@ -8,7 +8,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.rentit.model.Bookings;
+import com.rentit.model.Clerks;
 import com.rentit.model.Clients;
+import com.rentit.model.ModelWrapper;
 import com.rentit.model.Vehicles;
 
 public class TestClass {
@@ -16,47 +18,120 @@ public class TestClass {
 	private static ArrayList<Clients> clientList;
 	private static ArrayList<Vehicles> vechileList;
 	private static ArrayList<Vehicles> vechileListDummy;
-	// private static ArrayList<Bookings> bookingList;
-	private static TestClass testData;
-
-
 	private static ArrayList<Bookings> bookingList;
+	private static ArrayList<Clerks> clerkList;
+	//private static TestClass testData;
 	
-	//private static  TestClass testData = null;
+	private static ArrayList<ModelWrapper> testEntries;
+
 	
 	public TestClass() {
-		populateClientList();
+		
+		populateClerkList();
 		populateVechileList();
+		populateClientList();
 		populateBookinList();
+		populateTestEntries();
 		
 	}
 	
-//	public TestClass getInstance() {
-//		if(testData == null) {
-//			testData = new TestClass();
-//			
-//		}
-//		
-//		return testData;
-//	}
+	private static void populateTestEntries() {
+		testEntries = new ArrayList<ModelWrapper>();
+		
+		for(int i = 0; i < 5; i++) {
+			ModelWrapper entry = new ModelWrapper();
+			entry.setClerk(clerkList.get(0));
+			entry.setVehicle(vechileList.get(i));
+			entry.setClient(clientList.get(i));
+			entry.setBooking(bookingList.get(i));
+			
+			testEntries.add(entry);
+			
+		}
+		
+		
+	}
 
 
+	private static void populateClerkList() {
+		
+		clerkList = new ArrayList<Clerks>();
+		
+		Clerks clerk1 = new Clerks();
+		
+		clerk1.setId(1L);
+		clerk1.setFirstName("Alex");
+		clerk1.setLastName("Lyon");
+		clerk1.setUsername("Alx2525");
+		clerk1.setPassword("Password1!");
+		clerk1.setEmail("alex25@gmail.com");
+		
+		clerkList.add(clerk1);
+		
+	}
 
 	private static void populateBookinList() {
 		
 		bookingList = new ArrayList<Bookings>();
 		
-		Bookings booking1 = new Bookings(999L, "2019-09-20 8:38:12", null, "2019-09-25", "2019-09-27", null, 1L);
-		Bookings booking2 = new Bookings(929L, "2019-09-15 12:38:12", "2019-09-23", "2019-09-20", "2019-09-23", null, 2L);
-		Bookings booking3 = new Bookings(939L, "2019-09-10 6:38:12", null, "2019-09-28", "2019-09-29", "2019-09-27", 3L);
-		Bookings booking4 = new Bookings(949L, "2019-09-05 14:38:12", null, "2019-09-06", "2019-09-10", null, 4L);
-		Bookings booking5 = new Bookings(959L, "2019-09-06 22:38:12", null, "2019-09-10", "2019-09-27", null, 5L);
+		Bookings booking1 = new Bookings();
+		booking1.setBookingid(999L);
+		booking1.setBookingTS("2019-09-20 8:38:12");
+		booking1.setReturnDate(null);
+		booking1.setStartDate("2019-09-25");
+		booking1.setDueDate("2019-09-27");
+		booking1.setCancelDate(null);
+		booking1.setClientID(1L);
 		
 		bookingList.add(booking1);
+		
+		Bookings booking2 = new Bookings();
+		booking2.setBookingid(929L);
+		booking2.setBookingTS("2019-09-15 12:38:12");
+		booking2.setReturnDate("2019-09-23");
+		booking2.setStartDate("2019-09-20");
+		booking2.setDueDate("2019-09-23");
+		booking2.setCancelDate(null);
+		booking2.setClientID(2L);
+		
 		bookingList.add(booking2);
+		
+		
+		Bookings booking3 = new Bookings();
+		booking3.setBookingid(939L);
+		booking3.setBookingTS("2019-09-10 6:38:12");
+		booking3.setReturnDate(null);
+		booking3.setStartDate("2019-09-28");
+		booking3.setDueDate("2019-09-29");
+		booking3.setCancelDate("2019-09-27");
+		booking3.setClientID(3L);
+		
 		bookingList.add(booking3);
+		
+		 
+		Bookings booking4 = new Bookings();
+		booking4.setBookingid(949L);
+		booking4.setBookingTS("2019-09-05 14:38:12");
+		booking4.setReturnDate(null);
+		booking4.setStartDate("2019-09-06");
+		booking4.setDueDate("2019-09-10");
+		booking4.setCancelDate(null);
+		booking4.setClientID(4L);
+
 		bookingList.add(booking4);
+		
+		
+		Bookings booking5 = new Bookings();
+		booking5.setBookingid(959L);
+		booking5.setBookingTS("2019-09-06 22:38:12");
+		booking5.setReturnDate(null);
+		booking5.setStartDate("2019-09-27");
+		booking5.setDueDate("2019-09-10");
+		booking5.setCancelDate(null);
+		booking5.setClientID(5L);
+
 		bookingList.add(booking5);
+		
 		
 	}
 
@@ -119,16 +194,65 @@ public class TestClass {
 		
 		clientList = new ArrayList<Clients>();
 
-		Clients client1 = new Clients(1L, "Andrew", "Neo", "A-1234-123456-12", "2020-09-20", "1234567890", 100L);
-		Clients client2 = new Clients(2L, "Fatima", "Shaik", "C-4321-123456-33", "2021-08-01", "1234098734", 100L);
-		Clients client3 = new Clients(3L, "Vijay", "Shankar", "F-1212-098765-11", "2020-01-29", "1234566666", 100L);
-		Clients client4 = new Clients(4L, "Rajesh", "Rajkumar", "Y-0909-098762-33", "2022-02-10", "7867564534", 100L);
-		Clients client5 = new Clients(5L, "Nancy", "Drew", "Q-6677-999234-45", "2023-09-20", "1234567890", 100L);
-
+		Clients client1 = new Clients();
+		client1.setClientID(1L);
+		client1.setFirstName("Andrew");
+		client1.setLastName("Neo");
+		client1.setLicenceNumber("A-1234-123456-12");
+		client1.setLicenceValidity("2020-09-20");
+		client1.setPhone("1234567890");
+		client1.setClerkID(clerkList.get(0).getId());
+		
 		clientList.add(client1);
+		
+		Clients client2 = new Clients();
+		client2.setClientID(2L);
+		client2.setFirstName("Fatima");
+		client2.setLastName("Shaik");
+		client2.setLicenceNumber("C-4321-123456-33");
+		client2.setLicenceValidity("2021-08-01");
+		client2.setPhone("0987654321");
+		client2.setClerkID(clerkList.get(0).getId());
+		
 		clientList.add(client2);
+		
+		
+		Clients client3 = new Clients();
+		
+		client3.setClientID(3L);
+		client3.setFirstName("Vijay");
+		client3.setLastName("Shankar");
+		client3.setLicenceNumber("F-1212-098765-11");
+		client3.setLicenceValidity("2020-01-29");
+		client3.setPhone("1234566666");
+		client3.setClerkID(clerkList.get(0).getId());
+		
 		clientList.add(client3);
+		
+		
+		Clients client4 = new Clients();
+		
+		client4.setClientID(4L);
+		client4.setFirstName("Rajesh");
+		client4.setLastName("Rajkumar");
+		client4.setLicenceNumber("Y-0909-098762-33");
+		client4.setLicenceValidity("2022-02-10");
+		client4.setPhone("7867564534");
+		client4.setClerkID(clerkList.get(0).getId());
+		
 		clientList.add(client4);
+		
+		
+		Clients client5 = new Clients();
+		
+		client5.setClientID(5L);
+		client5.setFirstName("Nancy");
+		client5.setLastName("Drew");
+		client5.setLicenceNumber("Q-6677-999234-45");
+		client5.setLicenceValidity("2023-09-20");
+		client5.setPhone("1234567890");
+		client5.setClerkID(clerkList.get(0).getId());
+		
 		clientList.add(client5);
 
 	}
@@ -202,25 +326,42 @@ public class TestClass {
 	}
 
 
+	public List<ModelWrapper> getTestEntries() {
+		
+		return testEntries;
+	}
+	
 	
 	public void setReturnDate(Long id, String date) {
-		for(Bookings booking : bookingList) {
-			if(id == booking.getClientID()) {
-				if(booking.getReturnDate() == null) {
-				booking.setReturnDate(date);
+		for(ModelWrapper booking : testEntries) {
+			if(id == booking.getBooking().getClientID()) {
+				if(booking.getBooking().getReturnDate() == null) {
+				booking.getBooking().setReturnDate(date);
 				}
 			}
 		}
 	}
 	
 	public void setCancelDate(Long id, String date) {
-		for(Bookings booking : bookingList) {
-			if(id == booking.getClientID()) {
-				if(booking.getCancelDate() == null) {
-				booking.setCancelDate(date);
+		for(ModelWrapper booking : testEntries) {
+			if(id == booking.getBooking().getClientID()) {
+				if(booking.getBooking().getCancelDate() == null) {
+				booking.getBooking().setCancelDate(date);
 				}
 			}
 		}
+	}
+
+	public void addNewRecord(ModelWrapper entry) {
+		
+
+		ModelWrapper nw = new ModelWrapper();
+		nw.setClient(entry.getClient());
+		nw.setBooking(entry.getBooking());
+		nw.setVehicle(null);
+		nw.setClerk(null);
+		testEntries.add(nw);
+		
 	}
 
 
