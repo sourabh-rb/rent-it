@@ -31,8 +31,8 @@ public class LoginController {
     if(l.checkPassword(username, password)) {
     	return "redirect:/vehicle";
     }else {
-    	model.addAttribute("Invalid Credentials", true);
-    	return "redirect:/LoginPage";
+    	model.addAttribute("InvalidCredentials", true);
+    	return "LoginPage";
     }
  
    

@@ -1,190 +1,150 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-    
-<style>
+<title>Login</title>
+<meta charset="utf-8">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  body {font-family: Arial, Helvetica, sans-serif;}
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
 
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 
-  /* The Close Button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-.PageHeadingCenter {
-    font-family: Segoe UI Light, Helvetica Neue, Verdana;
-    font-size: 25px;
-    color: #009be1;
-    margin-right: 1px;
-}
-
-.buttonClass {
-    font-size: 9pt;
-    vertical-align: middle;
-    cursor: hand;
-    color: white;
-    font-style: normal;
-    FONT-FAMILY: Helvetica Neue, Verdana;
-    text-align: center;
-    width: 90px;
-    border-radius: 5px;
-    border: 1px solid rgb(255, 95, 1);
-    background-color: rgb(255, 95, 1);
-}
-
-.mainSearchContentPanel {
-    border: 1px solid #DDD;
-    background-color: #F9F9F9;
-    border-radius: 6px;
-    padding-top: 15px;
-    padding-bottom: 13px;
-}
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 
 
-</style>
 
-<meta charset="ISO-8859-1">
-<title>Login Form</title>
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
-<form th:action = "@{/LoginPage}" th:object = "${LoginForm}" method = "POST">
-    <div class="container">
-        <div class="row PageHeadingCenter ">
-            <div class="col-sm-12" style="height: 160px;"></div>
 
-        </div>
-        
-        <div class="row PageHeadingCenter">
-            <div class="col-sm-1"></div>
-             <div class="col-sm-1"></div>
-              <div class="col-sm-1"></div>
-               <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-            <div>
-                <label for="lblCartype">User Login</label>
-            </div>
-            </div>
-             <div class="col-sm-1"></div>
-        </div>
-        
-        <div class="mainSearchContentPanel">
-            <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
-                    <label for="Username">UserName:</label>
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
                 </div>
-                <div class="col-sm-2">
-                    <input type="text" style = "width: 150px"  class="form-control"
-                        id="Username" name = "Username" autofocus = "autofocus">
-                </div></div>
-            
-            <div style="padding: 5px;"></div>
-            
-            <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
-                    <label for="Password">password:</label>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <header class="site-navbar py-3" role="banner"
+            style="background-image: url(images/hero_bg_1.jpg);">
+
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-11 col-xl-2">
+                        <h1 class="mb-0">
+                            <a href="index.html" class="text-white h2 mb-0">Rent-it!</a>
+                        </h1>
+                    </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right"
+                            role="navigation">
+
+                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                                <li><a href="/index">Home</a></li>
+                                <li><a href="/login">Login</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
                 </div>
-                <div class="col-sm-2">
-                    <input type="password" style = "width: 150px"  class="form-control"
-                        id="Password" name = "Password" autofocus = "autofocus">
-                </div></div>
-          </form>
-            <div style="padding: 5px;"></div>
-            
-            <div class="row">
-                <div class="col-sm-1"></div>
-                
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                    
-                <div class="col-sm-1"></div>
 
             </div>
-            <div class="row">
-                <div class="col-sm-1"></div>
-                
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2"></div>
-                    
-                <div class="col-sm-1"></div>
+    </div>
 
+    </header>
+
+
+
+
+
+
+
+    <div class="site-section">
+        <div class="site-section bg-light" id="section-contact">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-7 text-center border-primary">
+                        <h2 class="font-weight-light text-primary">Login</h2>
+                        <p class="color-black-opacity-5">Registered Clerk login.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-5"></div>
+                    <div class="col-md-6 mb-5">
+                        <form th:action= "@{/LoginPage}" th:object="${Login}"
+                            method="POST">
+
+                            <div align="center" th:if="${InvalidCredentials}" class="error">UserName
+                                or Password is Wrong</div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label class="text-black" for="subject">Username</label> <input
+                                        type="text" id="username" name = "username" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label class="text-black" for="subject">Password</label> <input
+                                        type="password" id="password" name = "password" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" value="Login"
+                                        class="btn btn-primary py-2 px-4 text-white">
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="col-md-3 mb-5"></div>
+                </div>
             </div>
-            
-            
-            <div style="padding: 5px;"></div>
-            <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-2"></div>
-            
-            
-            <div class="col-sm-2">
-                <input type="submit"  value = "Log in"></input>
-            </div>      
-
-
         </div>
-            
-        </div>
-
 
     </div>
+
+
+
+
+
+    <footer class="site-footer"
+        style="background-image: url(images/hero_bg_5.jpg);"> </footer>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/aos.js"></script>
+
+    <script src="js/main.js"></script>
 
 </body>
 </html>
