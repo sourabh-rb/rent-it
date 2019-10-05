@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Registration</title>
+    <title>User Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -78,14 +78,15 @@
             <p class="color-black-opacity-5">New Clerk &amp; registration.</p>
           </div>
         </div>
+        <div  th:if ="${userexits}" th:class = "error">User Already Registered with this Username</div>
         <div class="row">
           <div class="col-md-3 mb-5"></div>
           <div class="col-md-6 mb-5">
-            <form action="#" class="p-5 bg-white">
+            <form th:action = "@{/registrationpage}" th:object = "${Register}" method = "POST">
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control">
+                  <label class="text-black" for="firstname">First Name</label>
+                  <input type="text" id="firstname" name = "firstname" class="form-control">
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lname">Last Name</label>
@@ -93,24 +94,25 @@
                 </div>
               </div>
 
+              
+
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label>
-                  <input type="email" id="email" class="form-control">
+                  <label class="text-black" for="username">Username</label>
+                  <input type="text" id="username"  name = "username" class="form-control">
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="subject">Username</label>
-                  <input type="subject" id="subject" class="form-control">
+                  <label class="text-black" for="password">Password</label>
+                  <input type="password" id="password" name = "password" class="form-control">
                 </div>
               </div>
-
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="subject">Password</label>
-                  <input type="subject" id="subject" class="form-control">
+                  <label class="text-black" for="password">Confirm Password</label>
+                  <input type="password" id="password" name = "cpassword" class="form-control">
                 </div>
               </div>
 

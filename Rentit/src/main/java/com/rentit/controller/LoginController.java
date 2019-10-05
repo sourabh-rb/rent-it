@@ -18,20 +18,21 @@ import com.rentit.model.Login;
  */
 @Controller
 public class LoginController {
-  @RequestMapping(value="/login",method=RequestMethod.GET)
+	static String username;
+  @RequestMapping(value="/LoginPage",method=RequestMethod.GET)
   public String getLoginForm() {
-   return "login"; 
+   return "LoginPage"; 
   }
-  @RequestMapping(value="/login",method=RequestMethod.POST)
-  public String LoginPage(@ModelAttribute(name="${login}") Login loginForm,Model model) {
-    String username=loginForm.getUsername();
+  @RequestMapping(value="/LoginPage",method=RequestMethod.POST)
+  public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
+     username=loginForm.getUsername();
     String password=loginForm.getPassword();
     Login l = new Login();
     if(l.checkPassword(username, password)) {
     	return "redirect:/vehicle";
     }else {
     	model.addAttribute("Invalid Credentials", true);
-    	return "redirect:/login";
+    	return "redirect:/LoginPage";
     }
  
    
