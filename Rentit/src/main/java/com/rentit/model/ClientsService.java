@@ -15,9 +15,9 @@ public class ClientsService {
 	
 	private TestClass testData = new TestClass();
 	
-	public List<ArrayList<String>> listAll() {
+	public List<ModelWrapper> listAll() {
 	
-		return getClientandBookingInfo();
+		return testData.getTestEntries();
 		
 	}
 	
@@ -33,42 +33,6 @@ public class ClientsService {
 		
 	}
 	
-	private List<ArrayList<String>> getClientandBookingInfo() {
-		List<Clients> clientList = testData.getClientTestData();
-		List<Bookings> bookingList = testData.getBookingTestData();
-		List<ArrayList<String>> clientBookingList = new ArrayList<ArrayList<String>>();
-		
-		for(Clients client : clientList) {
-			ArrayList<String> details = new ArrayList<String>();
-			for(Bookings booking : bookingList) {
-				if(client.getClientID() == booking.getClientID()) {
-					details.add(client.getClientID().toString());
-					details.add(client.getFirstName());
-					details.add(client.getLastName());
-					details.add(client.getLicenceNumber());
-					details.add(client.getLicenceValidity());
-					details.add(client.getPhone());
-					details.add(booking.getBookingid().toString());
-					details.add(booking.getStartDate());
-					details.add(booking.getDueDate());
-					details.add(booking.getBookingTS());
-					if(booking.getReturnDate() != null) {
-						details.add("Returned on: " + booking.getReturnDate());
-					}
-					else if (booking.getCancelDate() != null) {
-						details.add("Cancelled on: " + booking.getCancelDate());
-					}
-					else {
-						details.add("Booking Confirmed");
-					}
-					clientBookingList.add(details);
-					
-				}
-			}
-		}
-		
-		return clientBookingList;
-	}
 
 	public void setReturnDate(Long id, String date) {
 		
@@ -103,6 +67,13 @@ public class ClientsService {
 			}
 		}
 	}
+	
+	
 
+	public void saveNewBooking(ModelWrapper newBooking) {
+		
+		testData.addNewRecord(newBooking);
+		
+	}
 	
 }

@@ -16,7 +16,7 @@ public class Clients {
 	private Long clerkid;
 	
 	
-	protected Clients() {
+	public Clients() {
 
 	}
 	

@@ -16,9 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsService;
+import com.rentit.model.ModelWrapper;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class ClientsController {
 	
 	@Autowired
@@ -27,7 +28,7 @@ public class ClientsController {
 	@RequestMapping("/clients")
 	public String listClient(Model model) {
 		
-		List<ArrayList<String>> listClient = clientService.listAll();
+		List<ModelWrapper> listClient = clientService.listAll();
 		model.addAttribute("clients", listClient);
 		return "client-manager";
 	}
