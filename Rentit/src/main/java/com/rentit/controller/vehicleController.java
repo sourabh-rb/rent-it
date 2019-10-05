@@ -156,7 +156,8 @@ public class vehicleController {
 		//System.out.print(id);
 		vehicleService.UpdateVehicleInfo(vechileDetails);
 	     
-	    return "redirect:/vehicle";
+	    //return "redirect:/vehicle";
+		return "redirect:/bookingForm";
 	}
 	
 	
