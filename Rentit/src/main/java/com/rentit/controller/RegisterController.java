@@ -27,7 +27,7 @@ public class RegisterController {
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
      public String getDetail(@ModelAttribute("register") Register register,Model model) {
              Login login = new Login();
-             
+             if(!register.getUSername().isEmpty()) {
 			if(login.addCredentials(register.getUSername(), register.getPassword())) {
 			 return "redirect:/LoginPage"; 
 			}
@@ -35,6 +35,11 @@ public class RegisterController {
 				model.addAttribute("userexits",true);
 				return "registrationpage";
 			}
+             }
+             else {
+            	 model.addAttribute("filldetails",true);
+            	 return "registrationpage";
+             }
 			 
 	}
 	
