@@ -86,6 +86,7 @@
 </head>
 <body>
 <form th:action = "@{/registrationpage}" th:object = "${Register}" method = "POST">
+
 	<div class="container">
 		<div class="row PageHeadingCenter ">
 			<div class="col-sm-12" style="height: 160px;"></div>
@@ -105,6 +106,7 @@
 			 <div class="col-sm-1"></div>
 		</div>
 		
+		<div  th:if ="${userexits}" th:class = "error">User Already Registered with this Username</div>
 		<div class="mainSearchContentPanel">
 			<div class="row">
 				<div class="col-sm-1"></div>
@@ -161,7 +163,7 @@
 				</div>
 				<div class="col-sm-2">
 					<input type="password" style = "width: 150px"  class="form-control"
-						id="password"  name = "password">
+						id="password"  name = "cpassword">
 				</div></div>
 			<div style="padding: 5px;"></div>
 			

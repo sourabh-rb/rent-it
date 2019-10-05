@@ -28,9 +28,13 @@ public class Login {
    this.password=Password;
  }
  
- public void addCredentials(String username, String password) {
-	 
+ public boolean addCredentials(String username, String password) {
+	 if(credHashMap.containsKey(username)) {
+		 return false;
+	 }else {
 	 credHashMap.put(username, password);
+	 return true;
+	 }
 	}
 	
 public boolean checkPassword(String username, String password) {

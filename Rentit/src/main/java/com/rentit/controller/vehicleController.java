@@ -32,7 +32,8 @@ public class vehicleController {
 
 	@RequestMapping("/vehicle")
 	public String listClient(Model model) {
-
+        LoginController lc = new LoginController();
+        String username  = lc.username;
 		List<Vehicles> listVehicles = vehicleService.listAll();
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
