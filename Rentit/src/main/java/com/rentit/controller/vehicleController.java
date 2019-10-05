@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 import com.rentit.model.vehicleService;
 
@@ -119,6 +118,17 @@ public class vehicleController {
 
 	}
 	
+	
+	
+	
+
+	@RequestMapping(value = "/vehicle", params = "btnClientManager", method = RequestMethod.POST)
+	public String btnClientManager(Model model) {
+		
+		
+		return "redirect:/clients";
+
+	}
 	
 
 	@RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
