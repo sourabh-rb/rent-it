@@ -89,7 +89,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form  th:action="@{/bookingForm}" th:object="${bookingForm}"
+<form  th:action="@{/confirm}" th:object="${bookingn}"
             method="post">
 	<div class="container">
 		<div class="row PageHeadingCenter ">
@@ -112,8 +112,8 @@
 					<label for="lblCartype"> First Name</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" 
-						id="firstname">
+					<input type="text" th:field="*{client.firstName} " class="form-control" 
+						id="firstName">
 				</div> 
 				</div>
 				<div style="padding: 5px;"></div>
@@ -123,8 +123,8 @@
 					<label for="lblCartype"> Last Name</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control"
-						id="lastname" >
+					<input type="text" th:field="*{client.lastName} " class="form-control"
+						id="lastName" >
 				</div> </div>
 			
 			<div style="padding: 5px;"></div>
@@ -135,8 +135,8 @@
 					<label for="lblCartype">Driver License Number</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control"
-						id="licensenumber" >
+					<input type="text" th:field="*{client.licenceNumber} " class="form-control"
+						id="licenseNumber" >
 				</div> </div>
 			
 			
@@ -146,20 +146,12 @@
 					<label for="lblModel">Driving License Expired Date</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="date" class="form-control"
-						id="expiredate" >
+					<input type="date" th:field="*{client.licenceValidity}" class="form-control"
+						id="licenceValidity" >
 				</div> </div>
 				
 			
-				<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Email</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="email" class="form-control"
-						id="emailid" >
-				</div> </div>
+			
 				<div style="padding: 5px;"></div>
 			<div class="row">
 				<div class="col-sm-1"></div>
@@ -167,8 +159,8 @@
 					<label for="lblModel">Phone No.</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" class="form-control"
-						id="phoneno" >
+					<input type="text" th:field="*{client.phone}" class="form-control"
+						id="phone" >
 				</div> </div>
 			
 			<div style="padding: 5px;"></div>
@@ -179,8 +171,8 @@
 					<label for="lblCartype">Reservation Start Date</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="date" class="form-control"
-						id="startdate" >
+					<input type="date" th:field="*{booking.startDate}" class="form-control"
+						id="startDate" >
 				</div> </div>
 				<div class="row">
 				<div class="col-sm-1"></div>
@@ -188,8 +180,8 @@
 					<label for="lblModel">Return End Date</label>
 				</div>
 				<div class="col-sm-3">
-					<input type="date" class="form-control"
-						id="returndate" >
+					<input type="date" th:field="*{booking.dueDate}" class="form-control"
+						id="dueDate" >
 				</div> </div>
 			
 			<div style="padding: 5px;"></div>
@@ -199,7 +191,7 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-2"></div>
 			<div class="col-sm-2">
-			<button type="button" class="buttonClass" style="height:50px; width:100px">Book Now</button>
+			<button type="submit" class="buttonClass" style="height:50px; width:100px">Book Now</button>
 			</div>
 			</div>
 			
