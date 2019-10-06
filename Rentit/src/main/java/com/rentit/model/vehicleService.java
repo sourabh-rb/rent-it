@@ -7,9 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rentit.test_class.TestClass;
 
+/**
+ * Vehicle service layer.
+ * @author Basant Gera
+ *
+ */
 @Service
 @Transactional
-public class vehicleService {
+public class VehicleService {
 
 	private TestClass testData = new TestClass();
 

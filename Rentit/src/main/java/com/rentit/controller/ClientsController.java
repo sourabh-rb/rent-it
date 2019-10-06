@@ -18,13 +18,29 @@ import com.rentit.model.Clients;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
 
+
+
+/**
+ * Clients Controller
+ * 
+ * Clients controller is responsible loading the clients manager view and handling
+ * return, cancellation and modification of client details.
+ * @author Sourabh Rajeev Badagandi
+ * @version 1.0.0
+ *
+ */
 @Controller
-//@RequestMapping("/")
 public class ClientsController {
 	
 	@Autowired
 	private ClientsService clientService;
 	
+	/**
+	 * 
+	 * This method is used to render client manager view.
+	 * @param model : model to hold attributes of clients
+	 * @return client-manager : client manager view
+	 */
 	@RequestMapping("/clients")
 	public String listClient(Model model) {
 		
@@ -33,7 +49,11 @@ public class ClientsController {
 		return "client-manager";
 	}
 	
-	
+	/**
+	 * This method handles return of vehicle by customer.
+	 * @param id Client id
+	 * @return redirection to clients page
+	 */
 	@RequestMapping("/return/{id}")
 	public String returnVehicle(@PathVariable(name = "id") Long id) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
@@ -42,6 +62,11 @@ public class ClientsController {
 	    return "redirect:/clients";       
 	}
 	
+	/**
+	 * This method handles cancellation of booking by customer.
+	 * @param id Client id
+	 * @return redirection to clients page
+	 */
 	@RequestMapping("/cancel/{id}")
 	public String cancelBooking(@PathVariable(name = "id") Long id) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
@@ -50,6 +75,11 @@ public class ClientsController {
 	    return "redirect:/clients";       
 	}
 	
+	/**
+	 * This method handles return of modify customer details.
+	 * @param id Client id
+	 * @return redirection to modify client page.
+	 */
 	@RequestMapping("/modify/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 	    ModelAndView mav = new ModelAndView("client-modify");
@@ -59,6 +89,11 @@ public class ClientsController {
 	    return mav;
 	}
 	
+	/**
+	 * This method handles saving details.
+	 * @param clientDetails
+	 * @return redirect to clients.
+	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveEdit(@ModelAttribute("modify") Clients clientDetails) {
 		
@@ -67,6 +102,11 @@ public class ClientsController {
 	    return "redirect:/clients";
 	}
 	
+	/**
+	 * This method handles cancellation of edit details.
+	 * @param clientDetails
+	 * @return redirection to clients.
+	 */
 	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
 	public String cancelEdit(@ModelAttribute("modify") Clients clientDetails) {
 		 

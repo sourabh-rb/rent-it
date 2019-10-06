@@ -8,6 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.rentit.test_class.TestClass;
 
+/**
+ * Clients service layer class.
+ * @author soura
+ *
+ */
 @Service
 @Transactional
 public class ClientsService {

@@ -12,13 +12,22 @@ import com.rentit.model.Clients;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
 
-
+/**
+ * This class handles booking functionalities.
+ * @author Sourabh Rajeev Badagandi
+ *
+ */
 @Controller
 public class BookinFormController {
 	
 	@Autowired
 	private ClientsService clientService;
 	 
+	/**
+	 * This method renders booking page.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/bookingForm")
 	public String bookingDetails(Model model) {
 		
@@ -28,6 +37,12 @@ public class BookinFormController {
 		 
 	}
 	
+	/**
+	 * This method confirms booking.
+	 * @param newBooking
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
 	public String getDetail(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
 

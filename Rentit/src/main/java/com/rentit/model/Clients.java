@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * CLients model class
+ * @author Sourabh Rajeev Badagandi
+ *
+ */
 @Entity
 public class Clients {
 	private Long clientid;

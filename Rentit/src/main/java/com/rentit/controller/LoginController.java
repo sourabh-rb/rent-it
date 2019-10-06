@@ -13,16 +13,27 @@ import com.rentit.form.LoginForm;
 import com.rentit.model.Login;
 
 /**
+ * This class renders login page.
  * @author kotic
  *
  */
 @Controller
 public class LoginController {
 	static String username;
+	/**
+	 * This method renders login page.
+	 * @return
+	 */
   @RequestMapping(value="/loginpage",method=RequestMethod.GET)
   public String getLoginForm() {
    return "loginpage"; 
   }
+  /**
+   * This method validated 
+   * @param loginForm
+   * @param model
+   * @return
+   */
   @RequestMapping(value="/loginpage",method=RequestMethod.POST)
   public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
      username=loginForm.getUsername();
