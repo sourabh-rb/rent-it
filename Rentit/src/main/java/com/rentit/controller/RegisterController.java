@@ -11,10 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rentit.model.Login;
 import com.rentit.model.Register;
 
-
+/**
+ * This class control the viewpage and model of registration
+ * @author charan
+ *
+ */
 @Controller
 public class RegisterController {
-
+    /**
+     * This method is to pass the data to registration page
+     * @return model data
+     */
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.GET)
 	public ModelAndView getUserDetails() {
 		ModelAndView model = new  ModelAndView("registrationpage");
@@ -24,6 +31,12 @@ public class RegisterController {
 		 
 	}
 	
+	/**
+	 * This methos is to get details from the view
+	 * @param register is a object which stores the view data
+	 * @param model is model data
+	 * @return view page or view name to redirect
+	 */
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
      public String getDetail(@ModelAttribute("register") Register register,Model model) {
              Login login = new Login();
