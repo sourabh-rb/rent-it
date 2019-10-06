@@ -2,6 +2,11 @@ package com.rentit.model;
 
 import java.util.ArrayList;
 
+/**
+ * Vehicles model class.
+ * @author Basant Gera
+ *
+ */
 public class Vehicles    {
 	private Integer id;
 	private String LicPlate;

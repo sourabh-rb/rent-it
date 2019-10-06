@@ -1,7 +1,11 @@
 package com.rentit.model;
 
 
-
+/**
+ * Bookings model class.
+ * @author Anusha
+ *
+ */
 public class Bookings {
 	private Long bookingid;
 	private String bookingTS;

@@ -15,10 +15,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.Vehicles;
-import com.rentit.model.vehicleService;
+import com.rentit.model.VehicleService;
+/**
+ * This class renders details view.
+ * @author Arvind
+ *
+ */
 @Controller
 public class DetailedViewController {
 	
+	/**
+	 * This method renders details view page.
+	 * @return
+	 */
 	@RequestMapping(value="/DetailedViewPage",method=RequestMethod.GET)
 	  public String getDetailedViewPage() {
 	   return "DetailedViewPage"; 

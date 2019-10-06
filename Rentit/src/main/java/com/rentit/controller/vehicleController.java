@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.Vehicles;
-import com.rentit.model.vehicleService;
+import com.rentit.model.VehicleService;
 
+/**
+ * This class handles vehicle catalog listing, filtering and sorting.
+ * @author Basant Gera
+ *
+ */
 @Controller
-public class vehicleController {
+public class VehicleController {
 
 	private static String sOrderMake="ASC";
 	private static String sOrderModel="ASC";
@@ -26,9 +31,14 @@ public class vehicleController {
 	
 	
 	@Autowired
-	private vehicleService vehicleService;
+	private VehicleService vehicleService;
 	long idDummy;
 
+	/**
+	 * This method renders catalog page.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/vehicle")
 	public String listClient(Model model) {
         LoginController lc = new LoginController();
@@ -39,7 +49,12 @@ public class vehicleController {
 
 	}
 
-	// @RequestMapping(value = "/vehicle", method = RequestMethod.POST)
+	/**
+	 * This method redirects to get detail page.
+	 * @param VehiclesAttributes
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/vehicle")
 	public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes, Model model) {
 		List<Vehicles> listVehicles = vehicleService.listAll();
@@ -61,7 +76,12 @@ public class vehicleController {
 		return "vehicle";
 
 	}
-
+	
+	/**
+	 * This method handles sorting functionality by make.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/vehicle", params = "btnSortMake", method = RequestMethod.POST)
 	public String btnSortMake(Model model) {
 		
@@ -81,6 +101,11 @@ public class vehicleController {
 
 	}
 	
+	/**
+	 * This method handles sorting functionality by model.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/vehicle", params = "btnSortModel", method = RequestMethod.POST)
 	public String btnSortModel(Model model) {
 		
@@ -100,6 +125,11 @@ public class vehicleController {
 
 	}
 	
+	/**
+	 * This method handles sorting functionality by year.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/vehicle", params = "btnSortYear", method = RequestMethod.POST)
 	public String btnSortyear(Model model) {
 		
@@ -122,7 +152,11 @@ public class vehicleController {
 	
 	
 	
-
+	/**
+	 * This method redirects to client manager.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/vehicle", params = "btnClientManager", method = RequestMethod.POST)
 	public String btnClientManager(Model model) {
 		

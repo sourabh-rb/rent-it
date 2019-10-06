@@ -1,5 +1,10 @@
 package com.rentit.model;
 
+/**
+ * CLerks model class
+ * @author Sourabh Rajeev Badagandi
+ *
+ */
 public class Clerks {
 	
 	private Long id;

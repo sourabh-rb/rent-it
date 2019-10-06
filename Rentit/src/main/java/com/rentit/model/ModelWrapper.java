@@ -1,6 +1,10 @@
 package com.rentit.model;
 
-
+/**
+ * Models wrapper class
+ * @author soura
+ *
+ */
 public class ModelWrapper {
 	private Clients client;
 	private Bookings booking;
