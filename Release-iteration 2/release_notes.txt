@@ -1,0 +1,25 @@
+
+----------------------------------------------------------------------
+Release notes - Iteration 2
+----------------------------------------------------------------------
+Artifacts:-
+1. srs
+2. sad
+3. javadoc
+4. source code: https://github.com/sourabh-rb/SOEN6461    Release Tag: https://github.com/sourabh-rb/SOEN6461/releases/tag/v1.0
+
+
+Features:
+1. Clerk registration.
+2. Clerk Login
+3. Veheicle catalog view.
+4. Sorting and filtering of catalog.
+5. Vehicle detailed view.
+6. Booking view.
+7. Client manager - return , cancel and modify client details.
+
+Known Issues:
+1. Filteration does not accept range values for years.
+2. Details view does not have a back button.
+3. Client Manager no status modal for returned/cancelled notify.
+4. Booking page, need to make date feilds mandatory.
