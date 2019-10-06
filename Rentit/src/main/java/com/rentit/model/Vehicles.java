@@ -95,15 +95,14 @@ public class Vehicles    {
 				+ Model + ", iYear=" + iYear + ", Color=" + Color + ", index=" + index + "]";
 	}
 	
-	
 	public Integer getNext() {
-		
 		return this.id + 1;
 	}
 	
 	public Integer getPrevious() {
 		return this.id - 1;
 	}
+	
 	
 
 

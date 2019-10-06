@@ -1,5 +1,7 @@
 package com.rentit.test_class;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,6 +23,8 @@ public class TestClass {
 	private static ArrayList<Bookings> bookingList;
 	private static ArrayList<Clerks> clerkList;
 	//private static TestClass testData;
+	static Long count = 5L;
+	static Long bcnt = 801L;
 	
 	private static ArrayList<ModelWrapper> testEntries;
 
@@ -151,8 +155,8 @@ public class TestClass {
         Vehicles vehicles9=new Vehicles (9,"alto","ujk","2018","noi","magenta","TCX 9IK");
         Vehicles vehicles10=new Vehicles (10,"alto","liu","2020","moi","pink","75G BGJ");
         Vehicles vehicles11=new Vehicles (11,"alto","bo","2003","eri","blue","H3H 14T");
-        Vehicles vehicles12=new Vehicles (13,"alto","jk","2020","moi","black","78G H5D");
-        Vehicles vehicles13=new Vehicles (15,"zlto","jk","2003","eri","silver","8HF JH4");
+        Vehicles vehicles12=new Vehicles (12,"alto","jk","2020","moi","black","78G H5D");
+        Vehicles vehicles13=new Vehicles (13,"zlto","jk","2003","eri","silver","8HF JH4");
         
         
         						 
@@ -355,11 +359,20 @@ public class TestClass {
 	public void addNewRecord(ModelWrapper entry) {
 		
 
+
 		ModelWrapper nw = new ModelWrapper();
 		nw.setClient(entry.getClient());
 		nw.setBooking(entry.getBooking());
-		nw.setVehicle(null);
-		nw.setClerk(null);
+		nw.setVehicle(testEntries.get(0).getVehicle());
+		nw.setClerk(testEntries.get(0).getClerk());
+		count += 1;
+		bcnt += 1;
+		nw.getClient().setClientID(count);
+		nw.getBooking().setBookingid(bcnt);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();
+		nw.getBooking().setBookingTS(now.toString());
+		nw.getClient().setClerkID(testEntries.get(0).getClerk().getId());
 		testEntries.add(nw);
 		
 	}

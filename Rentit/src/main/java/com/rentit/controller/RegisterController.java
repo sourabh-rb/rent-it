@@ -42,7 +42,7 @@ public class RegisterController {
              Login login = new Login();
              if(!register.getUSername().isEmpty()) {
 			if(login.addCredentials(register.getUSername(), register.getPassword())) {
-			 return "redirect:/LoginPage"; 
+			 return "redirect:/loginpage"; 
 			}
 			else {
 				model.addAttribute("userexits",true);
