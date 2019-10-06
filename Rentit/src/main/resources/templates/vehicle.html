@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>CLient Manager</title>
+    <title>Client Manager</title>
     <script>
 function toggle(source) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -107,7 +107,7 @@ function toggle(source) {
         <div class="row align-items-center">
 
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Rent-it!</a></h1>
+            <h1 class="mb-0"><a href="/index" class="text-white h2 mb-0">Rent-it!</a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -175,8 +175,8 @@ function toggle(source) {
 				<input type="text" pattern="\d{4}" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear">
 				
 				</div>
-				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" name="checkboxName" value="Less"></div>
-				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox" name="checkboxName" value="More"></div>
+				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" name="vehicle1" value="Less"></div>
+				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox" name="vehicle1" value="More"></div>
 				<div class="col-sm-2">
 					<label for="lblModel">Make</label>
 				</div>

@@ -19,11 +19,11 @@ import com.rentit.model.Login;
 @Controller
 public class LoginController {
 	static String username;
-  @RequestMapping(value="/LoginPage",method=RequestMethod.GET)
+  @RequestMapping(value="/loginpage",method=RequestMethod.GET)
   public String getLoginForm() {
-   return "LoginPage"; 
+   return "loginpage"; 
   }
-  @RequestMapping(value="/LoginPage",method=RequestMethod.POST)
+  @RequestMapping(value="/loginpage",method=RequestMethod.POST)
   public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
      username=loginForm.getUsername();
     String password=loginForm.getPassword();
@@ -32,7 +32,7 @@ public class LoginController {
     	return "redirect:/vehicle";
     }else {
     	model.addAttribute("InvalidCredentials", true);
-    	return "LoginPage";
+    	return "loginpage";
     }
  
    
