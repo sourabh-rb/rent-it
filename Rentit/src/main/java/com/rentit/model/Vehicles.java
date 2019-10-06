@@ -96,11 +96,14 @@ public class Vehicles    {
 	}
 	
 	public Integer getNext() {
-		return this.id + 1;
+		//return this.id + 1;
+		return (id>=13) ? 13 :this.id + 1;
+		
 	}
 	
 	public Integer getPrevious() {
-		return this.id - 1;
+		//return this.id - 1;
+		return (id<=1) ? 1 :this.id - 1;
 	}
 	
 	

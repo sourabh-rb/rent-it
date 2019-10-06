@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.rentit.model.Vehicles;
+import com.rentit.model.vehicleService;
 @Controller
 public class DetailedViewController {
 	
@@ -20,6 +23,9 @@ public class DetailedViewController {
 	  public String getDetailedViewPage() {
 	   return "DetailedViewPage"; 
 	  }
+	
+	
+	
 
 	
 
