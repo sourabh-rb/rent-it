@@ -96,6 +96,15 @@ public class Vehicles    {
 	}
 	
 	
+	public Integer getNext() {
+		
+		return this.id + 1;
+	}
+	
+	public Integer getPrevious() {
+		return this.id - 1;
+	}
+	
 
 
 }
