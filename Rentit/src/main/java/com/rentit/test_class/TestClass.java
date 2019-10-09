@@ -25,6 +25,7 @@ public class TestClass {
 	//private static TestClass testData;
 	static Long count = 5L;
 	static Long bcnt = 801L;
+	static Long clerkcount = 1L;
 	
 	private static ArrayList<ModelWrapper> testEntries;
 
@@ -37,6 +38,10 @@ public class TestClass {
 		populateBookinList();
 		populateTestEntries();
 		
+	}
+	
+	private static void addClerks(Clerks clerks) {
+		clerkList.add(clerks);
 	}
 	
 	private static void populateTestEntries() {
@@ -264,6 +269,9 @@ public class TestClass {
 	public List<Clients> getClientTestData() {
 		return clientList;
 	}
+	public List<Clerks> getClerksTestData() {
+		return clerkList;
+	}
 
 	
 	public List<Bookings> getBookingTestData() {
@@ -355,6 +363,7 @@ public class TestClass {
 			}
 		}
 	}
+	
 
 	public void addNewRecord(ModelWrapper entry) {
 		
@@ -376,6 +385,24 @@ public class TestClass {
 		testEntries.add(nw);
 		
 	}
+   /**
+    * This method is add new clerk
+    * @param clerks
+    */
+	public void addNewClerk(Clerks clerks) {
+Clerks clerk = new Clerks();
+clerkcount++;
+		clerk.setId(clerkcount);
+		clerk.setFirstName(clerks.getFirstName());
+		clerk.setLastName(clerks.getLastName());
+		clerk.setUsername(clerks.getUsername());
+		clerk.setPassword(clerks.getPassword());
+		clerk.setEmail(clerks.getEmail());
+		
+		clerkList.add(clerk);
+		
+	}
+
 
 
 
