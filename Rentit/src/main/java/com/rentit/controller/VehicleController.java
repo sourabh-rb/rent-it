@@ -60,12 +60,11 @@ public class VehicleController {
 	 * @return
 	 */
 	@PostMapping("/vehicle")
-	public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes, Model model,@RequestParam(value = "checkboxName", required = false) String checkboxValue) {
+	public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes, Model model,@RequestParam(value = "checkboxName", required = false) String checkboxValue,@RequestParam(value = "checkboxName1", required = false) String checkboxValue1) {
 		ModelWrapper listVehicles = vehicleService.listAll();
 		
 		if(checkboxValue!= null)
 		  {
-		   // System.out.println("Less checkbox is checked");
 			checkboxValue="True";
 		  }
 		else {
@@ -73,7 +72,18 @@ public class VehicleController {
 		}
 		
 		
-		System.out.print(checkboxValue);
+		if(checkboxValue1!= null)
+		  {
+			checkboxValue1="True";
+		  }
+		else {
+			checkboxValue1="False";
+		}
+		
+		
+		
+		
+		//System.out.print(checkboxValue1);
 		//System.out.print(checkboxValueGreat);
 		
 		String sMake = VehiclesAttributes.getMake();
@@ -85,10 +95,7 @@ public class VehicleController {
 		int iSize = listVehicles.getCatalogList().size();
 		if (!(iSize == 0) || !(listVehicles.equals(null))) {
 
-			listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(), sYear.trim(),checkboxValue.trim());
-			// Collections.sort(listVehicles,(o1, o2) ->
-			// o1.getMake().compareTo(o2.getMake()));
-
+			listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(), sYear.trim(),checkboxValue.trim(),checkboxValue1.trim());
 		}
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
