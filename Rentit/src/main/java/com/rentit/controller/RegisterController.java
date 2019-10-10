@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rentit.model.Clerks;
+import com.rentit.model.ClerksService;
 import com.rentit.model.Login;
 import com.rentit.model.Register;
 
@@ -25,8 +27,8 @@ public class RegisterController {
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.GET)
 	public ModelAndView getUserDetails() {
 		ModelAndView model = new  ModelAndView("registrationpage");
-		 Register obj = new Register();
-		 model.addObject("register", obj);
+		 Clerks obj = new Clerks();
+		 model.addObject("Clerks", obj);
 		return model;
 		 
 	}
@@ -38,21 +40,29 @@ public class RegisterController {
 	 * @return view page or view name to redirect
 	 */
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
-     public String getDetail(@ModelAttribute("register") Register register,Model model) {
-             Login login = new Login();
-             if(!register.getUSername().isEmpty()) {
-			if(login.addCredentials(register.getUSername(), register.getPassword())) {
+     public String getDetail(@ModelAttribute("clerks") Clerks clerks,Model model) {
+            // Login login = new Login();
+            // if(!register.getUSername().isEmpty()) {
+			//if(login.addCredentials(register.getUSername(), register.getPassword())) {
+		String firstname = clerks.getFirstName();
+		String lastname = clerks.getLastName();
+		String username = clerks.getUsername();
+		String password = clerks.getPassword();
+		String emailid = clerks.getEmail();
+		ClerksService clerkdata = new ClerksService();
+		clerkdata.addClerks(clerks);
 			 return "redirect:/loginpage"; 
-			}
-			else {
-				model.addAttribute("userexits",true);
-				return "registrationpage";
-			}
-             }
-             else {
-            	 model.addAttribute("filldetails",true);
-            	 return "registrationpage";
-             }
+			 
+//			}
+//			else {
+//				model.addAttribute("userexits",true);
+//				return "registrationpage";
+//			}
+//             }
+//             else {
+//            	 model.addAttribute("filldetails",true);
+//            	 return "registrationpage";
+//             }
 			 
 	}
 	
