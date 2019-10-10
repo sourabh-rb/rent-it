@@ -53,29 +53,30 @@ public class VehicleService {
 	 */
 	
 	public Vehicles getNextVehicle(Long id) {
-				
+		
+		
 		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
 		Boolean vehicleFound=true;
 		Vehicles vehicleObj=new Vehicles();
-		
-		System.out.println("Inside ");
-		
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
 		
-		
-		ListIterator vListIterator = vList.listIterator((id.intValue()));
+//		for (int i = 0; i < vList.size(); i++) {
+//			if(vList.get(i).getId()==0) {
+//				
+//			}
+//		}
+//		
+		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasNext()) {
-				vehicleObj=(Vehicles)vListIterator.next();
-				vehicleFound=false;
-				System.out.println("Inside service:"+vehicleObj.getId());
-				//return vehicleObj;	
+				vehicleObj=(Vehicles) vListIterator.next();
+				vehicleFound=false;	
 			}
 			return vehicleObj;
 		}
-		System.out.println("returning null");
+		
 		return null;
 	}
 	
@@ -90,25 +91,22 @@ public class VehicleService {
 		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
 		Boolean vehicleFound=true;
 		Vehicles vehicleObj=new Vehicles();
-		
-		System.out.println("Inside ");
-		
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
-		
-		
-		ListIterator vListIterator = vList.listIterator((id.intValue()));
+		//System.out.println("inside previous:"+id.intValue());	
+		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasPrevious()) {
-				vehicleObj=(Vehicles)vListIterator.previous();
-				vehicleFound=false;
+				System.out.println("inside previous:"+vListIterator.hasPrevious());
+				vehicleObj= (Vehicles) vListIterator.previous();
 				System.out.println("Inside service:"+vehicleObj.getId());
+				vehicleFound=false;
+				//System.out.println("Inside service:"+vehicleObj.getId());
 				//return vehicleObj;	
 			}
 			return vehicleObj;
 		}
-		System.out.println("returning null");
 		return null;
 	}
 	
