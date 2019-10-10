@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<link rel="stylesheet" type="text/css"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+  <link rel="stylesheet" type="text/css"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	
-	
-<style>
-
+  <style>
   body {font-family: Arial, Helvetica, sans-serif;}
-
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
@@ -23,7 +20,6 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-
   /* Modal Content */
   .modal-content {
     background-color: #fefefe;
@@ -32,7 +28,6 @@
     border: 1px solid #888;
     width: 80%;
   }
-
   /* The Close Button */
   .close {
     color: #aaaaaa;
@@ -40,7 +35,6 @@
     font-size: 28px;
     font-weight: bold;
   }
-
   .close:hover,
   .close:focus {
     color: #000;
@@ -54,7 +48,6 @@
 	color: #009be1;
 	margin-right: 1px;
 }
-
 .buttonClass {
 	font-size: 9pt;
 	vertical-align: middle;
@@ -68,7 +61,6 @@
 	border: 1px solid rgb(255, 95, 1);
 	background-color: rgb(255, 95, 1);
 }
-
 .mainSearchContentPanel {
 	border: 1px solid #DDD;
 	background-color: #F9F9F9;
@@ -76,7 +68,6 @@
 	padding-top: 13px;
 	padding-bottom: 13px;
 }
-
 .mainSearchContentPanel {
 	border: 1px solid #DDD;
 	background-color: #F9F9F9;
@@ -85,124 +76,177 @@
 	padding-bottom: 13px;
 }
 </style>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<form  th:action="@{/confirm}" th:object="${bookingn}"
-            method="post">
-	<div class="container">
-		<div class="row PageHeadingCenter ">
-			<div class="col-sm-12" style="height: 30px;"></div>
+    <title>Booking Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		</div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-		<div class="row PageHeadingCenter">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
-				<label for="lblCartype"><b>Vehicle Booking Form</b> </label>
-			</div>
-			<div class="col-sm-4"></div>
-		</div>
-		
-		<div class="mainSearchContentPanel">
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype"> First Name</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" th:field="*{client.firstName} " class="form-control" 
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar py-3" role="banner" style="background-image: url(images/hero_bg_1.jpg);">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0"><a href="/index" class="text-white h2 mb-0">Rent-it!</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/loginpage">Login</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </header>
+ <div class="site-section">
+      <div class="site-section bg-light" id="section-contact">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Vehicle Booking Form</h2>
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-5"></div>
+          <div class="col-md-6 mb-5">
+            <form  th:action="@{/confirm}" th:object="${bookingn}" method="post">
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="firstname">First Name</label>
+                  <input type="text" th:field="*{client.firstName} " class="form-control" 
 						id="firstName">
-				</div> 
-				</div>
-				<div style="padding: 5px;"></div>
-				<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype"> Last Name</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" th:field="*{client.lastName} " class="form-control"
+						<label th:if="${#fields.hasErrors('client.firstName')}" th:errors="*{client.firstName}">Name Error</label>
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="lastname">Last Name</label>
+                 <input type="text" th:field="*{client.lastName} " class="form-control"
 						id="lastName" >
-				</div> </div>
-			
-			<div style="padding: 5px;"></div>
-			
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Driver License Number</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" th:field="*{client.licenceNumber} " class="form-control"
+						<label th:if="${#fields.hasErrors('client.lastName')}" th:errors="*{client.lastName}">Name Error</label>
+                </div>
+              </div>
+
+              
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="username">Driver License Number</label>
+                 <input type="text" th:field="*{client.licenceNumber} " class="form-control"
 						id="licenseNumber" >
-				</div> </div>
-			
-			
-				<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblModel">Driving License Expired Date</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="date" th:field="*{client.licenceValidity}" class="form-control"
+						<label th:if="${#fields.hasErrors('client.licenceNumber')}" th:errors="*{client.licenceNumber}">licenceNumber Error</label>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="password">Driving License Expire Date</label>
+                  <input type="date" th:field="*{client.licenceValidity}" class="form-control"
 						id="licenceValidity" >
-				</div> </div>
-				
-			
-			
-				<div style="padding: 5px;"></div>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblModel">Phone No.</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" th:field="*{client.phone}" class="form-control"
+						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Phone No.</label>
+                 <input type="text" th:field="*{client.phone}" class="form-control"
 						id="phone" >
-				</div> </div>
-			
-			<div style="padding: 5px;"></div>
-			
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Reservation Start Date</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="date" th:field="*{booking.startDate}" class="form-control"
+						<label th:if="${#fields.hasErrors('client.phone')}" th:errors="*{client.phone}">Phone no Error</label>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Reservation Start Date</label>
+                  <input type="date" th:field="*{booking.startDate}" class="form-control"
 						id="startDate" >
-				</div> </div>
-				<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblModel">Return End Date</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="date" th:field="*{booking.dueDate}" class="form-control"
+						<label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Return End Date</label>
+                  <input type="date" th:field="*{booking.dueDate}" class="form-control"
 						id="dueDate" >
-				</div> </div>
-			
-			<div style="padding: 5px;"></div>
-			<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-3"></div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2">
-			<button type="submit" class="buttonClass" style="height:50px; width:100px">Book Now</button>
-			</div>
-			</div>
-			
+						<label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+               
+                  <input type="submit" value="Book Now" class="btn btn-primary py-2 px-4 text-white">
+                </div>
+              </div>
 
 
-		</div>
-			
-		</div>
+            </form>
+          </div>
+          <div class="col-md-3 mb-5"></div>
+        </div>
+      </div>
+    </div>
+
+    </div>
 
 
-	</div>
-</form>
-</body>
+
+
+
+    <footer class="site-footer" style="background-image: url(images/hero_bg_5.jpg);">
+    </footer>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+  </body>
 </html>
