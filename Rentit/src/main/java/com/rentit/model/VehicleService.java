@@ -18,14 +18,16 @@ public class VehicleService {
 
 	private TestClass testData = new TestClass();
 
-	public List<Vehicles> listAll() {
+	public ModelWrapper listAll() {
 
-		return testData.getVehiclesTestData();
+	
+	//	return testData.getVehiclesTestData();
+		return testData.getVehicleCatalog();
 	}
 
-    public List<Vehicles> ListAllSearches(String Make,String Type,String Model,String iYear){
+    public ModelWrapper ListAllSearches(String Make,String Type,String Model,String iYear,String sLess){
 
-		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear);
+		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear,sLess);
 	}
 
 

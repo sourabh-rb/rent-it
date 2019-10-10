@@ -3,6 +3,7 @@ package com.rentit.test_class;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -28,6 +29,8 @@ public class TestClass {
 	static Long clerkcount = 1L;
 	
 	private static ArrayList<ModelWrapper> testEntries;
+	private static ModelWrapper vehicleCatalog;
+	
 
 	
 	public TestClass() {
@@ -37,6 +40,8 @@ public class TestClass {
 		populateClientList();
 		populateBookinList();
 		populateTestEntries();
+		vehicleCatalog = new ModelWrapper();
+		vehicleCatalog.setCatalogList(vechileList);
 		
 	}
 	
@@ -146,56 +151,79 @@ public class TestClass {
 
 	private void populateVechileList() {
 		
-		//public Vehicles(String id,String Make, String Model,String iYear,String Type) {
-		vechileList = new ArrayList<Vehicles>();
-		vechileListDummy = new ArrayList<Vehicles>();
-        Vehicles vehicles1= new Vehicles(1,"alto","wrangler","2019","suv","black","XCB 468");
-        Vehicles vehicles2=new Vehicles(2,"balto","xs","2020","muv","yellow","H3G 2H8");
-        Vehicles vehicles3=new Vehicles(3,"calto","ml","2120","RUV","red","XH8 LKJ");
-        Vehicles vehicles4=new Vehicles(4,"dalto","fbg","2023","kuv","blue","HF6 7HF");
-        Vehicles vehicles5=new Vehicles(5,"ealto","gal","1900","creta4","green","JHV TD7");
-        Vehicles vehicles6=new Vehicles(6,"felto","mal","2013","fuv","purple","GTD 8T8");
-        Vehicles vehicles7=new Vehicles(7,"celtoi","ik","2012","kol","white","BD6 TS3");
-        Vehicles vehicles8=new Vehicles (8,"belto","jk","2011","lki","black","TD7 VB8");
-        Vehicles vehicles9=new Vehicles (9,"alto","ujk","2018","noi","magenta","TCX 9IK");
-        Vehicles vehicles10=new Vehicles (10,"alto","liu","2020","moi","pink","75G BGJ");
-        Vehicles vehicles11=new Vehicles (11,"alto","bo","2003","eri","blue","H3H 14T");
-        Vehicles vehicles12=new Vehicles (12,"alto","jk","2020","moi","black","78G H5D");
-        Vehicles vehicles13=new Vehicles (13,"zlto","jk","2003","eri","silver","8HF JH4");
-        
-        
-        						 
-        vechileList.add(vehicles1);
-        vechileList.add(vehicles2);
-        vechileList.add(vehicles3);
-        vechileList.add(vehicles4);
-        vechileList.add(vehicles5);
-        vechileList.add(vehicles6);
-        vechileList.add(vehicles7);
-        vechileList.add(vehicles8);
-        vechileList.add(vehicles9);
-        vechileList.add(vehicles10);
-        vechileList.add(vehicles11);
-        vechileList.add(vehicles12);
-        vechileList.add(vehicles13);
-        
-        
+        vechileList = new ArrayList<Vehicles>();
+		
+		Vehicles vechile1 = new Vehicles();
+		vechile1.setId(1);
+		vechile1.setMake("Jeep1");
+		vechile1.setModel("Wrangler1");
+		vechile1.setiYear("2013");
+		vechile1.setType("SUV1");
+		vechile1.setColor("Green1");
+		vechile1.setLicPlate("ABC 1231");
+		
+		
+		
+		vechileList.add(vechile1);
+	//	vechileListDummy.add(vechile1);
+
+		Vehicles vechile2 = new Vehicles();
+		vechile2.setId(2);
+		vechile2.setMake("Jeep2");
+		vechile2.setModel("Wrangler2");
+		vechile2.setiYear("2011");
+		vechile2.setType("SUV2");
+		vechile2.setColor("Green2");
+		vechile2.setLicPlate("ABC 1232");
+		
+		vechileList.add(vechile2);
+		//vechileListDummy.add(vechile2);
+		
+		
+		Vehicles vechile3 = new Vehicles();
+		vechile3.setId(3);
+		vechile3.setMake("Jeep3");
+		vechile3.setModel("Wrangler3");
+		vechile3.setiYear("2012");
+		vechile3.setType("SUV3");
+		vechile3.setColor("Green3");
+		vechile3.setLicPlate("ABC 1233");
+		
+		
+		vechileList.add(vechile3);
+		//vechileListDummy.add(vechile3);
+		
+		
+		Vehicles vechile4 = new Vehicles();
+		vechile4.setId(4);
+		vechile4.setMake("Jeep4");
+		vechile4.setModel("Wrangler4");
+		vechile4.setiYear("2012");
+		vechile4.setType("SUV4");
+		vechile4.setColor("Green4");
+		vechile4.setLicPlate("ABC 1234");
+		
+		
+		vechileList.add(vechile4);
+		//vechileListDummy.add(vechile4);
+		
+		
+		Vehicles vechile5 = new Vehicles();
+		vechile5.setId(5);
+		vechile5.setMake("Jeep5");
+		vechile5.setModel("Wrangler5");
+		vechile5.setiYear("2015");
+		vechile5.setType("SUV5");
+		vechile5.setColor("Green5");
+		vechile5.setLicPlate("ABC 1235");
+		
+		vechileList.add(vechile5);
+	//	vechileListDummy.add(vechile5);
+
         //By default sort condition for Make column ascending order
         Collections.sort(vechileList,(o1, o2) -> o1.getMake().compareTo(o2.getMake()));
         
-        vechileListDummy.add(vehicles1);
-        vechileListDummy.add(vehicles2);
-        vechileListDummy.add(vehicles3);
-        vechileListDummy.add(vehicles4);
-        vechileListDummy.add(vehicles5);
-        vechileListDummy.add(vehicles6);
-        vechileListDummy.add(vehicles7);
-        vechileListDummy.add(vehicles8);
-        vechileListDummy.add(vehicles9);
-        vechileListDummy.add(vehicles10);
-        vechileListDummy.add(vehicles11);
-        vechileListDummy.add(vehicles12);
-        vechileListDummy.add(vehicles13);
+     
 
 	}
 
@@ -281,66 +309,79 @@ public class TestClass {
 	public List<Vehicles> getVehiclesTestData() {
 		return vechileList;
 	}
+	
+
 
 	@SuppressWarnings("unchecked")
-	//public List<Vehicles> getVehiclesTestDatAfterSearch(String make,String type, String model, int iYear) {
-	public List<Vehicles> getVehiclesTestDatAfterSearch(String make, String type, String model, String iYear) {
+	//public  getVehiclesTestDatAfterSearch(String make,String type, String model, int iYear) {
+	public ModelWrapper getVehiclesTestDatAfterSearch(String make, String type, String model, String iYear,String sLess) {
 		// TODO Auto-generated method stub
 	
 		if((make==""||make.equals(null)) && (model==""||model.equals(null)) && (iYear==""||iYear.equals(null)) && (type==""||type.equals(null))) {
-			vechileList=vechileListDummy;
-			//Collections.sort(vechileList,(o1, o2) -> o1.getMake().compareTo(o2.getMake()));
-			return vechileList;
-		}
-		else if(!model.isEmpty()) {
-			List<Vehicles> result = vechileList.stream()
-				    .filter(b -> Objects.equals(b.getModel(), model))
-				    .collect(Collectors.toList());
+			vehicleCatalog.setCatalogList(vechileList);
 			
-		vechileList=(ArrayList<Vehicles>) result;
-		return vechileList;
-		
-		}
-		else if(!make.isEmpty()) {
-			List<Vehicles> result = vechileList.stream()
-				    .filter(a -> Objects.equals(a.getMake(), make))
-				    .collect(Collectors.toList());
 			
-		vechileList=(ArrayList<Vehicles>) result;
-		return vechileList;
-		
 		}
-		else if(!type.isEmpty()) {
-			List<Vehicles> result = vechileList.stream()
-				    .filter(c -> Objects.equals(c.getType(), type))
-				    .collect(Collectors.toList());
-			
-		vechileList=(ArrayList<Vehicles>) result;
-		return vechileList;
-		
-		}
-		else if(!iYear.isEmpty()) {
-			List<Vehicles> result = vechileList.stream()
-				    .filter(d -> Objects.equals(d.getiYear(), iYear))
-				    .collect(Collectors.toList());
-			
-		vechileList=(ArrayList<Vehicles>) result;
-		return vechileList;
-		
-		}
-		
 		else {
-			vechileList=vechileListDummy;
-			Collections.sort(vechileList,(o1, o2) -> o1.getMake().compareTo(o2.getMake()));
-			return vechileList;
+			
+			  if(sLess.equals("True")) {
+				  
+				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
+						    .filter(b -> Objects.equals(b.getModel(), model)
+							    		|| Objects.equals(b.getMake(), make)
+							    		|| Objects.equals(b.getType(), type)
+							    		//|| Objects.equals(b.getVehicle().getiYear(), iYear)
+							    		||  Integer.parseInt(b.getiYear())<= Integer.parseInt(iYear)
+						    		)	
+					        .collect(Collectors.toList());
+
+					
+				  vehicleCatalog.setCatalogList(result);
+			  
+			  } else if(sLess.equals("True")) {
+				  
+				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
+						    .filter(b -> Objects.equals(b.getModel(), model)
+							    		|| Objects.equals(b.getMake(), make)
+							    		|| Objects.equals(b.getType(), type)
+							    		//|| Objects.equals(b.getVehicle().getiYear(), iYear)
+							    		||  Integer.parseInt(b.getiYear())>= Integer.parseInt(iYear)
+						    		)
+					        .collect(Collectors.toList());
+
+					
+				  vehicleCatalog.setCatalogList(result);
+			  
+			  } else if(sLess!="True"){
+			  
+				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
+						    .filter(b -> Objects.equals(b.getModel(), model)
+							    		|| Objects.equals(b.getMake(), make)
+							    		|| Objects.equals(b.getType(), type)
+							    		|| Objects.equals(b.getiYear(), iYear)
+						    		)
+					        .collect(Collectors.toList());
+
+					
+				  vehicleCatalog.setCatalogList(result);
+			  }
+			 
+			
 		}
+		
+	return vehicleCatalog;
 
 	}
 
 
+
+
 	public List<ModelWrapper> getTestEntries() {
-		
 		return testEntries;
+	}
+	
+	public List<Vehicles> getCatalogList() {
+		return testEntries.get(0).getCatalogList();
 	}
 	
 	
@@ -403,6 +444,14 @@ clerkcount++;
 		
 	}
 
+
+	
+	
+
+	public ModelWrapper getVehicleCatalog() {
+		
+		return vehicleCatalog;
+	}
 
 
 
