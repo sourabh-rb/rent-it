@@ -163,6 +163,7 @@ public class TestClass {
 		vechile1.setType("SUV1");
 		vechile1.setColor("Green1");
 		vechile1.setLicPlate("ABC 1231");
+		vechile1.setAvailable(true);
 		
 		
 		
@@ -177,6 +178,7 @@ public class TestClass {
 		vechile2.setType("SUV2");
 		vechile2.setColor("Green2");
 		vechile2.setLicPlate("ABC 1232");
+		vechile2.setAvailable(true);
 		
 		vechileList.add(vechile2);
 		//vechileListDummy.add(vechile2);
@@ -190,6 +192,7 @@ public class TestClass {
 		vechile3.setType("SUV3");
 		vechile3.setColor("Green3");
 		vechile3.setLicPlate("ABC 1233");
+		vechile3.setAvailable(true);
 		
 		
 		vechileList.add(vechile3);
@@ -204,6 +207,7 @@ public class TestClass {
 		vechile4.setType("SUV4");
 		vechile4.setColor("Green4");
 		vechile4.setLicPlate("ABC 1234");
+		vechile4.setAvailable(false);
 		
 		
 		vechileList.add(vechile4);
@@ -218,6 +222,7 @@ public class TestClass {
 		vechile5.setType("SUV5");
 		vechile5.setColor("Green5");
 		vechile5.setLicPlate("ABC 1235");
+		vechile5.setAvailable(true);
 		
 		vechileList.add(vechile5);
 	//	vechileListDummy.add(vechile5);
@@ -316,7 +321,7 @@ public class TestClass {
 
 	@SuppressWarnings("unchecked")
 	//public  getVehiclesTestDatAfterSearch(String make,String type, String model, int iYear) {
-	public ModelWrapper getVehiclesTestDatAfterSearch(String make, String type, String model, String iYear,String sLess) {
+	public ModelWrapper getVehiclesTestDatAfterSearch(String make, String type, String model, String iYear,String sLess,String sGreater) {
 		// TODO Auto-generated method stub
 	
 		if((make==""||make.equals(null)) && (model==""||model.equals(null)) && (iYear==""||iYear.equals(null)) && (type==""||type.equals(null))) {
@@ -326,41 +331,41 @@ public class TestClass {
 		}
 		else {
 			
-			  if(sLess.equals("True")) {
-				  
+			  if(sLess.equals("True")) {				  
 				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
 						    .filter(b -> Objects.equals(b.getModel(), model)
 							    		|| Objects.equals(b.getMake(), make)
 							    		|| Objects.equals(b.getType(), type)
-							    		//|| Objects.equals(b.getVehicle().getiYear(), iYear)
-							    		||  Integer.parseInt(b.getiYear())<= Integer.parseInt(iYear)
+							    		||  Integer.parseInt(b.getiYear())<= Integer.parseInt(iYear) 
+							    		//|| (b.isAvailable() == true)
 						    		)	
 					        .collect(Collectors.toList());
 
 					
 				  vehicleCatalog.setCatalogList(result);
 			  
-			  } else if(sLess.equals("True")) {
+			  } else if(sGreater.equals("True")) {
 				  
 				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
 						    .filter(b -> Objects.equals(b.getModel(), model)
 							    		|| Objects.equals(b.getMake(), make)
 							    		|| Objects.equals(b.getType(), type)
-							    		//|| Objects.equals(b.getVehicle().getiYear(), iYear)
 							    		||  Integer.parseInt(b.getiYear())>= Integer.parseInt(iYear)
+							    			//	|| (b.isAvailable() == true)
 						    		)
 					        .collect(Collectors.toList());
 
 					
 				  vehicleCatalog.setCatalogList(result);
 			  
-			  } else if(sLess!="True"){
+			  } else if((sLess!="True") && (sGreater!="True")){
 			  
 				  List<Vehicles> result = vehicleCatalog.getCatalogList().stream()
 						    .filter(b -> Objects.equals(b.getModel(), model)
 							    		|| Objects.equals(b.getMake(), make)
 							    		|| Objects.equals(b.getType(), type)
 							    		|| Objects.equals(b.getiYear(), iYear)
+							    		//|| (b.isAvailable() == true)
 						    		)
 					        .collect(Collectors.toList());
 

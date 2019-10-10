@@ -19,12 +19,26 @@ public class Vehicles    {
 	private String Model;
 	private String iYear;
 	private String Color;
+
+	private boolean isAvailable=true;
+	
+
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
 	public  int index;
 	
 	
 	
 	 
-	public Vehicles(int id,String Make, String Model,String iYear,String Type,String Color,String LicPlate) {
+	public Vehicles(int id,String Make, String Model,String iYear,String Type,String Color,String LicPlate,boolean isAvailable) {
 		super();
 		this.id = id;
 		this.Make = Make;
@@ -33,9 +47,9 @@ public class Vehicles    {
 		this.iYear = iYear;
 		this.Color = Color;
 		this.LicPlate = LicPlate;
+		this.isAvailable=isAvailable;
 	}
-	
-	
+
 	
 	public Vehicles() {
 		this.id = index ++;
