@@ -53,26 +53,25 @@ public class VehicleService {
 	 */
 	
 	public Vehicles getNextVehicle(Long id) {
-		
-		
+			
 		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
 		Boolean vehicleFound=true;
 		Vehicles vehicleObj=new Vehicles();
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
-		
-//		for (int i = 0; i < vList.size(); i++) {
-//			if(vList.get(i).getId()==0) {
-//				
-//			}
-//		}
-//		
+				
 		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasNext()) {
 				vehicleObj=(Vehicles) vListIterator.next();
+				System.out.println("Inside next service:"+vehicleObj.getId());
 				vehicleFound=false;	
+			}
+			else {
+				vListIterator = vList.listIterator(0);
+				vehicleObj=(Vehicles) vListIterator.next();
+				vehicleFound=false;
 			}
 			return vehicleObj;
 		}
@@ -94,16 +93,18 @@ public class VehicleService {
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
-		//System.out.println("inside previous:"+id.intValue());	
 		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasPrevious()) {
-				System.out.println("inside previous:"+vListIterator.hasPrevious());
-				vehicleObj= (Vehicles) vListIterator.previous();
-				System.out.println("Inside service:"+vehicleObj.getId());
+				vehicleObj=  (Vehicles)vListIterator.previous();
+				System.out.println("inside previous"+vehicleObj.getId());
+				
+				vehicleFound=false;	
+			}
+			else {
+				vListIterator = vList.listIterator(5);
+				vehicleObj=(Vehicles) vListIterator.previous();
 				vehicleFound=false;
-				//System.out.println("Inside service:"+vehicleObj.getId());
-				//return vehicleObj;	
 			}
 			return vehicleObj;
 		}
