@@ -160,7 +160,7 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<div class="col-sm-2"><button type="submit"       style="margin-bottom:10px;" class="submitButtonClass">Book Now</button></div>
+					<div class="col-sm-2"><button type="submit" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button></div>
 				</div>
 				<div class="col-sm-1"></div>
 				
@@ -211,8 +211,8 @@
 	
 			<div class="col-sm-3"></div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2"><a th:href="@{'/VehilceId/' + ${modify.getPrevious()}}">Previous</a></div>
-			<div class="col-sm-2"><a th:href="@{'/VehilceId/' + ${modify.getNext()}}">Next</a></div>
+			<div class="col-sm-2"><a th:href="@{'/previous/' + ${modify.getId()}}">Previous</a></div>
+			<div class="col-sm-2"><a th:href="@{'/next/' + ${modify.getId()}}">Next</a></div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-3"></div>
 		

@@ -1,6 +1,9 @@
 package com.rentit.model;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +45,75 @@ public class VehicleService {
 		return null;
 	
 	}
+	
+	/**
+	 * @return Vehicle
+	 * Method to return next vehicle in detailed view page
+	 * 
+	 */
+	
+	public Vehicles getNextVehicle(Long id) {
+				
+		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
+		Boolean vehicleFound=true;
+		Vehicles vehicleObj=new Vehicles();
+		
+		System.out.println("Inside ");
+		
+		for(Vehicles vehicle : testData.getVehiclesTestData()) {
+			vList.add(vehicle);
+			}
+		
+		
+		ListIterator vListIterator = vList.listIterator((id.intValue()));
+		while(vehicleFound) {
+			if(vListIterator.hasNext()) {
+				vehicleObj=(Vehicles)vListIterator.next();
+				vehicleFound=false;
+				System.out.println("Inside service:"+vehicleObj.getId());
+				//return vehicleObj;	
+			}
+			return vehicleObj;
+		}
+		System.out.println("returning null");
+		return null;
+	}
+	
+	/**
+	 * @return Vehicle
+	 * Method to return previous vehicle in detailed view page
+	 * 
+	 */
+	
+	public Vehicles getPreviousVehicle(Long id) {
+		
+		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
+		Boolean vehicleFound=true;
+		Vehicles vehicleObj=new Vehicles();
+		
+		System.out.println("Inside ");
+		
+		for(Vehicles vehicle : testData.getVehiclesTestData()) {
+			vList.add(vehicle);
+			}
+		
+		
+		ListIterator vListIterator = vList.listIterator((id.intValue()));
+		while(vehicleFound) {
+			if(vListIterator.hasPrevious()) {
+				vehicleObj=(Vehicles)vListIterator.previous();
+				vehicleFound=false;
+				System.out.println("Inside service:"+vehicleObj.getId());
+				//return vehicleObj;	
+			}
+			return vehicleObj;
+		}
+		System.out.println("returning null");
+		return null;
+	}
+	
+	
+	
 
 	public void UpdateVehicleInfo(Vehicles vechileDetails) {
 		// TODO Auto-generated method stub

@@ -1,6 +1,10 @@
 package com.rentit.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+import com.rentit.test_class.TestClass;
 
 /**
  * Vehicles model class.
@@ -15,7 +19,6 @@ public class Vehicles    {
 	private String Model;
 	private String iYear;
 	private String Color;
-	
 	public  int index;
 	
 	
@@ -101,7 +104,9 @@ public class Vehicles    {
 	}
 	
 	public Integer getNext() {
-		//return this.id + 1;
+		
+		//return this.id;
+		//return vehicleService.getNextVehicle(this.id);
 		return (id>=13) ? 13 :this.id + 1;
 		
 	}
@@ -109,9 +114,9 @@ public class Vehicles    {
 	public Integer getPrevious() {
 		//return this.id - 1;
 		return (id<=1) ? 1 :this.id - 1;
+		
 	}
-	
-	
+
 
 
 }

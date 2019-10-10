@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class TestClass {
 
 	private static ArrayList<Clients> clientList;
 	private static ArrayList<Vehicles> vechileList;
+	private static LinkedList<Vehicles> vehicleListForDetailedView;
 	private static ArrayList<Vehicles> vechileListDummy;
 	private static ArrayList<Bookings> bookingList;
 	private static ArrayList<Clerks> clerkList;
@@ -226,7 +228,7 @@ public class TestClass {
      
 
 	}
-
+	
 	private static void populateClientList() {
 		
 		clientList = new ArrayList<Clients>();
