@@ -175,8 +175,8 @@ function toggle(source) {
 				<input type="text" pattern="\d{4}" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear">
 				
 				</div>
-				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" name="vehicle1" value="Less"></div>
-				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox" name="vehicle1" value="More"></div>
+				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" name="checkboxName"></div>
+				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox" name="12"></div>
 				<div class="col-sm-2">
 					<label for="lblModel">Make</label>
 				</div>
@@ -245,12 +245,14 @@ function toggle(source) {
         </tr>
     </thead>
 	<tbody>   
-		  <tr th:each="vehicle : ${vehicle}">
-		    <td><input name="select" id="${vehicle.getId()}" type="checkbox"></td>
+		  <tr th:each="vehicle : ${vehicle.getCatalogList()}">
+		<!--   <td th:text="${client.getClient().getClientID()}"></td> -->
+		    <td><input name="select" id="${id}" type="checkbox"></td>
             <td th:text="${vehicle.getMake()}"></td>
             <td th:text="${vehicle.getModel()}"></td>
             <td th:text="${vehicle.getiYear()}"></td>
-             <td th:text="${vehicle.getType()}"></td>
+            <td th:text="${vehicle.getType()}"></td>
+             
             <td>
             <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a>
             </td>
