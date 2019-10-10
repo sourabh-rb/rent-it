@@ -28,9 +28,9 @@ public class VehicleService {
 		return testData.getVehicleCatalog();
 	}
 
-    public ModelWrapper ListAllSearches(String Make,String Type,String Model,String iYear,String sLess){
+    public ModelWrapper ListAllSearches(String Make,String Type,String Model,String iYear,String sLess,String sGreater){
 
-		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear,sLess);
+		return testData.getVehiclesTestDatAfterSearch(Make,Type,Model,iYear,sLess,sGreater);
 	}
 
 

@@ -2,6 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Client Manager</title>
+ 
+
     <script>
 function toggle(source) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -9,7 +11,8 @@ function toggle(source) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
     }
-   
+    
+ 
 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -175,8 +178,8 @@ function toggle(source) {
 				<input type="text" pattern="\d{4}" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear">
 				
 				</div>
-				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" name="checkboxName"></div>
-				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox" name="12"></div>
+				<div class="col-sm-1"><span style="margin-left:-22 px;">Less &nbsp;&nbsp;</span><input  type="checkbox" data-id="1 selected"  class="slectOne" name="checkboxName"></div>
+				<div class="col-sm-1"><span style="margin-left:-22px;">Greater&nbsp;&nbsp;</span><input type="checkbox"  data-id="2 selected"  class="slectOne"name="checkboxName1"></div>
 				<div class="col-sm-2">
 					<label for="lblModel">Make</label>
 				</div>
