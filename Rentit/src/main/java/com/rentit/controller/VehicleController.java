@@ -206,14 +206,48 @@ public class VehicleController {
 	
 	@RequestMapping("/VehilceId/{id}")
 		public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id,Model model) {
-		System.out.print(id);
-		idDummy=id;
 		 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
 		    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
 		    sDetailsmav.addObject("modify", VechilesDetails);
 		    return sDetailsmav;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param model
+	 * @return next vehicle
+	 * 
+	 * Method to return next vehicle in detailed view
+	 */
+	
+	@RequestMapping("/next/{id}")
+	public ModelAndView btnForNext(@PathVariable(name = "id") Long id,Model model) {
+	 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
+	    Vehicles VechilesDetails = vehicleService.getNextVehicle((id));
+	    sDetailsmav.addObject("modify", VechilesDetails);
+	    return sDetailsmav;
+}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param model
+	 * @return previous vehicle
+	 * 
+	 * Method to return previous vehicle in detailed view
+	 */
+	
+	@RequestMapping("/previous/{id}")
+	public ModelAndView btnForPrevious(@PathVariable(name = "id") Long id,Model model) {
+	 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
+	    Vehicles VechilesDetails = vehicleService.getPreviousVehicle((id));
+	    sDetailsmav.addObject("modify", VechilesDetails);
+	    return sDetailsmav;
+}
+	
+	
+
 	@RequestMapping(value = "/saveRec", method = RequestMethod.POST)
 	public String saveEdit(@ModelAttribute("modify") Vehicles vechileDetails) {
 		//System.out.print(id);
@@ -222,6 +256,7 @@ public class VehicleController {
 	    //return "redirect:/vehicle";
 		return "redirect:/bookingForm";
 	}
+	
 	
 	
 	

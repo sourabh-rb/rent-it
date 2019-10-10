@@ -1,5 +1,6 @@
 package com.rentit.model;
 
+import javax.validation.constraints.NotNull;
 
 /**
  * Bookings model class.
@@ -10,7 +11,11 @@ public class Bookings {
 	private Long bookingid;
 	private String bookingTS;
 	private String returnDate;
+	
+	@NotNull
 	private String startDate;
+	
+	@NotNull
 	private String dueDate;
 	private String cancelDate;
 	private Long clientid;
