@@ -154,13 +154,13 @@
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="firstname">First Name</label>
                   <input type="text" th:field="*{client.firstName} " class="form-control" 
-						id="firstName">
-						<label th:if="${#fields.hasErrors('client.firstName')}" th:errors="*{client.firstName}">Name Error</label>
+						id="firstName" required onkeypress="return /[a-z]/i.test(event.key)" maxLength="20">
+					<label th:if="${#fields.hasErrors('client.firstName')}" th:errors="*{client.firstName}">Name Error</label>
                 </div>
                 <div class="col-md-6">
                   <label class="text-black" for="lastname">Last Name</label>
                  <input type="text" th:field="*{client.lastName} " class="form-control"
-						id="lastName" >
+						id="lastName" required onkeypress="return /[a-z]/i.test(event.key)" maxLength="20">
 						<label th:if="${#fields.hasErrors('client.lastName')}" th:errors="*{client.lastName}">Name Error</label>
                 </div>
               </div>
@@ -171,43 +171,42 @@
                 <div class="col-md-12">
                   <label class="text-black" for="username">Driver License Number</label>
                  <input type="text" th:field="*{client.licenceNumber} " class="form-control"
-						id="licenseNumber" >
+						id="licenseNumber" required maxlength="15">
 						<label th:if="${#fields.hasErrors('client.licenceNumber')}" th:errors="*{client.licenceNumber}">licenceNumber Error</label>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="password">Driving License Expire Date</label>
-                  <input type="date" th:field="*{client.licenceValidity}" class="form-control"
-						id="licenceValidity" >
-						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Phone No.</label>
                  <input type="text" th:field="*{client.phone}" class="form-control"
-						id="phone" >
+						id="phone" required maxlength="10"  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
 						<label th:if="${#fields.hasErrors('client.phone')}" th:errors="*{client.phone}">Phone no Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input type="date" th:field="*{booking.startDate}" class="form-control"
-						id="startDate" >
+                  <input id="startDateid" onfocusout="fnLoadStratdate()"    type="date" th:field="*{booking.startDate}" class="form-control" required >
 						<label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-                  <input type="date" th:field="*{booking.dueDate}" class="form-control"
-						id="dueDate" >
+                  <input type="date" onfocusout="duedateload()" th:field="*{booking.dueDate}" class="form-control"
+						id="dueDate"  required>
 						<label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label>
                 </div>
               </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="password">Driving License Expire Date</label>
+                  <input type="date" onfocusout="licenceValidityload()" th:field="*{client.licenceValidity}" class="form-control"
+						id="licenceValidity" required >
+						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
+                </div>
+              </div>
+              <input type="hidden" onfocusout="hiddenidload()" id="hiddenid" name="hiddenid" value="3487">
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -245,7 +244,57 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/bootstrap-datepicker.min.js"></script>
   <script src="js/aos.js"></script>
+<script type="text/javascript">
+function fnLoadStratdate(){
+	 var date = document.getElementById("startDateid").value;
+	 var varDate = new Date(date); //dd-mm-YYYY
+	 var today = new Date();
+	 if(date==null ||date==""){
+	 
+	 }
+	 else
+	 {
+	 if(varDate >= today) {
+	// alert("correct!");
+	 }
+	 else
+	 {
+	 alert("Start date cannot be Less than Current Date!");
+	 document.getElementById("startDateid").value = "";
+	 }
+	 }
 
+	 }
+	 
+	 function duedateload(){
+		 var date = document.getElementById("startDateid").value;
+		 var duedate = document.getElementById("dueDate").value;
+		 if(date < duedate){
+			 
+		 }
+		 else{
+			 alert("Return date cannot be Less than Start Date!");
+			 document.getElementById("dueDate").value = ""; 
+		 }
+		 
+	 }
+	 
+	 function licenceValidityload(){
+		 var licenceValiditydate = document.getElementById("licenceValidity").value;
+		 var duedate = document.getElementById("dueDate").value;
+		 if(licenceValiditydate <= duedate){
+			 
+		 }
+		 else{
+			 alert("**** YON CANNOT BOOK**** Your license will expire before the return date of the vehicle.");
+			 window.location.reload();
+		 }
+		 function hiddenidload() {
+			 var hiddenid = document.getElementById("hiddenid").value;
+		 }
+	 }
+
+</script>
   <script src="js/main.js"></script>
 
   </body>
