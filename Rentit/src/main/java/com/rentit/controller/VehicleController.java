@@ -47,7 +47,7 @@ public class VehicleController {
        // String username  = lc.username;
 		//List<Vehicles> listVehicles = vehicleService.listAll();
 		ModelWrapper listVehicles= vehicleService.listAll();
-		//System.out.println(listVehicles);
+		System.out.println(listVehicles);
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
 
@@ -215,7 +215,7 @@ public class VehicleController {
 		public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id,Model model) {
 		 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
 		    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
-		    sDetailsmav.addObject("modify", VechilesDetails);
+		    sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
 		    return sDetailsmav;
 	}
 	
@@ -232,7 +232,7 @@ public class VehicleController {
 	public ModelAndView btnForNext(@PathVariable(name = "id") Long id,Model model) {
 	 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
 	    Vehicles VechilesDetails = vehicleService.getNextVehicle((id));
-	    sDetailsmav.addObject("modify", VechilesDetails);
+	    sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
 	    return sDetailsmav;
 }
 	
@@ -249,7 +249,7 @@ public class VehicleController {
 	public ModelAndView btnForPrevious(@PathVariable(name = "id") Long id,Model model) {
 	 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
 	    Vehicles VechilesDetails = vehicleService.getPreviousVehicle((id));
-	    sDetailsmav.addObject("modify", VechilesDetails);
+	    sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
 	    return sDetailsmav;
 }
 	
@@ -262,6 +262,19 @@ public class VehicleController {
 	     
 	    //return "redirect:/vehicle";
 		return "redirect:/bookingForm";
+	}
+	
+	/**
+	 * This method is used to Go Back to Vehicle Catalog from Detailed View Page on Click of Go Back button
+	 * @param model
+	 * @return redirection to vehicle catalog
+	 */
+	
+	@RequestMapping(value = "/saveRec", params = "btnGoBack", method = RequestMethod.POST)
+	public String btnGoBack(Model model) {
+		
+		return "redirect:/vehicle";
+
 	}
 	
 	
