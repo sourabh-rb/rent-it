@@ -93,19 +93,16 @@ public class VehicleService {
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
+		System.out.println(vList.size());
 		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasPrevious()) {
-				vehicleObj=  (Vehicles)vListIterator.previous();
+				System.out.println(vListIterator.hasPrevious());
+				vehicleObj=  (Vehicles) vListIterator.previous();
 				System.out.println("inside previous"+vehicleObj.getId());
-				
 				vehicleFound=false;	
 			}
-			else {
-				vListIterator = vList.listIterator(5);
-				vehicleObj=(Vehicles) vListIterator.previous();
-				vehicleFound=false;
-			}
+
 			return vehicleObj;
 		}
 		return null;

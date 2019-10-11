@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.Vehicles;
+import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
 /**
  * This class renders details view.
@@ -23,6 +24,9 @@ import com.rentit.model.VehicleService;
  */
 @Controller
 public class DetailedViewController {
+	
+	@Autowired
+	private VehicleService vehicleService;
 	
 	/**
 	 * This method renders details view page.
