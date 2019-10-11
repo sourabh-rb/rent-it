@@ -53,29 +53,29 @@ public class VehicleService {
 	 */
 	
 	public Vehicles getNextVehicle(Long id) {
-				
+			
 		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
 		Boolean vehicleFound=true;
 		Vehicles vehicleObj=new Vehicles();
-		
-		System.out.println("Inside ");
-		
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
-		
-		
-		ListIterator vListIterator = vList.listIterator((id.intValue()));
+				
+		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasNext()) {
-				vehicleObj=(Vehicles)vListIterator.next();
+				vehicleObj=(Vehicles) vListIterator.next();
+				System.out.println("Inside next service:"+vehicleObj.getId());
+				vehicleFound=false;	
+			}
+			else {
+				vListIterator = vList.listIterator(0);
+				vehicleObj=(Vehicles) vListIterator.next();
 				vehicleFound=false;
-				System.out.println("Inside service:"+vehicleObj.getId());
-				//return vehicleObj;	
 			}
 			return vehicleObj;
 		}
-		System.out.println("returning null");
+		
 		return null;
 	}
 	
@@ -90,25 +90,21 @@ public class VehicleService {
 		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
 		Boolean vehicleFound=true;
 		Vehicles vehicleObj=new Vehicles();
-		
-		System.out.println("Inside ");
-		
 		for(Vehicles vehicle : testData.getVehiclesTestData()) {
 			vList.add(vehicle);
 			}
-		
-		
-		ListIterator vListIterator = vList.listIterator((id.intValue()));
+		System.out.println(vList.size());
+		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
 		while(vehicleFound) {
 			if(vListIterator.hasPrevious()) {
-				vehicleObj=(Vehicles)vListIterator.previous();
-				vehicleFound=false;
-				System.out.println("Inside service:"+vehicleObj.getId());
-				//return vehicleObj;	
+				System.out.println(vListIterator.hasPrevious());
+				vehicleObj=  (Vehicles) vListIterator.previous();
+				System.out.println("inside previous"+vehicleObj.getId());
+				vehicleFound=false;	
 			}
+
 			return vehicleObj;
 		}
-		System.out.println("returning null");
 		return null;
 	}
 	
