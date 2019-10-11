@@ -1,5 +1,7 @@
 package com.rentit.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,9 @@ import com.rentit.model.Clerks;
 import com.rentit.model.ClerksService;
 import com.rentit.model.Login;
 import com.rentit.model.Register;
+import com.rentit.test_class.TestClass;
+
+import antlr.collections.List;
 
 /**
  * This class control the viewpage and model of registration
@@ -41,28 +46,34 @@ public class RegisterController {
 	 */
 	@RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
      public String getDetail(@ModelAttribute("clerks") Clerks clerks,Model model) {
-            // Login login = new Login();
-            // if(!register.getUSername().isEmpty()) {
-			//if(login.addCredentials(register.getUSername(), register.getPassword())) {
+           
 		String firstname = clerks.getFirstName();
 		String lastname = clerks.getLastName();
 		String username = clerks.getUsername();
 		String password = clerks.getPassword();
 		String emailid = clerks.getEmail();
-		ClerksService clerkdata = new ClerksService();
-		clerkdata.addClerks(clerks);
+	   if(clerks.getFirstName() != null && clerks.getLastName()!=null &&clerks.getUsername() != null&&
+			   clerks.getPassword()!= null && clerks.getEmail() != null) {
+		TestClass tc = new TestClass();
+		ArrayList<Clerks> clerkslist = new  ArrayList<Clerks>();
+		clerkslist = (ArrayList<Clerks>) tc.getClerksTestData();
+		
+		for(int i=0;i<clerkslist.size();i++) {
+			Clerks clerk = clerkslist.get(i);
+			if(clerk.getUsername().equals(clerks.getUsername())) {
+				model.addAttribute("userexits",true);
+			return "registrationpage";
+			}
+		}
+		ClerksService clerkservice = new ClerksService();
+		     clerkservice.addClerks(clerks);
 			 return "redirect:/loginpage"; 
-			 
-//			}
-//			else {
-//				model.addAttribute("userexits",true);
-//				return "registrationpage";
-//			}
-//             }
-//             else {
-//            	 model.addAttribute("filldetails",true);
-//            	 return "registrationpage";
-//             }
+	   }
+	   else {
+		   model.addAttribute("filldetails",true);
+   	 return "registrationpage";
+	   }
+
 			 
 	}
 	

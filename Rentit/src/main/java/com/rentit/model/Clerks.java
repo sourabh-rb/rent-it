@@ -8,8 +8,8 @@ package com.rentit.model;
 public class Clerks {
 	
 	private Long id;
-	private String firstname;
-	private String lastname;
+	private String first_name;
+	private String last_name;
 	private String username;
 	private String password;
 	private String email;
@@ -27,19 +27,19 @@ public class Clerks {
 	}
 	
 	public String getFirstName() {
-		return firstname;
+		return first_name;
 	}
 	
 	public void setFirstName(String firstname) {
-		this.firstname = firstname;
+		this.first_name = firstname;
 	}
 	
 	public String getLastName() {
-		return lastname;
+		return last_name;
 	}
 	
 	public void setLastName(String lastname) {
-		this.lastname = lastname;
+		this.last_name = lastname;
 	}
 	
 	public String getUsername() {

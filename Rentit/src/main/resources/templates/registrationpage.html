@@ -53,6 +53,7 @@
                 <li><a href="/index">Home</a></li>
                 <li><a href="/loginpage">Login</a></li>
               </ul>
+              
             </nav>
           </div>
 
@@ -79,19 +80,19 @@
           </div>
         </div>
         <div align = "center" color = "red" th:if ="${userexits}" th:class = "error">User Already Registered with this Username</div>
-        <div align = "center"  color = "red" th:if ="${filldetails}" th:class = "error">Please enter the details</div>
+        <div align = "center"  color = "red" th:if ="${filldetails}" th:class = "error">Please enter all the details</div>
         <div class="row">
           <div class="col-md-3 mb-5"></div>
           <div class="col-md-6 mb-5">
-            <form th:action = "@{/registrationpage}" th:object = "${Clerks}" method = "POST">
+            <form th:action = "@{/registrationpage}" th:object = "${clerks}" method = "POST">
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="firstname">First Name</label>
-                  <input type="text" id="firstname" name = "firstname" class="form-control">
+                  <label class="text-black" for="firstName">First Name</label>
+                  <input type="text" id="firstName" name = "firstName" class="form-control">
                 </div>
                 <div class="col-md-6">
-                  <label class="text-black" for="lastname">Last Name</label>
-                  <input type="text" id="lastname" name = "lastname" class="form-control">
+                  <label class="text-black" for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name = "lastName" class="form-control">
                 </div>
               </div>
 
