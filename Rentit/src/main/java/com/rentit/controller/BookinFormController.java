@@ -58,7 +58,7 @@ public class BookinFormController {
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
 	public String getDetail(@Valid @ModelAttribute("bookingn") ModelWrapper newBooking, Model model, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			System.out.println("BINDING RESULT ERROR");
+			//System.out.println("BINDING RESULT ERROR");
 			return "bookingForm";
 		}
 		
