@@ -81,6 +81,7 @@ public class TestClass {
         clerk1.setUsername("Alx2525");
         clerk1.setPassword("Password1!");
         clerk1.setEmail("alex25@gmail.com");
+        clerk1.setusergroup("clerk");
         
         clerkList.add(clerk1);
         
@@ -444,6 +445,7 @@ clerkcount++;
         clerk.setUsername(clerks.getUsername());
         clerk.setPassword(clerks.getPassword());
         clerk.setEmail(clerks.getEmail());
+        clerk.setusergroup(clerks.getusergroup());
         
        // clerkList.add(clerk);
         addClerks(clerk);
