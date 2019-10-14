@@ -47,7 +47,7 @@ public class VehicleController {
        // String username  = lc.username;
 		//List<Vehicles> listVehicles = vehicleService.listAll();
 		ModelWrapper listVehicles= vehicleService.listAll();
-		System.out.println(listVehicles);
+		//System.out.println(listVehicles);
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
 
