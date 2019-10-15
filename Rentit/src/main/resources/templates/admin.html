@@ -152,7 +152,7 @@ function toggle(source) {
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<label for="lblCartype">Vehicles Type</label>
+					<label for="lblCartype">Type</label>
 				</div>
 				<div class="col-sm-2">					
 					<input type="text" class="form-control"   Placeholder="Enter Vehicle Type"  name="Type">
@@ -195,10 +195,10 @@ function toggle(source) {
 		<div style="padding: 5px;"></div>
 		<div class="row">
 			<div class="col-sm-2">
-			<button  type="submit" value="Submit" name="btnClientManager" id="btnClientManager" class="buttonClass">Add</button>
+			<button  type="submit" value="Submit" name="btnAdd" id="btnAddid" class="buttonClass">Add</button>
 			</div>
 			<div class="col-sm-2">
-			
+		<button  type="submit" value="Submit" name="btnManageTransactions" id="btnManageTransactionsid" style="width:10p%;" class="buttonClass">Manage Transactions</button>
 			</div>
 			<div class="col-sm-2">
 			
@@ -217,132 +217,29 @@ function toggle(source) {
 		<div style="padding: 5px;"></div>
 	<table class="table"  id="customers">	<thead class = "thead-light">
         <tr>
-            <th style="width:3%;"><input onclick="toggle(this);" type="checkbox"></th>
-            <th class="text-center" style="width:10%">Make</th>
-            <th class="text-center" style="width:10%">Model</th>
-            <th class="text-cen	ter" style="width:10%">Year</th>
-            <th class="text-cen	ter" style="width:10%">Type</th>
+               <th style="width:3%;"><input onclick="toggle(this);" type="checkbox"></th>
+                <th class="text-cen	ter" style="width:15%">Type</th>
+                <th class="text-center" style="width:15%">Model</th>
+                <th class="text-cen	ter" style="width:15%">Year</th>
+                <th class="text-center" style="width:15%">Make</th>
+           
+          
             <th class="text-center" style="width:30%">Operations</th>
-             <th class="text-center" style="width:15%">Transaction/ Vehicle</th>
-             <th class="text-center" style="width:15%">Transaction/ Clerk</th>
         </tr>
     </thead>
 	<tbody>   
-		  <tr>
+		 <tr th:each="vehicle : ${vehicle.getCatalogList()}">
 		    <td><input name="select" id="${id}" type="checkbox"></td>
-            <td>Alto</td>
-            <td>Maruti</td>
-            <td>2010</td>
-            <td>Sedan</td>
-            <td>
+		     <td th:text="${vehicle.getType()}"></td>
+		     <td th:text="${vehicle.getModel()}"></td>
+		      <td th:text="${vehicle.getiYear()}"></td>
+            <td th:text="${vehicle.getMake()}"></td>
            
-            <button type="submit" value="Submit" name="btnedit" id="btnedit" class="buttonClass" >Edit</button>
-            <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Vehicle Log </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Clerk Log </button>
-            
-            </td>
-             
-            <td>
-       <!--      <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a> -->
-            </td>
            
-		</tr>
-		 <tr>
-		    <td><input name="select" id="${id}" type="checkbox"></td>
-            <td>Alto</td>
-            <td>Maruti</td>
-            <td>2010</td>
-            <td>Sedan</td>
+
             <td>
-            
-            <button type="submit" value="Submit"  name="btnedit" id="btnedit"  class="buttonClass" >Edit</button>
+             <button type="submit" value="Submit"  name="btnedit" id="btnedit" class="buttonClass" >Edit</button>
             <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Vehicle Log </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Clerk Log </button>
-            
-            </td>
-             
-            <td>
-       <!--      <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a> -->
-            </td>
-           
-		</tr>
-		 <tr>
-		    <td><input name="select" id="${id}" type="checkbox"></td>
-            <td>Alto</td>
-            <td>Maruti</td>
-            <td>2010</td>
-            <td>Sedan</td>
-            <td>
-            <button type="submit" value="Submit"  name="btnedit" id="btnedit" class="buttonClass" >Edit</button>
-            <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Vehicle Log </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Clerk Log </button>
-            
-            </td>
-             
-            <td>
-       <!--      <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a> -->
-            </td>
-           
-		</tr>
-		 <tr>
-		    <td><input name="select" id="${id}" type="checkbox"></td>
-            <td>Alto</td>
-            <td>Maruti</td>
-            <td>2010</td>
-            <td>Sedan</td>
-            <td>
-            
-            <button type="submit" value="Submit"  name="btnedit" id="btnedit" class="buttonClass" >Edit</button>
-            <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Vehicle Log </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Clerk Log </button>
-            
-            </td>
-             
-            <td>
-       <!--      <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a> -->
-            </td>
-           
-		</tr>
-		 <tr>
-		    <td><input name="select" id="${id}" type="checkbox"></td>
-            <td>Alto</td>
-            <td>Maruti</td>
-            <td>2010</td>
-            <td>Sedan</td>
-            <td>
-            <button type="submit" value="Submit"  name="btnedit" id="btnedit" class="buttonClass" >Edit</button>
-            <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Vehicle Log </button>
-            </td>
-            <td>
-            <button type="submit" value="Submit" name="btnSortMake" id="btnSortMake" class="buttonClass" >Clerk Log </button>
-            
-            </td>
-             
-            <td>
-       <!--      <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a> -->
             </td>
            
 		</tr>

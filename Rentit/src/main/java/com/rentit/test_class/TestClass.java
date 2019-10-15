@@ -51,6 +51,10 @@ public class TestClass {
         clerkList.add(clerks);
     }
     
+    private static void addVechiles(Vehicles vehicles) {
+    	vechileList.add(vehicles);
+    }
+    
     private static void populateTestEntries() {
         testEntries = new ArrayList<ModelWrapper>();
         
@@ -451,6 +455,23 @@ clerkcount++;
         addClerks(clerk);
         
     }
+    
+    public void addNewVehicles(Vehicles VehiclesAttributes,int id) {
+    	System.out.print("New ID created  :   "+VehiclesAttributes.getId()+1);
+    	
+    	VehiclesAttributes.setId(id);
+    	VehiclesAttributes.setiYear(VehiclesAttributes.getiYear());
+    	VehiclesAttributes.setMake(VehiclesAttributes.getMake());
+    	VehiclesAttributes.setModel(VehiclesAttributes.getModel());
+    	VehiclesAttributes.setType(VehiclesAttributes.getType());
+    	VehiclesAttributes.setColor(VehiclesAttributes.getColor());
+    	VehiclesAttributes.setLicPlate(VehiclesAttributes.getLicPlate());
+    	
+    	addVechiles(VehiclesAttributes);
+    	
+    }
+    
+    
     public List<Clerks> getClerksTestData() {
       return clerkList;
   }

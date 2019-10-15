@@ -191,25 +191,7 @@ function toggle(source) {
 			</div>
 
 			<div style="padding: 5px;"></div>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Reservation Date</label>
-				</div>
-				<div class="col-sm-2">
-					<input type="text" class="form-control"  Placeholder=" dd-mm-yyyy "	id="txtStartDate">
-				</div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblModel">Return Date</label>
-				</div>
-				<div class="col-sm-2">
-					<input type="text" class="form-control"   Placeholder=" dd-mm-yyyy "  id="txtEndDate">
-				</div>
-				<div class="col-sm-1"></div>
-
-			</div>
+			
 			<div style="padding: 5px;"></div>
 		</div>
 		<div style="padding: 5px;"></div>
@@ -249,7 +231,6 @@ function toggle(source) {
     </thead>
 	<tbody>   
 		  <tr th:each="vehicle : ${vehicle.getCatalogList()}">
-		<!--   <td th:text="${client.getClient().getClientID()}"></td> -->
 		    <td><input name="select" id="${id}" type="checkbox"></td>
             <td th:text="${vehicle.getMake()}"></td>
             <td th:text="${vehicle.getModel()}"></td>

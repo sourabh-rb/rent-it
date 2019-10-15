@@ -43,11 +43,7 @@ public class VehicleController {
 	 */
 	@RequestMapping("/vehicle")
 	public String listClient(Model model) {
-     //   LoginController lc = new LoginController();
-       // String username  = lc.username;
-		//List<Vehicles> listVehicles = vehicleService.listAll();
 		ModelWrapper listVehicles= vehicleService.listAll();
-		//System.out.println(listVehicles);
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
 

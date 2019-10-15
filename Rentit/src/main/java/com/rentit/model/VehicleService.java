@@ -128,6 +128,26 @@ public class VehicleService {
 		
 	}
 
+	public ModelWrapper fncadditem(Vehicles VehiclesAttributes ,int iSize) {
+		
+		
+		int idIncrement=iSize+1;
+		System.out.println("Size + 1 : "+idIncrement);
+		
+		for(Vehicles vechile : testData.getVehiclesTestData()) {
+			if(idIncrement == vechile.getId()) {
+				
+			}
+			else
+			{
+				testData.addNewVehicles(VehiclesAttributes,idIncrement);
+				break;	
+			}
+		}
+		return null;
+		
+	}
+
     
     
 }
