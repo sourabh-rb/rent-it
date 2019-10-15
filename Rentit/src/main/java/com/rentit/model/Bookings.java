@@ -1,5 +1,7 @@
 package com.rentit.model;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,8 +24,8 @@ public class Bookings {
 	
 	public Bookings() {}
 	
-	public Bookings(Long id, String bookingTS, String returnDate, String startDate, 
-			String dueDate, String cancelDate, Long clientid) {
+	public Bookings(Long id, String bookingTS, String returnDate,  @NotNull String startDate, 
+			 @NotNull String dueDate, String cancelDate, Long clientid) {
 		this.bookingid = id;
 		this.bookingTS = bookingTS;
 		this.returnDate = returnDate;
@@ -53,13 +55,13 @@ public class Bookings {
 	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+	public void setStartDate( @NotNull String startDate) {
 		this.startDate = startDate;
 	}
 	public String getDueDate() {
 		return dueDate;
 	}
-	public void setDueDate(String dueDate) {
+	public void setDueDate( @NotNull String dueDate) {
 		this.dueDate = dueDate;
 	}
 	public String getCancelDate() {

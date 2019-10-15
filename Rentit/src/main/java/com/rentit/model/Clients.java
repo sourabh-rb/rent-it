@@ -1,5 +1,7 @@
 package com.rentit.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,7 +43,7 @@ public class Clients {
 	}
 	
 	public Clients(Long id, String first_name, String last_name, String licence_number, 
-			String licence_validity, String phone, Long clerkid) {
+			@NotNull String licence_validity, String phone, Long clerkid) {
 		this.clientid = id;
 		this.first_name = first_name;
 		this.last_name = last_name;
@@ -99,8 +101,8 @@ public class Clients {
 	}
 
 
-	public void setLicenceValidity(String licenceValidity) {
-		this.licence_validity = licenceValidity;
+	public void setLicenceValidity(@NotNull String date) {
+		this.licence_validity = date;
 	}
 
 

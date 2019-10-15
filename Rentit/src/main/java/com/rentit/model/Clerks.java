@@ -13,6 +13,7 @@ public class Clerks {
 	private String username;
 	private String password;
 	private String email;
+    private String usergroup;
 	
 	public Clerks() {
 		super();
@@ -33,7 +34,16 @@ public class Clerks {
 	public void setFirstName(String firstname) {
 		this.first_name = firstname;
 	}
-	
+	public void setusergroup(String usergroup) {
+		if(usergroup != null)
+		this.usergroup = "admin";
+		else {
+			this.usergroup = "clerk";	
+		}
+	}
+	public String getusergroup() {
+		return this.usergroup;
+	}
 	public String getLastName() {
 		return last_name;
 	}

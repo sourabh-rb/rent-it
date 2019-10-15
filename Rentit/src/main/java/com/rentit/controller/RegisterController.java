@@ -52,6 +52,7 @@ public class RegisterController {
 		String username = clerks.getUsername();
 		String password = clerks.getPassword();
 		String emailid = clerks.getEmail();
+		String usergroup = clerks.getusergroup();
 	   if(clerks.getFirstName() != null && clerks.getLastName()!=null &&clerks.getUsername() != null&&
 			   clerks.getPassword()!= null && clerks.getEmail() != null) {
 		TestClass tc = new TestClass();
