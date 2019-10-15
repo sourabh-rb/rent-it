@@ -27,6 +27,7 @@ public class LoginController {
   }
   @RequestMapping(value="/loginpage",method=RequestMethod.POST)
   public String LoginPage(@ModelAttribute(name="${loginForm}") Login loginForm,Model model) {
+	  String usergroup = "";
      username=loginForm.getUsername();
     String password=loginForm.getPassword();
     boolean flag = false;
@@ -37,6 +38,7 @@ public class LoginController {
       Clerks clerk = clerks.get(i);
       if(username.equals(clerk.getUsername())) {
         if(password.equals(clerk.getPassword())) {
+        	
         flag = true;
         break;
       }
@@ -50,6 +52,7 @@ public class LoginController {
     }
     else {
       return "redirect:/vehicle";
+    	
     }
  }
 }
