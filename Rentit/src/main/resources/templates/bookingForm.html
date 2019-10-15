@@ -150,6 +150,12 @@
           <div class="col-md-3 mb-5"></div>
           <div class="col-md-6 mb-5">
             <form  th:action="@{/confirm}" th:object="${bookingn}" method="post">
+            <div align="center" th:if="${startDate}" class="error">Start date error
+      </div>
+                                <!-- <div align="center" th:if="${dueDate}" class="error">Due date error
+                                </div>
+                                <div align="center" th:if="${licenceValidity}" class="error">License validity error
+                               </div> -->
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="firstname">First Name</label>
@@ -186,27 +192,27 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input id="startDateid" onfocusout="fnLoadStratdate()"    type="date" th:field="*{booking.startDate}" class="form-control" required >
-						<label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label>
+                  <input id="startDateid"  name="startDate"  type="date"  class="form-control" required>
+						<!-- <label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label> -->
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-                  <input type="date" onfocusout="duedateload()" th:field="*{booking.dueDate}" class="form-control"
-						id="dueDate"  required>
-						<label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label>
+               <!--    <input id="dueDateid"  type="date"   name="dueDate" class="form-control" required> -->
+                  <input id="dueDateid"  name="dueDate"  type="date"  class="form-control" required>
+						<!-- <label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label> -->
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="password">Driving License Expire Date</label>
-                  <input type="date" onfocusout="licenceValidityload()" th:field="*{client.licenceValidity}" class="form-control"
-						id="licenceValidity" required >
-						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
+                  <!-- <input type="date" name="licenceValidity" class="form-control" id="licenceValidityid" required > -->
+                  <input id="licenceValidityid"  name="licenceValidity"  type="date"  class="form-control" required>
+						<!-- <label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label> -->
                 </div>
               </div>
-              <input type="hidden" onfocusout="hiddenidload()" id="hiddenid" name="hiddenid" value="3487">
+              
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -245,7 +251,7 @@
   <script src="js/bootstrap-datepicker.min.js"></script>
   <script src="js/aos.js"></script>
 <script type="text/javascript">
-function fnLoadStratdate(){
+/* function fnLoadStratdate(){
 	 var date = document.getElementById("startDateid").value;
 	 var varDate = new Date(date); //dd-mm-YYYY
 	 var today = new Date();
@@ -262,9 +268,8 @@ function fnLoadStratdate(){
 	 alert("Start date cannot be Less than Current Date!");
 	 document.getElementById("startDateid").value = "";
 	 }
-	 }
+	 }}
 
-	 }
 	 
 	 function duedateload(){
 		 var date = document.getElementById("startDateid").value;
@@ -288,11 +293,15 @@ function fnLoadStratdate(){
 		 else{
 			 alert("**** YON CANNOT BOOK**** Your license will expire before the return date of the vehicle.");
 			 window.location.reload();
-		 }
+		 }}
 		 function hiddenidload() {
 			 var hiddenid = document.getElementById("hiddenid").value;
+			 var hiddenab = document.getElementById("hiddenid").value;;
+			 if(hiddenid = hiddenab){
+				 
+			 }
 		 }
-	 }
+	  */
 
 </script>
   <script src="js/main.js"></script>

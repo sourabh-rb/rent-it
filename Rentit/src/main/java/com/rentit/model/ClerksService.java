@@ -1,6 +1,7 @@
 package com.rentit.model;
 
 import com.rentit.test_class.TestClass;
+
 /**
  * This is Clerks Service layer
  * @author charan
