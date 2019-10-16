@@ -79,36 +79,6 @@ public class VehicleService {
 		return null;
 	}
 	
-	/**
-	 * @return Vehicle
-	 * Method to return previous vehicle in detailed view page
-	 * 
-	 */
-	
-	public Vehicles getPreviousVehicle(Long id) {
-		
-		LinkedList<Vehicles> vList=new LinkedList<Vehicles>();
-		Boolean vehicleFound=true;
-		Vehicles vehicleObj=new Vehicles();
-		for(Vehicles vehicle : testData.getVehiclesTestData()) {
-			vList.add(vehicle);
-			}
-		System.out.println(vList.size());
-		ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
-		while(vehicleFound) {
-			if(vListIterator.hasPrevious()) {
-				System.out.println(vListIterator.hasPrevious());
-				vehicleObj=  (Vehicles) vListIterator.previous();
-				System.out.println("inside previous"+vehicleObj.getId());
-				vehicleFound=false;	
-			}
-
-			return vehicleObj;
-		}
-		return null;
-	}
-	
-	
 	
 
 	public void UpdateVehicleInfo(Vehicles vechileDetails) {

@@ -232,24 +232,6 @@ public class VehicleController {
 	    return sDetailsmav;
 }
 	
-	/**
-	 * 
-	 * @param id
-	 * @param model
-	 * @return previous vehicle
-	 * 
-	 * Method to return previous vehicle in detailed view
-	 */
-	
-	@RequestMapping("/previous/{id}")
-	public ModelAndView btnForPrevious(@PathVariable(name = "id") Long id,Model model) {
-	 ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
-	    Vehicles VechilesDetails = vehicleService.getPreviousVehicle((id));
-	    sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
-	    return sDetailsmav;
-}
-	
-	
 
 	@RequestMapping(value = "/saveRec", method = RequestMethod.POST)
 	public String saveEdit(@ModelAttribute("modify") Vehicles vechileDetails) {
