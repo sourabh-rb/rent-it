@@ -38,7 +38,7 @@ public class LoginController {
       Clerks clerk = clerks.get(i);
       if(username.equals(clerk.getUsername())) {
         if(password.equals(clerk.getPassword())) {
-        	
+          usergroup = clerk.getusergroup();
         flag = true;
         break;
       }
@@ -51,8 +51,12 @@ public class LoginController {
     	return "loginpage";
     }
     else {
-      return "redirect:/vehicle";
+      if(usergroup == "clerk")
+    return "redirect:/vehicle";
+    else {
+      return "redirect:/admin";
     	
     }
  }
+}
 }
