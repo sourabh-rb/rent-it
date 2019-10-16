@@ -66,6 +66,23 @@
 	border: 1px solid rgb(255, 95, 1);
 	background-color: rgb(255, 95, 1);
 }
+.submitButtonClass1 {
+
+	font-size: 10pt;
+	
+	vertical-align: middle;
+	cursor: hand;
+	color: white;
+	font-style: normal;
+	FONT-FAMILY: Helvetica Neue, Verdana;
+	text-align: center;
+	width: 200px;
+	border-radius: 10px;
+	border: 1px solid rgb(135,206,250);
+	background-color: rgb(135,206,250);
+
+}
+
 
 .submitButtonClass {
 
@@ -215,7 +232,17 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<div class="col-sm-2"><button type="submit" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button></div>
+				
+					<div class="col-sm-2">
+					<span th:if="*{isAvailable()}">
+				<button type="submit" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button>
+				
+				</span>
+				<span th:if="*{!isAvailable()}">
+				<button type="submit" style="margin-bottom:10px;" disabled="disabled"  class="submitButtonClass1">Book Now</button>
+				</span>
+					
+					</div>
 				</div>
 				<div class="col-sm-1"></div>
 				
@@ -233,7 +260,7 @@
 				<div class="col-sm-1"></div>
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<div class="col-sm-2"><button type="submit" value="Submit" name="btnGoBack" id="btnGoBack" class="buttonClass">Go Back to Vehicle Catalog</button></div>
+					<div class="col-sm-2"><button type="submit" value="Submit" name="btnGoBack" id="btnGoBack" class="submitButtonClass">Back to Catalog</button></div>
 				</div>
 				<div class="col-sm-1"></div>
 				
@@ -260,25 +287,37 @@
 				<div class="col-sm-2">
 					<input type="text"  th:field="*{LicPlate}" class="form-control" ></input>
 				</div>
-				<div class="col-sm-1"></div>
+				<div class="col-sm-7"></div>
+				
+				 <div style="padding: 5px;"></div>
+			
+		</div>
+		
+		<div class="row">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-8">
+				<label style="font-style: italic;color:green;" th:if="*{isAvailable()}">The vehicle is available for booking</label>
+				<label style="font-style: italic;color:red;" th:if="*{!isAvailable()}">Sorry! This vehicle is currently unavailable</label> 
+				</div>
 				
 				
 			<div style="padding: 5px;"></div>
 
 		</div>	
-		</div>
+		
 	<div style="padding: 5px;"></div>
+	
+	</div>
+	
 	<div class="row">
 	
 			<div class="col-sm-3"></div>
+			<div class="col-sm-2"></div>			
+			<div class="col-sm-2"><a th:href="@{'/next/' + ${vehicleForDetails.getId()}}">View Next</a></div>
+			<div class="col-sm-2"></div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2"><a th:href="@{'/previous/' + ${vehicleForDetails.getId()}}">Previous</a></div>
-			<div class="col-sm-2"><a th:href="@{'/next/' + ${vehicleForDetails.getId()}}">Next</a></div>
-			<div class="col-sm-1"></div>
-			<div class="col-sm-3"></div>
 		
 			</div>
-	</div>
 </form>
       </div>
     </div>
