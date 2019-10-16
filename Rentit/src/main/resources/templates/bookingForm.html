@@ -150,9 +150,6 @@
           <div class="col-md-3 mb-5"></div>
           <div class="col-md-6 mb-5">
             <form  th:action="@{/confirm}" th:object="${bookingn}" method="post">
-            <div align="center" th:if="${startDate}" class="error">Please input the dates properly...!!
-            Start must be greater or equal to Current date, Return date must be greater than start date and license should be valid.
-      </div>
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="firstname">First Name</label>
@@ -189,27 +186,27 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input id="startDateid"  name="startDate"  type="date"  class="form-control" required>
-						
+                  <input id="startDateid" onfocusout="fnLoadStratdate()"    type="date" th:field="*{booking.startDate}" class="form-control" required >
+						<label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-               
-                  <input id="dueDateid"  name="dueDate"  type="date"  class="form-control" required>
-						
+                  <input type="date" onfocusout="duedateload()" th:field="*{booking.dueDate}" class="form-control"
+						id="dueDate"  required>
+						<label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="password">Driving License Expire Date</label>
-                 
-                  <input id="licenceValidityid"  name="licenceValidity"  type="date"  class="form-control" required>
-						
+                  <input type="date" onfocusout="licenceValidityload()" th:field="*{client.licenceValidity}" class="form-control"
+						id="licenceValidity" required >
+						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
                 </div>
               </div>
-              
+              <input type="hidden" onfocusout="hiddenidload()" id="hiddenid" name="hiddenid" value="3487">
 
               <div class="row form-group">
                 <div class="col-md-12">
@@ -247,6 +244,57 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/bootstrap-datepicker.min.js"></script>
   <script src="js/aos.js"></script>
+<script type="text/javascript">
+function fnLoadStratdate(){
+	 var date = document.getElementById("startDateid").value;
+	 var varDate = new Date(date); //dd-mm-YYYY
+	 var today = new Date();
+	 if(date==null ||date==""){
+	 
+	 }
+	 else
+	 {
+	 if(varDate >= today) {
+	// alert("correct!");
+	 }
+	 else
+	 {
+	 alert("Start date cannot be Less than Current Date!");
+	 document.getElementById("startDateid").value = "";
+	 }
+	 }
+
+	 }
+	 
+	 function duedateload(){
+		 var date = document.getElementById("startDateid").value;
+		 var duedate = document.getElementById("dueDate").value;
+		 if(date < duedate){
+			 
+		 }
+		 else{
+			 alert("Return date cannot be Less than Start Date!");
+			 document.getElementById("dueDate").value = ""; 
+		 }
+		 
+	 }
+	 
+	 function licenceValidityload(){
+		 var licenceValiditydate = document.getElementById("licenceValidity").value;
+		 var duedate = document.getElementById("dueDate").value;
+		 if(licenceValiditydate <= duedate){
+			 
+		 }
+		 else{
+			 alert("**** YON CANNOT BOOK**** Your license will expire before the return date of the vehicle.");
+			 window.location.reload();
+		 }
+		 function hiddenidload() {
+			 var hiddenid = document.getElementById("hiddenid").value;
+		 }
+	 }
+
+</script>
   <script src="js/main.js"></script>
 
   </body>
