@@ -65,7 +65,7 @@ public class VehicleService {
 		while(vehicleFound) {
 			if(vListIterator.hasNext()) {
 				vehicleObj=(Vehicles) vListIterator.next();
-				System.out.println("Inside next service:"+vehicleObj.getId());
+				
 				vehicleFound=false;	
 			}
 			else {

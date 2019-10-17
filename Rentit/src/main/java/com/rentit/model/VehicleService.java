@@ -1,6 +1,7 @@
 package com.rentit.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -20,6 +21,7 @@ import com.rentit.test_class.TestClass;
 public class VehicleService {
 
 	private TestClass testData = new TestClass();
+	private ArrayList<Integer> storeId=new ArrayList<>();
 
 	public ModelWrapper listAll() {
 
@@ -65,7 +67,6 @@ public class VehicleService {
 		while(vehicleFound) {
 			if(vListIterator.hasNext()) {
 				vehicleObj=(Vehicles) vListIterator.next();
-				System.out.println("Inside next service:"+vehicleObj.getId());
 				vehicleFound=false;	
 			}
 			else {
@@ -97,6 +98,33 @@ public class VehicleService {
 		}
 		
 	}
+	
+	/**
+	 * This method is used to add a new vehicle to the vehicle list
+	 * @param vechileDetails The vehicle object
+	 */
+	
+	public void AddVehicleInfo(Vehicles vechileDetails) {
+		// TODO Auto-generated method stub
+		for(Vehicles vechile : testData.getVehiclesTestData()) {
+			storeId.add(vechile.getId());
+		}
+		Collections.sort(storeId);
+		Collections.reverse(storeId);
+		int idForNewVehicle=storeId.get(0);
+		
+		Vehicles vehicle=new Vehicles();
+			
+			
+		vehicle.setiYear(vechileDetails.getiYear());
+		vehicle.setMake(vechileDetails.getMake());
+		vehicle.setModel(vechileDetails.getModel());
+		vehicle.setType(vechileDetails.getType());
+		vehicle.setColor(vechileDetails.getColor());
+		vehicle.setLicPlate(vechileDetails.getLicPlate());
+				
+		testData.addNewVehicles(vehicle, idForNewVehicle+1);
+		}
 
 	public ModelWrapper fncadditem(Vehicles VehiclesAttributes ,int iSize) {
 		

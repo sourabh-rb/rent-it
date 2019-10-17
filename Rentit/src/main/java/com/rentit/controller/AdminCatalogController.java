@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -100,6 +101,20 @@ public class AdminCatalogController {
 
 	}
 	
+	@RequestMapping(value = "/addEditAdmin", params = "btnUpdate" , method = RequestMethod.POST)
+	public String updateEdit(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
+		
+		if(vehicleDetails.getId()==0) 
+		{
+		vehicleService.AddVehicleInfo(vehicleDetails);	
+		}
+		else 
+		{
+		vehicleService.UpdateVehicleInfo(vehicleDetails);
+		}
+	    return "redirect:/admin";
+	}
+	
 	
 	@RequestMapping(value = "/addEditAdmin", method = RequestMethod.POST)
 	public String saveEdit(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes) {
@@ -129,14 +144,30 @@ public class AdminCatalogController {
 	
 
 
-	@RequestMapping(value = "/admin", params = "btnedit", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/{id}", params = "btnedit", method = RequestMethod.POST)
 	public String btnEdit(Model model) {
 		
 		// handover to Arvind
-		
+		ModelWrapper listVehicles= vehicleService.listAll();
+		model.addAttribute("vehicle", listVehicles);
 		return "redirect:/addEditAdmin";
 
 	}
+	
+	/**
+	 * Method used to redirect to addEditAdmin page on click of edit in admin page.
+	 * @param id
+	 * @param model
+	 * @return addEditAdmin page
+	 */ 
+	
+	@RequestMapping("/addEditAdminPage/{id}")
+	public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id,Model model) {
+	 ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
+	    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+	    sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
+	    return sDetailsmav;
+}
 	
 	@RequestMapping(value = "/admin", params = "btnDelete", method = RequestMethod.POST)
 	public String btnDelete(Model model) {
@@ -157,16 +188,5 @@ public class AdminCatalogController {
 		return "redirect:/addEditAdmin";
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
