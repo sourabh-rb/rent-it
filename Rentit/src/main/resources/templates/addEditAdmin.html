@@ -125,7 +125,7 @@
 
   </head>
   <body>
-
+<form th:action = "@{/addEditAdmin}" th:object = "${vehicleForEdit}" method = "POST">
   <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -179,10 +179,12 @@
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-2">
-					<label for="vehicleType">Vehicle type:</label>
+					<label for="vehicleType">Type:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					<input  th:field="*{id}" class="form-control"  Placeholder="Enter Type"  name="id"  id="txtId" required></input>
+					<input type="text"  th:field="*{Type}" class="form-control"  Placeholder="Enter Type"  name="Type" required></input>
+					
 				</div>
 				<div class="col-sm-1"></div>
 					<div class="col-sm-1"></div>
@@ -190,7 +192,7 @@
 					<label for="vehicleType">Make:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					<input type="text"  th:field="*{Make}" class="form-control"  Placeholder="Enter Make"  name="Make" required></input>
 				</div>
 
 			</div>
@@ -201,7 +203,7 @@
 					<label for="vehicleType">Model:	</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					<input type="text"  th:field="*{Model}" class="form-control"  Placeholder="Enter Model"  name="Model" required></input>
 				</div>
 				<div class="col-sm-1"></div>
 					<div class="col-sm-1"></div>
@@ -209,7 +211,7 @@
 					<label for="vehicleType">Year:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					<input type="text" th:field="*{iYear}" pattern="\d{4}" onKeyPress="if(this.value.length==4) return false;" class="form-control" id="txtYear" placeholder="   Enter Year" name="iYear" required>
 				</div>
 
 			</div>
@@ -220,7 +222,9 @@
 					<label for="vehicleType">Color:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					
+					<input type="text"  th:field="*{Color}" class="form-control"  Placeholder="Enter Color"  name="Color" required></input>
+					
 				</div>
 				<div class="col-sm-1"></div>
 					<div class="col-sm-1"></div>
@@ -228,7 +232,7 @@
 					<label for="vehicleType">License Plate:</label>
 				</div>
 				<div class="col-sm-2">
-					<input type="text"   class="form-control"></input>
+					<input type="text"  th:field="*{LicPlate}" class="form-control"  Placeholder="Enter License Plate"  name="LicPlate" required></input>
 				</div>
 
 			</div>
@@ -239,7 +243,7 @@
 			
 			</div>
 			<div class="col-sm-2">
-			<button  type="submit" value="Submit" name="btnClientManager" id="btnClientManager" class="buttonClass">Delete</button>
+			<button  type="submit" value="Submit" name="btnDel" id="btnDel" class="buttonClass">Go Back</button>
 			</div>
 			<div class="col-sm-3">
 			
@@ -251,7 +255,7 @@
 			
 			</div>
 			<div class="col-sm-2">
-			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="ClientManager" id="btnClientManager" class="buttonClass">Save</button>
+			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="btnUpdate" id="btnUpdate" class="buttonClass">Update</button>
 			</div>
 			
 		</div>
@@ -272,6 +276,7 @@
     <footer class="site-footer" style="background-image: url(/images/hero_bg_5.jpg);">
     </footer>
   </div>
+  </form>
 
   <script src="/js/jquery-3.3.1.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>
@@ -286,6 +291,11 @@
   <script src="/js/aos.js"></script>
 
   <script src="/js/main.js"></script>
+  <script>
+  document.getElementById('txtId').style.display = 'none';
+  </script>
+
+  
 
   </body>
 </html>

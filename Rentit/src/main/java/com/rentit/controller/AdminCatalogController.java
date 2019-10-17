@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
@@ -88,8 +89,14 @@ public class AdminCatalogController {
 	}
 	
 	@RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
-	public String btnAdd(Model model) {
-		return "redirect:/addEditAdmin";
+	public ModelAndView btnAdd(Model model) {
+		ModelAndView addVehicle = new ModelAndView("addEditAdmin");
+		addVehicle.addObject("vehicleForEdit", new Vehicles());
+		   return addVehicle;
+
+
+
+	//	return "redirect:/addEditAdmin";
 
 	}
 	
