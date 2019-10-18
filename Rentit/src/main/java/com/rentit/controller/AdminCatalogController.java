@@ -169,10 +169,16 @@ public class AdminCatalogController {
 	    return sDetailsmav;
 }
 	
+	@RequestMapping("/delete/{id}")
+	public ModelAndView removeVehicleEntry(@PathVariable(name = "id") Long id,Model model) {
+	 ModelAndView sDetailsmav = new ModelAndView("admin");
+	    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+	    sDetailsmav.addObject("vehicle", VechilesDetails);
+	    return sDetailsmav;
+}
+	
 	@RequestMapping(value = "/admin", params = "btnDelete", method = RequestMethod.POST)
 	public String btnDelete(Model model) {
-		
-		
 		// handover to Koti
 		
 		return "redirect:/addEditAdmin";
@@ -183,9 +189,7 @@ public class AdminCatalogController {
 	@RequestMapping(value = "/admin", params = "btnManageTransactions", method = RequestMethod.POST)
 	public String btnManageTransactions(Model model) {
 		
-		// handover to Sourabh
-		
-		return "redirect:/addEditAdmin";
+		return "redirect:/transactions";
 
 	}
 	
