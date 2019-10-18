@@ -43,9 +43,18 @@ public class VehicleController {
 	 */
 	@RequestMapping("/vehicle")
 	public String listClient(Model model) {
+		LoginController lc = new LoginController();
+        String username  = lc.username;
+        if(username != null) {
+		
 		ModelWrapper listVehicles= vehicleService.listAll();
+	
 		model.addAttribute("vehicle", listVehicles);
 		return "vehicle";
+        }
+        else {
+        	return  "redirect:/loginpage";
+        }
 
 	}
 
