@@ -86,16 +86,6 @@ public class BookinFormController {
 		boolean  valid = false;
 		try {
 			currentdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
-			/*
-			 * Clients clientDetails = new Clients(); Bookings book = new Bookings();
-			 * clientDetails.setLicenceValidity(licenceValidity);
-			 * book.setStartDate(startDate); book.setDueDate(dueDate);
-			 * 
-			 * String startDate_11 = book.getStartDate(); String dueDate_11 =
-			 * book.getDueDate(); String licenceValidity_11 =
-			 * clientDetails.getLicenceValidity();
-			 */
-
 			startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
 			duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(dueDate);
 			licenseexpiry1 = new SimpleDateFormat("yyyy-MM-dd").parse(licenceValidity);

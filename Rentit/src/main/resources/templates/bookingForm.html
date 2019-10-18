@@ -143,8 +143,12 @@
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
             <h2 class="font-weight-light text-primary">Vehicle Booking Form</h2>
-            
+            <div align="center" th:if="${startDate}" class="error"><b>DATE ERORR..!! Please make sure start date is greater or equal to current date,
+           return date must be greater than start date 
+          and License must be valid..! </b>
+      </div>
           </div>
+          
         </div>
         <div class="row">
           <div class="col-md-3 mb-5"></div>
@@ -186,24 +190,24 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input id="startDateid" onfocusout="fnLoadStratdate()"    type="date" th:field="*{booking.startDate}" class="form-control" required >
-						<label th:if="${#fields.hasErrors('booking.startDate')}" th:errors="*{booking.startDate}">booking startDate Error</label>
+                  <input id="startDateid" onfocusout="fnLoadStratdate()"  name ="startDate"  value = "startDate"  type="date"  class="form-control" required >
+						
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-                  <input type="date" onfocusout="duedateload()" th:field="*{booking.dueDate}" class="form-control"
-						id="dueDate"  required>
-						<label th:if="${#fields.hasErrors('booking.dueDate')}" th:errors="*{booking.dueDate}">booking dueDate Error</label>
+                  <input type="date" onfocusout="duedateload()" class="form-control"
+						id="dueDate" name ="dueDate"  value = "dueDate"  required>
+						
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="password">Driving License Expire Date</label>
-                  <input type="date" onfocusout="licenceValidityload()" th:field="*{client.licenceValidity}" class="form-control"
+                  <input type="date" name ="licenceValidity"  value = "licenceValidity" class="form-control"
 						id="licenceValidity" required >
-						<label th:if="${#fields.hasErrors('client.licenceValidity')}" th:errors="*{client.licenceValidity}">licenceValidity Error</label>
+						
                 </div>
               </div>
               <input type="hidden" onfocusout="hiddenidload()" id="hiddenid" name="hiddenid" value="3487">
@@ -244,57 +248,6 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/bootstrap-datepicker.min.js"></script>
   <script src="js/aos.js"></script>
-<script type="text/javascript">
-function fnLoadStratdate(){
-	 var date = document.getElementById("startDateid").value;
-	 var varDate = new Date(date); //dd-mm-YYYY
-	 var today = new Date();
-	 if(date==null ||date==""){
-	 
-	 }
-	 else
-	 {
-	 if(varDate >= today) {
-	// alert("correct!");
-	 }
-	 else
-	 {
-	 alert("Start date cannot be Less than Current Date!");
-	 document.getElementById("startDateid").value = "";
-	 }
-	 }
-
-	 }
-	 
-	 function duedateload(){
-		 var date = document.getElementById("startDateid").value;
-		 var duedate = document.getElementById("dueDate").value;
-		 if(date < duedate){
-			 
-		 }
-		 else{
-			 alert("Return date cannot be Less than Start Date!");
-			 document.getElementById("dueDate").value = ""; 
-		 }
-		 
-	 }
-	 
-	 function licenceValidityload(){
-		 var licenceValiditydate = document.getElementById("licenceValidity").value;
-		 var duedate = document.getElementById("dueDate").value;
-		 if(licenceValiditydate <= duedate){
-			 
-		 }
-		 else{
-			 alert("**** YON CANNOT BOOK**** Your license will expire before the return date of the vehicle.");
-			 window.location.reload();
-		 }
-		 function hiddenidload() {
-			 var hiddenid = document.getElementById("hiddenid").value;
-		 }
-	 }
-
-</script>
   <script src="js/main.js"></script>
 
   </body>
