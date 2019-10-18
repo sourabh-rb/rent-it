@@ -145,6 +145,10 @@ public class VehicleService {
 		return null;
 		
 	}
+	
+	public void deleteVehicle(int id) {
+		testData.removeVehicleRecord(id);
+	}
 
     
     

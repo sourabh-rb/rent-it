@@ -169,13 +169,12 @@ public class AdminCatalogController {
 	    return sDetailsmav;
 }
 	
+	
 	@RequestMapping("/delete/{id}")
-	public ModelAndView removeVehicleEntry(@PathVariable(name = "id") Long id,Model model) {
-	 ModelAndView sDetailsmav = new ModelAndView("admin");
-	    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
-	    sDetailsmav.addObject("vehicle", VechilesDetails);
-	    return sDetailsmav;
-}
+	public String deleteVehicle(@PathVariable(name = "id") int id) {
+	    vehicleService.deleteVehicle(id);
+	    return "redirect:/admin";       
+	}
 	
 	@RequestMapping(value = "/admin", params = "btnDelete", method = RequestMethod.POST)
 	public String btnDelete(Model model) {

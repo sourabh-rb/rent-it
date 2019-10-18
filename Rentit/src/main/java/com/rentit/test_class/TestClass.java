@@ -319,6 +319,16 @@ public class TestClass {
         return vechileList;
     }
     
+    public void removeVehicleRecord(int id) {
+    	for(Vehicles v : vechileList) {
+    		if(id == v.getId()) {
+    			vechileList.remove(v);
+    			break;
+    		}
+    	}
+    	
+    }
+    
 
 
     @SuppressWarnings("unchecked")
