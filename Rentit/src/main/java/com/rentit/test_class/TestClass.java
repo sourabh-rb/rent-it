@@ -437,6 +437,7 @@ public class TestClass {
         count += 1;
         bcnt += 1;
         nw.getClient().setClientID(count);
+        nw.getBooking().setClientID(count);
         nw.getBooking().setBookingid(bcnt);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();

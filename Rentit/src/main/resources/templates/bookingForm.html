@@ -190,14 +190,14 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input id="startDateid" onfocusout="fnLoadStratdate()"  name ="startDate"  value = "startDate"  type="date"  class="form-control" required >
+                  <input id="startDateid" onfocusout="fnLoadStratdate()"  name ="startDate"  value = "startDate"  type="date"  th:field="*{booking.startDate}" class="form-control" required >
 						
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-                  <input type="date" onfocusout="duedateload()" class="form-control"
+                  <input type="date"  th:field="*{booking.dueDate}" onfocusout="duedateload()" class="form-control"
 						id="dueDate" name ="dueDate"  value = "dueDate"  required>
 						
                 </div>
@@ -205,7 +205,7 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="password">Driving License Expire Date</label>
-                  <input type="date" name ="licenceValidity"  value = "licenceValidity" class="form-control"
+                  <input type="date" th:field="*{client.licenceValidity}" name ="licenceValidity"  value = "licenceValidity" class="form-control"
 						id="licenceValidity" required >
 						
                 </div>
