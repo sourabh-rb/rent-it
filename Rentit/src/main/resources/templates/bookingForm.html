@@ -75,6 +75,12 @@
 	padding-top: 13px;
 	padding-bottom: 13px;
 }
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+  }
 </style>
     <title>Booking Form</title>
     <meta charset="utf-8">
@@ -174,15 +180,15 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="username">Driver License Number</label>
-                 <input type="text" th:field="*{client.licenceNumber} " class="form-control"
-						id="licenseNumber" required maxlength="15">
+                 <input type="text" th:field="*{client.licenceNumber} " class="form-control" 
+						id="licenseNumber" required  pattern="^[A-Za-z]{1}[-]{1}[0-9]{4}[-]{1}[0-9]{6}[-]{1}[0-9]{2}$" maxlength="16" placeholder="Format = A-1234-123456-12">
 						<label th:if="${#fields.hasErrors('client.licenceNumber')}" th:errors="*{client.licenceNumber}">licenceNumber Error</label>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Phone No.</label>
-                 <input type="text" th:field="*{client.phone}" class="form-control"
+                 <input type="text" th:field="*{client.phone}" class="form-control" placeholder="10 Digit phone no."
 						id="phone" required maxlength="10"  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
 						<label th:if="${#fields.hasErrors('client.phone')}" th:errors="*{client.phone}">Phone no Error</label>
                 </div>
@@ -190,27 +196,27 @@
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Reservation Start Date</label>
-                  <input id="startDateid" onfocusout="fnLoadStratdate()"  name ="startDate"  value = "startDate"  type="date"  th:field="*{booking.startDate}" class="form-control" required >
+                  <input id="startDateid"  name ="startDate"  value = "startDate" th:field="*{booking.startDate}" type="date"  class="form-control" required >
 						
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="email">Return End Date</label>
-                  <input type="date"  th:field="*{booking.dueDate}" onfocusout="duedateload()" class="form-control"
-						id="dueDate" name ="dueDate"  value = "dueDate"  required>
+                  <input type="date"class="form-control"
+						id="dueDate" name ="dueDate"  value = "dueDate" th:field="*{booking.dueDate}" required>
 						
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
                   <label class="text-black" for="password">Driving License Expire Date</label>
-                  <input type="date" th:field="*{client.licenceValidity}" name ="licenceValidity"  value = "licenceValidity" class="form-control"
-						id="licenceValidity" required >
+                  <input type="date" name ="licenceValidity" value = "licenceValidity" class="form-control"
+						id="licenceValidity"  th:field="*{client.licenceValidity}" required >
 						
                 </div>
               </div>
-              <input type="hidden" onfocusout="hiddenidload()" id="hiddenid" name="hiddenid" value="3487">
+           
 
               <div class="row form-group">
                 <div class="col-md-12">
