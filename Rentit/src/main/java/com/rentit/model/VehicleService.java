@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.rentit.test_class.TestClass;
 
 /**
@@ -90,7 +88,6 @@ public class VehicleService {
    * @param vechileDetails The vehicle object
    */
 
-
   public void UpdateVehicleInfo(Vehicles vechileDetails) {
 
     for (Vehicles vechile : testData.getVehiclesTestData()) {
@@ -124,7 +121,6 @@ public class VehicleService {
 
     Vehicles vehicle = new Vehicles();
 
-
     vehicle.setiYear(vechileDetails.getiYear());
     vehicle.setMake(vechileDetails.getMake());
     vehicle.setModel(vechileDetails.getModel());
@@ -144,7 +140,6 @@ public class VehicleService {
    */
 
   public ModelWrapper fncadditem(Vehicles VehiclesAttributes, int iSize) {
-
 
     int idIncrement = iSize + 1;
     System.out.println("Size + 1 : " + idIncrement);
@@ -172,7 +167,5 @@ public class VehicleService {
   public void setBookVehicle(Vehicles bookVehicle) {
     this.bookVehicle = bookVehicle;
   }
-
-
 
 }

@@ -19,20 +19,15 @@ public class Vehicles {
 
   private boolean isAvailable = true;
 
-
-
   public boolean isVehicleAvailable() {
     return isAvailable;
   }
-
 
   public void setVehicleAvailable(boolean isAvailable) {
     this.isAvailable = isAvailable;
   }
 
   public int index;
-
-
 
   public Vehicles(int id, String Make, String Model, String iYear, String Type, String Color,
       String LicPlate, boolean isAvailable) {
@@ -46,7 +41,6 @@ public class Vehicles {
     this.LicPlate = LicPlate;
     this.isAvailable = isAvailable;
   }
-
 
   public Vehicles() {
     this.id = index++;
@@ -114,26 +108,20 @@ public class Vehicles {
         + ", Model=" + Model + ", iYear=" + iYear + ", Color=" + Color + ", index=" + index + "]";
   }
 
-
   public String getBookingStartDate() {
     return bookingStartDate;
   }
-
 
   public void setBookingStartDate(String bookingStartDate) {
     this.bookingStartDate = bookingStartDate;
   }
 
-
   public String getBookingEndDate() {
     return bookingEndDate;
   }
 
-
   public void setBookingEndDate(String bookingEndDate) {
     this.bookingEndDate = bookingEndDate;
   }
-
-
 
 }

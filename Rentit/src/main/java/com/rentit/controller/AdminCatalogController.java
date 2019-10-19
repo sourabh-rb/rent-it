@@ -16,7 +16,6 @@ import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
 import com.rentit.model.Vehicles;
 
-
 /**
  * This class handles vehicle catalog for add/delete/ Modify functionality and view transaction too.
  * 
@@ -46,7 +45,6 @@ public class AdminCatalogController {
       return "redirect:/loginpage";
   }
 
-
   /**
    * This method redirects to get detail page.
    * 
@@ -65,7 +63,6 @@ public class AdminCatalogController {
     } else {
       checkboxValue = "False";
     }
-
 
     if (checkboxValue1 != null) {
       checkboxValue1 = "True";
@@ -121,7 +118,6 @@ public class AdminCatalogController {
     return "redirect:/admin";
   }
 
-
   /**
    * This method is used to populate vehicle details in addEditAdmin page
    * 
@@ -152,7 +148,6 @@ public class AdminCatalogController {
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
     return sDetailsmav;
   }
-
 
   /**
    * This method is used to delete a vehicle in admin page, based on its ID.

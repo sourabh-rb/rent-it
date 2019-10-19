@@ -31,7 +31,6 @@ public class VehicleController {
   private static String sOrderType = "ASC";
   RegisterController rv = new RegisterController();
 
-
   @Autowired
   private VehicleService vehicleService;
   long idDummy;
@@ -79,13 +78,11 @@ public class VehicleController {
       checkboxValue = "False";
     }
 
-
     if (checkboxValue1 != null) {
       checkboxValue1 = "True";
     } else {
       checkboxValue1 = "False";
     }
-
 
     String sMake = VehiclesAttributes.getMake();
     String sType = VehiclesAttributes.getType();
@@ -177,8 +174,6 @@ public class VehicleController {
 
   }
 
-
-
   /**
    * This method redirects to client manager.
    * 
@@ -187,7 +182,6 @@ public class VehicleController {
    */
   @RequestMapping(value = "/vehicle", params = "btnClientManager", method = RequestMethod.POST)
   public String btnClientManager(Model model) {
-
 
     return "redirect:/clients";
 
@@ -199,7 +193,6 @@ public class VehicleController {
    * @param model
    * @return vehicle
    */
-
 
   @RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
   public String btnSortType(Model model) {
@@ -262,7 +255,6 @@ public class VehicleController {
    * @return redirect to booking form
    */
 
-
   @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
   public String saveEdit(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
     vehicleService.setBookVehicle(vechileDetails);
@@ -283,7 +275,5 @@ public class VehicleController {
     return "redirect:/vehicle";
 
   }
-
-
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Controller for AddEditAdmin page
+ * 
  * @author Basant Gera
  *
  */
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AddEditAdminController {
 
-/**
- * Redirects to login page if not a valid user, else display addEditAdmin page
- * @param model
- * @return redirect to login page
- */
+  /**
+   * Redirects to login page if not a valid user, else display addEditAdmin page
+   * 
+   * @param model
+   * @return redirect to login page
+   */
 
   @RequestMapping("/addEditAdmin")
   public String AddEditVehicle(Model model) {
@@ -28,6 +30,5 @@ public class AddEditAdminController {
       return "redirect:/loginpage";
 
   }
-
 
 }
