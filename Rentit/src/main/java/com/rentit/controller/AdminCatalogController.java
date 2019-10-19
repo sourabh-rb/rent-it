@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,7 @@ import com.rentit.model.Vehicles;
  */
 @Controller
 public class AdminCatalogController {
-	
+	RegisterController rv= new RegisterController();
 	@Autowired
 	private VehicleService vehicleService;
 	
@@ -39,7 +41,7 @@ public class AdminCatalogController {
 	 * @return
 	 */
 	@RequestMapping("/admin")
-	public String listloadVehicle(Model model) {
+	public String listloadVehicle(Model model,HttpSession session) {
 		ModelWrapper listVehicles= vehicleService.listAll();
 		model.addAttribute("vehicle", listVehicles);
 		return "admin";

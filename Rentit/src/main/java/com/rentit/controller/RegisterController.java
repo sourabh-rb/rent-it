@@ -25,6 +25,7 @@ import antlr.collections.List;
  */
 @Controller
 public class RegisterController {
+	static String usergrp;
     /**
      * This method is to pass the data to registration page
      * @return model data
@@ -53,6 +54,13 @@ public class RegisterController {
 		String password = clerks.getPassword();
 		String emailid = clerks.getEmail();
 		String usergroup = clerks.getusergroup();
+		if(usergroup!=null) {
+			usergrp="admin";
+		}
+		else
+		{
+			usergrp="clerk";
+		}
 	   if(clerks.getFirstName() != null && clerks.getLastName()!=null &&clerks.getUsername() != null&&
 			   clerks.getPassword()!= null && clerks.getEmail() != null) {
 		TestClass tc = new TestClass();

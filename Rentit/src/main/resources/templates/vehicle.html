@@ -256,8 +256,13 @@ function toggle(source) {
             <td th:text="${vehicle.getiYear()}"></td>
             <td th:text="${vehicle.getType()}"></td>
              
-            <td>
-            <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a>
+           <td>
+           <!--  <span th:if="${$var1=='clerk'}"> -->
+            <span th:if="${session.mySessionAttribute} =='admin'">
+             </span> 
+              <span th:if="${session.mySessionAttribute} =='clerk'">
+              <a th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View Details</a>
+             </span> 
             </td>
            
 		</tr>

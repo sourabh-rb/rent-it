@@ -3,6 +3,8 @@ package com.rentit.controller;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,7 @@ public class VehicleController {
 	private static String sOrderModel="ASC";
 	private static String sOrderYear="ASC";
 	private static String sOrderType="ASC";
+	RegisterController rv= new RegisterController();
 	
 	
 	@Autowired
@@ -42,9 +45,11 @@ public class VehicleController {
 	 * @return
 	 */
 	@RequestMapping("/vehicle")
-	public String listClient(Model model) {
+	public String listClient(Model model,HttpSession session) {
 		LoginController lc = new LoginController();
         String username  = lc.username;
+        String usergroup=rv.usergrp;
+        session.setAttribute("mySessionAttribute", usergroup);
         if(username != null) {
 		
 		ModelWrapper listVehicles= vehicleService.listAll();
