@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AddEditAdminController {
 
-	
-	
-	@RequestMapping("/addEditAdmin")
-	public String AddEditVehicle(Model model) {
-		return "addEditAdmin";
-	}
-	
-	
+
+
+  @RequestMapping("/addEditAdmin")
+  public String AddEditVehicle(Model model) {
+    String username = LoginController.username;
+    if (username != null)
+      return "addEditAdmin";
+    else
+      return "redirect:/loginpage";
+
+  }
+
+
 }
