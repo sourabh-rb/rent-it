@@ -1,10 +1,6 @@
 
 package com.rentit.controller;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,8 +77,6 @@ public class AdminCatalogController {
     String sType = VehiclesAttributes.getType();
     String sModel = VehiclesAttributes.getModel();
     String sYear = VehiclesAttributes.getiYear();
-    String sColor = VehiclesAttributes.getColor();
-    String sLicPlate = VehiclesAttributes.getLicPlate();
     int iSize = listVehicles.getCatalogList().size();
     if (!(iSize == 0) || !(listVehicles.equals(null))) {
 
@@ -94,17 +88,27 @@ public class AdminCatalogController {
 
   }
 
+  /**
+   * This method allows an admin to add a new vehicle from main admin page.
+   * 
+   * @param model
+   * @return an empty vehicle
+   */
+
   @RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
   public ModelAndView btnAdd(Model model) {
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
     addVehicle.addObject("vehicleForEdit", new Vehicles());
     return addVehicle;
 
-
-
-    // return "redirect:/addEditAdmin";
-
   }
+
+  /**
+   * This method is used to add a new vehicle or update existing vehicle details in admin page.
+   * 
+   * @param vehicleDetails
+   * @return redirect to admin page after action is complete
+   */
 
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
   public String updateEdit(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
@@ -118,39 +122,15 @@ public class AdminCatalogController {
   }
 
 
-  @RequestMapping(value = "/addEditAdmin", method = RequestMethod.POST)
-  public String saveEdit(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes) {
-    ModelWrapper listVehicles = vehicleService.listAll();
-    String sMake = VehiclesAttributes.getMake();
-    String sType = VehiclesAttributes.getType();
-    String sModel = VehiclesAttributes.getModel();
-    String sYear = VehiclesAttributes.getiYear();
-    String sColor = VehiclesAttributes.getColor();
-    String sLicPlate = VehiclesAttributes.getLicPlate();
-    int iSize = listVehicles.getCatalogList().size();
-
-    if ((sMake.equals("") || sMake.equals(null)) && (sModel.equals("") || sModel.equals(null))
-        && (sYear.equals("") || sYear.equals(null)) && (sType.equals("") || sType.equals(null))
-        && (sColor.equals("") || sColor.equals(null))
-        && (sLicPlate.equals("") || sLicPlate.equals(null))) {
-      System.out.print("EnterIN");
-    } else {
-      if (!(iSize == 0) || !(listVehicles.equals(null))) {
-
-        listVehicles = vehicleService.fncadditem(VehiclesAttributes, iSize);
-      }
-    }
-
-
-    return "redirect:/admin";
-  }
-
-
-
+  /**
+   * This method is used to populate vehicle details in addEditAdmin page
+   * 
+   * @param model
+   * @return redirect to addEditAdmin page
+   */
   @RequestMapping(value = "/admin/{id}", params = "btnedit", method = RequestMethod.POST)
   public String btnEdit(Model model) {
 
-    // handover to Arvind
     ModelWrapper listVehicles = vehicleService.listAll();
     model.addAttribute("vehicle", listVehicles);
     return "redirect:/addEditAdmin";
@@ -174,20 +154,24 @@ public class AdminCatalogController {
   }
 
 
+  /**
+   * This method is used to delete a vehicle in admin page, based on its ID.
+   * 
+   * @param id
+   * @return redirect to admin page after delete
+   */
   @RequestMapping("/delete/{id}")
   public String deleteVehicle(@PathVariable(name = "id") int id) {
     vehicleService.deleteVehicle(id);
     return "redirect:/admin";
   }
 
-  @RequestMapping(value = "/admin", params = "btnDelete", method = RequestMethod.POST)
-  public String btnDelete(Model model) {
-    // handover to Koti
-
-    return "redirect:/addEditAdmin";
-
-  }
-
+  /**
+   * This method is used to redirect to transactions page.
+   * 
+   * @param model
+   * @return redirect to transactions page.
+   */
 
   @RequestMapping(value = "/admin", params = "btnManageTransactions", method = RequestMethod.POST)
   public String btnManageTransactions(Model model) {

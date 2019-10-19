@@ -1,35 +1,22 @@
 package com.rentit.controller;
 
 
-import java.util.Collections;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import com.rentit.model.Vehicles;
-import com.rentit.model.ModelWrapper;
-import com.rentit.model.VehicleService;
 
 /**
- * This class renders details view.
+ * This class renders Detailed View for vehicles.
  * 
- * @author Arvind
+ * @author Arvind Adiga
  *
  */
 @Controller
 public class DetailedViewController {
 
-  @Autowired
-  private VehicleService vehicleService;
 
   /**
-   * This method renders details view page.
+   * This method renders detailed view page if user is valid,else redirects to login page.
    * 
    * @return
    */

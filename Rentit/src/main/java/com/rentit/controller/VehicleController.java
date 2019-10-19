@@ -1,7 +1,6 @@
 package com.rentit.controller;
 
 import java.util.Collections;
-import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +46,7 @@ public class VehicleController {
   public String listClient(Model model, HttpSession session) {
 
     String username = LoginController.username;
-    String usergroup = rv.usergrp;
+    String usergroup = RegisterController.usergrp;
     session.setAttribute("mySessionAttribute", usergroup);
     if (username != null) {
 
@@ -62,7 +61,7 @@ public class VehicleController {
   }
 
   /**
-   * This method redirects to get detail page.
+   * This method redirects to get detailed view page.
    * 
    * @param VehiclesAttributes
    * @param model
@@ -88,16 +87,10 @@ public class VehicleController {
     }
 
 
-
-    // System.out.print(checkboxValue1);
-    // System.out.print(checkboxValueGreat);
-
     String sMake = VehiclesAttributes.getMake();
     String sType = VehiclesAttributes.getType();
     String sModel = VehiclesAttributes.getModel();
     String sYear = VehiclesAttributes.getiYear();
-    String sColor = VehiclesAttributes.getColor();
-    String sLicPlate = VehiclesAttributes.getLicPlate();
     int iSize = listVehicles.getCatalogList().size();
     if (!(iSize == 0) || !(listVehicles.equals(null))) {
 
@@ -200,6 +193,13 @@ public class VehicleController {
 
   }
 
+  /**
+   * This method is used to sort Vehicles based on Type.
+   * 
+   * @param model
+   * @return vehicle
+   */
+
 
   @RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
   public String btnSortType(Model model) {
@@ -220,6 +220,14 @@ public class VehicleController {
 
   }
 
+  /**
+   * This method is used to fetch the id of selected vehicle in vehicle page and pass it in detailed
+   * view to populate its attributes
+   * 
+   * @param id of vehicle
+   * @param model
+   * @return vehicle details
+   */
 
   @RequestMapping("/VehilceId/{id}")
   public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model) {
@@ -230,12 +238,12 @@ public class VehicleController {
   }
 
   /**
+   * Method to return next vehicle in the vehicle catalog in detailed view page
    * 
    * @param id
    * @param model
    * @return next vehicle
    * 
-   *         Method to return next vehicle in detailed view
    */
 
   @RequestMapping("/next/{id}")
@@ -246,13 +254,18 @@ public class VehicleController {
     return sDetailsmav;
   }
 
+  /**
+   * This method is used to book a vehicle from detailed view page, which redirects user to a
+   * booking form.
+   * 
+   * @param vechileDetails
+   * @return redirect to booking form
+   */
+
 
   @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
-  public String saveEdit(@ModelAttribute("modify") Vehicles vechileDetails) {
-    // System.out.print(id);
-    // vehicleService.UpdateVehicleInfo(vechileDetails);
+  public String saveEdit(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
     vehicleService.setBookVehicle(vechileDetails);
-    // return "redirect:/vehicle";
     return "redirect:/bookingForm";
   }
 
