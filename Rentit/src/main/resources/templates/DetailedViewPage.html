@@ -234,11 +234,11 @@
 				<div class="col-sm-2">
 				
 					<div class="col-sm-2">
-					<span th:if="*{isAvailable()}">
+					<span th:if="*{isVehicleAvailable()}">
 				<button type="submit" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button>
 				
 				</span>
-				<span th:if="*{!isAvailable()}">
+				<span th:if="*{!isVehicleAvailable()}">
 				<button type="submit" style="margin-bottom:10px;" disabled="disabled"  class="submitButtonClass1">Book Now</button>
 				</span>
 					
@@ -296,8 +296,8 @@
 		<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-8">
-				<label style="font-style: italic;color:green;" th:if="*{isAvailable()}">The vehicle is available for booking</label>
-				<label style="font-style: italic;color:red;" th:if="*{!isAvailable()}">Sorry! This vehicle is currently unavailable</label> 
+				<label style="font-style: italic;color:green;" th:if="*{isVehicleAvailable()}">The vehicle is available for booking</label>
+				<label style="font-style: italic;color:red;" th:if="*{!isVehicleAvailable()}">Sorry! This vehicle is currently unavailable</label> 
 				</div>
 				
 				
