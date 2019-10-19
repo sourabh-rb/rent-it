@@ -118,7 +118,7 @@ public class BookinFormController {
 			return "bookingForm";
 		}
 		else {
-			newBooking.setVehicle(vehicleService.getBookVehicle());
+			//newBooking.setVehicle(vehicleService.getBookVehicle());
 			clientService.saveNewBooking(newBooking); 
 			return "redirect:/clients";
 		}

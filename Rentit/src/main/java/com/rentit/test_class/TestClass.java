@@ -444,7 +444,7 @@ public class TestClass {
         nw.getBooking().setBookingTS(now.toString());
         nw.getClient().setClerkID(testEntries.get(0).getClerk().getId());
         
-        
+        testEntries.add(nw);
         
     }
    /**
