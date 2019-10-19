@@ -1,33 +1,58 @@
 /**
  * 
  */
+
 package com.rentit.model;
 
-import java.util.HashMap;
-
 /**
+ * Model class For Login.
+ * 
  * @author kotic
- *
  */
 public class Login {
   private String username;
   private String password;
-  
-  private static HashMap<String, String> credHashMap = new HashMap<String, String>();
-  
- public String getUsername() {
-   return username;
- }
- public void setUsername(String Username) {
-   this.username=Username;
- }
- public String getPassword() {
-   return password;
- }
- public void setPassword(String Password) {
-   this.password=Password;
- }
- 
- 
+
+
+  /**
+   * This method gets the username.
+   * 
+   * @return
+   */
+  public String getUsername() {
+    return username;
+  }
+
+  /**
+   * This method sets the username.
+   * 
+   * @param username return username
+   */
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  /**
+   * This method gets the password.
+   * 
+   * @return
+   */
+
+  public String getPassword() {
+    return password;
+  }
+
+  /**
+   * This method sets the password.
+   * 
+   * @param password return password
+   */
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+
 
 }
