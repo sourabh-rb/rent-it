@@ -1,14 +1,18 @@
 package com.rentit.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import com.rentit.model.BookingService;
 import com.rentit.model.ModelWrapper;
+import com.rentit.model.Vehicles;
 
 /**
  * BookingHistory Controller is used to render booking manager.
@@ -35,5 +39,24 @@ public class BookingHistoryController {
 		model.addAttribute("bookings", listBookings);
 		return "booking-manager";
 	}
+	
+	   @PostMapping("/transactions")
+	    public String getDetailOftransactions(@ModelAttribute ModelWrapper transactionAttributes, Model model) {
+	     List<ModelWrapper> listBookings = bookingService.listAll();
+	        
+	       String cname = transactionAttributes.getClient().getFirstName();
+	       String vehicle = transactionAttributes.getVehicle().getModel();
+	       String duedate = transactionAttributes.getBooking().getDueDate();
+	       String startdate= transactionAttributes.getBooking().getStartDate();
+	        if ( !(listBookings.equals(null))) {
+
+	          listBookings = bookingService.ListAlltransactions(cname.trim(), vehicle.trim(), duedate.trim(), startdate.trim());
+	        }
+	        model.addAttribute("booking", listBookings);
+	        return "transactions";
+
+	    }
+	    
+	
 
 }

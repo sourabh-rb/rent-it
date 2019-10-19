@@ -79,7 +79,7 @@
 
 </style>
   <body>
-
+ <form th:action = "@{/transactions}" th:object = "${transactions}" method = "POST">
   <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -134,7 +134,72 @@
         <div style="padding: 3px;"></div>
 
     		<div style="padding: 3px;"></div>
+    		
+    		<div class="mainSearchContentPanel">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Client Name</label>
+				</div>
+				<div class="col-sm-2">					
+					<input type="text" class="form-control"   Placeholder="Enter Name"  name="Cname">
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblModel">Vehicle</label>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" class="form-control"  id="vehivle" Placeholder=" Enter  Vehicle " name="vehicle">
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div style="padding: 5px;"></div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label for="lblCartype">Due date</label>
+				</div>
+				<div class="col-sm-3">
+				<input type="date"  class="form-control" id="duedate" name="Date">
+				
+				</div>
 
+				<div class="col-sm-1"></div>
+				
+				<div class="col-sm-2">
+					<label for="lblModel">Start Date</label>
+				</div>
+				<div class="col-sm-3">
+					<input type="date" class="form-control" id="startdate"  name="startdate">
+				</div>
+				<div class="col-sm-1"></div>
+
+			</div>
+
+			
+			
+		</div>
+		<div style="padding: 5px;"></div>
+		<div class="row">
+			
+		
+			<div class="col-sm-2">
+			
+			</div>
+			<div class="col-sm-3">
+			
+			
+			
+			</div>
+			<div class="col-sm-2">
+			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="transactionmanager" id="transactionmanager" class="buttonClass">Search</button>
+			</div>
+			
+		</div>
+<div style="padding: 3px;"></div>
+
+    		<div style="padding: 3px;"></div>
     		<table id="customers">
     			<tr>
     				<th>Client ID</th>
@@ -184,7 +249,7 @@
     </div>
 
 
-
+</form>
 
 
     <footer class="site-footer" style="background-image: url(images/hero_bg_5.jpg);">

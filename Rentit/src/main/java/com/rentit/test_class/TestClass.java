@@ -494,6 +494,12 @@ clerkcount++;
         return vehicleCatalog;
     }
 
+    public List<ModelWrapper> gettransactionTestDataAfterSearch(String cname, String vehicle,
+        String duedate, String startdate) {
+      // TODO Auto-generated method stub
+      return null;
+    }
+
 
 
     
