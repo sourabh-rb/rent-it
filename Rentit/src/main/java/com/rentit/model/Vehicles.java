@@ -19,17 +19,19 @@ public class Vehicles    {
 	private String Model;
 	private String iYear;
 	private String Color;
+	private String bookingStartDate;
+	private String bookingEndDate;
 
 	private boolean isAvailable=true;
 	
 
 
-	public boolean isAvailable() {
+	public boolean isVehicleAvailable() {
 		return isAvailable;
 	}
 
 
-	public void setAvailable(boolean isAvailable) {
+	public void setVehicleAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 
@@ -129,6 +131,26 @@ public class Vehicles    {
 		//return this.id - 1;
 		return (id<=1) ? 1 :this.id - 1;
 		
+	}
+
+
+	public String getBookingStartDate() {
+		return bookingStartDate;
+	}
+
+
+	public void setBookingStartDate(String bookingStartDate) {
+		this.bookingStartDate = bookingStartDate;
+	}
+
+
+	public String getBookingEndDate() {
+		return bookingEndDate;
+	}
+
+
+	public void setBookingEndDate(String bookingEndDate) {
+		this.bookingEndDate = bookingEndDate;
 	}
 
 

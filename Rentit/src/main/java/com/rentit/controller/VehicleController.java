@@ -245,8 +245,8 @@ public class VehicleController {
 	@RequestMapping(value = "/saveRec", method = RequestMethod.POST)
 	public String saveEdit(@ModelAttribute("modify") Vehicles vechileDetails) {
 		//System.out.print(id);
-		vehicleService.UpdateVehicleInfo(vechileDetails);
-	     
+		//vehicleService.UpdateVehicleInfo(vechileDetails);
+	     vehicleService.setBookVehicle(vechileDetails);
 	    //return "redirect:/vehicle";
 		return "redirect:/bookingForm";
 	}

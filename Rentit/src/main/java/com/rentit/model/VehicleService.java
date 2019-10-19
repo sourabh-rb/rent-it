@@ -22,6 +22,7 @@ public class VehicleService {
 
 	private TestClass testData = new TestClass();
 	private ArrayList<Integer> storeId=new ArrayList<>();
+	private Vehicles bookVehicle;
 
 	public ModelWrapper listAll() {
 
@@ -148,6 +149,14 @@ public class VehicleService {
 	
 	public void deleteVehicle(int id) {
 		testData.removeVehicleRecord(id);
+	}
+
+	public Vehicles getBookVehicle() {
+		return bookVehicle;
+	}
+
+	public void setBookVehicle(Vehicles bookVehicle) {
+		this.bookVehicle = bookVehicle;
 	}
 
     

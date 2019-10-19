@@ -19,6 +19,8 @@ import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
+import com.rentit.model.VehicleService;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,6 +53,8 @@ public class BookinFormController {
 
 	@Autowired
 	private ClientsService clientService;
+	
+	private VehicleService vehicleService;
 
 	/**
 	 * This method renders booking page.
@@ -114,6 +118,7 @@ public class BookinFormController {
 			return "bookingForm";
 		}
 		else {
+			newBooking.setVehicle(vehicleService.getBookVehicle());
 			clientService.saveNewBooking(newBooking); 
 			return "redirect:/clients";
 		}
