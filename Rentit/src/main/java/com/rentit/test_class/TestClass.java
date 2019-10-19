@@ -168,7 +168,7 @@ public class TestClass {
         vechile1.setType("SUV1");
         vechile1.setColor("Green1");
         vechile1.setLicPlate("ABC 1231");
-        vechile1.setAvailable(true);
+        vechile1.setVehicleAvailable(true);
         
         
         
@@ -183,7 +183,7 @@ public class TestClass {
         vechile2.setType("SUV2");
         vechile2.setColor("Green2");
         vechile2.setLicPlate("ABC 1232");
-        vechile2.setAvailable(true);
+        vechile2.setVehicleAvailable(true);
         
         vechileList.add(vechile2);
         //vechileListDummy.add(vechile2);
@@ -197,7 +197,7 @@ public class TestClass {
         vechile3.setType("SUV3");
         vechile3.setColor("Green3");
         vechile3.setLicPlate("ABC 1233");
-        vechile3.setAvailable(true);
+        vechile3.setVehicleAvailable(true);
         
         
         vechileList.add(vechile3);
@@ -212,7 +212,7 @@ public class TestClass {
         vechile4.setType("SUV4");
         vechile4.setColor("Green4");
         vechile4.setLicPlate("ABC 1234");
-        vechile4.setAvailable(false);
+        vechile4.setVehicleAvailable(false);
         
         
         vechileList.add(vechile4);
@@ -227,7 +227,7 @@ public class TestClass {
         vechile5.setType("SUV5");
         vechile5.setColor("Green5");
         vechile5.setLicPlate("ABC 1235");
-        vechile5.setAvailable(true);
+        vechile5.setVehicleAvailable(true);
         
         vechileList.add(vechile5);
     //  vechileListDummy.add(vechile5);
@@ -317,6 +317,16 @@ public class TestClass {
     
     public List<Vehicles> getVehiclesTestData() {
         return vechileList;
+    }
+    
+    public void removeVehicleRecord(int id) {
+    	for(Vehicles v : vechileList) {
+    		if(id == v.getId()) {
+    			vechileList.remove(v);
+    			break;
+    		}
+    	}
+    	
     }
     
 
@@ -422,16 +432,18 @@ public class TestClass {
         ModelWrapper nw = new ModelWrapper();
         nw.setClient(entry.getClient());
         nw.setBooking(entry.getBooking());
-        nw.setVehicle(testEntries.get(0).getVehicle());
+        nw.setVehicle(entry.getVehicle());
         nw.setClerk(testEntries.get(0).getClerk());
         count += 1;
         bcnt += 1;
         nw.getClient().setClientID(count);
+        nw.getBooking().setClientID(count);
         nw.getBooking().setBookingid(bcnt);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();
         nw.getBooking().setBookingTS(now.toString());
         nw.getClient().setClerkID(testEntries.get(0).getClerk().getId());
+        
         testEntries.add(nw);
         
     }

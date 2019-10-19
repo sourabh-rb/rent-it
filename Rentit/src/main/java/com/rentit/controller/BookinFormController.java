@@ -19,6 +19,8 @@ import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
+import com.rentit.model.VehicleService;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,6 +53,8 @@ public class BookinFormController {
 
 	@Autowired
 	private ClientsService clientService;
+	
+	private VehicleService vehicleService;
 
 	/**
 	 * This method renders booking page.
@@ -78,52 +82,48 @@ public class BookinFormController {
 	 * @return
 	 */
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
-	public String getDetail(@ModelAttribute("bookingn") ModelWrapper newBooking,
-			@RequestParam(value = "startDate", required = false) String startDate,
-			@RequestParam(value = "dueDate", required = false) String dueDate,
-			@RequestParam(value = "licenceValidity", required = false) String licenceValidity,
-			Model model) {
+	public String getDetail(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
+
 		boolean  valid = false;
 		try {
 			currentdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
-			startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
-			duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(dueDate);
-			licenseexpiry1 = new SimpleDateFormat("yyyy-MM-dd").parse(licenceValidity);
+			startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getStartDate());
+			duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getDueDate());
+			licenseexpiry1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getClient().getLicenceValidity());
 
 		} catch (ParseException e) {
-// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		if (startdate1.after(currentdate1)
 				|| startdate1.equals(currentdate1) && duedate1.after(startdate1) && licenseexpiry1.after(duedate1)) {
-			  valid = true;
+			valid = true;
 		} 
-		
+
 		if (startdate1.before(currentdate1)) {   
 			valid = false;
 		} 
 		if (duedate1.before(startdate1)) {   
 			valid = false;
-			
+
 		} 
-		 if (licenseexpiry1.before(duedate1)) { 
-			 valid = false;
-			
+		if (licenseexpiry1.before(duedate1)) { 
+			valid = false;
+
 
 		}
-		 
-		if(valid == false){
-		    	model.addAttribute("startDate", true);
-		    	return "bookingForm";
-		    }
-		    else {
-		    	clientService.saveNewBooking(newBooking); 
-		    	return "redirect:/clients";
-		    }
-		 
 
-		
+		if(valid == false){
+			model.addAttribute("startDate", true);
+			return "bookingForm";
+		}
+		else {
+			//newBooking.setVehicle(vehicleService.getBookVehicle());
+			clientService.saveNewBooking(newBooking); 
+			return "redirect:/clients";
+		}
+
+
 	}
 
 }

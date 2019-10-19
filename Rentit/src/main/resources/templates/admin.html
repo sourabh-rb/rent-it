@@ -116,6 +116,7 @@ function toggle(source) {
 
               <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
                 <li><a href="/index">Home</a></li>
+                <li><a href="/vehicle">Vehicle Catalog</a></li>
               </ul>
             </nav>
           </div>
@@ -237,7 +238,8 @@ function toggle(source) {
 
             <td>
              <a th:href="@{'/addEditAdminPage/' + ${vehicle.getId()}}">Edit</a>
-            <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>
+             <a th:href="@{'/delete/' + ${vehicle.getId()}}">Delete</a>
+           <!--   <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>-->
             </td>
            
 		</tr>
