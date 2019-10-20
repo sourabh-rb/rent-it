@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Client Manager</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Client Manager</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/magnific-popup.css">
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/magnific-popup.css">
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
 
 
 
-    <link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/aos.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
-  </head>
-  
-  <style>
+</head>
+
+<style>
 #customers td, #customers th {
 	border: 1px solid #ddd;
 	padding: 3px;
@@ -55,6 +58,7 @@
 	color: #009be1;
 	margin-right: 1px;
 }
+
 .buttonClass {
 	font-size: 9pt;
 	vertical-align: middle;
@@ -76,138 +80,147 @@
 	padding-top: 13px;
 	padding-bottom: 13px;
 }
-
 </style>
-  <body>
+<body>
 
-  <div class="site-wrap">
+	<div class="site-wrap">
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
+		<div class="site-mobile-menu">
+			<div class="site-mobile-menu-header">
+				<div class="site-mobile-menu-close mt-3">
+					<span class="icon-close2 js-menu-toggle"></span>
+				</div>
+			</div>
+			<div class="site-mobile-menu-body"></div>
+		</div>
 
-    <header class="site-navbar py-3" role="banner" style="background-image: url(images/hero_bg_1.jpg);">
+		<header class="site-navbar py-3" role="banner"
+			style="background-image: url(images/hero_bg_1.jpg);">
 
-      <div class="container">
-        <div class="row align-items-center">
+			<div class="container">
+				<div class="row align-items-center">
 
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="/index" class="text-white h2 mb-0">Rent-it!</a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+					<div class="col-11 col-xl-2">
+						<h1 class="mb-0">
+							<a href="/index" class="text-white h2 mb-0">Rent-it!</a>
+						</h1>
+					</div>
+					<div class="col-12 col-md-10 d-none d-xl-block">
+						<nav class="site-navigation position-relative text-right"
+							role="navigation">
 
-              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                <li><a href="/vehicle">Home</a></li>
-              </ul>
-            </nav>
-          </div>
+							<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+								<li><a href="/vehicle">Home</a></li>
+							</ul>
+						</nav>
+					</div>
 
-          </div>
+				</div>
 
-        </div>
-      </div>
+			</div>
+	</div>
 
-    </header>
-
-
-
-
-
-
-
-    <div class="site-section">
-      <div class="site-section bg-light" id="section-contact">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Client Manager</h2>
-            <p class="color-black-opacity-5">Update/Modify Client Information</p>
-          </div>
-        </div>
-
-        <div style="padding: 3px;"></div>
-
-    		<div style="padding: 3px;"></div>
-
-    		<table id="customers">
-    			<tr>
-    				<th>Client ID</th>
-    				<th>First Name</th>
-    				<th>Last Name</th>
-    				<th style="width:13%;">Licence Number</th>
-    				<th style="width:10%;">Licence Validity</th>
-    				<th>Phone Number</th>
-    				<th style="width:10%;">Start Date</th>
-    				<th style="width:10%;">Due Date</th>
-    				<th style="width:4%;">Booking ID</th>
-    				<th>Booked On</th>
-    				<th>Status</th>
-    				<th>Options</th>
-
-
-
-    			</tr>
-
-    			<tr th:each="client : ${clients}">
-    				<td th:text="${client.getClient().getClientID()}"></td>
-    				<td th:text="${client.getClient().getFirstName()}"></td>
-    				<td th:text="${client.getClient().getLastName()}"></td>
-    				<td th:text="${client.getClient().getLicenceNumber()}"></td>
-    				<td th:text="${client.getClient().getLicenceValidity()}"></td>
-    				<td th:text="${client.getClient().getPhone()}"></td>
-    				<td th:text="${client.getBooking().getStartDate()}"></td>
-    				<td th:text="${client.getBooking().getDueDate()}"></td>
-    				<td th:text="${client.getBooking().getBookingid()}"></td>
-    				<td th:text="${client.getBooking().getBookingTS()}"></td>
-    				<td>
-    				
-    				<div th:if="${client.getBooking().getReturnDate()}"> RETURNED</div>
-    				<div th:if="${client.getBooking().getCancelDate()}"> CANCELLED</div>
-    				<div th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}"> CONFIRMED</div>
-    				
-    				</td>
-    				<td>
-    					<a th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}" th:href="@{'/return/' + ${client.getClient().getClientID()}}">Return </a>
-    					&nbsp;&nbsp;&nbsp;
-    					<a th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}" th:href="@{'/cancel/' + ${client.getClient().getClientID()}}">Cancel </a>
-    					&nbsp;&nbsp;&nbsp;
-    					<a th:href="@{'/modify/' + ${client.getClient().getClientID()}}">Modify </a>
-
-    				</td>
-    			</tr>
-    		</table>
-      </div>
-    </div>
-
-    </div>
+	</header>
 
 
 
 
 
-    <footer class="site-footer" style="background-image: url(images/hero_bg_5.jpg);">
-    </footer>
-  </div>
 
-  <script src="/js/jquery-3.3.1.min.js"></script>
-  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/js/jquery-ui.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/owl.carousel.min.js"></script>
-  <script src="/js/jquery.stellar.min.js"></script>
-  <script src="/js/jquery.countdown.min.js"></script>
-  <script src="/js/jquery.magnific-popup.min.js"></script>
-  <script src="/js/bootstrap-datepicker.min.js"></script>
-  <script src="/js/aos.	js"></script>
 
-  <script src="js/main.js"></script>
+	<div class="site-section">
+		<div class="site-section bg-light" id="section-contact">
+			<div class="container">
+				<div class="row justify-content-center mb-5">
+					<div class="col-md-7 text-center border-primary">
+						<h2 class="font-weight-light text-primary">Client Manager</h2>
+						<p class="color-black-opacity-5">Update/Modify Client
+							Information</p>
+					</div>
+				</div>
 
-  </body>
+				<div style="padding: 3px;"></div>
+
+				<div style="padding: 3px;"></div>
+
+				<table id="customers">
+					<tr>
+						<th>Client ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th style="width: 13%;">Licence Number</th>
+						<th style="width: 10%;">Licence Validity</th>
+						<th>Phone Number</th>
+						<th style="width: 10%;">Start Date</th>
+						<th style="width: 10%;">Due Date</th>
+						<th style="width: 4%;">Booking ID</th>
+						<th>Booked On</th>
+						<th>Status</th>
+						<th>Options</th>
+
+
+
+					</tr>
+
+					<tr th:each="client : ${clients}">
+						<td th:text="${client.getClient().getClientID()}"></td>
+						<td th:text="${client.getClient().getFirstName()}"></td>
+						<td th:text="${client.getClient().getLastName()}"></td>
+						<td th:text="${client.getClient().getLicenceNumber()}"></td>
+						<td th:text="${client.getClient().getLicenceValidity()}"></td>
+						<td th:text="${client.getClient().getPhone()}"></td>
+						<td th:text="${client.getBooking().getStartDate()}"></td>
+						<td th:text="${client.getBooking().getDueDate()}"></td>
+						<td th:text="${client.getBooking().getBookingid()}"></td>
+						<td th:text="${client.getBooking().getBookingTS()}"></td>
+						<td>
+
+							<div th:if="${client.getBooking().getReturnDate()}">
+								RETURNED</div>
+							<div th:if="${client.getBooking().getCancelDate()}">
+								CANCELLED</div>
+							<div
+								th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}">
+								CONFIRMED</div>
+
+						</td>
+						<td><a
+							th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}"
+							th:href="@{'/return/' + ${client.getClient().getClientID()}}">Return
+						</a> &nbsp;&nbsp;&nbsp; <a
+							th:if="!${client.getBooking().getReturnDate()} and !${client.getBooking().getCancelDate()}"
+							th:href="@{'/cancel/' + ${client.getClient().getClientID()}}">Cancel
+						</a> &nbsp;&nbsp;&nbsp; <a
+							th:href="@{'/modify/' + ${client.getClient().getClientID()}}">Modify
+						</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<footer class="site-footer"
+		style="background-image: url(images/hero_bg_5.jpg);"> </footer>
+	</div>
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/jquery.countdown.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/aos.	js"></script>
+
+	<script src="js/main.js"></script>
+
+</body>
 </html>

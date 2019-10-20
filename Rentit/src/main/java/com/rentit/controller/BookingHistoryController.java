@@ -46,6 +46,7 @@ public class BookingHistoryController {
 
   /**
    * This method is used to handle filter criteria of transaction page.
+   * 
    * @param transactionAttributes
    * @param model
    * @return
