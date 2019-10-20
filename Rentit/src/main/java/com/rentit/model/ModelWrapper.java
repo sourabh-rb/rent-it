@@ -4,66 +4,118 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Models wrapper class
- * @author soura
+ * Models wrapper class which interfaces models clients, bookings, vehicles and clerks.
+ * 
+ * @author Sourabh Rajeev Badagandi
+ * @version 1.0.0
  *
  */
 public class ModelWrapper {
-	private Clients client;
-	private Bookings booking;
-	private Vehicles vehicle;
-	private Clerks clerk;
-	private ArrayList<Vehicles> catalogList;
-	
-	
-	public ModelWrapper() {
-		client = new Clients();
-		booking = new Bookings();
-		vehicle = new Vehicles();
-		clerk = new Clerks();
-		catalogList = new ArrayList<Vehicles>();
-	}
+  private Clients client;
+  private Bookings booking;
+  private Vehicles vehicle;
+  private Clerks clerk;
+  private ArrayList<Vehicles> catalogList;
 
-	public ArrayList<Vehicles> getCatalogList() {
-		return catalogList;
-	}
 
-	public void setCatalogList(List<Vehicles> result) {
-		this.catalogList = (ArrayList<Vehicles>) result;
-	}
+  public ModelWrapper() {
+    client = new Clients();
+    booking = new Bookings();
+    vehicle = new Vehicles();
+    clerk = new Clerks();
+    catalogList = new ArrayList<Vehicles>();
+  }
 
-	public Clients getClient() {
-		return client;
-	}
-	
-	public void setClient(Clients client) {
-		this.client = client;
-	}
-	
-	public Bookings getBooking() {
-		return booking;
-	}
-	
-	public void setBooking(Bookings booking) {
-		this.booking = booking;
-	}
+  /**
+   * Getter for vehicle catalog list.
+   * 
+   * @return
+   */
+  public ArrayList<Vehicles> getCatalogList() {
+    return catalogList;
+  }
 
-	public Vehicles getVehicle() {
-		return vehicle;
-	}
+  /**
+   * Setter for vehicle catalog list.
+   * 
+   * @param result
+   */
+  public void setCatalogList(List<Vehicles> result) {
+    this.catalogList = (ArrayList<Vehicles>) result;
+  }
 
-	public void setVehicle(Vehicles vehicle) {
-		this.vehicle = vehicle;
-	}
+  /**
+   * Getter for client record.
+   * 
+   * @return
+   */
+  public Clients getClient() {
+    return client;
+  }
 
-	public Clerks getClerk() {
-		return clerk;
-	}
+  /**
+   * Setter for client record.
+   * 
+   * @param client
+   */
+  public void setClient(Clients client) {
+    this.client = client;
+  }
 
-	public void setClerk(Clerks clerk) {
-		this.clerk = clerk;
-	}
-	
-	
+  /**
+   * Getter for booking record.
+   * 
+   * @return
+   */
+  public Bookings getBooking() {
+    return booking;
+  }
+
+  /**
+   * Setter for booking record.
+   * 
+   * @param booking
+   */
+  public void setBooking(Bookings booking) {
+    this.booking = booking;
+  }
+
+  /**
+   * Getter for vehicle record.
+   * 
+   * @return
+   */
+  public Vehicles getVehicle() {
+    return vehicle;
+  }
+
+  /**
+   * Setter for vehicle record.
+   * 
+   * @param vehicle
+   */
+  public void setVehicle(Vehicles vehicle) {
+    this.vehicle = vehicle;
+  }
+
+  /**
+   * Getter for clerk record.
+   * 
+   * @return
+   */
+  public Clerks getClerk() {
+    return clerk;
+  }
+
+  /**
+   * Setter for clerk record.
+   * 
+   * @param clerk
+   */
+  public void setClerk(Clerks clerk) {
+    this.clerk = clerk;
+  }
+
+
 
 }
