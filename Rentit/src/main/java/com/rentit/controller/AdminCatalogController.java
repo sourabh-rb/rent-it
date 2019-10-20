@@ -93,7 +93,10 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
-  public ModelAndView btnAdd(Model model) {
+  public ModelAndView btnAdd(Model model,HttpSession session) {
+    String actionString="add";
+    session.setAttribute("sessionButtonAttribute", actionString);
+    
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
     addVehicle.addObject("vehicleForEdit", new Vehicles());
     return addVehicle;
@@ -142,7 +145,11 @@ public class AdminCatalogController {
    */
 
   @RequestMapping("/addEditAdminPage/{id}")
-  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model) {
+  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model,HttpSession session) {
+    
+    String actionString="edit";
+    session.setAttribute("sessionButtonAttribute", actionString);
+    
     ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
     Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
