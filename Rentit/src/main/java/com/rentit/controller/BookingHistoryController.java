@@ -44,6 +44,12 @@ public class BookingHistoryController {
       return "redirect:/loginpage";
   }
 
+  /**
+   * This method is used to handle filter criteria of transaction page.
+   * @param transactionAttributes
+   * @param model
+   * @return
+   */
   @PostMapping("/transactions")
   public String getDetailOftransactions(@ModelAttribute ModelWrapper transactionAttributes,
       Model model) {
