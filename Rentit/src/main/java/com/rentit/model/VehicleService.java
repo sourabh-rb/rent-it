@@ -62,7 +62,7 @@ public class VehicleService {
     LinkedList<Vehicles> vList = new LinkedList<Vehicles>();
     Boolean vehicleFound = true;
     Vehicles vehicleObj = new Vehicles();
-    for (Vehicles vehicle : testData.getVehiclesTestData()) {
+    for (Vehicles vehicle : testData.getVehicleCatalog().getCatalogList()) {
       vList.add(vehicle);
     }
 

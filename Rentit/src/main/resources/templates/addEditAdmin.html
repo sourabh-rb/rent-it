@@ -262,10 +262,15 @@ body {
 									<div class="col-sm-3"></div>
 									<div class="col-sm-2"></div>
 									<div class="col-sm-2"></div>
+									
 									<div class="col-sm-2">
-										<button type="submit" value="Submit"
-											style="margin-right: 40px;" name="btnUpdate" id="btnUpdate"
-											class="buttonClass">Update</button>
+										<div class="col-sm-2">
+			<span th:if="${session.sessionButtonAttribute} =='add'">
+			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="btnUpdate" id="btnUpdate" class="buttonClass">Add</button>
+			</span>
+			<span th:if="${session.sessionButtonAttribute} =='edit'">
+			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="btnUpdate" id="btnUpdate" class="buttonClass">Update</button>
+			</span>
 									</div>
 
 								</div>
