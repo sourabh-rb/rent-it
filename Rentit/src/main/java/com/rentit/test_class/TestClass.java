@@ -455,4 +455,22 @@ public class TestClass {
     return null;
   }
 
+  public Clients getClient(int id) {
+    for(ModelWrapper entry : testEntries) {
+      if(id == entry.getClient().getClientID()) {
+        return entry.getClient();
+      }
+    }
+    return null;
+  }
+
+  public void saveClientDetails(Clients clientDetails) {
+    for(ModelWrapper entry : testEntries) {
+      if(clientDetails.getClientID() == entry.getClient().getClientID()) {
+        entry.setClient(clientDetails);
+      }
+    }
+    
+  }
+
 }

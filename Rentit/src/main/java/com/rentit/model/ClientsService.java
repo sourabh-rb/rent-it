@@ -86,13 +86,7 @@ public class ClientsService {
    * @return client record
    */
   public Clients getClientInfo(int id) {
-    for (Clients client : testData.getClientTestData()) {
-      if (id == client.getClientID()) {
-        return client;
-      }
-    }
-
-    return null;
+    return testData.getClient(id);
 
   }
 
@@ -103,15 +97,7 @@ public class ClientsService {
    */
   public void saveClientInfo(Clients clientDetails) {
 
-    for (Clients client : testData.getClientTestData()) {
-      if (clientDetails.getClientID() == client.getClientID()) {
-        client.setFirstName(clientDetails.getFirstName());
-        client.setLastName(clientDetails.getLastName());
-        client.setLicenceNumber(clientDetails.getLicenceNumber());
-        client.setLicenceValidity(clientDetails.getLicenceValidity());
-        client.setPhone(clientDetails.getPhone());
-      }
-    }
+    testData.saveClientDetails(clientDetails);
   }
 
 
