@@ -57,6 +57,7 @@ public class BookingHistoryController {
     List<ModelWrapper> listBookings = bookingService.listAll();
 
     String cname = transactionAttributes.getClient().getFirstName();
+    System.out.println(cname);
     String vehicle = transactionAttributes.getVehicle().getModel();
     String duedate = transactionAttributes.getBooking().getDueDate();
     String startdate = transactionAttributes.getBooking().getStartDate();

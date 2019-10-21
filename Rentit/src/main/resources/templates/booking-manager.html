@@ -82,7 +82,7 @@
 }
 </style>
 <body>
-	<form th:action="@{/transactions}" th:object="${transactions}"
+	<form th:action="@{/transactions}" th:object="${transactionAttributes}"
 		method="POST">
 		<div class="site-wrap">
 
@@ -156,12 +156,12 @@
 							<div class="col-sm-1"></div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-2">
-								<label for="lblModel">Vehicle</label>
+								<!-- <label for="lblModel">Vehicle</label>
 							</div>
 							<div class="col-sm-2">
 								<input type="text" class="form-control" id="vehivle"
 									Placeholder=" Enter  Vehicle " name="vehicle">
-							</div>
+							</div> -->
 							<div class="col-sm-1"></div>
 						</div>
 						<div style="padding: 5px;"></div>
