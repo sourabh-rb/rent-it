@@ -24,7 +24,8 @@ public class AddEditAdminController {
   @RequestMapping("/addEditAdmin")
   public String AddEditVehicle(Model model) {
     String username = LoginController.username;
-    if (username != null)
+    String usergroup = LoginController.usergroup;
+    if (username != null && usergroup == "admin")
       return "addEditAdmin";
     else
       return "redirect:/loginpage";
