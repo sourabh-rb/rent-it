@@ -8,7 +8,7 @@ import com.rentit.test_class.TestClass;
 /**
  * This is Bookings Service Layer
  * 
- * @author Sourabh Rajeev Badagandi
+ * @author Sourabh Rajeev Badagandi, Anusha
  * @version 1.0.0
  *
  */
@@ -28,6 +28,11 @@ public class BookingService {
     return testData.getTestEntries();
 
   }
+  
+  public ModelWrapper listAlltransaction() {
+
+    return testData.getTestEntriesTransac();
+  }
 
   /**
    * This methos is used to list all transactions based on given criteria.
@@ -40,7 +45,7 @@ public class BookingService {
   public List<ModelWrapper> ListAlltransactions(String cname, String vehicle, String duedate,
       String startdate) {
 
-    return testData.gettransactionTestDataAfterSearch(cname, vehicle, duedate, startdate);
+    return testData.gettransactionTestDataAfterSearch(cname,vehicle, duedate, startdate);
   }
 
 }
