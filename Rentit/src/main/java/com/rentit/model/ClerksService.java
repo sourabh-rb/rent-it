@@ -15,8 +15,9 @@ public class ClerksService {
    * This method is to add clerks data
    * 
    * @param clerks
+   * @throws Exception 
    */
-  public void addClerks(Clerks clerks) {
+  public void addClerks(Clerks clerks) throws Exception {
     clerksdata.addNewClerk(clerks);
 
   }

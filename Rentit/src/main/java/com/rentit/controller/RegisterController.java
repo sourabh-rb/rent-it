@@ -42,9 +42,10 @@ public class RegisterController {
    * @param register is a object which stores the view data
    * @param model is model data
    * @return view page or view name to redirect
+   * @throws Exception 
    */
   @RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
-  public String getDetail(@ModelAttribute("clerks") Clerks clerks, Model model) {
+  public String getDetail(@ModelAttribute("clerks") Clerks clerks, Model model) throws Exception {
 
     String usergroup = clerks.getusergroup();
     if (usergroup != null) {
