@@ -46,6 +46,7 @@ public class BookingHistoryController {
 
   /**
    * This method is used to handle filter criteria of transaction page.
+   * 
    * @param transactionAttributes
    * @param model
    * @return
@@ -56,6 +57,7 @@ public class BookingHistoryController {
     List<ModelWrapper> listBookings = bookingService.listAll();
 
     String cname = transactionAttributes.getClient().getFirstName();
+    System.out.println(cname);
     String vehicle = transactionAttributes.getVehicle().getModel();
     String duedate = transactionAttributes.getBooking().getDueDate();
     String startdate = transactionAttributes.getBooking().getStartDate();

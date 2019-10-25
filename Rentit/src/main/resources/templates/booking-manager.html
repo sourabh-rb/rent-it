@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Booking Manager</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Booking Manager</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/magnific-popup.css">
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-    <link rel="stylesheet" href="/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/magnific-popup.css">
+<link rel="stylesheet" href="/css/jquery-ui.css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 
-    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
 
 
 
-    <link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/aos.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
-  </head>
-  
-  <style>
+</head>
+
+<style>
 #customers td, #customers th {
 	border: 1px solid #ddd;
 	padding: 3px;
@@ -55,6 +58,7 @@
 	color: #009be1;
 	margin-right: 1px;
 }
+
 .buttonClass {
 	font-size: 9pt;
 	vertical-align: middle;
@@ -76,199 +80,206 @@
 	padding-top: 13px;
 	padding-bottom: 13px;
 }
-
 </style>
-  <body>
- <form th:action = "@{/transactions}" th:object = "${transactions}" method = "POST">
-  <div class="site-wrap">
+<body>
+	<form th:action="@{/transactions}" th:object="${transactionAttributes}"
+		method="POST">
+		<div class="site-wrap">
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-    <header class="site-navbar py-3" role="banner" style="background-image: url(images/hero_bg_1.jpg);">
-
-      <div class="container">
-        <div class="row align-items-center">
-
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="/index" class="text-white h2 mb-0">Rent-it!</a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                <li><a href="/admin">Home</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          </div>
-
-        </div>
-      </div>
-
-    </header>
-
-
-
-
-
-
-
-    <div class="site-section">
-      <div class="site-section bg-light" id="section-contact">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Transactions</h2>
-            <p class="color-black-opacity-5">View Transaction Information</p>
-          </div>
-        </div>
-
-        <div style="padding: 3px;"></div>
-
-    		<div style="padding: 3px;"></div>
-    		
-    		<div class="mainSearchContentPanel">
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Client Name</label>
+			<div class="site-mobile-menu">
+				<div class="site-mobile-menu-header">
+					<div class="site-mobile-menu-close mt-3">
+						<span class="icon-close2 js-menu-toggle"></span>
+					</div>
 				</div>
-				<div class="col-sm-2">					
-					<input type="text" class="form-control"   Placeholder="Enter Name"  name="Cname">
-				</div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblModel">Vehicle</label>
-				</div>
-				<div class="col-sm-2">
-					<input type="text" class="form-control"  id="vehivle" Placeholder=" Enter  Vehicle " name="vehicle">
-				</div>
-				<div class="col-sm-1"></div>
-			</div>
-			<div style="padding: 5px;"></div>
-			<div class="row">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
-					<label for="lblCartype">Due date</label>
-				</div>
-				<div class="col-sm-3">
-				<input type="date"  class="form-control" id="duedate" name="Date">
-				
-				</div>
-
-				<div class="col-sm-1"></div>
-				
-				<div class="col-sm-2">
-					<label for="lblModel">Start Date</label>
-				</div>
-				<div class="col-sm-3">
-					<input type="date" class="form-control" id="startdate"  name="startdate">
-				</div>
-				<div class="col-sm-1"></div>
-
+				<div class="site-mobile-menu-body"></div>
 			</div>
 
-			
-			
+			<header class="site-navbar py-3" role="banner"
+				style="background-image: url(images/hero_bg_1.jpg);">
+
+				<div class="container">
+					<div class="row align-items-center">
+
+						<div class="col-11 col-xl-2">
+							<h1 class="mb-0">
+								<a href="/index" class="text-white h2 mb-0">Rent-it!</a>
+							</h1>
+						</div>
+						<div class="col-12 col-md-10 d-none d-xl-block">
+							<nav class="site-navigation position-relative text-right"
+								role="navigation">
+
+								<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+									<li><a href="/admin">Home</a></li>
+								</ul>
+							</nav>
+						</div>
+
+					</div>
+
+				</div>
 		</div>
-		<div style="padding: 5px;"></div>
-		<div class="row">
-			
-		
-			<div class="col-sm-2">
-			
+
+		</header>
+
+
+
+
+
+
+
+		<div class="site-section">
+			<div class="site-section bg-light" id="section-contact">
+				<div class="container">
+					<div class="row justify-content-center mb-5">
+						<div class="col-md-7 text-center border-primary">
+							<h2 class="font-weight-light text-primary">Transactions</h2>
+							<p class="color-black-opacity-5">View Transaction Information</p>
+						</div>
+					</div>
+
+					<div style="padding: 3px;"></div>
+
+					<div style="padding: 3px;"></div>
+
+					<div class="mainSearchContentPanel">
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label for="lblCartype">Client Name</label>
+							</div>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" Placeholder="Enter Name"
+									name="Cname">
+							</div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<!-- <label for="lblModel">Vehicle</label>
+							</div>
+							<div class="col-sm-2">
+								<input type="text" class="form-control" id="vehivle"
+									Placeholder=" Enter  Vehicle " name="vehicle">
+							</div> -->
+							<div class="col-sm-1"></div>
+						</div>
+						<div style="padding: 5px;"></div>
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label for="lblCartype">Due date</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="date" class="form-control" id="duedate" name="Date">
+
+							</div>
+
+							<div class="col-sm-1"></div>
+
+							<div class="col-sm-2">
+								<label for="lblModel">Start Date</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="date" class="form-control" id="startdate"
+									name="startdate">
+							</div>
+							<div class="col-sm-1"></div>
+
+						</div>
+
+
+
+					</div>
+					<div style="padding: 5px;"></div>
+					<div class="row">
+
+
+						<div class="col-sm-2"></div>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-2">
+							<button type="submit" value="Submit" style="margin-right: 40px;"
+								name="transactionmanager" id="transactionmanager"
+								class="buttonClass">Search</button>
+						</div>
+
+					</div>
+					<div style="padding: 3px;"></div>
+
+					<div style="padding: 3px;"></div>
+					<table id="customers">
+						<tr>
+							<th>Client ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th style="width: 16%;">Licence Number</th>
+							<th style="width: 12%;">Licence Validity</th>
+							<th>Phone Number</th>
+							<th style="width: 12%;">Start Date</th>
+							<th style="width: 12%;">Due Date</th>
+							<th style="width: 4%;">Booking ID</th>
+							<th>Booked On</th>
+							<th style="width: 12%;">Cancel Date</th>
+							<th style="width: 12%;">Return Date</th>
+							<th>Status</th>
+
+
+
+						</tr>
+
+						<tr th:each="booking : ${bookings}">
+							<td th:text="${booking.getClient().getClientID()}"></td>
+							<td th:text="${booking.getClient().getFirstName()}"></td>
+							<td th:text="${booking.getClient().getLastName()}"></td>
+							<td th:text="${booking.getClient().getLicenceNumber()}"></td>
+							<td th:text="${booking.getClient().getLicenceValidity()}"></td>
+							<td th:text="${booking.getClient().getPhone()}"></td>
+							<td th:text="${booking.getBooking().getStartDate()}"></td>
+							<td th:text="${booking.getBooking().getDueDate()}"></td>
+							<td th:text="${booking.getBooking().getBookingid()}"></td>
+							<td th:text="${booking.getBooking().getBookingTS()}"></td>
+							<td th:text="${booking.getBooking().getCancelDate()}"></td>
+							<td th:text="${booking.getBooking().getReturnDate()}"></td>
+							<td>
+
+								<div th:if="${booking.getBooking().getReturnDate()}">
+									RETURNED</div>
+								<div th:if="${booking.getBooking().getCancelDate()}">
+									CANCELLED</div>
+								<div
+									th:if="!${booking.getBooking().getReturnDate()} and !${booking.getBooking().getCancelDate()}">
+									CONFIRMED</div>
+
+							</td>
+
+						</tr>
+					</table>
+				</div>
 			</div>
-			<div class="col-sm-3">
-			
-			
-			
-			</div>
-			<div class="col-sm-2">
-			<button type="submit" value="Submit"  style="margin-right :40px;"  name ="transactionmanager" id="transactionmanager" class="buttonClass">Search</button>
-			</div>
-			
+
 		</div>
-<div style="padding: 3px;"></div>
-
-    		<div style="padding: 3px;"></div>
-    		<table id="customers">
-    			<tr>
-    				<th>Client ID</th>
-    				<th>First Name</th>
-    				<th>Last Name</th>
-    				<th style="width:16%;">Licence Number</th>
-    				<th style="width:12%;">Licence Validity</th>
-    				<th>Phone Number</th>
-    				<th style="width:12%;">Start Date</th>
-    				<th style="width:12%;">Due Date</th>
-    				<th style="width:4%;">Booking ID</th>
-    				<th>Booked On</th>
-    				<th style="width:12%;">Cancel Date</th>
-    				<th style="width:12%;">Return Date</th>
-    				<th>Status</th>
 
 
-
-    			</tr>
-
-    			<tr th:each="booking : ${bookings}">
-    				<td th:text="${booking.getClient().getClientID()}"></td>
-    				<td th:text="${booking.getClient().getFirstName()}"></td>
-    				<td th:text="${booking.getClient().getLastName()}"></td>
-    				<td th:text="${booking.getClient().getLicenceNumber()}"></td>
-    				<td th:text="${booking.getClient().getLicenceValidity()}"></td>
-    				<td th:text="${booking.getClient().getPhone()}"></td>
-    				<td th:text="${booking.getBooking().getStartDate()}"></td>
-    				<td th:text="${booking.getBooking().getDueDate()}"></td>
-    				<td th:text="${booking.getBooking().getBookingid()}"></td>
-    				<td th:text="${booking.getBooking().getBookingTS()}"></td>
-    				<td th:text="${booking.getBooking().getCancelDate()}"></td>
-    				<td th:text="${booking.getBooking().getReturnDate()}"></td>
-    				<td>
-    				
-    				<div th:if="${booking.getBooking().getReturnDate()}"> RETURNED</div>
-    				<div th:if="${booking.getBooking().getCancelDate()}"> CANCELLED</div>
-    				<div th:if="!${booking.getBooking().getReturnDate()} and !${booking.getBooking().getCancelDate()}"> CONFIRMED</div>
-    				
-    				</td>
-    				
-    			</tr>
-    		</table>
-      </div>
-    </div>
-
-    </div>
+	</form>
 
 
-</form>
+	<footer class="site-footer"
+		style="background-image: url(images/hero_bg_5.jpg);"> </footer>
+	</div>
 
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/jquery.countdown.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/aos.	js"></script>
 
-    <footer class="site-footer" style="background-image: url(images/hero_bg_5.jpg);">
-    </footer>
-  </div>
+	<script src="js/main.js"></script>
 
-  <script src="/js/jquery-3.3.1.min.js"></script>
-  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/js/jquery-ui.js"></script>
-  <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/owl.carousel.min.js"></script>
-  <script src="/js/jquery.stellar.min.js"></script>
-  <script src="/js/jquery.countdown.min.js"></script>
-  <script src="/js/jquery.magnific-popup.min.js"></script>
-  <script src="/js/bootstrap-datepicker.min.js"></script>
-  <script src="/js/aos.	js"></script>
-
-  <script src="js/main.js"></script>
-
-  </body>
+</body>
 </html>
