@@ -33,7 +33,8 @@ public class TestClass {
 
   private static ArrayList<ModelWrapper> testEntries;
   private static ModelWrapper vehicleCatalog;
-
+  private static ModelWrapper testEntriesTransac;
+  
   public TestClass() {
 
     populateClerkList();
@@ -357,6 +358,11 @@ public class TestClass {
   public List<ModelWrapper> getTestEntries() {
     return testEntries;
   }
+  
+  public ModelWrapper getTestEntriesTransac() {
+
+    return testEntriesTransac;
+  }
 
   public List<Vehicles> getCatalogList() {
     return testEntries.get(0).getCatalogList();
@@ -451,13 +457,25 @@ public class TestClass {
 
   public List<ModelWrapper> gettransactionTestDataAfterSearch(String cname, String vehicle,
       String duedate, String startdate) {
-    // TODO Auto-generated method stub
-    return null;
+    if ((cname == "" || cname.equals(null)) && (vehicle == "" || vehicle.equals(null))
+        && (duedate == "" || duedate.equals(null)) && (startdate == "" || startdate.equals(null))) {
+      return testEntries;
+
+    } else {
+      List<ModelWrapper> listBookingtrans = testEntries.stream()
+          .filter(b -> Objects.equals(b.getClient().getFirstName(), cname)
+              || Objects.equals(b.getVehicle().getModel(), vehicle)
+              || Objects.equals(b.getBooking().getDueDate(), duedate)
+              || Objects.equals(b.getBooking().getStartDate(), startdate)
+          ).collect(Collectors.toList());
+      return listBookingtrans;
+
+    }
   }
 
   public Clients getClient(int id) {
-    for(ModelWrapper entry : testEntries) {
-      if(id == entry.getClient().getClientID()) {
+    for (ModelWrapper entry : testEntries) {
+      if (id == entry.getClient().getClientID()) {
         return entry.getClient();
       }
     }
@@ -465,12 +483,12 @@ public class TestClass {
   }
 
   public void saveClientDetails(Clients clientDetails) {
-    for(ModelWrapper entry : testEntries) {
-      if(clientDetails.getClientID() == entry.getClient().getClientID()) {
+    for (ModelWrapper entry : testEntries) {
+      if (clientDetails.getClientID() == entry.getClient().getClientID()) {
         entry.setClient(clientDetails);
       }
     }
-    
+
   }
 
 }
