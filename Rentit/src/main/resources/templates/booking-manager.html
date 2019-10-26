@@ -82,7 +82,7 @@
 }
 </style>
 <body>
-	<form th:action="@{/transactions}" th:object="${transactionAttributes}"
+	<form th:action="@{/transactions}" th:object="${transactionob}"
 		method="POST">
 		<div class="site-wrap">
 
@@ -151,17 +151,17 @@
 							</div>
 							<div class="col-sm-2">
 								<input type="text" class="form-control" Placeholder="Enter Name"
-									name="Cname">
+									name="Cname" >
 							</div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-2">
-								<!-- <label for="lblModel">Vehicle</label>
+								<label for="lblModel">Vehicle</label>
 							</div>
 							<div class="col-sm-2">
 								<input type="text" class="form-control" id="vehivle"
 									Placeholder=" Enter  Vehicle " name="vehicle">
-							</div> -->
+							</div> 
 							<div class="col-sm-1"></div>
 						</div>
 						<div style="padding: 5px;"></div>
@@ -171,7 +171,7 @@
 								<label for="lblCartype">Due date</label>
 							</div>
 							<div class="col-sm-3">
-								<input type="date" class="form-control" id="duedate" name="Date">
+								<input type="date" class="form-control" id="duedate" name="Date" >
 
 							</div>
 
@@ -182,7 +182,7 @@
 							</div>
 							<div class="col-sm-3">
 								<input type="date" class="form-control" id="startdate"
-									name="startdate">
+									name="startdate" >
 							</div>
 							<div class="col-sm-1"></div>
 
@@ -212,8 +212,8 @@
 							<th>Client ID</th>
 							<th>First Name</th>
 							<th>Last Name</th>
-							<th style="width: 16%;">Licence Number</th>
-							<th style="width: 12%;">Licence Validity</th>
+							<th style="width: 16%;">License Number</th>
+							<th style="width: 12%;">License Validity</th>
 							<th>Phone Number</th>
 							<th style="width: 12%;">Start Date</th>
 							<th style="width: 12%;">Due Date</th>
