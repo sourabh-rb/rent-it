@@ -161,7 +161,7 @@ public class TestClass {
     vechile1.setiYear("2013");
     vechile1.setType("SUV1");
     vechile1.setColor("Green1");
-    vechile1.setLicPlate("ABC 1231");
+    vechile1.setLicPlate("ABC 123");
     vechile1.setVehicleAvailable(true);
 
     vechileList.add(vechile1);
@@ -173,7 +173,7 @@ public class TestClass {
     vechile2.setiYear("2011");
     vechile2.setType("SUV2");
     vechile2.setColor("Green2");
-    vechile2.setLicPlate("ABC 1232");
+    vechile2.setLicPlate("ABC 123");
     vechile2.setVehicleAvailable(true);
 
     vechileList.add(vechile2);
@@ -185,7 +185,7 @@ public class TestClass {
     vechile3.setiYear("2012");
     vechile3.setType("SUV3");
     vechile3.setColor("Green3");
-    vechile3.setLicPlate("ABC 1233");
+    vechile3.setLicPlate("ABC 123");
     vechile3.setVehicleAvailable(true);
 
     vechileList.add(vechile3);
@@ -197,7 +197,7 @@ public class TestClass {
     vechile4.setiYear("2012");
     vechile4.setType("SUV4");
     vechile4.setColor("Green4");
-    vechile4.setLicPlate("ABC 1234");
+    vechile4.setLicPlate("ABC 134");
     vechile4.setVehicleAvailable(false);
 
     vechileList.add(vechile4);
@@ -209,7 +209,8 @@ public class TestClass {
     vechile5.setiYear("2015");
     vechile5.setType("SUV5");
     vechile5.setColor("Green5");
-    vechile5.setLicPlate("ABC 1235");
+    vechile5.setLicPlate("ABC "
+        + "235");
     vechile5.setVehicleAvailable(true);
 
     vechileList.add(vechile5);
