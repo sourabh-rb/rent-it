@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController  {
   static String username;
+  static String usergroup;
 
   /**
    * This method renders login page.
@@ -44,6 +45,7 @@ public class LoginController  {
    */
 
   @RequestMapping(value = "/loginpage", method = RequestMethod.POST)
+
   public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model) throws Exception {
     EncryptPassword ep = new EncryptPassword();
     String usergroup = "";

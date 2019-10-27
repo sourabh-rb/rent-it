@@ -24,7 +24,7 @@ import com.rentit.model.VehicleService;
  */
 @Controller
 public class VehicleController {
-
+  
   private static String sOrderMake = "ASC";
   private static String sOrderModel = "ASC";
   private static String sOrderYear = "ASC";
@@ -42,7 +42,7 @@ public class VehicleController {
    * @return
    */
   @RequestMapping("/vehicle")
-  public String listClient(Model model, HttpSession session) {
+  public String loadVehicleListToAssign(Model model, HttpSession session) {
 
     String username = LoginController.username;
     String usergroup = RegisterController.usergrp;
@@ -67,7 +67,7 @@ public class VehicleController {
    * @return
    */
   @PostMapping("/vehicle")
-  public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
+  public String fncSearchAddedVehicle(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
       Model model, @RequestParam(value = "checkboxName", required = false) String checkboxValue,
       @RequestParam(value = "checkboxName1", required = false) String checkboxValue1) {
     ModelWrapper listVehicles = vehicleService.listAll();
@@ -106,7 +106,7 @@ public class VehicleController {
    * @return
    */
   @RequestMapping(value = "/vehicle", params = "btnSortMake", method = RequestMethod.POST)
-  public String btnSortMake(Model model) {
+  public String sortbasedOnMake(Model model) {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderMake.equals("DESC")) {
@@ -131,7 +131,7 @@ public class VehicleController {
    * @return
    */
   @RequestMapping(value = "/vehicle", params = "btnSortModel", method = RequestMethod.POST)
-  public String btnSortModel(Model model) {
+  public String sortbasedOnModel(Model model) {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderModel.equals("DESC")) {
@@ -156,7 +156,7 @@ public class VehicleController {
    * @return
    */
   @RequestMapping(value = "/vehicle", params = "btnSortYear", method = RequestMethod.POST)
-  public String btnSortyear(Model model) {
+  public String sortbasedOnyear(Model model) {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderYear.equals("DESC")) {
@@ -195,7 +195,7 @@ public class VehicleController {
    */
 
   @RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
-  public String btnSortType(Model model) {
+  public String sortbasedOnType(Model model) {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderType.equals("DESC")) {
@@ -240,7 +240,7 @@ public class VehicleController {
    */
 
   @RequestMapping("/next/{id}")
-  public ModelAndView btnForNext(@PathVariable(name = "id") Long id, Model model) {
+  public ModelAndView btnNextVehicleDetails(@PathVariable(name = "id") Long id, Model model) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
     Vehicles VechilesDetails = vehicleService.getNextVehicle((id));
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
@@ -256,7 +256,7 @@ public class VehicleController {
    */
 
   @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
-  public String saveEdit(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
+  public String bookVehicleNow(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
     vehicleService.setBookVehicle(vechileDetails);
     return "redirect:/bookingForm";
   }
@@ -275,5 +275,8 @@ public class VehicleController {
     return "redirect:/vehicle";
 
   }
-
+  @RequestMapping(value = "/vehicle", params = "logout", method = RequestMethod.POST)
+  public String logout(Model model) {
+    return "redirect:/loginpage";
+  }
 }

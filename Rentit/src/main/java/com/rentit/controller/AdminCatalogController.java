@@ -35,12 +35,15 @@ public class AdminCatalogController {
    * @return
    */
   @RequestMapping("/admin")
-  public String listloadVehicle(Model model, HttpSession session) {
+  public String loadVehicleList(Model model, HttpSession session) {
     String username = LoginController.username;
-    if (username != null) {
+    String usergroup = LoginController.usergroup;
+    if (username != null && usergroup == "admin") {
       ModelWrapper listVehicles = vehicleService.listAll();
       model.addAttribute("vehicle", listVehicles);
       return "admin";
+    } else if (username != null && usergroup == "clerk") {
+      return "redirect:/vehicle";
     } else
       return "redirect:/loginpage";
   }
@@ -53,7 +56,7 @@ public class AdminCatalogController {
    * @return
    */
   @PostMapping("/admin")
-  public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
+  public String fncSearchAddedVehicle(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
       Model model, @RequestParam(value = "checkboxName", required = false) String checkboxValue,
       @RequestParam(value = "checkboxName1", required = false) String checkboxValue1) {
     ModelWrapper listVehicles = vehicleService.listAll();
@@ -93,10 +96,10 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
-  public ModelAndView btnAdd(Model model,HttpSession session) {
+  public ModelAndView addVehicleRecord(Model model,HttpSession session) {
     String actionString="add";
     session.setAttribute("sessionButtonAttribute", actionString);
-    
+
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
     addVehicle.addObject("vehicleForEdit", new Vehicles());
     return addVehicle;
@@ -111,7 +114,7 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
-  public String updateEdit(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
+  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
 
     if (vehicleDetails.getId() == 0) {
       vehicleService.AddVehicleInfo(vehicleDetails);
@@ -145,11 +148,12 @@ public class AdminCatalogController {
    */
 
   @RequestMapping("/addEditAdminPage/{id}")
-  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model,HttpSession session) {
-    
-    String actionString="edit";
+  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model,
+      HttpSession session) {
+
+    String actionString = "edit";
     session.setAttribute("sessionButtonAttribute", actionString);
-    
+
     ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
     Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
@@ -163,7 +167,7 @@ public class AdminCatalogController {
    * @return redirect to admin page after delete
    */
   @RequestMapping("/delete/{id}")
-  public String deleteVehicle(@PathVariable(name = "id") int id) {
+  public String deleteVehicleRecord(@PathVariable(name = "id") int id) {
     vehicleService.deleteVehicle(id);
     return "redirect:/admin";
   }
