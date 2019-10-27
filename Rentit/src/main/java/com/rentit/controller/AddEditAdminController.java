@@ -27,6 +27,8 @@ public class AddEditAdminController {
     String usergroup = LoginController.usergroup;
     if (username != null && usergroup == "admin")
       return "addEditAdmin";
+    else if (username != null && usergroup == "clerk")
+      return "redirect:/vehicle";
     else
       return "redirect:/loginpage";
 

@@ -24,7 +24,7 @@ import com.rentit.model.VehicleService;
  */
 @Controller
 public class VehicleController {
-
+  
   private static String sOrderMake = "ASC";
   private static String sOrderModel = "ASC";
   private static String sOrderYear = "ASC";
@@ -275,5 +275,8 @@ public class VehicleController {
     return "redirect:/vehicle";
 
   }
-
+  @RequestMapping(value = "/vehicle", params = "logout", method = RequestMethod.POST)
+  public String logout(Model model) {
+    return "redirect:/loginpage";
+  }
 }

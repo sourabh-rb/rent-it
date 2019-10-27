@@ -42,6 +42,8 @@ public class AdminCatalogController {
       ModelWrapper listVehicles = vehicleService.listAll();
       model.addAttribute("vehicle", listVehicles);
       return "admin";
+    } else if (username != null && usergroup == "clerk") {
+      return "redirect:/vehicle";
     } else
       return "redirect:/loginpage";
   }
