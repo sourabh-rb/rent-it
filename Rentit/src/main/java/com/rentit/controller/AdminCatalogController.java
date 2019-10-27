@@ -35,7 +35,7 @@ public class AdminCatalogController {
    * @return
    */
   @RequestMapping("/admin")
-  public String listloadVehicle(Model model, HttpSession session) {
+  public String loadVehicleList(Model model, HttpSession session) {
     String username = LoginController.username;
     String usergroup = LoginController.usergroup;
     if (username != null && usergroup == "admin") {
@@ -56,7 +56,7 @@ public class AdminCatalogController {
    * @return
    */
   @PostMapping("/admin")
-  public String getDetail(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
+  public String fncSearchAddedVehicle(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
       Model model, @RequestParam(value = "checkboxName", required = false) String checkboxValue,
       @RequestParam(value = "checkboxName1", required = false) String checkboxValue1) {
     ModelWrapper listVehicles = vehicleService.listAll();
@@ -96,8 +96,8 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
-  public ModelAndView btnAdd(Model model, HttpSession session) {
-    String actionString = "add";
+  public ModelAndView addVehicleRecord(Model model,HttpSession session) {
+    String actionString="add";
     session.setAttribute("sessionButtonAttribute", actionString);
 
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
@@ -114,7 +114,7 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
-  public String updateEdit(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
+  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) {
 
     if (vehicleDetails.getId() == 0) {
       vehicleService.AddVehicleInfo(vehicleDetails);
@@ -167,7 +167,7 @@ public class AdminCatalogController {
    * @return redirect to admin page after delete
    */
   @RequestMapping("/delete/{id}")
-  public String deleteVehicle(@PathVariable(name = "id") int id) {
+  public String deleteVehicleRecord(@PathVariable(name = "id") int id) {
     vehicleService.deleteVehicle(id);
     return "redirect:/admin";
   }

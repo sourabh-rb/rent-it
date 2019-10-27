@@ -82,7 +82,7 @@ public class BookinFormController {
    * @return
    */
   @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-  public String getDetail(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
+  public String bookVehicle(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
 
     boolean valid = false;
     try {
