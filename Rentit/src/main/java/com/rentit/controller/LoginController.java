@@ -6,6 +6,7 @@ package com.rentit.controller;
 
 import com.rentit.model.Clerks;
 import com.rentit.model.Login;
+import com.rentit.test_class.EncryptPassword;
 import com.rentit.test_class.TestClass;
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author kotic
  */
 @Controller
-public class LoginController {
+public class LoginController  {
   static String username;
 
   /**
@@ -39,10 +40,12 @@ public class LoginController {
    * @param loginForm Get username and password from Login
    * @param model Model class
    * @return
+   * @throws Exception 
    */
 
   @RequestMapping(value = "/loginpage", method = RequestMethod.POST)
-  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model) {
+  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model) throws Exception {
+    EncryptPassword ep = new EncryptPassword();
     String usergroup = "";
     username = loginForm.getUsername();
     String password = loginForm.getPassword();
@@ -53,7 +56,8 @@ public class LoginController {
     for (int i = 0; i < clerks.size(); i++) {
       Clerks clerk = clerks.get(i);
       if (username.equals(clerk.getUsername())) {
-        if (password.equals(clerk.getPassword())) {
+        String decryptpass = ep.decrypt(clerk.getPassword());
+        if (password.equals(decryptpass)) {
           usergroup = clerk.getusergroup();
           flag = true;
           break;

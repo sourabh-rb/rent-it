@@ -413,8 +413,10 @@ public class TestClass {
    * This method is add new clerk
    * 
    * @param clerks
+   * @throws Exception 
    */
-  public void addNewClerk(Clerks clerks) {
+  public void addNewClerk(Clerks clerks) throws Exception {
+    EncryptPassword ep = new EncryptPassword();
     Clerks clerk = new Clerks();
     clerkcount++;
     // clerkList = new ArrayList<Clerks>();
@@ -422,7 +424,8 @@ public class TestClass {
     clerk.setFirstName(clerks.getFirstName());
     clerk.setLastName(clerks.getLastName());
     clerk.setUsername(clerks.getUsername());
-    clerk.setPassword(clerks.getPassword());
+    String encryptpass = ep.encrypt(clerks.getPassword());
+    clerk.setPassword(encryptpass);
     clerk.setEmail(clerks.getEmail());
     clerk.setusergroup(clerks.getusergroup());
 
