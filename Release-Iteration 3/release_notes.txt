@@ -1,0 +1,18 @@
+
+----------------------------------------------------------------------
+Release notes - Iteration 3
+----------------------------------------------------------------------
+Artifacts:-
+1. srs
+2. sad
+3. javadoc
+4. source code: https://github.com/sourabh-rb/SOEN6461    Release Tag: https://github.com/sourabh-rb/SOEN6461/releases/tag/v1.0
+
+
+Features:
+1. Admin Master -Add/Edit/Modify.
+2. Transcation Screen
+
+Known Issues:
+1. Searching/Filtering not working on transactionScreen.
+
