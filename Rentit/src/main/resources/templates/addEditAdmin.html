@@ -248,7 +248,12 @@ body {
 									</div>
 									<div class="col-sm-2">
 										<input type="text" th:field="*{LicPlate}" class="form-control"
-											Placeholder="Enter License Plate" name="LicPlate" required></input>
+											Placeholder="ABC 123" name="LicPlate" required pattern="^[A-Za-z]{3}[\s][0-9]{3}$"
+											maxlength="7"></input>
+									<label th:if="${#fields.hasErrors('LicPlate')}"
+										th:errors="*{LicPlate}">licensePlate
+										Error</label>
+											
 									</div>
 
 								</div>

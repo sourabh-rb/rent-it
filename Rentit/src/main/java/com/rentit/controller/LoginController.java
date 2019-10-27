@@ -48,7 +48,6 @@ public class LoginController  {
 
   public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model) throws Exception {
     EncryptPassword ep = new EncryptPassword();
-    String usergroup = "";
     username = loginForm.getUsername();
     String password = loginForm.getPassword();
     boolean flag = false;
