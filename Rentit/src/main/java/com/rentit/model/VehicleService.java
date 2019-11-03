@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import com.rentit.test_class.TestClass;
 
 /**
@@ -15,7 +15,7 @@ import com.rentit.test_class.TestClass;
  *
  */
 @Service
-@Transactional
+//@Transactional
 public class VehicleService {
 
   private TestClass testData = new TestClass();

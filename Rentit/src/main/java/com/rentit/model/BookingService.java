@@ -2,7 +2,7 @@ package com.rentit.model;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import com.rentit.test_class.TestClass;
 
 /**
@@ -13,7 +13,7 @@ import com.rentit.test_class.TestClass;
  *
  */
 @Service
-@Transactional
+//@Transactional
 public class BookingService {
 
   private TestClass testData = new TestClass();
