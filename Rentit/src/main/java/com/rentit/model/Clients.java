@@ -37,6 +37,10 @@ public class Clients {
   private String phone;
 
   private Long clerkid;
+  
+  private Long bookingId;
+  
+  private Long vehicleId;
 
 
   public Clients() {
@@ -173,6 +177,22 @@ public class Clients {
    */
   public void setClerkID(Long clerkid) {
     this.clerkid = clerkid;
+  }
+
+  public Long getBookingId() {
+    return bookingId;
+  }
+
+  public void setBookingId(Long bookingId) {
+    this.bookingId = bookingId;
+  }
+
+  public Long getVehicleId() {
+    return vehicleId;
+  }
+
+  public void setVehicleId(Long vehicleId) {
+    this.vehicleId = vehicleId;
   }
 
 }
