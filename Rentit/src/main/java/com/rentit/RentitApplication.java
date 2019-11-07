@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import com.rentit.data_source.ClientsDataGateway;
+import com.rentit.model.Clients;
+import com.rentit.model.ClientsDataMapper;
 
 @SpringBootApplication
 public class RentitApplication {
@@ -15,6 +18,7 @@ public class RentitApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(RentitApplication.class, args);
+ 
   }
 
 }
