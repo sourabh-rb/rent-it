@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rentit.data_source.ClerksDataGateway;
 import com.rentit.model.Clerks;
 import com.rentit.model.ClerksDataMapper;
-import com.rentit.model.ClerksService;
-import com.rentit.test_class.TestClass;
+import com.rentit.test_class.EncryptPassword;
+
 
 
 /**
@@ -50,6 +50,7 @@ public class RegisterController {
   public String getDetail(@ModelAttribute("clerks") Clerks clerks, Model model) throws Exception {
     ClerksDataGateway cg = new ClerksDataGateway();
     ClerksDataMapper cdm = new ClerksDataMapper();
+    EncryptPassword ep = new EncryptPassword();
     String usergroup = clerks.getusergroup();
     if (usergroup != null) {
       usergrp = "admin";
@@ -60,6 +61,7 @@ public class RegisterController {
     String username = clerks.getUsername();
     clerkdata = cg.getEntry(username);
     if (clerkdata.isEmpty()) {
+      clerks.setPassword(ep.encrypt(clerks.getPassword()));
       cdm.addClerkRecord(clerks);
       return "redirect:/loginpage";
     } else {
