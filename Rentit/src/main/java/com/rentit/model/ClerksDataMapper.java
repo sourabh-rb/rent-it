@@ -42,7 +42,7 @@ public class ClerksDataMapper {
   public ArrayList<String> getClerkRecord(String username) {
     ArrayList<String> ar = new ArrayList<String>();
     ar = clerksdatagateway.getEntry(username);
-    return null;
+    return ar;
 
   }
 
@@ -74,7 +74,7 @@ public class ClerksDataMapper {
     Clerks clerk = new Clerks();
     clerk.setId(Long.parseLong(recordData.get(0)));
     clerk.setFirstName(recordData.get(1));
-    clerk.setLastName(recordData.remove(2));
+    clerk.setLastName(recordData.get(2));
     clerk.setUsername(recordData.get(3));
     clerk.setPassword(recordData.get(4));
     clerk.setEmail(recordData.get(5));
