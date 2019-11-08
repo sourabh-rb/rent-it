@@ -155,14 +155,14 @@
 						<th style="width: 10%;">Due Date</th>
 						<th style="width: 4%;">Booking ID</th>
 						<th>Booked On</th>
-						<th>Status</th>
-						<th>Options</th>
+						<!-- <th>Status</th>
+						<th>Options</th>  -->
 
 
 
 					</tr>
 
-					<tr th:each="client : ${clients}">
+					<!--  <tr th:each="client : ${clients}">
 						<td th:text="${client.getClient().getClientID()}"></td>
 						<td th:text="${client.getClient().getFirstName()}"></td>
 						<td th:text="${client.getClient().getLastName()}"></td>
@@ -193,6 +193,20 @@
 						</a> &nbsp;&nbsp;&nbsp; <a
 							th:href="@{'/modify/' + ${client.getClient().getClientID()}}">Modify
 						</a></td>
+					</tr> -->
+					<tr th:each="client, itemStat : ${clients}">
+					<td th:text="${client.getClientID()}"></td>
+						<td th:text="${client.getFirstName()}"></td>
+						<td th:text="${client.getLastName()}"></td>
+						<td th:text="${client.getLicenceNumber()}"></td>
+						<td th:text="${client.getLicenceValidity()}"></td>
+						<td th:text="${client.getPhone()}"></td>
+						<td th:text="${booking[0].getStartDate()}"></td>
+						<td th:text="${booking[0].getDueDate()}"></td>
+						<td th:text="${booking[0].getBookingid()}"></td>
+						<td th:text="${booking[0].getBookingTS()}"></td>
+						<!--  <td th:text="${booking[__${itemStat .index}__].getBookingTS()}"></td>-->
+					
 					</tr>
 				</table>
 			</div>

@@ -8,7 +8,8 @@ import com.rentit.model.Clients;
 
 /**
  * ClientDataGateway is the gateway for Clients model and Clients Table in DB.
- * @author soura
+ * @author Sourabh Rajeev Badagandi
+ * @version 1.0.0
  *
  */
 public class ClientsDataGateway {
@@ -16,7 +17,7 @@ public class ClientsDataGateway {
   private DatabaseConfig db;
 
   /**
-   * This method is used to list all contnts of client table.
+   * This method is used to list all contents of client table.
    * @return clientData.
    */
   public ArrayList<ArrayList<String>> listAll() {
@@ -41,7 +42,7 @@ public class ClientsDataGateway {
 
 
   /**
-   * This methos is used to add entry into the clients table.
+   * This method is used to add entry into the clients table.
    * @param cli
    */
   public void addEntry(Clients cli) {
@@ -86,5 +87,33 @@ public class ClientsDataGateway {
 
     db.updateCommand(sqlCmd);
   }
+  
+  /**
+   * This method returns a row from CLients Table.
+   * @param clientID
+   * @return
+   */
+  public ArrayList<String> getEntry(Long clientID) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="SELECT * clients WHERE id = " + clientID + ";" ;
+    ArrayList<String> rec = new ArrayList<String>();
+    ResultSet rs = db.executeCommand(sqlCmd);
+    int count = 1;
+    try {
+      while(rs.next()) {
+          rec.add(rs.getString(count));
+        
+        count++;
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    return rec; 
+  }
+  
+  
+  
 
 }
