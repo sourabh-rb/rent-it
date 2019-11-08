@@ -44,7 +44,7 @@ public class RegisterController {
    * @param register is a object which stores the view data
    * @param model is model data
    * @return view page or view name to redirect
-   * @throws Exception 
+   * @throws Exception
    */
   @RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
   public String getDetail(@ModelAttribute("clerks") Clerks clerks, Model model) throws Exception {
@@ -59,13 +59,12 @@ public class RegisterController {
     ArrayList<String> clerkdata = new ArrayList<String>();
     String username = clerks.getUsername();
     clerkdata = cg.getEntry(username);
-    if(clerkdata.isEmpty()) {
+    if (clerkdata.isEmpty()) {
       cdm.addClerkRecord(clerks);
       return "redirect:/loginpage";
-    }
-    else {
+    } else {
       model.addAttribute("userexits", true);
-       return "registrationpage";
+      return "registrationpage";
     }
 
 
