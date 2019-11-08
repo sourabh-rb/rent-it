@@ -63,7 +63,6 @@ public class LoginController  {
           flag = true;
           break;
         }
-
       }
       flag = false;
     }
