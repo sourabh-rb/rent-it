@@ -38,11 +38,11 @@ public class AdminCatalogController {
   public String loadVehicleList(Model model, HttpSession session) {
     String username = LoginController.username;
     String usergroup = LoginController.usergroup;
-    if (username != null && usergroup == "admin") {
+    if (username != null && usergroup .equals("admin")) {
       ModelWrapper listVehicles = vehicleService.listAll();
       model.addAttribute("vehicle", listVehicles);
       return "admin";
-    } else if (username != null && usergroup == "clerk") {
+    } else if (username != null && usergroup.equals("clerk")) {
       return "redirect:/vehicle";
     } else
       return "redirect:/loginpage";

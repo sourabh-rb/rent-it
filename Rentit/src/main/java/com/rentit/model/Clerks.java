@@ -26,6 +26,7 @@ public class Clerks {
 
   /**
    * Getter: clerk id.
+   * 
    * @return id
    */
   public Long getId() {
@@ -34,6 +35,7 @@ public class Clerks {
 
   /**
    * Setter: clerk id.
+   * 
    * @param id
    */
   public void setId(Long id) {
@@ -42,6 +44,7 @@ public class Clerks {
 
   /**
    * Getter: clerk first name.
+   * 
    * @return first_name
    */
   public String getFirstName() {
@@ -50,6 +53,7 @@ public class Clerks {
 
   /**
    * Setter: clerk first_name.
+   * 
    * @param firstname
    */
   public void setFirstName(String firstname) {
@@ -58,18 +62,16 @@ public class Clerks {
 
   /**
    * Setter: user groups.
+   * 
    * @param usergroup
    */
   public void setusergroup(String usergroup) {
-    if (usergroup != null)
-      this.usergroup = "admin";
-    else {
-      this.usergroup = "clerk";
-    }
+    this.usergroup = usergroup;
   }
 
   /**
    * Getter user group
+   * 
    * @return user group
    */
   public String getusergroup() {
@@ -78,6 +80,7 @@ public class Clerks {
 
   /**
    * Getter : clerk last name
+   * 
    * @return
    */
   public String getLastName() {
@@ -86,6 +89,7 @@ public class Clerks {
 
   /**
    * Setter: clerk last name
+   * 
    * @param lastname
    */
   public void setLastName(String lastname) {
@@ -94,6 +98,7 @@ public class Clerks {
 
   /**
    * Getter username
+   * 
    * @return
    */
   public String getUsername() {
@@ -102,6 +107,7 @@ public class Clerks {
 
   /**
    * Setter username
+   * 
    * @param username
    */
   public void setUsername(String username) {
@@ -110,6 +116,7 @@ public class Clerks {
 
   /**
    * Getter password
+   * 
    * @return
    */
   public String getPassword() {
@@ -118,6 +125,7 @@ public class Clerks {
 
   /**
    * Setter password
+   * 
    * @param password
    */
   public void setPassword(String password) {
@@ -126,6 +134,7 @@ public class Clerks {
 
   /**
    * Getter email
+   * 
    * @return
    */
   public String getEmail() {
@@ -134,6 +143,7 @@ public class Clerks {
 
   /**
    * Setter email.
+   * 
    * @param email
    */
   public void setEmail(String email) {

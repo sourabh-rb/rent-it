@@ -5,6 +5,7 @@
 package com.rentit.controller;
 
 import com.rentit.model.Clerks;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Login;
 import com.rentit.test_class.EncryptPassword;
 import com.rentit.test_class.TestClass;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author kotic
  */
 @Controller
-public class LoginController  {
+public class LoginController {
   static String username;
   static String usergroup;
 
@@ -41,36 +42,38 @@ public class LoginController  {
    * @param loginForm Get username and password from Login
    * @param model Model class
    * @return
-   * @throws Exception 
+   * @throws Exception
    */
 
   @RequestMapping(value = "/loginpage", method = RequestMethod.POST)
 
-  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model) throws Exception {
+  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model)
+      throws Exception {
     EncryptPassword ep = new EncryptPassword();
+    ClerksDataMapper cdm = new ClerksDataMapper();
     username = loginForm.getUsername();
     String password = loginForm.getPassword();
     boolean flag = false;
-    TestClass tc = new TestClass();
+    // TestClass tc = new TestClass();
     ArrayList<Clerks> clerks = new ArrayList<>();
-    clerks = (ArrayList<Clerks>) tc.getClerksTestData();
+    // clerks = (ArrayList<Clerks>) tc.getClerksTestData();
+
+    clerks = cdm.getClerkData();
     for (int i = 0; i < clerks.size(); i++) {
-      Clerks clerk = clerks.get(i);
-      if (username.equals(clerk.getUsername())) {
-        String decryptpass = ep.decrypt(clerk.getPassword());
+      if (username.equals(clerks.get(i).getUsername())) {
+        String decryptpass = ep.decrypt(clerks.get(i).getPassword());
         if (password.equals(decryptpass)) {
-          usergroup = clerk.getusergroup();
+          usergroup = clerks.get(i).getusergroup();
           flag = true;
           break;
         }
       }
-      flag = false;
     }
     if (flag == false) {
       model.addAttribute("InvalidCredentials", true);
       return "loginpage";
     } else {
-      if (usergroup == "clerk") {
+      if (usergroup.equals("clerk")) {
         return "redirect:/vehicle";
       } else {
         return "redirect:/admin";

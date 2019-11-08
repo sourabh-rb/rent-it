@@ -54,8 +54,10 @@ public class RegisterController {
     String usergroup = clerks.getusergroup();
     if (usergroup != null) {
       usergrp = "admin";
+      clerks.setusergroup("admin");
     } else {
       usergrp = "clerk";
+      clerks.setusergroup("clerk");
     }
     ArrayList<String> clerkdata = new ArrayList<String>();
     String username = clerks.getUsername();
