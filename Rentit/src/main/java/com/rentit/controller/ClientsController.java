@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
+import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
+import com.rentit.test_class.TestClass;
 
 
 
@@ -33,6 +36,7 @@ public class ClientsController {
 
   @Autowired
   private ClientsService clientService;
+  private ClientsDataMapper clientDataMapper;
 
   /**
    * 
@@ -45,8 +49,14 @@ public class ClientsController {
   public String listClient(Model model) {
     String username = LoginController.username;
     if (username != null) {
-      List<ModelWrapper> listClient = clientService.listAll();
-      model.addAttribute("clients", listClient);
+      //List<ModelWrapper> listClient = clientService.listAll();
+      TestClass tc = new TestClass();
+      clientDataMapper = new ClientsDataMapper();
+      List<Clients> c = clientDataMapper.getClientData();
+      List<Bookings> b = tc.getBookingTestData();
+      //model.addAttribute("clients", listClient);
+      model.addAttribute("clients", c);
+      model.addAttribute("booking", b);
       return "client-manager";
     } else
       return "redirect:/loginpage";
