@@ -56,7 +56,7 @@ public class ClientsDataGateway {
         + cli.getClerkID() + ","
         + cli.getBookingId() + "," 
         + cli.getVehicleId() + ")";
-    System.out.println(sqlCmd);
+   
     db.updateCommand(sqlCmd);
 
 

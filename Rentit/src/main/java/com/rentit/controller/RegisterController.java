@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import com.rentit.data_source.ClerksDataGateway;
 import com.rentit.model.Clerks;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.ClerksService;
 import com.rentit.test_class.TestClass;
 
@@ -42,36 +44,26 @@ public class RegisterController {
    * @param register is a object which stores the view data
    * @param model is model data
    * @return view page or view name to redirect
-   * @throws Exception 
+   * @throws Exception
    */
   @RequestMapping(value = "/registrationpage", method = RequestMethod.POST)
   public String getDetail(@ModelAttribute("clerks") Clerks clerks, Model model) throws Exception {
-
+    ClerksDataGateway cg = new ClerksDataGateway();
+    ClerksDataMapper cdm = new ClerksDataMapper();
     String usergroup = clerks.getusergroup();
     if (usergroup != null) {
       usergrp = "admin";
     } else {
       usergrp = "clerk";
     }
-    if (clerks.getFirstName() != null && clerks.getLastName() != null
-        && clerks.getUsername() != null && clerks.getPassword() != null
-        && clerks.getEmail() != null) {
-      TestClass tc = new TestClass();
-      ArrayList<Clerks> clerkslist = new ArrayList<Clerks>();
-      clerkslist = (ArrayList<Clerks>) tc.getClerksTestData();
-
-      for (int i = 0; i < clerkslist.size(); i++) {
-        Clerks clerk = clerkslist.get(i);
-        if (clerk.getUsername().equals(clerks.getUsername())) {
-          model.addAttribute("userexits", true);
-          return "registrationpage";
-        }
-      }
-      ClerksService clerkservice = new ClerksService();
-      clerkservice.addClerks(clerks);
+    ArrayList<String> clerkdata = new ArrayList<String>();
+    String username = clerks.getUsername();
+    clerkdata = cg.getEntry(username);
+    if (clerkdata.isEmpty()) {
+      cdm.addClerkRecord(clerks);
       return "redirect:/loginpage";
     } else {
-      model.addAttribute("filldetails", true);
+      model.addAttribute("userexits", true);
       return "registrationpage";
     }
 
