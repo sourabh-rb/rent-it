@@ -1,6 +1,7 @@
 package com.rentit.controller;
 
 import java.util.Collections;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.rentit.model.Vehicles;
+import com.rentit.model.VehiclesDataMapper;
+import com.rentit.data_source.VehiclesDataGateway;
+import com.rentit.model.Clients;
+import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
 
@@ -34,6 +39,7 @@ public class VehicleController {
   @Autowired
   private VehicleService vehicleService;
   long idDummy;
+  private VehiclesDataMapper vehiclesDataMapper;
 
   /**
    * This method renders catalog page.
@@ -44,14 +50,18 @@ public class VehicleController {
   @RequestMapping("/vehicle")
   public String loadVehicleListToAssign(Model model, HttpSession session) {
 
-    String username = LoginController.username;
-    String usergroup = RegisterController.usergrp;
+   // String username = LoginController.username;
+   // String usergroup = RegisterController.usergrp;
+    String username = "clerk";
+    String usergroup = "clerk";
     session.setAttribute("mySessionAttribute", usergroup);
     if (username != null) {
 
-      ModelWrapper listVehicles = vehicleService.listAll();
+     // ModelWrapper listVehicles = vehicleService.listAll();
+      vehiclesDataMapper = new VehiclesDataMapper();
+      List<Vehicles> VehiclesList = vehiclesDataMapper.getVehiclesData();
 
-      model.addAttribute("vehicle", listVehicles);
+      model.addAttribute("vehicle", VehiclesList);
       return "vehicle";
     } else {
       return "redirect:/loginpage";
@@ -89,12 +99,15 @@ public class VehicleController {
     String sModel = VehiclesAttributes.getModel();
     String sYear = VehiclesAttributes.getiYear();
     int iSize = listVehicles.getCatalogList().size();
-    if (!(iSize == 0) || !(listVehicles.equals(null))) {
-
-      listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
-          sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
-    }
-    model.addAttribute("vehicle", listVehicles);
+//    if (!(iSize == 0) || !(listVehicles.equals(null))) {
+//
+//      listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
+//          sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
+//    }
+    vehiclesDataMapper = new VehiclesDataMapper();
+    List<Vehicles> VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(), sModel.trim(),sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
+    
+    model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
 
   }
