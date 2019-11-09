@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.rentit.data_source.BookingsDataGateway;
 import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
+import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
@@ -35,6 +37,8 @@ import java.util.Date;
  */
 @Controller
 public class BookinFormController {
+  
+  private BookingsDataGateway  bookingsDataGateway;
 
   static LocalDate localDate = LocalDate.now();
   String currentdate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
