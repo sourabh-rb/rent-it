@@ -26,9 +26,9 @@ public class BookingsDataMapper {
    * This method is to add booking record.
    * @param book
    */
-  public void addClientRecord(Bookings book) {
+  public void addBookingRecord(ModelWrapper newBooking) {
     
-    bookingGateway.addBooking(book);
+    bookingGateway.addBooking(newBooking);
   }
   
   /**
@@ -51,6 +51,8 @@ public class BookingsDataMapper {
     return book;
 
   }
+
+ 
   
 
 }

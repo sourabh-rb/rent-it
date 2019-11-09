@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.rentit.data_source.BookingsDataGateway;
+import com.rentit.data_source.ClerksDataGateway;
 import com.rentit.model.Bookings;
+import com.rentit.model.BookingsDataMapper;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
@@ -88,6 +91,10 @@ public class BookinFormController {
   @RequestMapping(value = "/confirm", method = RequestMethod.POST)
   public String bookVehicle(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
 
+    BookingsDataGateway bg = new BookingsDataGateway();
+    BookingsDataMapper bdm = new BookingsDataMapper();
+    ClientsDataMapper cdm = new ClientsDataMapper();
+    
     boolean valid = false;
     try {
       currentdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
@@ -123,7 +130,10 @@ public class BookinFormController {
       return "bookingForm";
     } else {
       // newBooking.setVehicle(vehicleService.getBookVehicle());
-      clientService.saveNewBooking(newBooking);
+      
+      bdm.addBookingRecord(newBooking);
+      //cdm.addClientRecord(newBooking);
+     clientService.saveNewBooking(newBooking);
       return "redirect:/clients";
     }
 

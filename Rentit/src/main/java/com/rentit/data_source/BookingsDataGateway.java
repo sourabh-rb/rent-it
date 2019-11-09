@@ -2,6 +2,7 @@ package com.rentit.data_source;
 
 import com.rentit.model.Bookings;
 import com.rentit.model.Clients;
+import com.rentit.model.ModelWrapper;
 
 /**
  * BookingsDataGateway is the gateway for bookings model and Booking Table in DB.
@@ -16,16 +17,16 @@ public class BookingsDataGateway {
   
   /**
    * This method is used to add entry into the Bookings table.
-   * @param book
+   * @param newBooking
    */
-  public void addBooking(Bookings book) {
+  public void addBooking(ModelWrapper newBooking) {
     database = DatabaseConfig.getDBInstance();
     String sqlCmd = "INSERT INTO bookings (returnDate, startDate, dueDate, cancelDate, clientid)";
-    sqlCmd += " VALUES ( '" + book.getReturnDate() + "', '"
-        +  book.getStartDate() + "', '" 
-        + book.getDueDate() + "', '" 
-        + book.getCancelDate() + "', '" 
-        + book.getClientID() + ")";
+    sqlCmd += " VALUES ( '" + newBooking.getBooking().getReturnDate() + "', '"
+        +  newBooking.getBooking().getStartDate() + "', '" 
+        + newBooking.getBooking().getDueDate() + "', '" 
+        + newBooking.getBooking().getCancelDate() + "', '" 
+        + newBooking.getClient().getClientID() + ")";
    
     database.updateCommand(sqlCmd);
 
