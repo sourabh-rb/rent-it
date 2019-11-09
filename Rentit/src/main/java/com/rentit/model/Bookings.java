@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Bookings model class.
- * @author Anusha
+ * @author Anusha Keralapura Thandavamurthy
  *
  */
 public class Bookings {

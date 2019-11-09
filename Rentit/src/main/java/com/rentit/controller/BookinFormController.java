@@ -32,7 +32,7 @@ import java.util.Date;
 /**
  * This class handles booking functionalities.
  * 
- * @author Sourabh Rajeev Badagandi , Anusha
+ * @author Sourabh Rajeev Badagandi , Anusha Keralapura Thandavamurthy
  *
  */
 @Controller

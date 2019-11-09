@@ -20,7 +20,7 @@ public class BookingsDataGateway {
    */
   public void addBooking(Bookings book) {
     database = DatabaseConfig.getDBInstance();
-    String sqlCmd = "INSERT INTO clients (returnDate, startDate, dueDate, cancelDate, clientid)";
+    String sqlCmd = "INSERT INTO bookings (returnDate, startDate, dueDate, cancelDate, clientid)";
     sqlCmd += " VALUES ( '" + book.getReturnDate() + "', '"
         +  book.getStartDate() + "', '" 
         + book.getDueDate() + "', '" 
