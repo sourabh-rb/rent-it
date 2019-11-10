@@ -2,7 +2,10 @@ package com.rentit.data_source;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 
@@ -36,23 +39,46 @@ public class VehiclesDataGateway {
     ResultSet rs;
     if (sLess.equals("True"))
     {
-      rs= db.executeCommand("SELECT * FROM vehicles WHERE"
-          + " Type LIKE '%" + Type + "%'" + " AND " 
-          + " Make LIKE '%" + Make + "%'" + " AND " 
-          + " Model LIKE '%" + Model + "%'" + " AND "
-          + " iYear <= "  + iYear 
-          +" order by iYear ASC"
-          );
+      if(iYear.equalsIgnoreCase("")) {
+        rs= db.executeCommand("SELECT * FROM vehicles WHERE"
+            + " Type LIKE '%" + Type + "%'" + "AND" 
+            + " Make LIKE '%" + Make + "%'" + "AND" 
+            + " Model LIKE '%" + Model + "%'" + "AND" 
+            + " iYear LIKE '%" + iYear + "%'" +"order by iYear ASC"
+            );
+      }
+      else
+      {
+        rs= db.executeCommand("SELECT * FROM vehicles WHERE"
+            + " Type LIKE '%" + Type + "%'" + " AND " 
+            + " Make LIKE '%" + Make + "%'" + " AND " 
+            + " Model LIKE '%" + Model + "%'" + " AND "
+            + " iYear <= "  + iYear 
+            +" order by iYear ASC"
+            );
+      }
+     
     }
     
     else if (sGreater.equals("True")) {
-      rs= db.executeCommand("SELECT * FROM vehicles WHERE"
-          + " Type LIKE '%" + Type + "%'" + " AND " 
-          + " Make LIKE '%" + Make + "%'" + " AND " 
-          + " Model LIKE '%" + Model + "%'" + " AND " 
-          + " iYear >= "  + iYear  
-          +" order by iYear ASC"
-          );
+      if(iYear.equalsIgnoreCase("")) {
+        rs= db.executeCommand("SELECT * FROM vehicles WHERE"
+            + " Type LIKE '%" + Type + "%'" + "AND" 
+            + " Make LIKE '%" + Make + "%'" + "AND" 
+            + " Model LIKE '%" + Model + "%'" + "AND" 
+            + " iYear LIKE '%" + iYear + "%'" +"order by iYear ASC"
+            );
+      }
+      else {
+        rs= db.executeCommand("SELECT * FROM vehicles WHERE"
+            + " Type LIKE '%" + Type + "%'" + " AND " 
+            + " Make LIKE '%" + Make + "%'" + " AND " 
+            + " Model LIKE '%" + Model + "%'" + " AND " 
+            + " iYear >= "  + iYear  
+            +" order by iYear ASC"
+            );
+      }
+     
       
     }
     else {
@@ -84,25 +110,34 @@ public class VehiclesDataGateway {
     return vehiclesData;
   }
   
+  //String sDate1="11/09/2019";  
+  //String eDate2 = "11/12/2019";
+ 
   
-  public void addVehicles(Vehicles vec) {
+  public void addVehicles(Vehicles vec) throws ParseException {
+    String sDate1="2019-11-29";  
+    String eDate2 = "2019-12-12";
+    //sDate1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1).toString();
+    //eDate2 = new SimpleDateFormat("yyyy-MM-dd").parse(eDate2).toString();
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "INSERT INTO vehicles (LicPlate, Type, Make, Model, iYear, Color, bookingStartDate, bookingEndDate)";
-    sqlCmd += " VALUES ( '" + vec.getLicPlate() + "', '"
-        +  vec.getType() + "', '" 
-        + vec.getMake() + "', '" 
-        + vec.getModel() + "', '" 
-        + vec.getiYear() + "', " 
-        + vec.getColor() + ","
-        + vec.getBookingStartDate() + "," 
-        + vec.getBookingEndDate() + ")";
-   
+    String sqlCmd="INSERT INTO vehicles VALUES "
+     + "("+"id" +","
+     + "'"+vec.getMake()+"','"
+     +  vec.getModel().trim() + "','" 
+     + vec.getiYear().trim() + "','" 
+     + vec.getType().trim() + "','" 
+     + vec.getLicPlate().trim() + "','" 
+     + vec.getColor().trim() + "','"
+     +sDate1+"','"
+     +eDate2+"')";
+    //String cmdlove=sqlCmd;
+    // System.out.println(cmdlove);   
     db.updateCommand(sqlCmd);
 
 
   }
   
-  public void removeVehiclesEntry(Long vehiclesID) {
+  public void removeVehiclesEntry(int vehiclesID) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="DELETE FROM vehicles WHERE id = " + vehiclesID + ";" ;
     db.updateCommand(sqlCmd);

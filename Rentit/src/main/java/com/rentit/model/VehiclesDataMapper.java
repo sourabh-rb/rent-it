@@ -1,5 +1,6 @@
 package com.rentit.model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import com.rentit.data_source.VehiclesDataGateway;
 
@@ -9,6 +10,11 @@ public class VehiclesDataMapper {
   
   public VehiclesDataMapper() {
     vehiclesDataGateway = new VehiclesDataGateway();
+  }
+  
+ public void addVehiclesRecord(Vehicles vehicles) throws ParseException {
+    
+   vehiclesDataGateway.addVehicles(vehicles);
   }
   
   public  ArrayList<Vehicles> getVehiclesData() {
@@ -23,6 +29,10 @@ public class VehiclesDataMapper {
     return vehiclesData;
   }
   
+  
+  public void removeVehiclesRecord(int VehicleID) {
+    vehiclesDataGateway.removeVehiclesEntry(VehicleID);
+  }
 
   private Vehicles mapRecord(ArrayList<String> recordData) {
     Vehicles veh = new Vehicles();

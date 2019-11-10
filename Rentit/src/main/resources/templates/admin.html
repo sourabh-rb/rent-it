@@ -241,26 +241,27 @@ function toggle(source) {
 							<tr>
 								<th style="width: 3%;"><input onclick="toggle(this);"
 									type="checkbox"></th>
-								<th class="text-cen	ter" style="width: 15%">Type</th>
+								<th class="text-cen	ter" style="width: 15%"> Make</th>
 								<th class="text-center" style="width: 15%">Model</th>
 								<th class="text-cen	ter" style="width: 15%">Year</th>
-								<th class="text-center" style="width: 15%">Make</th>
+								<th class="text-center" style="width: 15%">Type</th>
 
 
 								<th class="text-center" style="width: 30%">Operations</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="vehicle : ${vehicle.getCatalogList()}">
+							<!-- <tr th:each="vehicle : ${vehicle.getCatalogList()}"> -->
+							<tr th:each="vehicles : ${vehicle}">
 								<td><input name="select" id="${id}" type="checkbox"></td>
-								<td th:text="${vehicle.getType()}"></td>
-								<td th:text="${vehicle.getModel()}"></td>
-								<td th:text="${vehicle.getiYear()}"></td>
-								<td th:text="${vehicle.getMake()}"></td>
+								<td th:text="${vehicles.getMake()}"></td>
+								<td th:text="${vehicles.getModel()}"></td>
+								<td th:text="${vehicles.getiYear()}"></td>
+								<td th:text="${vehicles.getType()}"></td>
 
 								<td><a
-									th:href="@{'/addEditAdminPage/' + ${vehicle.getId()}}">Edit</a>
-									<a th:href="@{'/delete/' + ${vehicle.getId()}}">Delete</a> <!--   <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>-->
+									th:href="@{'/addEditAdminPage/' + ${vehicles.getId()}}">Edit</a>
+									<a th:href="@{'/delete/' + ${vehicles.getId()}}">Delete</a> <!--   <button type="submit" value="Submit" name="btnDelete" id="btnDelete" class="buttonClass" >Delete </button>-->
 								</td>
 
 							</tr>
