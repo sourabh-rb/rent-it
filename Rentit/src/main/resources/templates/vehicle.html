@@ -262,20 +262,19 @@ function toggle(source) {
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="vehicle : ${vehicle.getCatalogList()}">
-								<!--   <td th:text="${client.getClient().getClientID()}"></td> -->
+							<!-- <tr th:each="vehicle : ${vehicle.getCatalogList()}"> -->
+							<tr th:each="vehicles : ${vehicle}">
 								<td><input name="select" id="${id}" type="checkbox"></td>
-								<td th:text="${vehicle.getMake()}"></td>
-								<td th:text="${vehicle.getModel()}"></td>
-								<td th:text="${vehicle.getiYear()}"></td>
-								<td th:text="${vehicle.getType()}"></td>
+								<td th:text="${vehicles.getMake()}"></td>
+								<td th:text="${vehicles.getModel()}"></td>
+								<td th:text="${vehicles.getiYear()}"></td>
+								<td th:text="${vehicles.getType()}"></td>
 
 								<td>
 									<!--  <span th:if="${$var1=='clerk'}"> --> <span
-									th:if="${session.mySessionAttribute} =='admin'"> </span> <span
-									th:if="${session.mySessionAttribute} =='clerk'"> <a
-										th:href="@{'/VehilceId/' + ${vehicle.getId()}}">View
-											Details</a>
+									th:if="${session.mySessionAttribute} =='admin'"> </span> 
+									<span th:if="${session.mySessionAttribute} =='clerk'"> 
+									<a th:href="@{'/VehilceId/' + ${vehicles.getId()}}">View Details</a>
 								</span>
 								</td>
 
