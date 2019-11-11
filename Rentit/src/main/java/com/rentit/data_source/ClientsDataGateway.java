@@ -129,6 +129,14 @@ public class ClientsDataGateway {
     
     db.updateCommand(sqlCmd);
   }
+
+
+  public void setNull(String column, Long clientId) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE clients SET " + column + " = 0 WHERE id = " + clientId + ";" ;
+    db.updateCommand(sqlCmd);
+    
+  }
   
   
   
