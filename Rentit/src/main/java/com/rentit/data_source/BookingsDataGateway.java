@@ -116,6 +116,23 @@ public class BookingsDataGateway {
     
     return rec; 
   }
+
+  public String getValue(Long id, String column) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="SELECT " + column + " FROM bookings WHERE id = " + id + ";" ;
+    String val = null;
+    ResultSet rs = db.executeCommand(sqlCmd);
+     try {
+       while(rs.next()) {
+         val = rs.getString(1);
+       }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    return val;
+  }
   
 
 }

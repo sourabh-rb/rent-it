@@ -18,6 +18,7 @@ import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
+import com.rentit.model.VehiclesDataMapper;
 import com.rentit.test_class.TestClass;
 
 
@@ -39,6 +40,7 @@ public class ClientsController {
   private ClientsService clientService;
   private ClientsDataMapper clientDataMapper;
   private BookingsDataMapper bookingDataMapper;
+  private VehiclesDataMapper vehicleDataMapper;
 
   /**
    * 
@@ -51,11 +53,13 @@ public class ClientsController {
   public String listClient(Model model) {
     String username = LoginController.username;
     if (username == null) {
-      TestClass tc = new TestClass();
       clientDataMapper = new ClientsDataMapper();
       bookingDataMapper = new BookingsDataMapper();
+      vehicleDataMapper = new VehiclesDataMapper();
+      
       List<Clients> c = clientDataMapper.getClientData();
       List<Bookings> b = bookingDataMapper.getBookingData();
+      
       model.addAttribute("clients", c);
       model.addAttribute("booking", b);
       return "client-manager";
@@ -72,6 +76,13 @@ public class ClientsController {
   @RequestMapping("/return/{id}")
   public String returnVehicle(@PathVariable(name = "id") Long id) {
     bookingDataMapper.processReturn(id);
+    
+    Long vehicleId = bookingDataMapper.getVehicleId(id);
+    vehicleDataMapper.removeBooking(vehicleId);
+    
+    Long clientId = bookingDataMapper.getClientId(id);
+    clientDataMapper.removeBookingandVehicle(clientId);
+    
     return "redirect:/clients";
   }
 
@@ -84,18 +95,29 @@ public class ClientsController {
   @RequestMapping("/cancel/{id}")
   public String cancelBooking(@PathVariable(name = "id") Long id) {
     bookingDataMapper.processCancel(id);
+    
+    Long vehicleId = bookingDataMapper.getVehicleId(id);
+    vehicleDataMapper.removeBooking(vehicleId);
+    
+    Long clientId = bookingDataMapper.getClientId(id);
+    clientDataMapper.removeBookingandVehicle(clientId);
+    
     return "redirect:/clients";
   }
   
   /**
    * This method handles deletion of booking by clerk.
    * 
-   * @param id Client id
+   * @param client id
    * @return redirection to clients page
    */
   @RequestMapping("/deleteRecord/{id}")
   public String deleteBooking(@PathVariable(name = "id") Long id) {
+    Long vehicleId = bookingDataMapper.getVehicleId(id);
+    vehicleDataMapper.removeBooking(vehicleId);
+    
     bookingDataMapper.processDelete(id);
+    
     return "redirect:/clients";
   }
 
@@ -108,7 +130,6 @@ public class ClientsController {
   @RequestMapping("/modify/{id}")
   public ModelAndView showEditProductPage(@PathVariable(name = "id") Long id) {
     ModelAndView mav = new ModelAndView("client-modify");
-    //Clients clientDetails = clientService.getClientInfo(id);
     Clients clientDetails = clientDataMapper.getRecord(id);
     mav.addObject("modify", clientDetails);
 
@@ -123,8 +144,6 @@ public class ClientsController {
    */
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String saveEdit(@ModelAttribute("modify") Clients clientDetails) {
-
-    //clientService.saveClientInfo(clientDetails);
     clientDataMapper.modifyRecord(clientDetails);
 
     return "redirect:/clients";

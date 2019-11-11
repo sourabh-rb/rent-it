@@ -59,5 +59,9 @@ public class VehiclesDataMapper {
     
     return vehiclesData;
   }
+ 
+ public void removeBooking(Long vehicleId) {
+   vehiclesDataGateway.setNull("bookingId", vehicleId);
+ }
   
 }

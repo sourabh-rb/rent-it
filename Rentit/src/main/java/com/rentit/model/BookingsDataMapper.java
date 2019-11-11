@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.rentit.data_source.BookingsDataGateway;
 import com.rentit.data_source.ClientsDataGateway;
+import com.rentit.data_source.VehiclesDataGateway;
 
 /**
  * BookingsDataMapper is used to map Bookings model attributes to the Booking table via the BookingsDataGateway.
@@ -77,6 +78,16 @@ public class BookingsDataMapper {
     return mapRecord(record);
   }
   
+  public Long getClientId(Long id) {
+    
+    return Long.parseLong(bookingGateway.getValue(id, "clientId"));
+  }
+  
+ public Long getVehicleId(Long id) {
+    
+    return Long.parseLong(bookingGateway.getValue(id, "vehicleId"));
+  }
+  
   /**
    * This method used to map the booking table attributes to book object attributes.
    * 
@@ -103,6 +114,7 @@ public class BookingsDataMapper {
     LocalDateTime now = LocalDateTime.now();
     
     updateRecord("returnDate", dtf.format(now), id);
+    
   }
   
   public void processCancel(Long id) {

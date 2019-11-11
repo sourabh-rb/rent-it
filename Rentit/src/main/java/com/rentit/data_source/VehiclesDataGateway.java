@@ -154,6 +154,13 @@ public class VehiclesDataGateway {
     // for vehicle page detailed view
     return vehc; 
   }
+
+  public void setNull(String column, Long vehicleId) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE vehicles SET " + column + " = 0 WHERE id = " + vehicleId + ";" ;
+    db.updateCommand(sqlCmd);
+    
+  }
   
  
   
