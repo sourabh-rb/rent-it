@@ -70,8 +70,12 @@ public class ClientsDataMapper {
    */
   public Clients getRecord(Long clientID) {
     ArrayList<String> record = clientGateway.getEntry(clientID);
-    
     return mapRecord(record);
+  }
+  
+  public void modifyRecord(Clients client) {
+    
+    clientGateway.updateCLientsRow(client);
   }
   
   /**
@@ -87,7 +91,7 @@ public class ClientsDataMapper {
     cli.setLicenceNumber(recordData.get(3));
     cli.setLicenceValidity(recordData.get(4));
     cli.setPhone(recordData.get(5));
-    cli.setClerkID(Long.parseLong(recordData.get(6)));
+    cli.setClerkid(Long.parseLong(recordData.get(6)));
     cli.setBookingId(Long.parseLong(recordData.get(7)));
     cli.setVehicleId(Long.parseLong(recordData.get(8)));
     

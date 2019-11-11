@@ -5,7 +5,7 @@
 package com.rentit.controller;
 
 import com.rentit.model.Clerks;
-import com.rentit.model.ClerksDataMapper;
+//import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Login;
 import com.rentit.test_class.EncryptPassword;
 import com.rentit.test_class.TestClass;
@@ -50,7 +50,7 @@ public class LoginController {
   public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model)
       throws Exception {
     EncryptPassword ep = new EncryptPassword();
-    ClerksDataMapper cdm = new ClerksDataMapper();
+    //ClerksDataMapper cdm = new ClerksDataMapper();
     username = loginForm.getUsername();
     String password = loginForm.getPassword();
     boolean flag = false;
@@ -58,7 +58,7 @@ public class LoginController {
     ArrayList<Clerks> clerks = new ArrayList<>();
     // clerks = (ArrayList<Clerks>) tc.getClerksTestData();
 
-    clerks = cdm.getClerkData();
+    //clerks = cdm.getClerkData();
     for (int i = 0; i < clerks.size(); i++) {
       if (username.equals(clerks.get(i).getUsername())) {
         String decryptpass = ep.decrypt(clerks.get(i).getPassword());

@@ -21,8 +21,7 @@ public class RentitApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(RentitApplication.class, args); 
-   
-    
+
   }
 
 }

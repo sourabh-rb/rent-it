@@ -21,6 +21,7 @@ public class Bookings {
 	private String dueDate;
 	private String cancelDate;
 	private Long clientid;
+	private Long vehicleid;
 	
 	public Bookings() {}
 	
@@ -76,6 +77,14 @@ public class Bookings {
 	public void setClientID(Long clientid) {
 		this.clientid = clientid;
 	}
+
+  public Long getVehicleID() {
+    return vehicleid;
+  }
+
+  public void setVehicleID(Long vehicleid) {
+    this.vehicleid = vehicleid;
+  }
 	
 	
 

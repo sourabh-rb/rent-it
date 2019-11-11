@@ -167,7 +167,7 @@ public class Clients {
    * getter get clerk id.
    * @return
    */
-  public Long getClerkID() {
+  public Long getClerkid() {
     return clerkid;
   }
 
@@ -175,7 +175,7 @@ public class Clients {
    * setter set clerk id.
    * @param clerkid
    */
-  public void setClerkID(Long clerkid) {
+  public void setClerkid(Long clerkid) {
     this.clerkid = clerkid;
   }
 

@@ -64,7 +64,7 @@ public class DatabaseConfig {
    */
   private void init() {
     try {
-      Class.forName("com.mysql.jdbc.Driver");  
+      Class.forName("com.mysql.cj.jdbc.Driver");  
       dbConnection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);   
     }catch(Exception e) {System.out.println(e);}
   }

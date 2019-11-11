@@ -116,6 +116,28 @@
             <td>Phone:</td>
             <td><input type="text" th:field="*{phone}" /></td>
         </tr>
+         
+        <tr>
+            <td>Clerk:</td>
+            <td>
+             <input type="text" th:field="*{clerkid}" readonly="readonly"/>
+          </td>
+        </tr>
+        
+        <tr>
+            <td>Booking:</td>
+            <td>
+             <input type="text" th:field="*{bookingId}" readonly="readonly"/>
+          </td>
+        </tr>
+        
+        <tr>
+            <td>Vehicle:</td>
+            <td>
+             <input type="text" th:field="*{vehicleId}" readonly="readonly"/>
+          </td>
+        </tr>
+        
         <tr>
             <td colspan="2"><button type="submit">Save</button> </td>
             <td colspan="2"><button type="submit">Cancel</button> </td>
