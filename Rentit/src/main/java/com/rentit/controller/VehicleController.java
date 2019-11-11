@@ -35,7 +35,6 @@ public class VehicleController {
   private static String sOrderYear = "ASC";
   private static String sOrderType = "ASC";
   RegisterController rv = new RegisterController();
-
   @Autowired
   private VehicleService vehicleService;
   long idDummy;
