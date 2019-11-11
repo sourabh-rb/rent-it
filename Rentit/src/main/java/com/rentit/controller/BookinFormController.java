@@ -131,7 +131,7 @@ public class BookinFormController {
     } else {
       // newBooking.setVehicle(vehicleService.getBookVehicle());
       
-      bdm.addBookingRecord(newBooking);
+     // bdm.addBookingRecord(newBooking);
       //cdm.addClientRecord(newBooking);
      clientService.saveNewBooking(newBooking);
       return "redirect:/clients";

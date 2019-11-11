@@ -1,6 +1,8 @@
 package com.rentit.model;
 
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.rentit.data_source.BookingsDataGateway;
@@ -16,19 +18,63 @@ import com.rentit.data_source.ClientsDataGateway;
 public class BookingsDataMapper {
   
  private BookingsDataGateway bookingGateway;
+ 
   
   public BookingsDataMapper() {
     bookingGateway = new BookingsDataGateway();
     
   }
   
+  
+  public ArrayList<Bookings> getBookingData() {
+    
+    ArrayList<Bookings> bookingData = new ArrayList<Bookings>();
+    ArrayList<ArrayList<String>> data =  bookingGateway.listAll();
+    
+    for(ArrayList<String> r : data) {
+      bookingData.add(mapRecord(r));
+    }
+    
+    return bookingData;
+    
+  }
+  
   /**
    * This method is to add booking record.
-   * @param book
+   * @param booking
    */
-  public void addBookingRecord(ModelWrapper newBooking) {
+  public void addBookingRecord(Bookings booking) {
     
-    bookingGateway.addBooking(newBooking);
+    bookingGateway.addEntry(booking);
+  }
+  
+  /**
+   * This method removes booking record.
+   * @param bookingID
+   */
+  public void removeRecord(Long bookingID) {
+    bookingGateway.removeEntry(bookingID);
+  }
+  
+  /**
+   * This method updates client record.
+   * @param column
+   * @param val
+   * @param id
+   */
+  public void updateRecord(String column, String val, Long id) {
+    bookingGateway.updateEntry(column, val, id);
+  }
+  
+  /**
+   * This method returns client record.
+   * @param bookingID
+   * @return
+   */
+  public Bookings getRecord(Long bookingID) {
+    ArrayList<String> record = bookingGateway.getEntry(bookingID);
+    
+    return mapRecord(record);
   }
   
   /**
@@ -40,18 +86,37 @@ public class BookingsDataMapper {
   private Bookings mapRecord(ArrayList<String> recordData) {
     Bookings book = new Bookings();
     book.setBookingid(Long.parseLong(recordData.get(0)));
-    book.setReturnDate(recordData.get(1));
-    book.setStartDate(recordData.get(2));
-    book.setDueDate(recordData.get(3));
-    book.setCancelDate(recordData.get(4));
-    book.setClientID(Long.parseLong(recordData.get(5)));
+    book.setBookingTS(recordData.get(1));
+    book.setReturnDate(recordData.get(2));
+    book.setStartDate(recordData.get(3));
+    book.setDueDate(recordData.get(4));
+    book.setCancelDate(recordData.get(5));
+    book.setClientID(Long.parseLong(recordData.get(6)));
+    book.setVehicleID(Long.parseLong(recordData.get(7)));
    
-
-
     return book;
 
   }
 
+  public void processReturn(Long id) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    
+    updateRecord("returnDate", dtf.format(now), id);
+  }
+  
+  public void processCancel(Long id) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    
+    updateRecord("cancelDate", dtf.format(now), id);
+  }
+  
+  public void processDelete(Long id) {
+    bookingGateway.removeClientandBookingEntry(id);
+  }
+  
+  
  
   
 

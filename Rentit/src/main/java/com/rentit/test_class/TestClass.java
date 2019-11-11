@@ -231,7 +231,7 @@ public class TestClass {
     client1.setLicenceNumber("A-1234-123456-12");
     client1.setLicenceValidity("2020-09-20");
     client1.setPhone("1234567890");
-    client1.setClerkID(clerkList.get(0).getId());
+    client1.setClerkid(clerkList.get(0).getId());
 
     clientList.add(client1);
 
@@ -242,7 +242,7 @@ public class TestClass {
     client2.setLicenceNumber("C-4321-123456-33");
     client2.setLicenceValidity("2021-08-01");
     client2.setPhone("0987654321");
-    client2.setClerkID(clerkList.get(0).getId());
+    client2.setClerkid(clerkList.get(0).getId());
 
     clientList.add(client2);
 
@@ -254,7 +254,7 @@ public class TestClass {
     client3.setLicenceNumber("F-1212-098765-11");
     client3.setLicenceValidity("2020-01-29");
     client3.setPhone("1234566666");
-    client3.setClerkID(clerkList.get(0).getId());
+    client3.setClerkid(clerkList.get(0).getId());
 
     clientList.add(client3);
 
@@ -266,7 +266,7 @@ public class TestClass {
     client4.setLicenceNumber("Y-0909-098762-33");
     client4.setLicenceValidity("2022-02-10");
     client4.setPhone("7867564534");
-    client4.setClerkID(clerkList.get(0).getId());
+    client4.setClerkid(clerkList.get(0).getId());
 
     clientList.add(client4);
 
@@ -278,7 +278,7 @@ public class TestClass {
     client5.setLicenceNumber("Q-6677-999234-45");
     client5.setLicenceValidity("2023-09-20");
     client5.setPhone("1234567890");
-    client5.setClerkID(clerkList.get(0).getId());
+    client5.setClerkid(clerkList.get(0).getId());
 
     clientList.add(client5);
 
@@ -404,7 +404,7 @@ public class TestClass {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     nw.getBooking().setBookingTS(now.toString());
-    nw.getClient().setClerkID(testEntries.get(0).getClerk().getId());
+    nw.getClient().setClerkid(testEntries.get(0).getClerk().getId());
 
     testEntries.add(nw);
 

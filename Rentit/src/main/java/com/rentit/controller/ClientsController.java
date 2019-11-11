@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.rentit.model.Bookings;
+import com.rentit.model.BookingsDataMapper;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
@@ -37,6 +38,7 @@ public class ClientsController {
   @Autowired
   private ClientsService clientService;
   private ClientsDataMapper clientDataMapper;
+  private BookingsDataMapper bookingDataMapper;
 
   /**
    * 
@@ -48,13 +50,12 @@ public class ClientsController {
   @RequestMapping("/clients")
   public String listClient(Model model) {
     String username = LoginController.username;
-    if (username != null) {
-      //List<ModelWrapper> listClient = clientService.listAll();
+    if (username == null) {
       TestClass tc = new TestClass();
       clientDataMapper = new ClientsDataMapper();
+      bookingDataMapper = new BookingsDataMapper();
       List<Clients> c = clientDataMapper.getClientData();
-      List<Bookings> b = tc.getBookingTestData();
-      //model.addAttribute("clients", listClient);
+      List<Bookings> b = bookingDataMapper.getBookingData();
       model.addAttribute("clients", c);
       model.addAttribute("booking", b);
       return "client-manager";
@@ -70,9 +71,7 @@ public class ClientsController {
    */
   @RequestMapping("/return/{id}")
   public String returnVehicle(@PathVariable(name = "id") Long id) {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    clientService.setReturnDate(id, dtf.format(now));
+    bookingDataMapper.processReturn(id);
     return "redirect:/clients";
   }
 
@@ -84,9 +83,19 @@ public class ClientsController {
    */
   @RequestMapping("/cancel/{id}")
   public String cancelBooking(@PathVariable(name = "id") Long id) {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    clientService.setCancelDate(id, dtf.format(now));
+    bookingDataMapper.processCancel(id);
+    return "redirect:/clients";
+  }
+  
+  /**
+   * This method handles deletion of booking by clerk.
+   * 
+   * @param id Client id
+   * @return redirection to clients page
+   */
+  @RequestMapping("/deleteRecord/{id}")
+  public String deleteBooking(@PathVariable(name = "id") Long id) {
+    bookingDataMapper.processDelete(id);
     return "redirect:/clients";
   }
 
@@ -97,9 +106,10 @@ public class ClientsController {
    * @return redirection to modify client page.
    */
   @RequestMapping("/modify/{id}")
-  public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+  public ModelAndView showEditProductPage(@PathVariable(name = "id") Long id) {
     ModelAndView mav = new ModelAndView("client-modify");
-    Clients clientDetails = clientService.getClientInfo(id);
+    //Clients clientDetails = clientService.getClientInfo(id);
+    Clients clientDetails = clientDataMapper.getRecord(id);
     mav.addObject("modify", clientDetails);
 
     return mav;
@@ -114,7 +124,8 @@ public class ClientsController {
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String saveEdit(@ModelAttribute("modify") Clients clientDetails) {
 
-    clientService.saveClientInfo(clientDetails);
+    //clientService.saveClientInfo(clientDetails);
+    clientDataMapper.modifyRecord(clientDetails);
 
     return "redirect:/clients";
   }

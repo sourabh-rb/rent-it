@@ -155,8 +155,8 @@
 						<th style="width: 10%;">Due Date</th>
 						<th style="width: 4%;">Booking ID</th>
 						<th>Booked On</th>
-						<!-- <th>Status</th>
-						<th>Options</th>  -->
+						<th>Status</th>
+						<th>Options</th> 
 
 
 
@@ -201,11 +201,32 @@
 						<td th:text="${client.getLicenceNumber()}"></td>
 						<td th:text="${client.getLicenceValidity()}"></td>
 						<td th:text="${client.getPhone()}"></td>
-						<td th:text="${booking[0].getStartDate()}"></td>
-						<td th:text="${booking[0].getDueDate()}"></td>
-						<td th:text="${booking[0].getBookingid()}"></td>
-						<td th:text="${booking[0].getBookingTS()}"></td>
-						<!--  <td th:text="${booking[__${itemStat .index}__].getBookingTS()}"></td>-->
+						<td th:text="${booking[__${itemStat .index}__].getStartDate()}"></td>
+						<td th:text="${booking[__${itemStat .index}__].getDueDate()}"></td>
+						<td th:text="${booking[__${itemStat .index}__].getBookingid()}"></td>
+						<td th:text="${booking[__${itemStat .index}__].getBookingTS()}"></td>
+						<td>
+
+							<div th:if="${booking[__${itemStat .index}__].getReturnDate()}">
+								RETURNED</div>
+							<div th:if="${booking[__${itemStat .index}__].getCancelDate()}">
+								CANCELLED</div>
+							<div
+								th:if="!${booking[__${itemStat .index}__].getReturnDate()} and !${booking[__${itemStat .index}__].getCancelDate()}">
+								CONFIRMED</div>
+
+						</td>
+						<td><a
+							th:if="!${booking[__${itemStat .index}__].getReturnDate()} and !${booking[__${itemStat .index}__].getCancelDate()}"
+							th:href="@{'/return/' + ${booking[__${itemStat .index}__].getBookingid()}}">Return
+						</a> &nbsp;&nbsp;&nbsp; <a
+							th:if="!${booking[__${itemStat .index}__].getReturnDate()} and !${booking[__${itemStat .index}__].getCancelDate()}"
+							th:href="@{'/cancel/' + ${booking[__${itemStat .index}__].getBookingid()}}">Cancel
+						</a> &nbsp;&nbsp;&nbsp; <a
+							th:href="@{'/modify/' + ${booking[__${itemStat .index}__].getClientID()}}">Modify
+						</a> &nbsp;&nbsp;&nbsp; <a
+							th:href="@{'/deleteRecord/' + ${booking[__${itemStat .index}__].getClientID()}}">Delete
+						</a></td>
 					
 					</tr>
 				</table>
