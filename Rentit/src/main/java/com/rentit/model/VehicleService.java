@@ -22,11 +22,25 @@ public class VehicleService {
   private ArrayList<Integer> storeId = new ArrayList<>();
   private Vehicles bookVehicle;
 
+  /**
+   * 
+   * @return the list off all vehicle catalog list
+   */
   public ModelWrapper listAll() {
 
     return testData.getVehicleCatalog();
   }
 
+  /**
+   * 
+   * @param Make Search for Make Parameter
+   * @param Type Search for Type Parameter
+   * @param Model Search for Model Parameter
+   * @param iYear Search for iYear Parameter
+   * @param sLess Search for sLess Parameter
+   * @param sGreater Search for sGreater Parameter
+   * @return
+   */
   public ModelWrapper ListAllSearches(String Make, String Type, String Model, String iYear,
       String sLess, String sGreater) {
 
@@ -40,6 +54,11 @@ public class VehicleService {
    * @return vehicle
    */
 
+  /**
+   * 
+   * @param id
+   * @return
+   */
   public Vehicles getVechileInfo(long id) {
     for (Vehicles vehicle : testData.getVehiclesTestData()) {
       if (id == vehicle.getId()) {
@@ -66,6 +85,9 @@ public class VehicleService {
       vList.add(vehicle);
     }
 
+    /**
+     * Vehicle List Iterator for get Vehicles records.
+     */
     ListIterator<Vehicles> vListIterator = vList.listIterator((id.intValue()));
     while (vehicleFound) {
       if (vListIterator.hasNext()) {
@@ -156,14 +178,26 @@ public class VehicleService {
 
   }
 
+  /**
+   * 
+   * @param id  Delete Vehicle for a particular record
+   */
   public void deleteVehicle(int id) {
     testData.removeVehicleRecord(id);
   }
 
+  /**
+   * 
+   * @return GetBookvehicle object
+   */
   public Vehicles getBookVehicle() {
     return bookVehicle;
   }
 
+  /**
+   * 
+   * @param bookVehicle  SetbookVehicle for Book vehicle
+   */
   public void setBookVehicle(Vehicles bookVehicle) {
     this.bookVehicle = bookVehicle;
   }
