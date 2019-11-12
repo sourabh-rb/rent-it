@@ -115,19 +115,27 @@ public class ClientsDataGateway {
   
   public void updateCLientsRow(Clients client) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "UPDATE clients SET id = " + client.getClientID()
+    String sqlCmd = "UPDATE clients SET " 
                     + " firstName = '" + client.getFirstName() 
-                    + "' lastName = '" + client.getLastName()
-                    + "' licenceNumber = '" + client.getLicenceNumber()
-                    + "' licenceValidity = '" + client.getLicenceValidity()
-                    + "' phone = '" + client.getPhone()
-                    + "' clerkId = " + client.getClerkid()
-                    + " bookingId = " + client.getBookingId()
-                    + " vehicleId = " + client.getVehicleId() +
+                    + "' , lastName = '" + client.getLastName()
+                    + "' , licenceNumber = '" + client.getLicenceNumber()
+                    + "' , licenceValidity = '" + client.getLicenceValidity()
+                    + "' , phone = '" + client.getPhone()
+                    + "' , clerkId = " + client.getClerkid()
+                    + " , bookingId = " + client.getBookingId()
+                    + " , vehicleId = " + client.getVehicleId() +
                     " WHERE id = " + client.getClientID() + ";" ;
     System.out.println(sqlCmd);
     
     db.updateCommand(sqlCmd);
+  }
+
+
+  public void setNull(String column, Long clientId) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE clients SET " + column + " = 0 WHERE id = " + clientId + ";" ;
+    db.updateCommand(sqlCmd);
+    
   }
   
   
