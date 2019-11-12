@@ -5,10 +5,9 @@
 package com.rentit.controller;
 
 import com.rentit.model.Clerks;
-//import com.rentit.model.ClerksDataMapper;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Login;
 import com.rentit.test_class.EncryptPassword;
-import com.rentit.test_class.TestClass;
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
   static String username;
   static String usergroup;
+  static int count =0;
+  static int acount =0;
 
   /**
    * This method renders login page.
@@ -50,15 +51,13 @@ public class LoginController {
   public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model)
       throws Exception {
     EncryptPassword ep = new EncryptPassword();
-    //ClerksDataMapper cdm = new ClerksDataMapper();
+    ClerksDataMapper cdm = new ClerksDataMapper();
     username = loginForm.getUsername();
     String password = loginForm.getPassword();
     boolean flag = false;
-    // TestClass tc = new TestClass();
     ArrayList<Clerks> clerks = new ArrayList<>();
-    // clerks = (ArrayList<Clerks>) tc.getClerksTestData();
-
-    //clerks = cdm.getClerkData();
+    clerks = cdm.getClerkData();
+    
     for (int i = 0; i < clerks.size(); i++) {
       if (username.equals(clerks.get(i).getUsername())) {
         String decryptpass = ep.decrypt(clerks.get(i).getPassword());
@@ -76,7 +75,19 @@ public class LoginController {
       if (usergroup.equals("clerk")) {
         return "redirect:/vehicle";
       } else {
-        return "redirect:/admin";
+        acount = AdminCatalogController.count;
+        if(acount == 1) {
+          count = 0;
+        }
+        if (count == 0) {
+          count++;
+          AdminCatalogController.count = 0;
+          return "redirect:/admin";
+          
+        }
+        else
+          model.addAttribute("oneadmin", true);
+        return "loginpage";
 
       }
     }

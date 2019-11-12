@@ -93,6 +93,7 @@
 
                             <div align="center" th:if="${InvalidCredentials}" class="error">UserName
                                 or Password is Wrong</div>
+                                <div align="center" th:if="${oneadmin}" class="error">Only one Admin can Login into the Application</div>
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="subject">Username</label> <input

@@ -30,11 +30,12 @@ import com.rentit.model.VehiclesDataMapper;
  */
 @Controller
 public class AdminCatalogController {
+  static int count = 0;
   RegisterController rv = new RegisterController();
   @Autowired
   private VehicleService vehicleService;
   private VehiclesDataMapper vehiclesDataMapper;
-  List<Vehicles> VehiclesList=null;
+  List<Vehicles> VehiclesList = null;
   private VehiclesDataGateway vehiclesDataGateway;
 
   /**
@@ -45,6 +46,7 @@ public class AdminCatalogController {
    */
   @RequestMapping("/admin")
   public String loadVehicleList(Model model, HttpSession session) {
+
     String username = LoginController.username;
    String usergroup = LoginController.usergroup;
    // String username = "admin";
@@ -55,6 +57,7 @@ public class AdminCatalogController {
       vehiclesDataMapper = new VehiclesDataMapper();
       VehiclesList = vehiclesDataMapper.getVehiclesData();
       model.addAttribute("vehicle", VehiclesList);
+  
       return "admin";
     } else if (username != null && usergroup.equals("clerk")) {
       return "redirect:/vehicle";
@@ -70,8 +73,9 @@ public class AdminCatalogController {
    * @return
    */
   @PostMapping("/admin")
-  public String fncSearchAddedVehicle(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
-      Model model, @RequestParam(value = "checkboxName", required = false) String checkboxValue,
+  public String fncSearchAddedVehicle(
+      @ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes, Model model,
+      @RequestParam(value = "checkboxName", required = false) String checkboxValue,
       @RequestParam(value = "checkboxName1", required = false) String checkboxValue1) {
     ModelWrapper listVehicles = vehicleService.listAll();
 
@@ -92,16 +96,17 @@ public class AdminCatalogController {
     String sModel = VehiclesAttributes.getModel();
     String sYear = VehiclesAttributes.getiYear();
     int iSize = listVehicles.getCatalogList().size();
-//    if (!(iSize == 0) || !(listVehicles.equals(null))) {
-//
-//      listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
-//          sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
-//    }
+    // if (!(iSize == 0) || !(listVehicles.equals(null))) {
+    //
+    // listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
+    // sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
+    // }
     vehiclesDataMapper = new VehiclesDataMapper();
-    VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(), sModel.trim(),sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
-   
-   model.addAttribute("vehicle", VehiclesList);
-    //model.addAttribute("vehicle", listVehicles);
+    VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(),
+        sModel.trim(), sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
+
+    model.addAttribute("vehicle", VehiclesList);
+    // model.addAttribute("vehicle", listVehicles);
     return "admin";
 
   }
@@ -114,8 +119,8 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/admin", params = "btnAdd", method = RequestMethod.POST)
-  public ModelAndView addVehicleRecord(Model model,HttpSession session) {
-    String actionString="add";
+  public ModelAndView addVehicleRecord(Model model, HttpSession session) {
+    String actionString = "add";
     session.setAttribute("sessionButtonAttribute", actionString);
 
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
@@ -129,18 +134,19 @@ public class AdminCatalogController {
    * 
    * @param vehicleDetails
    * @return redirect to admin page after action is complete
-   * @throws ParseException 
+   * @throws ParseException
    */
 
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
-  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails) throws ParseException {
+  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails)
+      throws ParseException {
 
     try {
       if (vehicleDetails.getId() == 0) {
-       // vehicleService.AddVehicleInfo(vehicleDetails);
-        //vehiclesDataGateway.addVehicles(vehicleDetails);
+        // vehicleService.AddVehicleInfo(vehicleDetails);
+        // vehiclesDataGateway.addVehicles(vehicleDetails);
         vehiclesDataMapper.addVehiclesRecord(vehicleDetails);
-        //clientGateway.addEntry(client);
+        // clientGateway.addEntry(client);
       } else {
         vehicleService.UpdateVehicleInfo(vehicleDetails);
       }
@@ -195,9 +201,9 @@ public class AdminCatalogController {
    */
   @RequestMapping("/delete/{id}")
   public String deleteVehicleRecord(@PathVariable(name = "id") int id) {
-   // vehicleService.deleteVehicle(id);
+    // vehicleService.deleteVehicle(id);
     vehiclesDataMapper.removeVehiclesRecord(id);
-    
+
     return "redirect:/admin";
   }
 
@@ -213,6 +219,12 @@ public class AdminCatalogController {
 
     return "redirect:/transactions";
 
+  }
+
+  @RequestMapping(value = "/admin", params = "logout", method = RequestMethod.POST)
+  public String logout(Model model) {
+    count = 1;
+    return "redirect:/loginpage";
   }
 
 }

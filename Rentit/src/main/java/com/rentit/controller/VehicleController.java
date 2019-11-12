@@ -36,7 +36,6 @@ public class VehicleController {
   private static String sOrderType = "ASC";
   List<Vehicles> VehiclesList=null;
   RegisterController rv = new RegisterController();
-
   @Autowired
   private VehicleService vehicleService;
   long idDummy;
