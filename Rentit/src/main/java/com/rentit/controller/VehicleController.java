@@ -34,6 +34,7 @@ public class VehicleController {
   private static String sOrderModel = "ASC";
   private static String sOrderYear = "ASC";
   private static String sOrderType = "ASC";
+  List<Vehicles> VehiclesList=null;
   RegisterController rv = new RegisterController();
 
   @Autowired
@@ -50,16 +51,16 @@ public class VehicleController {
   @RequestMapping("/vehicle")
   public String loadVehicleListToAssign(Model model, HttpSession session) {
 
-   // String username = LoginController.username;
-   // String usergroup = RegisterController.usergrp;
-    String username = "clerk";
-    String usergroup = "clerk";
+    String username = LoginController.username;
+    String usergroup = RegisterController.usergrp;
+    //String username = "clerk";
+    //String usergroup = "clerk";
     session.setAttribute("mySessionAttribute", usergroup);
     if (username != null) {
 
      // ModelWrapper listVehicles = vehicleService.listAll();
       vehiclesDataMapper = new VehiclesDataMapper();
-      List<Vehicles> VehiclesList = vehiclesDataMapper.getVehiclesData();
+       VehiclesList = vehiclesDataMapper.getVehiclesData();
 
       model.addAttribute("vehicle", VehiclesList);
       return "vehicle";
@@ -105,7 +106,7 @@ public class VehicleController {
 //          sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
 //    }
     vehiclesDataMapper = new VehiclesDataMapper();
-    List<Vehicles> VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(), sModel.trim(),sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
+   VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(), sModel.trim(),sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
     
     model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
@@ -123,16 +124,16 @@ public class VehicleController {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderMake.equals("DESC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o1.getMake().compareTo(o2.getMake()));
       sOrderMake = "ASC";
     } else if (sOrderMake.equals("ASC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o2.getMake().compareTo(o1.getMake()));
       sOrderMake = "DESC";
     }
 
-    model.addAttribute("vehicle", listVehicles);
+    model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
 
   }
@@ -148,16 +149,16 @@ public class VehicleController {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderModel.equals("DESC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o1.getModel().compareTo(o2.getModel()));
       sOrderModel = "ASC";
     } else if (sOrderModel.equals("ASC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o2.getModel().compareTo(o1.getModel()));
       sOrderModel = "DESC";
     }
 
-    model.addAttribute("vehicle", listVehicles);
+    model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
 
   }
@@ -173,16 +174,16 @@ public class VehicleController {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderYear.equals("DESC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o1.getiYear().compareTo(o2.getiYear()));
       sOrderYear = "ASC";
     } else if (sOrderYear.equals("ASC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o2.getiYear().compareTo(o1.getiYear()));
       sOrderYear = "DESC";
     }
 
-    model.addAttribute("vehicle", listVehicles);
+    model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
 
   }
@@ -212,16 +213,16 @@ public class VehicleController {
 
     ModelWrapper listVehicles = vehicleService.listAll();
     if (sOrderType.equals("DESC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o1.getiYear().compareTo(o2.getType()));
       sOrderType = "ASC";
     } else if (sOrderType.equals("ASC")) {
-      Collections.sort(listVehicles.getCatalogList(),
+      Collections.sort(VehiclesList,
           (o1, o2) -> o2.getiYear().compareTo(o1.getType()));
       sOrderType = "DESC";
     }
 
-    model.addAttribute("vehicle", listVehicles);
+    model.addAttribute("vehicle", VehiclesList);
     return "vehicle";
 
   }
