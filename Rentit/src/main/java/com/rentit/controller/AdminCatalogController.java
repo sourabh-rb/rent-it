@@ -46,13 +46,14 @@ public class AdminCatalogController {
    */
   @RequestMapping("/admin")
   public String loadVehicleList(Model model, HttpSession session) {
-    // String username = LoginController.username;
-    // String usergroup = LoginController.usergroup;
-    String username = "admin";
-    String usergroup = "admin";
-    if (username != null && usergroup.equals("admin")) {
-      // ModelWrapper listVehicles = vehicleService.listAll();
-      // model.addAttribute("vehicle", listVehicles);
+
+    String username = LoginController.username;
+   String usergroup = LoginController.usergroup;
+   // String username = "admin";
+    //String usergroup = "admin";
+    if (username != null && usergroup .equals("admin")) {
+     // ModelWrapper listVehicles = vehicleService.listAll();
+      //model.addAttribute("vehicle", listVehicles);
       vehiclesDataMapper = new VehiclesDataMapper();
       VehiclesList = vehiclesDataMapper.getVehiclesData();
       model.addAttribute("vehicle", VehiclesList);

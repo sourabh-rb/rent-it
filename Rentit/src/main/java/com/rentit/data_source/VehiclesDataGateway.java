@@ -9,10 +9,20 @@ import java.util.Date;
 import com.rentit.model.Clients;
 import com.rentit.model.Vehicles;
 
+/**
+ * Vehicle DataGateway layer Added for Sql queries and Java Connectivity.
+ * 
+ * @author Basant Gera
+ *
+ */
 public class VehiclesDataGateway {
 
   private DatabaseConfig db;
   
+  /**
+   * 
+   * @return a array List containing number of Columns with there respective details
+   */
   public ArrayList<ArrayList<String>> listAll() {
     db = DatabaseConfig.getDBInstance();  
     ResultSet rs= db.executeCommand("select * from vehicles order by iYear ASC"); 
@@ -21,7 +31,7 @@ public class VehiclesDataGateway {
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 9; i++) {
+        for(int i = 1; i <= 8; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -33,6 +43,16 @@ public class VehiclesDataGateway {
     return vehiclesData;
   }
   
+  /**
+   * 
+   * @param Make Parameters Used to search for make
+   * @param Type Parameters Used to search for make
+   * @param Model Parameters  Used to search for Model
+   * @param iYear Parameters  Used to search for Year
+   * @param sLess Parameters  Used to search  for Less than Year
+   * @param sGreater Parameters  Used to search Greater than Year
+   * @return 
+   */
   public ArrayList<ArrayList<String>> fncSearchVehicles(String Make, String Type, String Model, String iYear,
       String sLess, String sGreater) {
     db = DatabaseConfig.getDBInstance();  
@@ -93,12 +113,14 @@ public class VehiclesDataGateway {
   
  
     
-
+/**
+ * ArrayList returning data for vehicle
+ */
     ArrayList<ArrayList<String>> vehiclesData = new ArrayList<ArrayList<String>>();
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 9; i++) {
+        for(int i = 1; i <= 8; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -110,15 +132,15 @@ public class VehiclesDataGateway {
     return vehiclesData;
   }
   
-  //String sDate1="11/09/2019";  
-  //String eDate2 = "11/12/2019";
- 
+
+ /**
+  * 
+  * @param vec  Vehicle Object  
+  * @throws ParseException  Parse exception 
+  */
   
   public void addVehicles(Vehicles vec) throws ParseException {
-    String sDate1="2019-11-29";  
-    String eDate2 = "2019-12-12";
-    //sDate1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1).toString();
-    //eDate2 = new SimpleDateFormat("yyyy-MM-dd").parse(eDate2).toString();
+    int m=0;
     db = DatabaseConfig.getDBInstance();
     String sqlCmd="INSERT INTO vehicles VALUES "
      + "("+"id" +","
@@ -128,8 +150,7 @@ public class VehiclesDataGateway {
      + vec.getType().trim() + "','" 
      + vec.getLicPlate().trim() + "','" 
      + vec.getColor().trim() + "','"
-     +sDate1+"','"
-     +eDate2+"')";
+     +m+"')";
     //String cmdlove=sqlCmd;
     // System.out.println(cmdlove);   
     db.updateCommand(sqlCmd);
@@ -137,17 +158,32 @@ public class VehiclesDataGateway {
 
   }
   
+  /**
+   * 
+   * @param vehiclesID Id for from Vehicle Table
+   */
   public void removeVehiclesEntry(int vehiclesID) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="DELETE FROM vehicles WHERE id = " + vehiclesID + ";" ;
     db.updateCommand(sqlCmd);
   }
   
+  /**
+   * 
+   * @param column Currect colummn name
+   * @param newValue updated value
+   * @param vehiclesID particular Id for vehicle details
+   */
   public void updateVehiclesEntry(String column, String newValue, Long vehiclesID) {
    // to be done by Arvind
    // for admin page
   }
   
+  /**
+   * 
+   * @param clientID  ClientID with Column name
+   * @return Vehicle Object
+   */
   public ArrayList<String> getEntry(Long clientID) {
     ArrayList<String> vehc = new ArrayList<String>();
     // to be done by Arvind
@@ -155,6 +191,11 @@ public class VehiclesDataGateway {
     return vehc; 
   }
 
+  /**
+   * 
+   * @param column Column name to update the field
+   * @param vehicleId Vehicle ID to update the Colummn name
+   */
   public void setNull(String column, Long vehicleId) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="UPDATE vehicles SET " + column + " = 0 WHERE id = " + vehicleId + ";" ;
