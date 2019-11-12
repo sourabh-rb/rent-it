@@ -50,7 +50,7 @@ public class ClerksDataGateway {
   public void addEntry(Clerks clerk) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd =
-        "INSERT INTO clerks (id, first_name, last_name, username, password, email, usergroup)";
+        "INSERT INTO clerks (id, firstName, lastName, username, password, email, usergroup)";
     sqlCmd += " VALUES ( " + clerk.getId() + ",'" + clerk.getFirstName() + "', '"
         + clerk.getLastName() + "', '" + clerk.getUsername() + "', '" + clerk.getPassword() + "', '"
         + clerk.getEmail() + "', '" + clerk.getusergroup() + "')";
