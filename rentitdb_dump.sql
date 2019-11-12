@@ -32,7 +32,7 @@ CREATE TABLE `bookings` (
   `clientId` varchar(45) DEFAULT NULL,
   `vehicleId` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,36 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+INSERT INTO `bookings` VALUES (2,'2019/11/10',NULL,'2019/11/20','2019/11/25',NULL,'17','2'),(3,'2019/11/10',NULL,'2019/11/10','2019/11/15',NULL,'18','3');
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clerks`
+--
+
+DROP TABLE IF EXISTS `clerks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clerks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `usergroup` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clerks`
+--
+
+LOCK TABLES `clerks` WRITE;
+/*!40000 ALTER TABLE `clerks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clerks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -56,13 +85,13 @@ CREATE TABLE `clients` (
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `licenceNumber` varchar(45) NOT NULL,
-  `licence_validity` varchar(45) NOT NULL,
+  `licenceValidity` varchar(45) NOT NULL,
   `phone` varchar(45) NOT NULL,
   `clerkId` int(11) DEFAULT NULL,
   `bookingId` int(11) DEFAULT NULL,
   `vehicleId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,36 +100,8 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (4,'sourabh','sourabh','a1233456','2020-09-18','1234567878',2,3,4),(5,'basant','basant','123455','2020-10-29','3343243',5,6,7),(6,'Andrew','Neo','A-1234-123456-12','2020-09-20','1234567890',1,8,8),(8,'Charan','Neo','A-1234-123456-12','2020-09-20','1234567890',1,8,8),(9,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,1,9),(10,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,10,11),(11,'Swaroop','Raj','A-1234-123456-12','2020-09-20','1234567890',1,2,3),(12,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,3,3),(13,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,3,3),(14,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,3,3),(15,'Aravind','Adiga','A-1234-123456-12','2020-09-20','1234567890',1,3,3);
+INSERT INTO `clients` VALUES (17,'Arvind','Adiga','a23893869','2020-12-28','2382913888',1,2,2),(18,'Basant','Basant','b13243134','2022-12-23','24823094024',1,3,3);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `registration`
---
-
-DROP TABLE IF EXISTS `registration`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `registration` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) DEFAULT NULL,
-  `lastName` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `userGroup` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `registration`
---
-
-LOCK TABLES `registration` WRITE;
-/*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-/*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -111,7 +112,7 @@ DROP TABLE IF EXISTS `vehicles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `Make` varchar(45) NOT NULL,
   `Model` varchar(45) NOT NULL,
   `iYear` varchar(45) NOT NULL,
@@ -121,7 +122,7 @@ CREATE TABLE `vehicles` (
   `bookingId` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `LicPlate_UNIQUE` (`LicPlate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,6 +131,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
+INSERT INTO `vehicles` VALUES (1,'Range Rover','Evoque','2018','SUV','h3s sdv','grey','1'),(2,'Jeep','Compass','2020','SUV','asb qwe','white','2'),(3,'BMW','M3','2017','Sedan','aqw 123','blue','3');
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -142,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-10 20:03:54
+-- Dump completed on 2019-11-11 20:55:32
