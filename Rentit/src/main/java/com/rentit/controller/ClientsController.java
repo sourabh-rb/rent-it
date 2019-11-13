@@ -1,8 +1,5 @@
 package com.rentit.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +15,7 @@ import com.rentit.model.BookingsDataMapper;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
-import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehiclesDataMapper;
-import com.rentit.test_class.TestClass;
 
 
 

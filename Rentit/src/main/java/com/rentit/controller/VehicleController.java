@@ -235,7 +235,7 @@ public class VehicleController {
   @RequestMapping("/VehilceId/{id}")
   public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
-    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+    Vehicles VechilesDetails = vehiclesDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
@@ -252,7 +252,7 @@ public class VehicleController {
   @RequestMapping("/next/{id}")
   public ModelAndView btnNextVehicleDetails(@PathVariable(name = "id") Long id, Model model) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
-    Vehicles VechilesDetails = vehicleService.getNextVehicle((id));
+    Vehicles VechilesDetails = vehiclesDataMapper.getNextVehicle(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
