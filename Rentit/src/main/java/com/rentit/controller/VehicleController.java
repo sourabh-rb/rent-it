@@ -50,14 +50,11 @@ public class VehicleController {
   @RequestMapping("/vehicle")
   public String loadVehicleListToAssign(Model model, HttpSession session) {
 
-    String username = LoginController.username;
-    String usergroup = RegisterController.usergrp;
-    //String username = "clerk";
-    //String usergroup = "clerk";
+    String username = (String) session.getAttribute("sessionusername");
+    String usergroup = (String) session.getAttribute("sessionusergroup");
     session.setAttribute("mySessionAttribute", usergroup);
+    session.setAttribute("mySessionAttribute1", username);
     if (username != null) {
-
-     // ModelWrapper listVehicles = vehicleService.listAll();
       vehiclesDataMapper = new VehiclesDataMapper();
        VehiclesList = vehiclesDataMapper.getVehiclesData();
 

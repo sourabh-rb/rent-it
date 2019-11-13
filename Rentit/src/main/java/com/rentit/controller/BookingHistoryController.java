@@ -2,6 +2,7 @@ package com.rentit.controller;
 
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -45,8 +46,8 @@ public class BookingHistoryController {
    * @return booking-manager : booking manager view
    */
   @RequestMapping("/transactions")
-  public String listClient(Model model) {
-    String username = LoginController.username;
+  public String listClient(Model model, HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
     if (username != null) {
       List<ModelWrapper> listBookings = bookingService.listAll();
       model.addAttribute("bookings", listBookings);
