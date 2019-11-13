@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import com.rentit.data_source.BookingsDataGateway;
 import com.rentit.data_source.ClerksDataGateway;
 import com.rentit.model.Bookings;
@@ -70,9 +71,12 @@ public class BookinFormController {
   @RequestMapping(value = "/bookingForm")
   public String bookingDetails(Model model,HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
+    
+    
+    
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
-
+      
       return "bookingForm";
     } else
       return "redirect:/loginpage";
@@ -90,7 +94,7 @@ public class BookinFormController {
    * @return
    */
   @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-  public String bookVehicle(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model) {
+  public String bookVehicle(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model,HttpSession session) {
 
     BookingsDataGateway bg = new BookingsDataGateway();
     BookingsDataMapper bdm = new BookingsDataMapper();
@@ -99,7 +103,14 @@ public class BookinFormController {
     boolean valid = false;
     try {
       currentdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
-      startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getStartDate());
+      
+      String bookingStatus=(String)session.getAttribute("sessionButtonAttribute11");
+      if(bookingStatus=="rent") {
+        startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
+      }
+      else {
+        startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getStartDate());
+      }
       duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getDueDate());
       licenseexpiry1 =
           new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getClient().getLicenceValidity());

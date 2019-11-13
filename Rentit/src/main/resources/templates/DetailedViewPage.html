@@ -232,14 +232,24 @@
 				
 					<div class="col-sm-2">
 					<span th:if="*{bookingId==0}">
-				<button type="submit" style="margin-bottom:10px;" class="submitButtonClass">Book Now</button>
+				<button type="submit" style="margin-bottom:10px;" name="reserve" id="reserve" class="submitButtonClass">Reserve Now</button>
 				
 				</span>
 				<span th:if="*{bookingId!=0}">
-				<button type="submit" style="margin-bottom:10px;" disabled="disabled"  class="submitButtonClass1">Book Now</button>
+				<button type="submit" style="margin-bottom:10px;" disabled="disabled"  class="submitButtonClass1">Reserve Now</button>
 				</span>
 					
 					</div>
+					
+					<div class="col-sm-2">
+					<span th:if="*{bookingId==0}">
+				<button type="submit" style="margin-bottom:10px;" name="rent" id="rent" class="submitButtonClass">Rent Now</button>
+				
+				</span>
+				<span th:if="*{bookingId!=0}">
+				<button type="submit" style="margin-bottom:10px;" disabled="disabled"  class="submitButtonClass1">Rent Now</button>
+				</span>
+				</div>
 				</div>
 				<div class="col-sm-1"></div>
 				
