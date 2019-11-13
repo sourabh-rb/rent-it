@@ -60,6 +60,23 @@ public class VehiclesDataMapper {
     return vehiclesData;
   }
  
+ public  ArrayList<Vehicles> getBookedVehiclesData(ArrayList<String> idList) {
+   
+   ArrayList<Vehicles> vehiclesData = new ArrayList<Vehicles>();
+   ArrayList<ArrayList<String>> data =  vehiclesDataGateway.listAll();
+   
+   for(ArrayList<String> r : data) {
+     for(String id : idList) {
+       if(r.get(0).equalsIgnoreCase(id)) {
+         vehiclesData.add(mapRecord(r));
+         break;
+       }
+     }
+     
+   }
+   
+   return vehiclesData;
+ }
  public void removeBooking(Long vehicleId) {
    vehiclesDataGateway.setNull("bookingId", vehicleId);
  }

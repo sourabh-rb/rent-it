@@ -145,22 +145,42 @@
 
 					<div class="mainSearchContentPanel">
 						<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label for="lblCartype">Client First Name</label>
+								</div>
+								<div class="col-sm-2">
+									<input type="text"  class="form-control" Placeholder="Enter First Name"
+										name="clientFirstName" >
+								</div>
+								<div class="col-sm-1"></div>
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label for="lblModel">Client Last Name</label>
+								</div>
+								<div class="col-sm-2">
+									<input type="text"  class="form-control"
+										Placeholder=" Enter Last Name" name="clientLastName">
+								</div> 
+								<div class="col-sm-1"></div>
+							</div>
+						<div class="row">
 							<div class="col-sm-1"></div>
 							<div class="col-sm-2">
-								<label for="lblCartype">Client Name</label>
+								<label for="lblCartype">Vehicle Model</label>
 							</div>
 							<div class="col-sm-2">
-								<input type="text" class="form-control" Placeholder="Enter Name"
-									name="Cname" >
+								<input type="text"  class="form-control" Placeholder="Enter Name"
+									name="vehicleModel" >
 							</div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-2">
-								<label for="lblModel">Vehicle</label>
+								<label for="lblModel">Vehicle Make</label>
 							</div>
 							<div class="col-sm-2">
-								<input type="text" class="form-control" id="vehivle"
-									Placeholder=" Enter  Vehicle " name="vehicle">
+								<input type="text"  class="form-control"
+									Placeholder=" Enter  Vehicle " name="vehicleMake">
 							</div> 
 							<div class="col-sm-1"></div>
 						</div>
@@ -171,7 +191,7 @@
 								<label for="lblCartype">Due date</label>
 							</div>
 							<div class="col-sm-3">
-								<input type="date" class="form-control" id="duedate" name="Date" >
+								<input type="date" class="form-control"  name="dueDate" >
 
 							</div>
 
@@ -181,8 +201,8 @@
 								<label for="lblModel">Start Date</label>
 							</div>
 							<div class="col-sm-3">
-								<input type="date" class="form-control" id="startdate"
-									name="startdate" >
+								<input type="date"  class="form-control"
+									name="startDate" >
 							</div>
 							<div class="col-sm-1"></div>
 
@@ -209,45 +229,46 @@
 					<div style="padding: 3px;"></div>
 					<table id="customers">
 						<tr>
-							<th>Client ID</th>
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th style="width: 16%;">License Number</th>
-							<th style="width: 12%;">License Validity</th>
-							<th>Phone Number</th>
+							<th>Booked On</th>
 							<th style="width: 12%;">Start Date</th>
 							<th style="width: 12%;">Due Date</th>
-							<th style="width: 4%;">Booking ID</th>
-							<th>Booked On</th>
-							<th style="width: 12%;">Cancel Date</th>
+							
 							<th style="width: 12%;">Return Date</th>
+							<th style="width: 12%;">Cancel Date</th>
+							<th>Make</th>
+							<th>Model</th>
+							<th>Vehicle Licence Number</th>
 							<th>Status</th>
+							
+							
 
 
 
 						</tr>
 
 						<tr th:each="booking : ${bookings}">
-							<td th:text="${booking.getClient().getClientID()}"></td>
-							<td th:text="${booking.getClient().getFirstName()}"></td>
-							<td th:text="${booking.getClient().getLastName()}"></td>
-							<td th:text="${booking.getClient().getLicenceNumber()}"></td>
-							<td th:text="${booking.getClient().getLicenceValidity()}"></td>
-							<td th:text="${booking.getClient().getPhone()}"></td>
-							<td th:text="${booking.getBooking().getStartDate()}"></td>
-							<td th:text="${booking.getBooking().getDueDate()}"></td>
-							<td th:text="${booking.getBooking().getBookingid()}"></td>
-							<td th:text="${booking.getBooking().getBookingTS()}"></td>
-							<td th:text="${booking.getBooking().getCancelDate()}"></td>
-							<td th:text="${booking.getBooking().getReturnDate()}"></td>
+							<td th:text="${booking.get(0)}"></td>
+							<td th:text="${booking.get(1)}"></td>
+							<td th:text="${booking.get(2)}"></td>
+							<td th:text="${booking.get(3)}"></td>
+							<td th:text="${booking.get(4)}"></td>
+							<td th:text="${booking.get(5)}"></td>
+							<td th:text="${booking.get(6)}"></td>
+							<td th:text="${booking.get(7)}"></td>
+							<td th:text="${booking.get(8)}"></td>
+							<td th:text="${booking.get(9)}"></td>
+							<td th:text="${booking.get(10)}"></td>
 							<td>
 
-								<div th:if="${booking.getBooking().getReturnDate()}">
+								<div th:if="${booking.get(6)}">
 									RETURNED</div>
-								<div th:if="${booking.getBooking().getCancelDate()}">
+								<div th:if="${booking.get(7)}">
 									CANCELLED</div>
 								<div
-									th:if="!${booking.getBooking().getReturnDate()} and !${booking.getBooking().getCancelDate()}">
+									th:if="!${booking.get(6)} and !${booking.get(7)}">
 									CONFIRMED</div>
 
 							</td>
