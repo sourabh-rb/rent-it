@@ -1,5 +1,6 @@
 package com.rentit.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -67,8 +68,8 @@ public class BookinFormController {
    * @return
    */
   @RequestMapping(value = "/bookingForm")
-  public String bookingDetails(Model model) {
-    String username = LoginController.username;
+  public String bookingDetails(Model model,HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
 

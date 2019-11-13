@@ -9,6 +9,7 @@ import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Login;
 import com.rentit.test_class.EncryptPassword;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class LoginController {
-  static String username;
-  static String usergroup;
   static int count =0;
   static int acount =0;
 
@@ -48,11 +47,13 @@ public class LoginController {
 
   @RequestMapping(value = "/loginpage", method = RequestMethod.POST)
 
-  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model)
+  public String loginpage(@ModelAttribute(name = "${loginForm}") Login loginForm, Model model,HttpSession session)
       throws Exception {
     EncryptPassword ep = new EncryptPassword();
     ClerksDataMapper cdm = new ClerksDataMapper();
-    username = loginForm.getUsername();
+    String usergroup = null ;
+   String  username = loginForm.getUsername();
+    session.setAttribute("sessionusername", username);
     String password = loginForm.getPassword();
     boolean flag = false;
     ArrayList<Clerks> clerks = new ArrayList<>();
@@ -63,6 +64,7 @@ public class LoginController {
         String decryptpass = ep.decrypt(clerks.get(i).getPassword());
         if (password.equals(decryptpass)) {
           usergroup = clerks.get(i).getusergroup();
+          session.setAttribute("sessionusergroup", usergroup);
           flag = true;
           break;
         }

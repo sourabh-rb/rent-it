@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,9 +51,9 @@ public class ClientsController {
    * @return client-manager : client manager view
    */
   @RequestMapping("/clients")
-  public String listClient(Model model) {
-    String username = LoginController.username;
-    if (username == null) {
+  public String listClient(Model model,HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
+    if (username != null) {
       clientDataMapper = new ClientsDataMapper();
       bookingDataMapper = new BookingsDataMapper();
       vehicleDataMapper = new VehiclesDataMapper();

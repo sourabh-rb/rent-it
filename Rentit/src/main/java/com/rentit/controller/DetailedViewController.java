@@ -1,6 +1,7 @@
 package com.rentit.controller;
 
 
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +23,8 @@ public class DetailedViewController {
    */
   @RequestMapping(value = "/DetailedViewPage", method = RequestMethod.GET)
 
-  public String getDetailedViewPage() {
-    String username = LoginController.username;
+  public String getDetailedViewPage(HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
     if (username != null)
       return "DetailedViewPage";
 
