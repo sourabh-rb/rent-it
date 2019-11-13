@@ -221,9 +221,15 @@ function toggle(source) {
 					<div style="padding: 5px;"></div>
 					<div class="row">
 						<div class="col-sm-2">
+							<span th:if="${session.mySessionAttribute} =='admin'">
+							<button type="submit" value="Submit" name="btnClientManager"
+								id="btnClientManager" class="buttonClass" disabled="disabled" style="background-color: rgb(135,206,250);">Client
+								Manager</button></span>
+								
+						<span th:if="${session.mySessionAttribute} =='clerk'">
 							<button type="submit" value="Submit" name="btnClientManager"
 								id="btnClientManager" class="buttonClass">Client
-								Manager</button>
+								Manager</button></span>
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" value="Submit" name="btnSortMake"
@@ -292,12 +298,6 @@ function toggle(source) {
 			</div>
 		</div>
 
-
-
-
-
-
-
 		<footer class="site-footer"
 			style="background-image: url(images/hero_bg_5.jpg);"> </footer>
 
@@ -318,32 +318,3 @@ function toggle(source) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

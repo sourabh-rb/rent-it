@@ -16,6 +16,10 @@ public class VehiclesDataMapper {
     
    vehiclesDataGateway.addVehicles(vehicles);
   }
+ 
+ public void updateVehiclesRecord(Vehicles vehicles) throws ParseException{
+   vehiclesDataGateway.updateVehiclesEntry(vehicles);
+ }
   
   public  ArrayList<Vehicles> getVehiclesData() {
     
@@ -33,17 +37,25 @@ public class VehiclesDataMapper {
   public void removeVehiclesRecord(int VehicleID) {
     vehiclesDataGateway.removeVehiclesEntry(VehicleID);
   }
+  
+  /**
+   * This method fetches the details for selected vehicle in Vehicle catalog
+   * @param recordData record for current vehicle
+   * @return vehicle record
+   */
 
   private Vehicles mapRecord(ArrayList<String> recordData) {
     Vehicles veh = new Vehicles();
    veh.setId(Integer.parseInt(recordData.get(0)));
-   //veh.setLicPlate(recordData.get(1));
-   veh.setType(recordData.get(4));
    veh.setMake(recordData.get(1));
    veh.setModel(recordData.get(2));
    veh.setiYear(recordData.get(3));
-   //veh.setColor(recordData.get(6));
-    return veh;
+   veh.setType(recordData.get(4));
+   veh.setLicPlate(recordData.get(5));
+   veh.setColor(recordData.get(6));
+   veh.setbookingId(Integer.parseInt(recordData.get(7)));
+
+   return veh;
     
   }
   
@@ -59,24 +71,51 @@ public class VehiclesDataMapper {
     
     return vehiclesData;
   }
- 
- public  ArrayList<Vehicles> getBookedVehiclesData(ArrayList<String> idList) {
-   
-   ArrayList<Vehicles> vehiclesData = new ArrayList<Vehicles>();
-   ArrayList<ArrayList<String>> data =  vehiclesDataGateway.listAll();
-   
-   for(ArrayList<String> r : data) {
-     for(String id : idList) {
-       if(r.get(0).equalsIgnoreCase(id)) {
-         vehiclesData.add(mapRecord(r));
-         break;
-       }
-     }
-     
-   }
-   
-   return vehiclesData;
+ /**
+  * This method retrieves vehicle record with vehicleID
+  * @param vehicleID ID of the required vehicle
+  * @return vehicle record
+  */
+ public Vehicles getRecord(Long vehicleID) {
+   ArrayList<String> record = vehiclesDataGateway.getEntry(vehicleID);
+   return mapRecord(record);
  }
+ 
+ 
+ /**
+  * Method to return next vehicle in detailed view page
+  * 
+  * @return next vehicle in catalog
+  */
+
+ public Vehicles getNextVehicle(Long id) {
+
+   ArrayList<Integer> idList=new ArrayList<>();
+   int currentID=0;
+   
+   for (Vehicles vehicle : getVehiclesData()) {
+     System.out.println(vehicle.getBookingId());
+     idList.add(vehicle.getId());
+   }
+
+   for (int i = 0; i < idList.size(); i++) {
+    int temp=idList.get(i);
+    
+    
+    if(temp==id) {
+      if(i!=idList.size()-1) {
+        currentID=idList.get(i+1);
+      }
+      else {
+        currentID=idList.get(0);
+      }
+    }
+  }
+     long newId=currentID;
+     Vehicles VechilesDetails = getRecord(newId);
+     return VechilesDetails;
+ }
+ 
  public void removeBooking(Long vehicleId) {
    vehiclesDataGateway.setNull("bookingId", vehicleId);
  }

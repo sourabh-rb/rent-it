@@ -149,10 +149,35 @@ public class VehiclesDataGateway {
      + vec.getiYear().trim() + "','" 
      + vec.getType().trim() + "','" 
      + vec.getLicPlate().trim() + "','" 
-     + vec.getColor().trim() + "','"
-     +m+"')";
-    //String cmdlove=sqlCmd;
-    // System.out.println(cmdlove);   
+     + vec.getColor().trim() + "',"
+         + m + ")";   
+    db.updateCommand(sqlCmd);
+  }
+  
+    /**
+   * 
+   * @param column Currect colummn name
+   * @param newValue updated value
+   * @param vehiclesID particular Id for vehicle details
+   */
+  
+  public void updateVehiclesEntry(Vehicles vec) {
+    db = DatabaseConfig.getDBInstance();
+    String colum1="Make";
+    String colum2="Model";
+    String colum3="iYear";
+    String colum4="Type";
+    String colum5="LicPlate";
+    String colum6="Color";
+   
+    String sqlCmd ="UPDATE vehicles SET " + colum1 + " = '" + vec.getMake() + "' "+","
+        + colum2 + " = '" + vec.getModel() + "' "+","
+        + colum3 + " = '" + vec.getiYear() + "' "+","
+        + colum4 + " = '" + vec.getType() + "' "+","
+        + colum5 + " = '" + vec.getLicPlate() + "' "+","
+        + colum6 + " = '" + vec.getColor() + "' "
+        + "WHERE id = " + vec.getId() + ";" ;
+    
     db.updateCommand(sqlCmd);
 
 
@@ -168,39 +193,32 @@ public class VehiclesDataGateway {
     db.updateCommand(sqlCmd);
   }
   
-  /**
-   * 
-   * @param column Currect colummn name
-   * @param newValue updated value
-   * @param vehiclesID particular Id for vehicle details
-   */
-  public void updateVehiclesEntry(String column, String newValue, Long vehiclesID) {
-   // to be done by Arvind
-   // for admin page
-  }
-  
-  /**
-   * 
-   * @param clientID  ClientID with Column name
-   * @return Vehicle Object
-   */
-  public ArrayList<String> getEntry(Long clientID) {
+
+  public ArrayList<String> getEntry(Long vehicleID) {
     ArrayList<String> vehc = new ArrayList<String>();
-    // to be done by Arvind
-    // for vehicle page detailed view
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="SELECT * FROM vehicles WHERE id = " + vehicleID + ";";
+    ResultSet rs = db.executeCommand(sqlCmd);
+
+    try {
+      while(rs.next()) {
+        for(int i = 1; i <= 8; i++) {
+          vehc.add(rs.getString(i));
+        } 
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+     
     return vehc; 
   }
-
-  /**
-   * 
-   * @param column Column name to update the field
-   * @param vehicleId Vehicle ID to update the Colummn name
-   */
+  
   public void setNull(String column, Long vehicleId) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="UPDATE vehicles SET " + column + " = 0 WHERE id = " + vehicleId + ";" ;
     db.updateCommand(sqlCmd);
-    
+   
   }
   
  

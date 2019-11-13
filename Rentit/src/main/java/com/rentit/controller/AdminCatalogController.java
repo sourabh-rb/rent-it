@@ -147,7 +147,8 @@ public class AdminCatalogController {
         vehiclesDataMapper.addVehiclesRecord(vehicleDetails);
         // clientGateway.addEntry(client);
       } else {
-        vehicleService.UpdateVehicleInfo(vehicleDetails);
+        vehiclesDataMapper.updateVehiclesRecord(vehicleDetails);
+        //vehicleService.UpdateVehicleInfo(vehicleDetails);
       }
     } catch (Exception e) {
       // TODO Auto-generated catch block
@@ -187,7 +188,8 @@ public class AdminCatalogController {
     session.setAttribute("sessionButtonAttribute", actionString);
 
     ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
-    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+    //Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+    Vehicles VechilesDetails=vehiclesDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
     return sDetailsmav;
   }
