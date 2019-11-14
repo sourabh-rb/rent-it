@@ -16,7 +16,7 @@ import com.rentit.model.ModelWrapper;
 public class BookingsDataGateway {
   
   private DatabaseConfig db;
-  
+  public static String bkngid ;
   
   /**
    * This method is used to list all contents of client table.
@@ -43,8 +43,8 @@ public class BookingsDataGateway {
   }
   
   /**
-   * This method is used to add entry into the Bookings table.
-   * @param newBooking
+   * This method is used to add entry into the Bookings table, update clients and vehicles table with bookingID.
+   * @param booking
    */
   public void addEntry(Bookings booking) {
     db = DatabaseConfig.getDBInstance();
@@ -53,11 +53,13 @@ public class BookingsDataGateway {
         +  booking.getReturnDate() + "', '" 
         + booking.getStartDate() + "', '" 
         + booking.getDueDate() + "', '"
-        + booking.getCancelDate() + "', '"
-        + booking.getClientID() + ", "
+        + booking.getCancelDate() + "', "
+        + booking.getClientID() + ","
         + booking.getVehicleID() + ")";
-    
     db.updateCommand(sqlCmd);
+    
+    
+    
   }
   
   /**

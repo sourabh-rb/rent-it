@@ -2,6 +2,7 @@ package com.rentit.controller;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import com.rentit.data_source.BookingsDataGateway;
 import com.rentit.data_source.ClerksDataGateway;
+import com.rentit.data_source.ClientsDataGateway;
 import com.rentit.model.Bookings;
 import com.rentit.model.BookingsDataMapper;
+import com.rentit.model.Clerks;
 import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
@@ -31,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -42,10 +46,16 @@ import java.util.Date;
  */
 @Controller
 public class BookinFormController {
-  
-  private BookingsDataGateway  bookingsDataGateway;
 
+  private BookingsDataGateway bookingsDataGateway;
+  Date date = new Date();
+
+  long time = date.getTime();
+  static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
   static LocalDate localDate = LocalDate.now();
+  Timestamp ts = new Timestamp(time);
+  // static long time = System.currentTimeMillis();
+  String localtime = sdf.format(ts);
   String currentdate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
   Date currentdate1 = null;
   Date startdate1 = null;
@@ -62,6 +72,21 @@ public class BookinFormController {
 
   private VehicleService vehicleService;
 
+  public Long getClerkID(HttpSession session) {
+    ArrayList<Clerks> clerks = new ArrayList<>();
+    ClerksDataMapper cdm = new ClerksDataMapper();
+    Long clerkid = null;
+    clerks = cdm.getClerkData();
+    for (int i = 0; i < clerks.size(); i++) {
+      if (session.getAttribute("sessionusername").equals(clerks.get(i).getUsername())) {
+        clerkid = clerks.get(i).getId();
+        break;
+      }
+    }
+    return clerkid;
+
+  }
+
   /**
    * This method renders booking page.
    * 
@@ -69,14 +94,14 @@ public class BookinFormController {
    * @return
    */
   @RequestMapping(value = "/bookingForm")
-  public String bookingDetails(Model model,HttpSession session) {
+  public String bookingDetails(Model model, HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
-    
-    
-    
+
+
+
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
-      
+
       return "bookingForm";
     } else
       return "redirect:/loginpage";
@@ -94,26 +119,24 @@ public class BookinFormController {
    * @return
    */
   @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-  public String bookVehicle(@ModelAttribute("bookingn") ModelWrapper newBooking, Model model,HttpSession session) {
+  public String bookVehicle(@RequestParam("firstname") String firstname,
+      @RequestParam("lastname") String lastname, @RequestParam("licenseNumber") String LicenseNo,
+      @RequestParam("PhoneNo") String PhoneNo, @RequestParam("startDate") String startDate,
+      @RequestParam("dueDate") String dueDate,
+      @RequestParam("licenceValidity") String licenceValidity, Model model, HttpSession session) {
 
-    BookingsDataGateway bg = new BookingsDataGateway();
-    BookingsDataMapper bdm = new BookingsDataMapper();
-    ClientsDataMapper cdm = new ClientsDataMapper();
-    
     boolean valid = false;
     try {
       currentdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
-      
-      String bookingStatus=(String)session.getAttribute("sessionButtonAttribute11");
-      if(bookingStatus=="rent") {
+
+      String bookingStatus = (String) session.getAttribute("sessionButtonAttribute11");
+      if (bookingStatus == "rent") {
         startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(currentdate);
+      } else {
+        startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
       }
-      else {
-        startdate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getStartDate());
-      }
-      duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getBooking().getDueDate());
-      licenseexpiry1 =
-          new SimpleDateFormat("yyyy-MM-dd").parse(newBooking.getClient().getLicenceValidity());
+      duedate1 = new SimpleDateFormat("yyyy-MM-dd").parse(dueDate);
+      licenseexpiry1 = new SimpleDateFormat("yyyy-MM-dd").parse(licenceValidity);
 
     } catch (ParseException e) {
       e.printStackTrace();
@@ -142,10 +165,32 @@ public class BookinFormController {
       return "bookingForm";
     } else {
       // newBooking.setVehicle(vehicleService.getBookVehicle());
-      
-     // bdm.addBookingRecord(newBooking);
-      //cdm.addClientRecord(newBooking);
-     clientService.saveNewBooking(newBooking);
+      ClientsDataMapper clientsDataMap = new ClientsDataMapper();
+      BookingsDataMapper bookingsDataMap = new BookingsDataMapper();
+      Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
+      Clients newClient = new Clients();
+      Bookings book = new Bookings();
+      newClient.setFirstName(firstname);
+      newClient.setLastName(lastname);
+      newClient.setLicenceNumber(LicenseNo);
+      newClient.setPhone(PhoneNo);
+      newClient.setLicenceValidity(licenceValidity);
+      newClient.setVehicleId(vehicleId);
+      newClient.setClerkid(getClerkID(session));
+      newClient.setBookingId(null);
+      book.setStartDate(startDate);
+      book.setDueDate(dueDate);
+      book.setVehicleID(vehicleId);
+      book.setBookingTS(localtime);
+      book.setCancelDate(null);
+      book.setReturnDate(null);
+
+
+      clientsDataMap.addClientRecord(newClient);
+      String id1 = ClientsDataGateway.val;
+      Long id = Long.parseLong(id1);
+      book.setClientID(id);
+      bookingsDataMap.addBookingRecord(book);
       return "redirect:/clients";
     }
 

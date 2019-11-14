@@ -15,6 +15,7 @@ import com.rentit.model.Clients;
 public class ClientsDataGateway {
 
   private DatabaseConfig db;
+  public static String val = null;
 
   /**
    * This method is used to list all contents of client table.
@@ -57,6 +58,15 @@ public class ClientsDataGateway {
         + cli.getVehicleId() + ")";
    
     db.updateCommand(sqlCmd);
+    ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
+    try {
+      while(rs.next()) {
+        val = rs.getString(1);
+      }
+   } catch (SQLException e) {
+     // TODO Auto-generated catch block
+     e.printStackTrace();
+   }
 
 
   }
