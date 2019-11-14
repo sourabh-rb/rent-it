@@ -235,8 +235,10 @@ public class VehicleController {
    */
 
   @RequestMapping("/VehilceId/{id}")
-  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model) {
+  public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model, HttpSession session) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
+    Long vehicleid=id;
+    session.setAttribute("vehicleidAttribute", vehicleid);
     Vehicles VechilesDetails = vehiclesDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
@@ -259,20 +261,7 @@ public class VehicleController {
     return sDetailsmav;
   }
 
-//  /**
-//   * This method is used to book a vehicle from detailed view page, which redirects user to a
-//   * booking form.
-//   * 
-//   * @param vechileDetails
-//   * @return redirect to booking form
-//   */
-//
-//  @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
-//  public String bookVehicleNow(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
-//    vehicleService.setBookVehicle(vechileDetails);
-//    return "redirect:/bookingForm";
-//  }
-  
+ 
   @RequestMapping(value = "/saveRec", params = "reserve", method = RequestMethod.POST)
   public String bookingDetails(Model model,HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
