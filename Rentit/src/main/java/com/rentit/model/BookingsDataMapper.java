@@ -40,6 +40,25 @@ public class BookingsDataMapper {
     
   }
   
+public ArrayList<Bookings> getBookingData(ArrayList<String> idList) {
+    
+    ArrayList<Bookings> bookingData = new ArrayList<Bookings>();
+    ArrayList<ArrayList<String>> data =  bookingGateway.listAll();
+    
+    for(ArrayList<String> r : data) {
+      for(String id : idList) {
+        if(r.get(0).equalsIgnoreCase(id)) {
+          bookingData.add(mapRecord(r));
+          break;
+        }
+      }
+      
+    }
+    
+    return bookingData;
+    
+  }
+  
   /**
    * This method is to add booking record.
    * @param booking
@@ -126,6 +145,11 @@ public class BookingsDataMapper {
   
   public void processDelete(Long id) {
     bookingGateway.removeClientandBookingEntry(id);
+  }
+  
+  public ArrayList<ArrayList<String>> getTransactionDetails(String firstName, String lastName, 
+      String model, String make, String startDate, String dueDate) {
+      return bookingGateway.getClientBookingVehicleDetails(firstName, lastName, model, make, startDate, dueDate);
   }
   
   

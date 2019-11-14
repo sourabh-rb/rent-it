@@ -1,5 +1,6 @@
 package com.rentit.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.rentit.model.BookingFilter;
 import com.rentit.model.BookingService;
+import com.rentit.model.Bookings;
+import com.rentit.model.BookingsDataMapper;
+import com.rentit.model.Clients;
+import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.Vehicles;
+import com.rentit.model.VehiclesDataMapper;
 
 /**
  * BookingHistory Controller is used to render booking manager.
@@ -30,8 +37,10 @@ import com.rentit.model.Vehicles;
 @Controller
 public class BookingHistoryController {
 
-  @Autowired
   private BookingService bookingService;
+  private ClientsDataMapper clientDataMapper;
+  private BookingsDataMapper bookingDataMapper;
+  private VehiclesDataMapper vehicleDataMapper;
 
   @InitBinder
   public void initBinder(WebDataBinder binder) {
@@ -46,14 +55,34 @@ public class BookingHistoryController {
    * @return booking-manager : booking manager view
    */
   @RequestMapping("/transactions")
-  public String listClient(Model model, HttpSession session) {
+  public String listTransactions(Model model, HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
     if (username != null) {
-      List<ModelWrapper> listBookings = bookingService.listAll();
-      model.addAttribute("bookings", listBookings);
+      bookingDataMapper = new BookingsDataMapper();
+
+      BookingFilter filterCriteria = new BookingFilter();
+      ArrayList<ArrayList<String>> t = bookingDataMapper.getTransactionDetails(filterCriteria.getClientFirstName(), filterCriteria.getClientLastName(),
+          filterCriteria.getVehicleModel(), filterCriteria.getVehicleMake(), filterCriteria.getStartDate(), filterCriteria.getDueDate());
+      model.addAttribute("bookings", t);
       return "booking-manager";
     } else
       return "redirect:/loginpage";
+  }
+
+  private ArrayList<String> getBookingIdList(List<Clients> clients) {
+    ArrayList<String> idList = new ArrayList<String>();
+    for(Clients cli : clients) {
+      idList.add(cli.getBookingId().toString());
+    }
+    return idList;
+  }
+  
+  private ArrayList<String> getVehicleIdList(List<Clients> clients) {
+    ArrayList<String> idList = new ArrayList<String>();
+    for(Clients cli : clients) {
+      idList.add(cli.getVehicleId().toString());
+    }
+    return idList;
   }
 
   /**
@@ -66,21 +95,15 @@ public class BookingHistoryController {
 
   @RequestMapping(value = "/transactions", method = RequestMethod.POST)
   public String getDetailOftransactions(
-      @ModelAttribute("transactionob") ModelWrapper transactionAttributes, Model model) {
-    // List<ModelWrapper> listBookings = bookingService.listAll();
+      @ModelAttribute("transactionob") BookingFilter filterOptions, Model model) {
 
-    ModelWrapper listBookings = (ModelWrapper) bookingService.listAll();
-
-    String cname = transactionAttributes.getClient().getFirstName();
-    String vehicle = transactionAttributes.getVehicle().getModel();
-    String duedate = transactionAttributes.getBooking().getDueDate();
-    String startdate = transactionAttributes.getBooking().getStartDate();
-    if (!(listBookings.equals(null))) {
-
-      listBookings =
-          (ModelWrapper) bookingService.ListAlltransactions(cname, vehicle, duedate, startdate);
-    }
-    model.addAttribute("bookings", listBookings);
+    BookingFilter filterCriteria = new BookingFilter();
+    filterCriteria = filterOptions;
+    
+    ArrayList<ArrayList<String>> t = bookingDataMapper.getTransactionDetails(filterCriteria.getClientFirstName(), filterCriteria.getClientLastName(),
+        filterCriteria.getVehicleModel(), filterCriteria.getVehicleMake(), filterCriteria.getStartDate(), filterCriteria.getDueDate());
+    model.addAttribute("bookings", t);
+    
     return "booking-manager";
 
   }

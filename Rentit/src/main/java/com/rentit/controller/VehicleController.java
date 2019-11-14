@@ -1,5 +1,7 @@
 package com.rentit.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -235,7 +237,7 @@ public class VehicleController {
   @RequestMapping("/VehilceId/{id}")
   public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
-    Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
+    Vehicles VechilesDetails = vehiclesDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
@@ -252,23 +254,54 @@ public class VehicleController {
   @RequestMapping("/next/{id}")
   public ModelAndView btnNextVehicleDetails(@PathVariable(name = "id") Long id, Model model) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
-    Vehicles VechilesDetails = vehicleService.getNextVehicle((id));
+    Vehicles VechilesDetails = vehiclesDataMapper.getNextVehicle(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
 
-  /**
-   * This method is used to book a vehicle from detailed view page, which redirects user to a
-   * booking form.
-   * 
-   * @param vechileDetails
-   * @return redirect to booking form
-   */
+//  /**
+//   * This method is used to book a vehicle from detailed view page, which redirects user to a
+//   * booking form.
+//   * 
+//   * @param vechileDetails
+//   * @return redirect to booking form
+//   */
+//
+//  @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
+//  public String bookVehicleNow(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
+//    vehicleService.setBookVehicle(vechileDetails);
+//    return "redirect:/bookingForm";
+//  }
+  
+  @RequestMapping(value = "/saveRec", params = "reserve", method = RequestMethod.POST)
+  public String bookingDetails(Model model,HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
+    String bookingStatus="reserve";
+    System.out.println(bookingStatus);
+    session.setAttribute("sessionButtonAttribute11", bookingStatus);
+    if (username != null) {
+      model.addAttribute("bookingn", new ModelWrapper());
 
-  @RequestMapping(value = "/saveRec", method = RequestMethod.POST)
-  public String bookVehicleNow(@ModelAttribute("saveVehicle") Vehicles vechileDetails) {
-    vehicleService.setBookVehicle(vechileDetails);
-    return "redirect:/bookingForm";
+      return "bookingForm";
+    } else
+      return "redirect:/loginpage";
+
+  }
+ 
+  @RequestMapping(value = "/saveRec", params = "rent", method = RequestMethod.POST)
+  public String bookingDetail(Model model,HttpSession session) {
+    String username = (String) session.getAttribute("sessionusername");
+    String bookingStatus="rent";
+    LocalDate localDate = LocalDate.now();
+    String currentdate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDate);
+    session.setAttribute("sessionCurrentDate", currentdate);
+    session.setAttribute("sessionButtonAttribute11", bookingStatus);
+    if (username != null) {
+      model.addAttribute("bookingn", new ModelWrapper());
+      return "bookingForm";
+    } else
+      return "redirect:/loginpage";
+
   }
 
   /**

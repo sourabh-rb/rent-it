@@ -88,6 +88,7 @@ input[type="date"]:before {
 	margin-right: 0.5em;
 }
 </style>
+
 <title>Booking Form</title>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -217,10 +218,23 @@ input[type="date"]:before {
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
+								
+									<span th:if="${session.sessionButtonAttribute11} =='reserve'">
 									<label class="text-black" for="email">Reservation Start
 										Date</label> <input id="startDateid" name="startDate"
 										value="startDate" th:field="*{booking.startDate}" type="date"
-										class="form-control" required>
+										class="form-control" required></span>
+										
+								<span th:if="${session.sessionButtonAttribute11} =='rent'">
+									<label class="text-black" for="email">Reservation Start
+										Date</label> 
+										<!-- <input id="startRentDateid"   name="startDate" value=""
+									    th:field="*{booking.startDate}" type="text" 
+										class="form-control" required> -->
+										<input id="startRentDateid" name="startDate" 
+										th:field="*{booking.startDate}"  type="text" class="form-control" value="" required
+										disabled="disabled"> 
+										</span>
 
 								</div>
 							</div>
@@ -264,6 +278,8 @@ input[type="date"]:before {
 	<footer class="site-footer"
 		style="background-image: url(images/hero_bg_5.jpg);"> </footer>
 	</div>
+	
+	
 
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -277,6 +293,20 @@ input[type="date"]:before {
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
+	
+	<script>
+function getDate(){
+  var todaydate = new Date();
+  var day = todaydate.getDate();
+  var month = todaydate.getMonth() + 1;
+  var year = todaydate.getFullYear();
+  //var datestring = month + "/" + day + "/" + year;
+  var datestring = year + "-" + month + "-" + day;
+  document.getElementById("startRentDateid").value = datestring;
+ }
+getDate();
+</script>
 
+	
 </body>
 </html>

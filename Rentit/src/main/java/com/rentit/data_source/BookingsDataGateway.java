@@ -142,5 +142,59 @@ public class BookingsDataGateway {
     return val;
   }
   
+  public ArrayList<ArrayList<String>> getClientBookingVehicleDetails(String firstName, String lastName, 
+      String model, String make, String startDate, String dueDate) {
+    
+   if(null == firstName) {
+     firstName = "";
+   }
+   if(null == lastName) {
+     lastName = "";
+   }
+   if(null == model) {
+     model = "";
+   }
+   if(null == make) {
+     make = "";
+   }
+   if(null == startDate) {
+     startDate = "";
+   }
+   if(null == dueDate) {
+     dueDate = "";
+   }
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="SELECT c.firstName, c.lastName, c.licenceNumber, b.bookingTS, b.startDate, "
+                   + " b.dueDate, b.returnDate, b.cancelDate, v.Make, v.Model, v.LicPlate "
+                   + " FROM clients AS c JOIN bookings AS b"
+                   + " ON  c.id = b.clientId"
+                   + " JOIN vehicles AS v"
+                   + " ON b.vehicleId = v.id"
+                   + " WHERE firstName LIKE '%"+ firstName + "%' AND"
+                   + " lastName like '%" + lastName + "%' AND"
+                   + " Make like '%"+ make + "%' AND"
+                   + " Model like '%"+ model + "%'AND"
+                   + " startDate like '%" + startDate.replace('-', '/') + "%' AND"
+                   + " dueDate like '%" + dueDate.replace('-', '/') + "%';";
+    
+    ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+    ResultSet rs = db.executeCommand(sqlCmd);
+    try {
+      while(rs.next()) {
+        ArrayList<String> r = new ArrayList<String>();
+        for(int i = 1; i <= 11; i++) {
+          r.add(rs.getString(i));
+        }
+        result.add(r);
+        
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    
+    return result;
+    
+  }
+  
 
 }
