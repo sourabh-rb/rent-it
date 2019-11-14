@@ -57,7 +57,7 @@ public class BookingHistoryController {
   @RequestMapping("/transactions")
   public String listTransactions(Model model, HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
-    if (username == null) {
+    if (username != null) {
       bookingDataMapper = new BookingsDataMapper();
 
       BookingFilter filterCriteria = new BookingFilter();
