@@ -112,7 +112,10 @@ public class ClientsDataGateway {
     return rec; 
   }
   
-  
+  /**
+   * This method is is used to update clients row  from client table.
+   * @param client
+   */
   public void updateCLientsRow(Clients client) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "UPDATE clients SET " 

@@ -84,7 +84,10 @@ public class BookingsDataGateway {
 
     db.updateCommand(sqlCmd);
   }
-  
+  /**
+   * This methos is used to delete the bookings from the table
+   * @param id
+   */
   public void removeClientandBookingEntry(Long id) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.clientId =  clients.id  WHERE bookings.clientId = " + id + ";";
@@ -116,7 +119,12 @@ public class BookingsDataGateway {
     
     return rec; 
   }
-
+  /**
+   * This method returns a column from booking Table
+   * @param id
+   * @param column
+   * @return
+   */
   public String getValue(Long id, String column) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="SELECT " + column + " FROM bookings WHERE id = " + id + ";" ;

@@ -178,19 +178,31 @@ public class Clients {
   public void setClerkid(Long clerkid) {
     this.clerkid = clerkid;
   }
-
+  /**
+   * getter get booking id.
+   * @return
+   */
   public Long getBookingId() {
     return bookingId;
   }
-
+  /**
+   * setter set booking id.
+   * @param bookingId
+   */
   public void setBookingId(Long bookingId) {
     this.bookingId = bookingId;
   }
-
+  /**
+   * getter get vehicle id.
+   * @return
+   */
   public Long getVehicleId() {
     return vehicleId;
   }
-
+    /**
+     * setter set vehicle id.
+     * @param vehicleId
+     */
   public void setVehicleId(Long vehicleId) {
     this.vehicleId = vehicleId;
   }

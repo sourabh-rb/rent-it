@@ -98,7 +98,7 @@ public class ClientsDataMapper {
     return cli;
     
   }
-
+    
   public void removeBookingandVehicle(Long clientId) {
     clientGateway.setNull("vehicleId", clientId);
     clientGateway.setNull("bookingId", clientId);

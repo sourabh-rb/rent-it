@@ -39,7 +39,7 @@ public class RegisterController {
   }
 
   /**
-   * This methos is to get details from the view
+   * This method is to get details from the view
    * 
    * @param register is a object which stores the view data
    * @param model is model data
