@@ -254,9 +254,11 @@ public class VehicleController {
    */
 
   @RequestMapping("/next/{id}")
-  public ModelAndView btnNextVehicleDetails(@PathVariable(name = "id") Long id, Model model) {
+  public ModelAndView btnNextVehicleDetails(@PathVariable(name = "id") Long id, Model model,HttpSession session) {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
     Vehicles VechilesDetails = vehiclesDataMapper.getNextVehicle(id);
+    Long nextId=VechilesDetails.getId().longValue();
+    session.setAttribute("vehicleidAttribute", nextId);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
