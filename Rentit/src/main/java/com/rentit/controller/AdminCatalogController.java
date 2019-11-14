@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.rentit.data_source.VehiclesDataGateway;
+import com.rentit.model.AdminDataMapper;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
 import com.rentit.model.Vehicles;
-import com.rentit.model.VehiclesDataMapper;
+
 
 
 
@@ -34,9 +34,8 @@ public class AdminCatalogController {
   RegisterController rv = new RegisterController();
   @Autowired
   private VehicleService vehicleService;
-  private VehiclesDataMapper vehiclesDataMapper;
+  private AdminDataMapper adminDataMapper;
   List<Vehicles> VehiclesList = null;
-  private VehiclesDataGateway vehiclesDataGateway;
 
   /**
    * This method renders Vehicle catalog page.
@@ -49,12 +48,18 @@ public class AdminCatalogController {
 
     String username = (String) session.getAttribute("sessionusername");
     String usergroup = (String) session.getAttribute("sessionusergroup");
+    session.setAttribute("mySessionAttribute1", username);
 
     if (username != null && usergroup .equals("admin")) {
      // ModelWrapper listVehicles = vehicleService.listAll();
       //model.addAttribute("vehicle", listVehicles);
-      vehiclesDataMapper = new VehiclesDataMapper();
-      VehiclesList = vehiclesDataMapper.getVehiclesData();
+      
+     // vehiclesDataMapper = new VehiclesDataMapper();
+      adminDataMapper= new AdminDataMapper();
+      
+      
+      //VehiclesList = vehiclesDataMapper.getVehiclesData();
+      VehiclesList =adminDataMapper.getVehiclesData();
       model.addAttribute("vehicle", VehiclesList);
   
       return "admin";
@@ -100,8 +105,9 @@ public class AdminCatalogController {
     // listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
     // sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
     // }
-    vehiclesDataMapper = new VehiclesDataMapper();
-    VehiclesList = vehiclesDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(),
+    //vehiclesDataMapper = new VehiclesDataMapper();
+    adminDataMapper= new AdminDataMapper();
+    VehiclesList = adminDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(),
         sModel.trim(), sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
 
     model.addAttribute("vehicle", VehiclesList);
@@ -121,7 +127,6 @@ public class AdminCatalogController {
   public ModelAndView addVehicleRecord(Model model, HttpSession session) {
     String actionString = "add";
     session.setAttribute("sessionButtonAttribute", actionString);
-
     ModelAndView addVehicle = new ModelAndView("addEditAdmin");
     addVehicle.addObject("vehicleForEdit", new Vehicles());
     return addVehicle;
@@ -144,10 +149,12 @@ public class AdminCatalogController {
       if (vehicleDetails.getId() == 0) {
         // vehicleService.AddVehicleInfo(vehicleDetails);
         // vehiclesDataGateway.addVehicles(vehicleDetails);
-        vehiclesDataMapper.addVehiclesRecord(vehicleDetails);
+      //  vehiclesDataMapper.addVehiclesRecord(vehicleDetails);
+        adminDataMapper.addVehiclesRecord(vehicleDetails);
         // clientGateway.addEntry(client);
       } else {
-        vehiclesDataMapper.updateVehiclesRecord(vehicleDetails);
+        //vehiclesDataMapper.updateVehiclesRecord(vehicleDetails);
+        adminDataMapper.updateVehiclesRecord(vehicleDetails);
         //vehicleService.UpdateVehicleInfo(vehicleDetails);
       }
     } catch (Exception e) {
@@ -189,7 +196,8 @@ public class AdminCatalogController {
 
     ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
     //Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
-    Vehicles VechilesDetails=vehiclesDataMapper.getRecord(id);
+   // Vehicles VechilesDetails=vehiclesDataMapper.getRecord(id);
+    Vehicles VechilesDetails=adminDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
     return sDetailsmav;
   }
@@ -203,7 +211,8 @@ public class AdminCatalogController {
   @RequestMapping("/delete/{id}")
   public String deleteVehicleRecord(@PathVariable(name = "id") int id) {
     // vehicleService.deleteVehicle(id);
-    vehiclesDataMapper.removeVehiclesRecord(id);
+    //vehiclesDataMapper.removeVehiclesRecord(id);
+    adminDataMapper.removeVehiclesRecord(id);
 
     return "redirect:/admin";
   }

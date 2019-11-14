@@ -17,6 +17,9 @@ import com.rentit.model.Vehicles;
  */
 public class VehiclesDataGateway {
 
+  /**
+   * Database connection object
+   */
   private DatabaseConfig db;
   
   /**
@@ -180,7 +183,6 @@ public class VehiclesDataGateway {
     
     db.updateCommand(sqlCmd);
 
-
   }
   
   /**
@@ -193,7 +195,11 @@ public class VehiclesDataGateway {
     db.updateCommand(sqlCmd);
   }
   
-
+/**
+ * 
+ * @param vehicleID VehicleID which helps in selecting the query based on vehicleID
+ * @return  Returning the array list with specfic code
+ */
   public ArrayList<String> getEntry(Long vehicleID) {
     ArrayList<String> vehc = new ArrayList<String>();
     db = DatabaseConfig.getDBInstance();
@@ -213,6 +219,11 @@ public class VehiclesDataGateway {
      
     return vehc; 
   }
+  /**
+   * 
+   * @param column Give the column name to update the null based on vehicle ID
+   * @param vehicleId  Vehicle ID from Vehicle table
+   */
   
   public void setNull(String column, Long vehicleId) {
     db = DatabaseConfig.getDBInstance();

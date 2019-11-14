@@ -5,21 +5,42 @@ import java.util.ArrayList;
 import com.rentit.data_source.VehiclesDataGateway;
 
 public class VehiclesDataMapper {
-
+/**
+ * vehiclesDataGateway Type instance
+ */
   private VehiclesDataGateway vehiclesDataGateway;
   
+  /**
+   *  Contructor object
+   */
   public VehiclesDataMapper() {
     vehiclesDataGateway = new VehiclesDataGateway();
   }
   
+  /**
+   * 
+   * @param vehicles  Vehicles object to get list
+   * @throws ParseException
+   */
  public void addVehiclesRecord(Vehicles vehicles) throws ParseException {
     
    vehiclesDataGateway.addVehicles(vehicles);
   }
  
+ /**
+  * 
+  * @param vehicles vehicles  Vehicles object to get list
+  * @throws ParseException  Long to int parsing exception handling
+  */
+ 
  public void updateVehiclesRecord(Vehicles vehicles) throws ParseException{
    vehiclesDataGateway.updateVehiclesEntry(vehicles);
  }
+ 
+ /**
+  * 
+  * @return vehicle record return in array List
+  */
   
   public  ArrayList<Vehicles> getVehiclesData() {
     
@@ -33,7 +54,10 @@ public class VehiclesDataMapper {
     return vehiclesData;
   }
   
-  
+  /**
+   * 
+   * @param VehicleID Record to be remaoved via Delete command
+   */
   public void removeVehiclesRecord(int VehicleID) {
     vehiclesDataGateway.removeVehiclesEntry(VehicleID);
   }
@@ -59,6 +83,16 @@ public class VehiclesDataMapper {
     
   }
   
+  /**
+   * 
+   * @param Make  Make Record to be searched
+   * @param Type  Type Record to be searched
+   * @param Model Model Record to be searched
+   * @param iYear iYear Record to be searched
+   * @param sLess sLess Record to be searched
+   * @param sGreater sGreater Record to be searched
+   * @return  return you a arrayList containg reocrds
+   */
  public  ArrayList<Vehicles> getVehiclesDataViaSearch(String Make, String Type, String Model, String iYear,
      String sLess, String sGreater) {
     
@@ -116,6 +150,10 @@ public class VehiclesDataMapper {
      return VechilesDetails;
  }
  
+ /**
+  * 
+  * @param vehicleId  removing vehicle record
+  */
  public void removeBooking(Long vehicleId) {
    vehiclesDataGateway.setNull("bookingId", vehicleId);
  }
