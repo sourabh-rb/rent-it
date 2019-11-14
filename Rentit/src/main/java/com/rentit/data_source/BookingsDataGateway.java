@@ -57,7 +57,24 @@ public class BookingsDataGateway {
         + booking.getClientID() + ","
         + booking.getVehicleID() + ")";
     db.updateCommand(sqlCmd);
+    ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
+    try {
+      while(rs.next()) {
+        bkngid = rs.getString(1);
+      }
+   } catch (SQLException e) {
+     // TODO Auto-generated catch block
+     e.printStackTrace();
+     
+   }
+    Long bid = Long.parseLong(bkngid);
+  
+    String column = "bookingId" ;
+    String sqlCmd1= "UPDATE vehicles SET " + column + " = '" + bid + "' WHERE id = " + booking.getVehicleID() + ";";
+    db.updateCommand(sqlCmd1);
+    String sqlCmd2 = "UPDATE clients SET " + column + " = '" + bid + "' WHERE id = " + booking.getClientID() + ";";
     
+    db.updateCommand(sqlCmd2);
     
     
   }
