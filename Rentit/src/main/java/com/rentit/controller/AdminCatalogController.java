@@ -217,7 +217,8 @@ public class AdminCatalogController {
 
   @RequestMapping(value = "/admin", params = "btnManageTransactions", method = RequestMethod.POST)
   public String btnManageTransactions(Model model) {
-
+    
+    //System.out.println("In adminCatalogController");
     return "redirect:/transactions";
 
   }
