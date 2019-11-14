@@ -46,8 +46,8 @@ public class VehicleController {
   /**
    * This method renders catalog page.
    * 
-   * @param model
-   * @return
+   * @param model  Vehicle Model
+   * @return Retrun you list of records
    */
   @RequestMapping("/vehicle")
   public String loadVehicleListToAssign(Model model, HttpSession session) {
@@ -71,9 +71,9 @@ public class VehicleController {
   /**
    * This method redirects to get detailed view page.
    * 
-   * @param VehiclesAttributes
-   * @param model
-   * @return
+   * @param VehiclesAttributes All submitted form in List
+   * @param model Vehicle Model
+   * @return You the list of Variables
    */
   @PostMapping("/vehicle")
   public String fncSearchAddedVehicle(@ModelAttribute(name = "${vehicleform}") Vehicles VehiclesAttributes,
@@ -114,8 +114,8 @@ public class VehicleController {
   /**
    * This method handles sorting functionality by make.
    * 
-   * @param model
-   * @return
+   * @param model Vehicle Model
+   * @return You list in soreted order ASC/DESC
    */
   @RequestMapping(value = "/vehicle", params = "btnSortMake", method = RequestMethod.POST)
   public String sortbasedOnMake(Model model) {
@@ -139,8 +139,8 @@ public class VehicleController {
   /**
    * This method handles sorting functionality by model.
    * 
-   * @param model
-   * @return
+   * @param model Vehicle Model
+   * @return You list in soreted order ASC/DESC
    */
   @RequestMapping(value = "/vehicle", params = "btnSortModel", method = RequestMethod.POST)
   public String sortbasedOnModel(Model model) {
@@ -164,8 +164,8 @@ public class VehicleController {
   /**
    * This method handles sorting functionality by year.
    * 
-   * @param model
-   * @return
+   * @param model Vehicle Model
+   * @return You list in soreted order ASC/DESC
    */
   @RequestMapping(value = "/vehicle", params = "btnSortYear", method = RequestMethod.POST)
   public String sortbasedOnyear(Model model) {
@@ -189,8 +189,8 @@ public class VehicleController {
   /**
    * This method redirects to client manager.
    * 
-   * @param model
-   * @return
+    * @param model Vehicle Model
+   * @return Redireted you to Clients screen
    */
   @RequestMapping(value = "/vehicle", params = "btnClientManager", method = RequestMethod.POST)
   public String btnClientManager(Model model) {
@@ -202,8 +202,8 @@ public class VehicleController {
   /**
    * This method is used to sort Vehicles based on Type.
    * 
-   * @param model
-   * @return vehicle
+  * @param model Vehicle Model
+   * @return You list in soreted order ASC/DESC
    */
 
   @RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
@@ -229,7 +229,7 @@ public class VehicleController {
    * This method is used to fetch the id of selected vehicle in vehicle page and pass it in detailed
    * view to populate its attributes
    * 
-   * @param id of vehicle
+   * @param id of vehicle 
    * @param model
    * @return vehicle details
    */
@@ -247,7 +247,7 @@ public class VehicleController {
   /**
    * Method to return next vehicle in the vehicle catalog in detailed view page
    * 
-   * @param id
+   * @param id  
    * @param model
    * @return next vehicle
    * 
@@ -278,7 +278,12 @@ public class VehicleController {
       return "redirect:/loginpage";
 
   }
- 
+ /**
+  * 
+  * @param model
+  * @param session
+  * @return
+  */
   @RequestMapping(value = "/saveRec", params = "rent", method = RequestMethod.POST)
   public String bookingDetail(Model model,HttpSession session) {
     String username = (String) session.getAttribute("sessionusername");
@@ -309,6 +314,11 @@ public class VehicleController {
     return "redirect:/vehicle";
 
   }
+  /**
+   * 
+   * @param model
+   * @return
+   */
   @RequestMapping(value = "/vehicle", params = "logout", method = RequestMethod.POST)
   public String logout(Model model) {
     return "redirect:/loginpage";
