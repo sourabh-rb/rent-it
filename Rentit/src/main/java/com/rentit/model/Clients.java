@@ -46,7 +46,16 @@ public class Clients {
   public Clients() {
 
   }
-
+  /**
+   * 
+   * @param id
+   * @param first_name
+   * @param last_name
+   * @param licence_number
+   * @param licence_validity
+   * @param phone
+   * @param clerkid
+   */
   public Clients(Long id, String first_name, String last_name, String licence_number,
       @NotNull String licence_validity, String phone, Long clerkid) {
     this.clientid = id;
@@ -178,19 +187,31 @@ public class Clients {
   public void setClerkid(Long clerkid) {
     this.clerkid = clerkid;
   }
-
+  /**
+   * getter get booking id.
+   * @return
+   */
   public Long getBookingId() {
     return bookingId;
   }
-
+  /**
+   * setter set booking id.
+   * @param bookingId
+   */
   public void setBookingId(Long bookingId) {
     this.bookingId = bookingId;
   }
-
+  /**
+   * getter get vehicle id.
+   * @return
+   */
   public Long getVehicleId() {
     return vehicleId;
   }
-
+  /**
+   * setter set vehicle id.
+   * @param vehicleId
+   */
   public void setVehicleId(Long vehicleId) {
     this.vehicleId = vehicleId;
   }

@@ -11,6 +11,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 
 /**
+ * This method is used to encrypt and decrypt the password.
  * @author kotic
  *
  */
@@ -37,7 +38,11 @@ public class EncryptPassword {
          key = skf.generateSecret(ks);
      }
 
-
+     /**
+      * This method returns the encrypted string.
+      * @param unencryptedString
+      * @return
+      */
      public String encrypt(String unencryptedString) {
          String encryptedString = null;
          try {
@@ -52,7 +57,11 @@ public class EncryptPassword {
          return encryptedString;
      }
 
-
+     /**
+      * This method returns the decrypted String.
+      * @param encryptedString
+      * @return
+      */
      public String decrypt(String encryptedString) {
          String decryptedText=null;
          try {

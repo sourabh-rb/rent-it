@@ -56,7 +56,7 @@ public class VehiclesDataMapper {
   
   /**
    * 
-   * @param VehicleID Record to be remaoved via Delete command
+   * @param VehicleID Record to be removed via Delete command
    */
   public void removeVehiclesRecord(int VehicleID) {
     vehiclesDataGateway.removeVehiclesEntry(VehicleID);
