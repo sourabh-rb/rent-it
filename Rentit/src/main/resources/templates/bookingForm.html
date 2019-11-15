@@ -246,7 +246,7 @@ input[type="date"]:before {
 								<div class="col-md-12">
 
 									<input type="submit" value="Book Now"
-										class="btn btn-primary py-2 px-4 text-white">
+									onclick="showpopup()"	class="btn btn-primary py-2 px-4 text-white">
 								</div>
 							</div>
 
@@ -277,6 +277,8 @@ input[type="date"]:before {
 	<script src="js/bootstrap-datepicker.min.js"></script>
 	<script src="js/aos.js"></script>
 	<script src="js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 	
 	<script>
 function getDate(){
@@ -289,6 +291,16 @@ function getDate(){
   document.getElementById("startRentDateid").value = datestring;
  }
 getDate();
+
+function showpopup(){
+	 
+	Swal.fire({
+	  icon: 'error',
+	  title: 'Oops...',
+	  text: 'Something went wrong!'
+	})
+	
+}
 </script>
 
 	
