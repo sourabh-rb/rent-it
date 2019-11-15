@@ -35,7 +35,7 @@ public class BookingService {
   }
 
   /**
-   * This methos is used to list all transactions based on given criteria.
+   * This method is used to list all transactions based on given criteria.
    * @param cname
    * @param vehicle
    * @param duedate

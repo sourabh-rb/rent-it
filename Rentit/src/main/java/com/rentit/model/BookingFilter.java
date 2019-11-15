@@ -56,15 +56,31 @@ public class BookingFilter {
   public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
+  /**
+   * getter get client last name
+   * @return
+   */
   public String getClientLastName() {
     return clientLastName;
   }
+  /**
+   * setter set last name
+   * @param clientLastName
+   */
   public void setClientLastName(String clientLastName) {
     this.clientLastName = clientLastName;
   }
+  /**
+   * getter get vehicle model
+   * @return
+   */
   public String getVehicleModel() {
     return vehicleModel;
   }
+  /**
+   * setter set vehicle model
+   * @param vehicleModel
+   */
   public void setVehicleModel(String vehicleModel) {
     this.vehicleModel = vehicleModel;
   }

@@ -24,7 +24,7 @@ public class ClerksDataMapper {
 
 
   /**
-   * This methos add clerk record to database
+   * This method add clerk record to database
    * 
    * @param clerk
    */

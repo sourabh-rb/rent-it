@@ -104,6 +104,10 @@ public class BookingsDataGateway {
     db.updateCommand(sqlCmd);
   }
   
+  /**
+   * This method is used to delete the bookings.
+   * @param id
+   */
   public void removeClientandBookingEntry(Long id) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.clientId =  clients.id  WHERE bookings.clientId = " + id + ";";

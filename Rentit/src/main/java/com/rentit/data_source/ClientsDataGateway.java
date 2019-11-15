@@ -122,7 +122,10 @@ public class ClientsDataGateway {
     return rec; 
   }
   
-  
+  /**
+   * This method is used to update the clients.
+   * @param client
+   */
   public void updateCLientsRow(Clients client) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "UPDATE clients SET " 
@@ -140,7 +143,11 @@ public class ClientsDataGateway {
     db.updateCommand(sqlCmd);
   }
 
-
+  /**
+   * 
+   * @param column
+   * @param clientId
+   */
   public void setNull(String column, Long clientId) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd ="UPDATE clients SET " + column + " = 0 WHERE id = " + clientId + ";" ;

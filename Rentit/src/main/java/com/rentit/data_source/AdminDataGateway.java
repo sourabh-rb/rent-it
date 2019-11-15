@@ -45,7 +45,7 @@ public class AdminDataGateway {
   
     
     /**
-     * 
+     * Ths method removes the vehicles based on id.
      * @param vehiclesID Id for from Vehicle Table
      */
     public void removeVehiclesEntry(int vehiclesID) {
@@ -170,7 +170,7 @@ public class AdminDataGateway {
     }
     
     /**
-     * 
+     * This method is used to add vehicles.
      * @param vec  Vehicle Object  
      * @throws ParseException  Parse exception 
      */
@@ -190,7 +190,7 @@ public class AdminDataGateway {
        db.updateCommand(sqlCmd);
      }
      /**
-      * 
+      * This method is used to update the vehicles details.
       * @param vec Vechile object to update the coulmn name with updated name in Database
       */
      
