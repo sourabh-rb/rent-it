@@ -49,11 +49,13 @@ public class BookingsDataGateway {
   public void addEntry(Bookings booking) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "INSERT INTO bookings (bookingTS, returnDate, startDate, dueDate, cancelDate, clientId, vehicleId)";
-    sqlCmd += " VALUES ( '" + booking.getBookingTS() + "', '"
-        +  booking.getReturnDate() + "', '" 
+    sqlCmd += " VALUES ( '" + booking.getBookingTS() + "', "
+       // +  booking.getReturnDate() + "', '" 
+        + null + ", '"
         + booking.getStartDate() + "', '" 
-        + booking.getDueDate() + "', '"
-        + booking.getCancelDate() + "', "
+        + booking.getDueDate() + "', "
+        + null + ", "
+       // + booking.getCancelDate() + "', "
         + booking.getClientID() + ","
         + booking.getVehicleID() + ")";
     db.updateCommand(sqlCmd);
