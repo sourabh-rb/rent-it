@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
   static int count =0;
   static int acount =0;
+  static int vcount =0;
 
   /**
    * This method renders login page.
@@ -66,32 +67,34 @@ public class LoginController {
           usergroup = clerks.get(i).getusergroup();
           session.setAttribute("sessionusergroup", usergroup);
           flag = true;
+          if("admin".equalsIgnoreCase(usergroup)) {
+            if(!ClerksDataMapper.getAdminLogin()) {
+            ClerksDataMapper.setAdminLogin();
+            return "redirect:/admin";
+            }
+            else {
+              model.addAttribute("oneadmin", true);
+              return "loginpage";
+            }
+          }
+          else {
+            ClerksDataMapper.resetAdminLogin();
           break;
         }
       }
     }
+    }
     if (flag == false) {
       model.addAttribute("InvalidCredentials", true);
       return "loginpage";
-    } else {
-      if (usergroup.equals("clerk")) {
+    } 
+    
+      
         return "redirect:/vehicle";
-      } else {
-        acount = AdminCatalogController.count;
-        if(acount == 1) {
-          count = 0;
-        }
-        if (count == 0) {
-          count++;
-          AdminCatalogController.count = 0;
-          return "redirect:/admin";
-          
-        }
-        else
-          model.addAttribute("oneadmin", true);
-        return "loginpage";
-
-      }
+     
+     
+      
+    
     }
-  }
+  
 }
