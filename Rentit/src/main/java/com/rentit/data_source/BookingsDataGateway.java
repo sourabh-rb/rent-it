@@ -110,7 +110,7 @@ public class BookingsDataGateway {
    */
   public void removeClientandBookingEntry(Long id) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.clientId =  clients.id  WHERE bookings.clientId = " + id + ";";
+    String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.id =  clients.bookingId  WHERE bookings.id = " + id + ";";
     
     db.updateCommand(sqlCmd);
   }
