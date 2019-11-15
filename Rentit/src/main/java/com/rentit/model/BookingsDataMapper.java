@@ -143,6 +143,7 @@ public ArrayList<Bookings> getBookingData(ArrayList<String> idList) {
     updateRecord("cancelDate", dtf.format(now), id);
   }
   
+  
   public void processDelete(Long id) {
     bookingGateway.removeClientandBookingEntry(id);
   }

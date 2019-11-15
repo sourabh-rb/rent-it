@@ -51,7 +51,7 @@ public class BookinFormController {
   Date date = new Date();
 
   long time = date.getTime();
-  static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+  static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   static LocalDate localDate = LocalDate.now();
   Timestamp ts = new Timestamp(time);
   // static long time = System.currentTimeMillis();
