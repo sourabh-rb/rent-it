@@ -225,7 +225,7 @@
 						</a> &nbsp;&nbsp;&nbsp; <a
 							th:href="@{'/modify/' + ${booking[__${itemStat .index}__].getClientID()}}">Modify
 						</a> &nbsp;&nbsp;&nbsp; <a
-							th:href="@{'/deleteRecord/' + ${booking[__${itemStat .index}__].getClientID()}}">Delete
+							th:href="@{'/deleteRecord/' + ${booking[__${itemStat .index}__].getBookingid()()}}">Delete
 						</a></td>
 					
 					</tr>
