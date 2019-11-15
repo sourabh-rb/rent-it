@@ -14,6 +14,8 @@ import com.rentit.data_source.ClerksDataGateway;
  */
 
 public class ClerksDataMapper {
+  
+  private static boolean adminLogIn = false;
 
   private ClerksDataGateway clerksdatagateway;
 
@@ -83,5 +85,17 @@ public class ClerksDataMapper {
 
     return clerk;
 
+  }
+  
+  public static void setAdminLogin() {
+    adminLogIn = true;
+  }
+  
+  public static void resetAdminLogin() {
+    adminLogIn = false;
+  }
+  
+  public static boolean getAdminLogin() {
+    return adminLogIn;
   }
 }

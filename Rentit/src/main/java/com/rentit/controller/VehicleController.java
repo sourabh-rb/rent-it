@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rentit.model.Vehicles;
 import com.rentit.model.VehiclesDataMapper;
 import com.rentit.data_source.VehiclesDataGateway;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.Clients;
 import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ModelWrapper;
@@ -36,6 +37,7 @@ public class VehicleController {
   private static String sOrderModel = "ASC";
   private static String sOrderYear = "ASC";
   private static String sOrderType = "ASC";
+  static int vcount = 0;
   List<Vehicles> VehiclesList=null;
   RegisterController rv = new RegisterController();
   @Autowired
@@ -321,6 +323,7 @@ public class VehicleController {
    */
   @RequestMapping(value = "/vehicle", params = "logout", method = RequestMethod.POST)
   public String logout(Model model) {
+    ClerksDataMapper.resetAdminLogin();
     return "redirect:/loginpage";
   }
 }

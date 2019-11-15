@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.rentit.model.AdminDataMapper;
+import com.rentit.model.ClerksDataMapper;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
 import com.rentit.model.Vehicles;
@@ -234,7 +235,7 @@ public class AdminCatalogController {
 
   @RequestMapping(value = "/admin", params = "logout", method = RequestMethod.POST)
   public String logout(Model model) {
-    count = 1;
+    ClerksDataMapper.resetAdminLogin();
     return "redirect:/loginpage";
   }
 
