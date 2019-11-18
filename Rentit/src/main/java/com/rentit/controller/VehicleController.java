@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.rentit.model.Vehicles;
 import com.rentit.model.VehiclesDataMapper;
 import com.rentit.data_source.VehiclesDataGateway;
@@ -58,6 +59,7 @@ public class VehicleController {
     String usergroup = (String) session.getAttribute("sessionusergroup");
     session.setAttribute("mySessionAttribute", usergroup);
     session.setAttribute("mySessionAttribute1", username);
+    session.setAttribute("vehicleVersion", null);
     if (username != null) {
       vehiclesDataMapper = new VehiclesDataMapper();
        VehiclesList = vehiclesDataMapper.getVehiclesData();
@@ -205,7 +207,7 @@ public class VehicleController {
    * This method is used to sort Vehicles based on Type.
    * 
   * @param model Vehicle Model
-   * @return You list in soreted order ASC/DESC
+   * @return You list in sorted order ASC/DESC
    */
 
   @RequestMapping(value = "/vehicle", params = "btnSortVechicles", method = RequestMethod.POST)
@@ -241,6 +243,13 @@ public class VehicleController {
     ModelAndView sDetailsmav = new ModelAndView("DetailedViewPage");
     Long vehicleid=id;
     session.setAttribute("vehicleidAttribute", vehicleid);
+    Long vehicleVersion = null;
+    if(session.getAttribute("vehicleVersion") == null) {
+    
+    vehicleVersion = (long) vehiclesDataMapper.getVehicleVersion(vehicleid);
+    session.setAttribute("vehicleVersion", vehicleVersion);
+    }
+    
     Vehicles VechilesDetails = vehiclesDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
@@ -261,13 +270,15 @@ public class VehicleController {
     Vehicles VechilesDetails = vehiclesDataMapper.getNextVehicle(id);
     Long nextId=VechilesDetails.getId().longValue();
     session.setAttribute("vehicleidAttribute", nextId);
+    Long vehicleVersion = (long) vehiclesDataMapper.getVehicleVersion(nextId);
+    session.setAttribute("vehicleVersion", vehicleVersion);
     sDetailsmav.addObject("vehicleForDetails", VechilesDetails);
     return sDetailsmav;
   }
 
  
   @RequestMapping(value = "/saveRec", params = "reserve", method = RequestMethod.POST)
-  public String bookingDetails(Model model,HttpSession session) {
+  public String bookingDetails(Model model,HttpSession session,  RedirectAttributes ra) {
     String username = (String) session.getAttribute("sessionusername");
     String bookingStatus="reserve";
     System.out.println(bookingStatus);
@@ -275,7 +286,18 @@ public class VehicleController {
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
 
+      Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
+      Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
+      
+      
+      int res = vehiclesDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
+      if(res > 0) {
       return "bookingForm";
+      }
+      else {
+        ra.addAttribute("id", vehicleId);
+        return "redirect:/VehilceId/{id}";
+      }
     } else
       return "redirect:/loginpage";
 
@@ -287,7 +309,7 @@ public class VehicleController {
   * @return
   */
   @RequestMapping(value = "/saveRec", params = "rent", method = RequestMethod.POST)
-  public String bookingDetail(Model model,HttpSession session) {
+  public String bookingDetail(Model model,HttpSession session, RedirectAttributes ra) {
     String username = (String) session.getAttribute("sessionusername");
     String bookingStatus="rent";
     LocalDate localDate = LocalDate.now();
@@ -296,7 +318,19 @@ public class VehicleController {
     session.setAttribute("sessionButtonAttribute11", bookingStatus);
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
+      
+      Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
+      Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
+      
+      
+      int res = vehiclesDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
+      if(res > 0) {
       return "bookingForm";
+      }
+      else {
+        ra.addAttribute("id", vehicleId);
+        return "redirect:/VehilceId/{id}";
+      }
     } else
       return "redirect:/loginpage";
 

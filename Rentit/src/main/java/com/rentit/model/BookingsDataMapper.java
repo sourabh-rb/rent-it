@@ -63,9 +63,9 @@ public ArrayList<Bookings> getBookingData(ArrayList<String> idList) {
    * This method is to add booking record.
    * @param booking
    */
-  public void addBookingRecord(Bookings booking) {
+  public void addBookingRecord(Bookings booking, Long clientVersion, Long vehicleVersion) {
     
-    bookingGateway.addEntry(booking);
+    bookingGateway.addEntry(booking, clientVersion, vehicleVersion);
   }
   
   /**
@@ -82,9 +82,13 @@ public ArrayList<Bookings> getBookingData(ArrayList<String> idList) {
    * @param val
    * @param id
    */
-  public void updateRecord(String column, String val, Long id) {
-    bookingGateway.updateEntry(column, val, id);
+  public int updateRecord(String column, String val, Long id, Long version) {
+   return bookingGateway.updateEntry(column, val, id, version);
   }
+  
+  public int updateVersion(Long id, Long version) {
+    return bookingGateway.updateVersion(id, version);
+   }
   
   /**
    * This method returns client record.
@@ -128,30 +132,38 @@ public ArrayList<Bookings> getBookingData(ArrayList<String> idList) {
 
   }
 
-  public void processReturn(Long id) {
+  public int processReturn(Long id, Long version) {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     
-    updateRecord("returnDate", dtf.format(now), id);
+    return updateRecord("returnDate", dtf.format(now), id, version);
     
   }
   
-  public void processCancel(Long id) {
+  public void processCancel(Long id, Long version) {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     
-    updateRecord("cancelDate", dtf.format(now), id);
+    updateRecord("cancelDate", dtf.format(now), id, version);
   }
   
   
-  public void processDelete(Long id) {
-    bookingGateway.removeClientandBookingEntry(id);
+  public int processDelete(Long id, Long version) {
+    return bookingGateway.removeClientandBookingEntry(id, version);
   }
   
   public ArrayList<ArrayList<String>> getTransactionDetails(String firstName, String lastName, 
       String model, String make, String startDate, String dueDate) {
       return bookingGateway.getClientBookingVehicleDetails(firstName, lastName, model, make, startDate, dueDate);
   }
+
+
+  public Long getBookingVersion(Long id) {
+    return Long.parseLong(bookingGateway.getVersion(id));
+  }
+
+
+  
   
   
  

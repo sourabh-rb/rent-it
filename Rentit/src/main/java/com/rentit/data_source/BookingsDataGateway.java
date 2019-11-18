@@ -30,7 +30,7 @@ public class BookingsDataGateway {
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 8; i++) {
+        for(int i = 1; i <= 9; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -46,40 +46,46 @@ public class BookingsDataGateway {
    * This method is used to add entry into the Bookings table, update clients and vehicles table with bookingID.
    * @param booking
    */
-  public void addEntry(Bookings booking) {
+  public int addEntry(Bookings booking, Long clientVersion, Long vehicleVersion) {
+    int ret = 0;
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "INSERT INTO bookings (bookingTS, returnDate, startDate, dueDate, cancelDate, clientId, vehicleId)";
+    String sqlCmd = "INSERT INTO bookings (bookingTS, returnDate, startDate, dueDate, cancelDate, clientId, vehicleId, version)";
     sqlCmd += " VALUES ( '" + booking.getBookingTS() + "', "
-       // +  booking.getReturnDate() + "', '" 
         + null + ", '"
         + booking.getStartDate() + "', '" 
         + booking.getDueDate() + "', "
         + null + ", "
-       // + booking.getCancelDate() + "', "
         + booking.getClientID() + ","
-        + booking.getVehicleID() + ")";
-    db.updateCommand(sqlCmd);
-    ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
-    try {
-      while(rs.next()) {
-        bkngid = rs.getString(1);
+        + booking.getVehicleID() + ","
+        + booking.getVersion() + 1L + ")";
+    ret = db.updateCommand(sqlCmd);
+    if(ret > 0) {
+      ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
+      try {
+        while(rs.next()) {
+          bkngid = rs.getString(1);
+        }
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+
       }
-   } catch (SQLException e) {
-     // TODO Auto-generated catch block
-     e.printStackTrace();
-     
-   }
+    
     Long bid = Long.parseLong(bkngid);
   
     String column = "bookingId" ;
-    String sqlCmd1= "UPDATE vehicles SET " + column + " = '" + bid + "' WHERE id = " + booking.getVehicleID() + ";";
+    String sqlCmd1= "UPDATE vehicles SET " + column + " = " + bid + " WHERE id = " + booking.getVehicleID() + " AND version = " + vehicleVersion +";";
     db.updateCommand(sqlCmd1);
-    String sqlCmd2 = "UPDATE clients SET " + column + " = '" + bid + "' WHERE id = " + booking.getClientID() + ";";
+    String sqlCmd2 = "UPDATE clients SET " + column + " = " + bid + " WHERE id = " + booking.getClientID() + " AND version = " + clientVersion +";";
     
     db.updateCommand(sqlCmd2);
+    }
     
-    
+    return ret;
   }
+  
+  
+  
   
   /**
    * This method is used to remove entry from bookings table.
@@ -99,22 +105,30 @@ public class BookingsDataGateway {
    * @param newValue
    * @param bookingID
    */
-  public void updateEntry(String column, String newValue, Long bookingID) {
+  public int updateEntry(String column, String newValue, Long bookingID, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="UPDATE bookings SET " + column + " = '" + newValue + "' WHERE id = " + bookingID + ";" ;
+    String sqlCmd ="UPDATE bookings SET " + column + " = '" + newValue + "' WHERE id = " + bookingID + " AND bookings.version = " + version + ";" ;
 
-    db.updateCommand(sqlCmd);
+    return db.updateCommand(sqlCmd);
+  }
+  
+  public int updateVersion(Long bookingID, Long version) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE bookings SET version = " + (version + 1L) + " WHERE id = " + bookingID + " AND bookings.version = " + version + ";" ;
+
+    return db.updateCommand(sqlCmd);
   }
   
   /**
    * This method is used to delete the bookings.
    * @param id
    */
-  public void removeClientandBookingEntry(Long id) {
+  public int removeClientandBookingEntry(Long id, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.id =  clients.bookingId  WHERE bookings.id = " + id + ";";
+    String sqlCmd = "DELETE bookings , clients  FROM bookings INNER JOIN clients ON bookings.id =  clients.bookingId  WHERE bookings.id = " + id +
+                    " AND bookings.version = " + version +";";
     
-    db.updateCommand(sqlCmd);
+    return db.updateCommand(sqlCmd);
   }
   
   /**
@@ -211,6 +225,20 @@ public class BookingsDataGateway {
     
     return result;
     
+  }
+  
+  public String getVersion(Long bookingId) {
+    String v = null;
+    ResultSet rs= db.executeCommand("select version FROM bookings WHERE id = " + bookingId + ";"); 
+    try {
+      while(rs.next()) {
+        v = rs.getString(1);
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return v;
   }
   
 

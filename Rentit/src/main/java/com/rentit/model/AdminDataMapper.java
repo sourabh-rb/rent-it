@@ -104,8 +104,12 @@ public class AdminDataMapper {
   * @param vehicles  Vechile object 
   * @throws ParseException Long to int parse exception
   */
- public void updateVehiclesRecord(Vehicles vehicles) throws ParseException{
-   adminDataGateway.updateVehiclesEntry(vehicles);
+ public void updateVehiclesRecord(Vehicles vehicles, Long version) throws ParseException{
+   adminDataGateway.updateVehiclesEntry(vehicles, version);
+ }
+ 
+ public int getVehicleVersion(Long vehicleId) {
+   return Integer.parseInt(adminDataGateway.getVersion(vehicleId));
  }
  
  

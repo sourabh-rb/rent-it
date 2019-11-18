@@ -23,6 +23,8 @@ public class Bookings {
 	private Long clientid;
 	private Long vehicleid;
 	
+	private Long version = 0L;
+	
 	public Bookings() {}
 	/**
 	 * 
@@ -43,6 +45,7 @@ public class Bookings {
 		this.dueDate = dueDate;
 		this.cancelDate = cancelDate;
 		this.clientid = clientid;
+		this.setVersion(0L);
 	}
 	/**
 	 * getter get booking id.
@@ -155,6 +158,12 @@ public class Bookings {
    */
   public void setVehicleID(Long vehicleid) {
     this.vehicleid = vehicleid;
+  }
+  public Long getVersion() {
+    return version;
+  }
+  public void setVersion(Long version) {
+    this.version = version;
   }
 	
 	

@@ -71,13 +71,22 @@ public class ClientsController {
    */
   @RequestMapping("/return/{id}")
   public String returnVehicle(@PathVariable(name = "id") Long id) {
-    bookingDataMapper.processReturn(id);
+    Long bookingVersion = bookingDataMapper.getBookingVersion(id);
+    bookingDataMapper.processReturn(id, bookingVersion);
     
     Long vehicleId = bookingDataMapper.getVehicleId(id);
-    vehicleDataMapper.removeBooking(vehicleId);
+    Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
+    vehicleDataMapper.removeBooking(vehicleId, vehicleVersion);
     
     Long clientId = bookingDataMapper.getClientId(id);
-    clientDataMapper.removeBookingandVehicle(clientId);
+    Long clientVersion = clientDataMapper.getClientVersion(clientId);
+
+    int res = clientDataMapper.removeBookingandVehicle(clientId, clientVersion);
+    if(res > 0) {
+    bookingDataMapper.updateVersion(id, bookingVersion);
+    clientDataMapper.updateVersion(clientId, clientVersion);
+    vehicleDataMapper.updateVersion(vehicleId, vehicleVersion);
+    }
     
     return "redirect:/clients";
   }
@@ -90,15 +99,25 @@ public class ClientsController {
    */
   @RequestMapping("/cancel/{id}")
   public String cancelBooking(@PathVariable(name = "id") Long id) {
-    bookingDataMapper.processCancel(id);
+    Long bookingVersion = bookingDataMapper.getBookingVersion(id);
+    bookingDataMapper.processCancel(id, bookingVersion);
     
     Long vehicleId = bookingDataMapper.getVehicleId(id);
-    vehicleDataMapper.removeBooking(vehicleId);
+    Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
+    vehicleDataMapper.removeBooking(vehicleId, vehicleVersion);
     
     Long clientId = bookingDataMapper.getClientId(id);
-    clientDataMapper.removeBookingandVehicle(clientId);
+    Long clientVersion = clientDataMapper.getClientVersion(clientId);
     
+    int res = clientDataMapper.removeBookingandVehicle(clientId, clientVersion);
+    
+    if(res > 0) {
+    bookingDataMapper.updateVersion(id, bookingVersion);
+    clientDataMapper.updateVersion(clientId, clientVersion);
+    vehicleDataMapper.updateVersion(vehicleId, vehicleVersion);
+    }
     return "redirect:/clients";
+   
   }
   
   /**
@@ -110,9 +129,11 @@ public class ClientsController {
   @RequestMapping("/deleteRecord/{id}")
   public String deleteBooking(@PathVariable(name = "id") Long id) {
     Long vehicleId = bookingDataMapper.getVehicleId(id);
-    vehicleDataMapper.removeBooking(vehicleId);
+    Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
+    vehicleDataMapper.removeBooking(vehicleId, vehicleVersion);
     
-    bookingDataMapper.processDelete(id);
+    Long bookingVersion = bookingDataMapper.getBookingVersion(id);
+    bookingDataMapper.processDelete(id, bookingVersion);
     
     return "redirect:/clients";
   }
