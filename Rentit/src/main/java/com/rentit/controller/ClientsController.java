@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.rentit.model.Bookings;
 import com.rentit.model.BookingsDataMapper;
 import com.rentit.model.Clients;
@@ -160,10 +161,14 @@ public class ClientsController {
    * @return redirect to clients.
    */
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public String saveEdit(@ModelAttribute("modify") Clients clientDetails) {
-    clientDataMapper.modifyRecord(clientDetails);
-
+  public String saveEdit(@ModelAttribute("modify") Clients clientDetails,RedirectAttributes ra) {
+   int upd = clientDataMapper.modifyRecord(clientDetails);
+  if(upd>0)
     return "redirect:/clients";
+  else {
+    ra.addFlashAttribute("modify", true);
+    return  "redirect:/clients";
+  }
   }
 
   /**

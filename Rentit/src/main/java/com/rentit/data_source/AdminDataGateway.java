@@ -208,9 +208,9 @@ public class AdminDataGateway {
           + colum3 + " = '" + vec.getiYear() + "' "+","
           + colum4 + " = '" + vec.getType() + "' "+","
           + colum5 + " = '" + vec.getLicPlate() + "' "+","
-          + colum6 + " = '" + vec.getColor() + "' "
+          + colum6 + " = '" + vec.getColor() + "' ,"
           + "version = " + (vec.getVersion() + 1L) 
-          + "WHERE id = " + vec.getId() + " AND version = " + version + ";" ;
+          + " WHERE id = " + vec.getId() + " AND version = " + version + ";" ;
       
       return db.updateCommand(sqlCmd);
 

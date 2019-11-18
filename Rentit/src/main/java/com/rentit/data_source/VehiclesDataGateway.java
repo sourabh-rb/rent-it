@@ -214,7 +214,6 @@ public class VehiclesDataGateway {
         } 
       }
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
      
@@ -241,10 +240,8 @@ public class VehiclesDataGateway {
     try {
       while(rs.next()) {
         v = rs.getString(1);
-        System.out.println(v);
       }
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     
