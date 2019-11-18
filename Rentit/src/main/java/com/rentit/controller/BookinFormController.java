@@ -166,15 +166,12 @@ public class BookinFormController {
       model.addAttribute("startDate", true);
       return "bookingForm";
     } else {
-      // newBooking.setVehicle(vehicleService.getBookVehicle());
       ClientsDataMapper clientsDataMap = new ClientsDataMapper();
       BookingsDataMapper bookingsDataMap = new BookingsDataMapper();
       
       
       Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
       VehiclesDataMapper vehicleDataMapper = new VehiclesDataMapper();
-//      Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
-//      int res = bookingsDataMap.updateVehicleBooked(vehicleId, vehicleVersion);
       
       
       Clients newClient = new Clients();
@@ -196,7 +193,8 @@ public class BookinFormController {
       
       Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
       int res = vehicleDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
-      if(res > 0) {
+      
+      if(res > 0 && AdminCatalogController.count == 0) {
       clientsDataMap.addClientRecord(newClient);
       String id1 = ClientsDataGateway.val;
       Long id = Long.parseLong(id1);

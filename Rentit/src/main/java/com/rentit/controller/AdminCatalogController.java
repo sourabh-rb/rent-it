@@ -50,7 +50,7 @@ public class AdminCatalogController {
     String username = (String) session.getAttribute("sessionusername");
     String usergroup = (String) session.getAttribute("sessionusergroup");
     session.setAttribute("mySessionAttribute1", username);
-
+   count =0;
     if (username != null && usergroup .equals("admin")) {
       adminDataMapper= new AdminDataMapper();
       VehiclesList =adminDataMapper.getVehiclesData();
@@ -129,7 +129,7 @@ public class AdminCatalogController {
    */
 
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
-  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails)
+  public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails,HttpSession session)
       throws ParseException {
     
     try {
@@ -139,7 +139,7 @@ public class AdminCatalogController {
         long vid = vehicleDetails.getId();
         Long version1 = (long) adminDataMapper.getVehicleVersion(vid);
         adminDataMapper.updateVehiclesRecord(vehicleDetails, version1);
-        
+        count = 0;
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -173,7 +173,7 @@ public class AdminCatalogController {
   @RequestMapping("/addEditAdminPage/{id}")
   public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model,
       HttpSession session) {
-    
+    count = 1;
     long version = (long) adminDataMapper.getVehicleVersion(id);
     adminDataMapper.updateVersion(id, version);
     String actionString = "edit";
