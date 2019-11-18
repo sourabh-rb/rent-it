@@ -34,7 +34,7 @@ public class VehiclesDataGateway {
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 8; i++) {
+        for(int i = 1; i <= 9; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -123,7 +123,7 @@ public class VehiclesDataGateway {
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 8; i++) {
+        for(int i = 1; i <= 9; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -142,7 +142,7 @@ public class VehiclesDataGateway {
   * @throws ParseException  Parse exception 
   */
   
-  public void addVehicles(Vehicles vec) throws ParseException {
+  public int addVehicles(Vehicles vec) throws ParseException {
     int m=0;
     db = DatabaseConfig.getDBInstance();
     String sqlCmd="INSERT INTO vehicles VALUES "
@@ -153,8 +153,8 @@ public class VehiclesDataGateway {
      + vec.getType().trim() + "','" 
      + vec.getLicPlate().trim() + "','" 
      + vec.getColor().trim() + "',"
-         + m + ")";   
-    db.updateCommand(sqlCmd);
+         + m +  ", " + (vec.getVersion() + 1L) + ");" ;   
+    return db.updateCommand(sqlCmd);
   }
   
     /**
@@ -164,7 +164,7 @@ public class VehiclesDataGateway {
    * @param vehiclesID particular Id for vehicle details
    */
   
-  public void updateVehiclesEntry(Vehicles vec) {
+  public int updateVehiclesEntry(Vehicles vec, Long version) {
     db = DatabaseConfig.getDBInstance();
     String colum1="Make";
     String colum2="Model";
@@ -179,9 +179,10 @@ public class VehiclesDataGateway {
         + colum4 + " = '" + vec.getType() + "' "+","
         + colum5 + " = '" + vec.getLicPlate() + "' "+","
         + colum6 + " = '" + vec.getColor() + "' "
-        + "WHERE id = " + vec.getId() + ";" ;
+        + "version = " + (vec.getVersion() + 1L) 
+        + "WHERE id = " + vec.getId() + " AND vehicles.version = " + version + ";" ;
     
-    db.updateCommand(sqlCmd);
+    return db.updateCommand(sqlCmd);
 
   }
   
@@ -189,10 +190,10 @@ public class VehiclesDataGateway {
    * 
    * @param vehiclesID Id for from Vehicle Table
    */
-  public void removeVehiclesEntry(int vehiclesID) {
+  public int removeVehiclesEntry(int vehiclesID, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="DELETE FROM vehicles WHERE id = " + vehiclesID + ";" ;
-    db.updateCommand(sqlCmd);
+    String sqlCmd ="DELETE FROM vehicles WHERE id = " + vehiclesID + " AND vehicles.version = " + version + ";" ;
+    return db.updateCommand(sqlCmd);
   }
   
 /**
@@ -225,14 +226,44 @@ public class VehiclesDataGateway {
    * @param vehicleId  Vehicle ID from Vehicle table
    */
   
-  public void setNull(String column, Long vehicleId) {
+  public int setNull(String column, Long vehicleId, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="UPDATE vehicles SET " + column + " = 0 WHERE id = " + vehicleId + ";" ;
-    db.updateCommand(sqlCmd);
+    String sqlCmd ="UPDATE vehicles SET " + column + " = 0 WHERE id = " + vehicleId + " AND vehicles.version = " + version +";" ;
+    return db.updateCommand(sqlCmd);
    
   }
   
- 
+  public String getVersion(Long vehicleID) {
+    String v = null;
+    db = DatabaseConfig.getDBInstance();
+    ResultSet rs= db.executeCommand("select version FROM vehicles WHERE id = " + vehicleID + ";");
+   
+    try {
+      while(rs.next()) {
+        v = rs.getString(1);
+        System.out.println(v);
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    return v;
+  }
+  
+  public int updateVersion(Long id, Long version) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE vehicles SET version = " + (version + 1L) + " WHERE id = " + id + " AND vehicles.version = " + version + ";" ;
+
+    return db.updateCommand(sqlCmd);
+  }
+  
+  public int updateVehicleVersion(Long vid, Long vehicleVersion) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd1= "UPDATE vehicles SET version = " + (vehicleVersion + 1L) + " WHERE id = " + vid + " AND version = " + vehicleVersion +";";
+    return db.updateCommand(sqlCmd1);
+    
+  }
   
   
 }

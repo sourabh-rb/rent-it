@@ -17,6 +17,7 @@ public class Vehicles {
   private String bookingStartDate;
   private String bookingEndDate;
   private Integer bookingId;
+  private Long version;
 
 
   public int index;
@@ -42,10 +43,12 @@ public class Vehicles {
     this.Color = Color;
     this.LicPlate = LicPlate;
     this.bookingId = bookingId;
+    this.version = 0L;
   }
 
   public Vehicles() {
     this.id = index++;
+    this.version = 0L;
   }
   /**
    * getter get id.
@@ -193,5 +196,13 @@ public class Vehicles {
    public void setbookingId(Integer bookingId) {
      this.bookingId=bookingId;
    }
+
+  public Long getVersion() {
+    return version;
+  }
+
+  public void setVersion(Long version) {
+    this.version = version;
+  }
 
 }

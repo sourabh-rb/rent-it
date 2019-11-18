@@ -49,8 +49,8 @@ public class ClientsDataMapper {
    * This method removes client record.
    * @param clientID
    */
-  public void removeRecord(Long clientID) {
-    clientGateway.removeEntry(clientID);
+  public void removeRecord(Long clientID, Long version) {
+    clientGateway.removeEntry(clientID, version);
   }
   
   /**
@@ -59,9 +59,13 @@ public class ClientsDataMapper {
    * @param val
    * @param id
    */
-  public void updateRecord(String column, String val, Long id) {
-    clientGateway.updateEntry(column, val, id);
+  public void updateRecord(String column, String val, Long id, Long version) {
+    clientGateway.updateEntry(column, val, id, version);
   }
+  
+  public int updateVersion(Long id, Long version) {
+    return clientGateway.updateVersion(id, version);
+   }
   
   /**
    * This method returns client record.
@@ -94,14 +98,28 @@ public class ClientsDataMapper {
     cli.setClerkid(Long.parseLong(recordData.get(6)));
     cli.setBookingId(Long.parseLong(recordData.get(7)));
     cli.setVehicleId(Long.parseLong(recordData.get(8)));
+    cli.setVersion(Long.parseLong(recordData.get(9)));
     
     return cli;
     
   }
 
-  public void removeBookingandVehicle(Long clientId) {
-    clientGateway.setNull("vehicleId", clientId);
-    clientGateway.setNull("bookingId", clientId);
+  /**
+   * This method is used to clear booking and vehicle id.
+   * @param clientId
+   * @param version
+   */
+  public int removeBookingandVehicle(Long clientId, Long version) {
     
+    int res = clientGateway.setNull("vehicleId", clientId, version);
+    if(res > 0) {
+     res = clientGateway.setNull("bookingId", clientId, version);
+    }
+    return res;
+    
+  }
+  
+  public Long getClientVersion(Long clientId) {
+    return Long.parseLong(clientGateway.getVersion(clientId));
   }
 }

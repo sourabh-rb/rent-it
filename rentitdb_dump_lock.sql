@@ -31,8 +31,9 @@ CREATE TABLE `bookings` (
   `cancelDate` varchar(45) DEFAULT NULL,
   `clientId` varchar(45) DEFAULT NULL,
   `vehicleId` varchar(45) DEFAULT NULL,
+  `version` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` VALUES (2,'2019/11/10',NULL,'2019/11/20','2019/11/25',NULL,'17','2'),(3,'2019/11/10',NULL,'2019/11/10','2019/11/15',NULL,'18','3');
+INSERT INTO `bookings` VALUES (1,'2019-11-17','2019-11-17 17:16:15','2019-11-17','2019-11-28',NULL,'1','1',2),(2,'2019-11-17',NULL,'2019-11-17','2019-11-23','2019-11-17 17:16:23','2','1',2),(3,'2019-11-17',NULL,'2019-11-17','2019-11-19',NULL,'3','2',1),(4,'2019-11-17',NULL,'2019-11-17','2019-11-19',NULL,'4','3',1),(5,'2019-11-17',NULL,'2019-11-17','2019-11-18',NULL,'5','3',1),(6,'2019-11-17',NULL,'2019-11-17','2019-11-18',NULL,'6','5',1),(8,'2019-11-17',NULL,'2019-11-17','2019-11-18',NULL,'8','5',1);
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `clerks` (
   `email` varchar(45) DEFAULT NULL,
   `usergroup` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,6 +71,7 @@ CREATE TABLE `clerks` (
 
 LOCK TABLES `clerks` WRITE;
 /*!40000 ALTER TABLE `clerks` DISABLE KEYS */;
+INSERT INTO `clerks` VALUES (1,'a','a','abcdef','8mzCNJUNtvSJJSpQl9fUJg==','a@a','clerk'),(2,'q','q','qwerty','8mzCNJUNtvSJJSpQl9fUJg==','q@q','clerk'),(3,'admin','admin','admin','X+tGwEBkr7aJJSpQl9fUJg==','ad@ad','admin');
 /*!40000 ALTER TABLE `clerks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,8 +92,9 @@ CREATE TABLE `clients` (
   `clerkId` int(11) DEFAULT NULL,
   `bookingId` int(11) DEFAULT NULL,
   `vehicleId` int(11) DEFAULT NULL,
+  `version` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +103,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (17,'Arvind','Adiga','a23893869','2020-12-28','2382913888',1,2,2),(18,'Basant','Basant','b13243134','2022-12-23','24823094024',1,3,3);
+INSERT INTO `clients` VALUES (1,'aaaaaaaaaaaaaaa','aaaaaaaaaaaaaaa','a-1234-567890-12','2019-11-30','4389280525',2,0,0,2),(2,'bbbbbbbbbbb','bbbbbbbbbbbbbb','a-1234-567890-99','2019-11-30','8066575757',1,0,0,2),(3,'Aravind','Adiga','a-1234-567890-32','2019-11-30','8066575757',1,3,2,1),(4,'Basant','Bhai','a-1234-567890-99','2019-11-30','4389280525',1,4,3,1),(5,'Charan','C','a-1234-567890-99','2019-11-30','8066575757',2,5,3,1),(8,'a','a','a-1234-567890-12','2019-11-30','8066575757',1,8,5,1);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,9 +123,10 @@ CREATE TABLE `vehicles` (
   `LicPlate` varchar(45) NOT NULL,
   `Color` varchar(45) DEFAULT NULL,
   `bookingId` varchar(45) DEFAULT NULL,
+  `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `LicPlate_UNIQUE` (`LicPlate`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +135,7 @@ CREATE TABLE `vehicles` (
 
 LOCK TABLES `vehicles` WRITE;
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
-INSERT INTO `vehicles` VALUES (1,'Range Rover','Evoque','2018','SUV','h3s sdv','grey','1'),(2,'Jeep','Compass','2020','SUV','asb qwe','white','2'),(3,'BMW','M3','2017','Sedan','aqw 123','blue','3');
+INSERT INTO `vehicles` VALUES (1,'ahn','sss','2019','SUV1','abc 123','black','0',5),(2,'maruti','swift','2019','SUV3','xyz 123','black','3',3),(3,'urus','Lamborgini','2019','SUV1','lam 999','yellow','5',3),(4,'f80','Ferrari','2019','SUV1','fer 123','red','0',3),(5,'BMW','M3','2018','Sedan','BMW 123','Blue','8',13);
 /*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -144,4 +148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-11 20:55:32
+-- Dump completed on 2019-11-17 19:29:23

@@ -89,7 +89,7 @@
       <tr>
             <td>Client:</td>
             <td>
-             <input type="text" th:field="*{clientID}" readonly="readonly"/>
+             <input type="hidden" th:field="*{clientID}" readonly="readonly"/>
           </td>
         </tr>
         <tr>
@@ -120,21 +120,28 @@
         <tr>
             <td>Clerk:</td>
             <td>
-             <input type="text" th:field="*{clerkid}" readonly="readonly"/>
+             <input type="hidden" th:field="*{clerkid}" readonly="readonly"/>
           </td>
         </tr>
         
         <tr>
             <td>Booking:</td>
             <td>
-             <input type="text" th:field="*{bookingId}" readonly="readonly"/>
+             <input type="hidden" th:field="*{bookingId}" readonly="readonly"/>
           </td>
         </tr>
         
         <tr>
             <td>Vehicle:</td>
             <td>
-             <input type="text" th:field="*{vehicleId}" readonly="readonly"/>
+             <input type="hidden" th:field="*{vehicleId}" readonly="readonly"/>
+          </td>
+        </tr>
+        
+        <tr>
+            <td>Version:</td>
+            <td>
+             <input type="hidden" th:field="*{version}" readonly="readonly"/>
           </td>
         </tr>
         

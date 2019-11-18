@@ -145,7 +145,7 @@ public class AdminCatalogController {
   @RequestMapping(value = "/addEditAdmin", params = "btnUpdate", method = RequestMethod.POST)
   public String updateVehicleRecord(@ModelAttribute("vehicleForEdit") Vehicles vehicleDetails)
       throws ParseException {
-
+    
     try {
       if (vehicleDetails.getId() == 0) {
         // vehicleService.AddVehicleInfo(vehicleDetails);
@@ -155,7 +155,8 @@ public class AdminCatalogController {
         // clientGateway.addEntry(client);
       } else {
         //vehiclesDataMapper.updateVehiclesRecord(vehicleDetails);
-        adminDataMapper.updateVehiclesRecord(vehicleDetails);
+        Long version = (long) adminDataMapper.getVehicleVersion(vehicleDetails.getVersion());
+        adminDataMapper.updateVehiclesRecord(vehicleDetails, version);
         //vehicleService.UpdateVehicleInfo(vehicleDetails);
       }
     } catch (Exception e) {

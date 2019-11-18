@@ -98,14 +98,17 @@ public class DatabaseConfig {
    * This methos returns the result of update Query.
    * @param SQL cmd
    */
-  public void updateCommand(String cmd) {
+  public int updateCommand(String cmd) {
     Statement stmt;
+    int ret = 0;
     try {
       stmt = dbConnection.createStatement();
-      stmt.executeUpdate(cmd);
+      ret = stmt.executeUpdate(cmd);
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    
+    return ret;
     
   }
 }

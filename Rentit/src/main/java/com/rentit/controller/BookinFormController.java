@@ -28,6 +28,7 @@ import com.rentit.model.ClientsDataMapper;
 import com.rentit.model.ClientsService;
 import com.rentit.model.ModelWrapper;
 import com.rentit.model.VehicleService;
+import com.rentit.model.VehiclesDataMapper;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -167,7 +168,13 @@ public class BookinFormController {
       // newBooking.setVehicle(vehicleService.getBookVehicle());
       ClientsDataMapper clientsDataMap = new ClientsDataMapper();
       BookingsDataMapper bookingsDataMap = new BookingsDataMapper();
+      
       Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
+      VehiclesDataMapper vehicleDataMapper = new VehiclesDataMapper();
+//      Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
+//      int res = bookingsDataMap.updateVehicleBooked(vehicleId, vehicleVersion);
+      
+      
       Clients newClient = new Clients();
       Bookings book = new Bookings();
       newClient.setFirstName(firstname);
@@ -177,20 +184,22 @@ public class BookinFormController {
       newClient.setLicenceValidity(licenceValidity);
       newClient.setVehicleId(vehicleId);
       newClient.setClerkid(getClerkID(session));
-      newClient.setBookingId(null);
+      newClient.setBookingId(0L);
       book.setStartDate(startDate);
       book.setDueDate(dueDate);
       book.setVehicleID(vehicleId);
       book.setBookingTS(localtime);
       book.setCancelDate(null);
       book.setReturnDate(null);
-
-
       clientsDataMap.addClientRecord(newClient);
       String id1 = ClientsDataGateway.val;
       Long id = Long.parseLong(id1);
       book.setClientID(id);
-      bookingsDataMap.addBookingRecord(book);
+      Long clientVersion = clientsDataMap.getClientVersion(id);
+      
+      Long vehicleVersion1 = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
+      bookingsDataMap.addBookingRecord(book, clientVersion, vehicleVersion1);
+      
       return "redirect:/clients";
     }
 

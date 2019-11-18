@@ -28,7 +28,7 @@ public class ClientsDataGateway {
     try {
       while(rs.next()) {
         ArrayList<String> entry = new ArrayList<String>();
-        for(int i = 1; i <= 9; i++) {
+        for(int i = 1; i <= 10; i++) {
           entry.add(rs.getString(i));
         }
 
@@ -45,9 +45,10 @@ public class ClientsDataGateway {
    * This method is used to add entry into the clients table.
    * @param cli
    */
-  public void addEntry(Clients cli) {
+  public int addEntry(Clients cli) {
+    int ret = 0;
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd = "INSERT INTO clients (firstName, lastName, licenceNumber, licenceValidity, phone, clerkId, bookingId, vehicleId)";
+    String sqlCmd = "INSERT INTO clients (firstName, lastName, licenceNumber, licenceValidity, phone, clerkId, bookingId, vehicleId, version)";
     sqlCmd += " VALUES ( '" + cli.getFirstName() + "', '"
         +  cli.getLastName() + "', '" 
         + cli.getLicenceNumber() + "', '" 
@@ -55,20 +56,22 @@ public class ClientsDataGateway {
         + cli.getPhone() + "', " 
         + cli.getClerkid() + ","
         + cli.getBookingId() + "," 
-        + cli.getVehicleId() + ")";
+        + cli.getVehicleId() + ","
+        + (cli.getVersion() + 1L) + ")";
    
-    db.updateCommand(sqlCmd);
-    ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
-    try {
-      while(rs.next()) {
-        val = rs.getString(1);
+    ret = db.updateCommand(sqlCmd);
+    if(ret > 0) {
+      ResultSet rs= db.executeCommand("select LAST_INSERT_ID()"); 
+      try {
+        while(rs.next()) {
+          val = rs.getString(1);
+        }
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
       }
-   } catch (SQLException e) {
-     // TODO Auto-generated catch block
-     e.printStackTrace();
-   }
-
-
+    }
+    return ret;
   }
 
 
@@ -76,10 +79,10 @@ public class ClientsDataGateway {
    * This method is used to remove entry from client table.
    * @param clientID
    */
-  public void removeEntry(Long clientID) {
+  public int removeEntry(Long clientID, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="DELETE FROM clients WHERE id = " + clientID + ";" ;
-    db.updateCommand(sqlCmd);
+    String sqlCmd ="DELETE FROM clients WHERE id = " + clientID + " AND clients.version = " + version + ";" ;
+    return db.updateCommand(sqlCmd);
 
 
   }
@@ -90,11 +93,18 @@ public class ClientsDataGateway {
    * @param newValue
    * @param clientID
    */
-  public void updateEntry(String column, String newValue, Long clientID) {
+  public int updateEntry(String column, String newValue, Long clientID, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="UPDATE clients SET " + column + " = '" + newValue + "' WHERE id = " + clientID + ";" ;
+    String sqlCmd ="UPDATE clients SET " + column + " = '" + newValue + "' WHERE id = " + clientID + " AND clients.version = " + version +";" ;
 
-    db.updateCommand(sqlCmd);
+    return db.updateCommand(sqlCmd);
+  }
+  
+  public int updateVersion(Long id, Long version) {
+    db = DatabaseConfig.getDBInstance();
+    String sqlCmd ="UPDATE clients SET version = " + (version + 1L) + " WHERE id = " + id + " AND clients.version = " + version + ";" ;
+
+    return db.updateCommand(sqlCmd);
   }
   
   /**
@@ -110,7 +120,7 @@ public class ClientsDataGateway {
 
     try {
       while(rs.next()) {
-        for(int i = 1; i <= 9; i++) {
+        for(int i = 1; i <= 10; i++) {
           rec.add(rs.getString(i));
         } 
       }
@@ -126,7 +136,7 @@ public class ClientsDataGateway {
    * This method is used to update the clients.
    * @param client
    */
-  public void updateCLientsRow(Clients client) {
+  public int updateCLientsRow(Clients client) {
     db = DatabaseConfig.getDBInstance();
     String sqlCmd = "UPDATE clients SET " 
                     + " firstName = '" + client.getFirstName() 
@@ -136,23 +146,38 @@ public class ClientsDataGateway {
                     + "' , phone = '" + client.getPhone()
                     + "' , clerkId = " + client.getClerkid()
                     + " , bookingId = " + client.getBookingId()
-                    + " , vehicleId = " + client.getVehicleId() +
-                    " WHERE id = " + client.getClientID() + ";" ;
+                    + " , vehicleId = " + client.getVehicleId() 
+                    + " , version = " + (client.getVersion() + 1L)
+                    + " WHERE id = " + client.getClientID() + " AND clients.version = " + client.getVersion() + ";" ;
     System.out.println(sqlCmd);
     
-    db.updateCommand(sqlCmd);
+    return db.updateCommand(sqlCmd);
   }
 
   /**
-   * 
+   * This methos sets client Id to 0.
    * @param column
    * @param clientId
    */
-  public void setNull(String column, Long clientId) {
+  public int setNull(String column, Long clientId, Long version) {
     db = DatabaseConfig.getDBInstance();
-    String sqlCmd ="UPDATE clients SET " + column + " = 0 WHERE id = " + clientId + ";" ;
-    db.updateCommand(sqlCmd);
+    String sqlCmd ="UPDATE clients SET " + column + " = 0 WHERE id = " + clientId + " AND clients.version = " + version +";" ;
+    return db.updateCommand(sqlCmd);
     
+  }
+  
+  public String getVersion(Long clientId) {
+    String v = null;
+    ResultSet rs= db.executeCommand("select clients.version FROM clients WHERE id = " + clientId + ";"); 
+    try {
+      while(rs.next()) {
+        v = rs.getString(1);
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return v;
   }
   
   

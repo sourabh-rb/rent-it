@@ -33,8 +33,8 @@ public class VehiclesDataMapper {
   * @throws ParseException  Long to int parsing exception handling
   */
  
- public void updateVehiclesRecord(Vehicles vehicles) throws ParseException{
-   vehiclesDataGateway.updateVehiclesEntry(vehicles);
+ public void updateVehiclesRecord(Vehicles vehicles, Long version) throws ParseException{
+   vehiclesDataGateway.updateVehiclesEntry(vehicles, version);
  }
  
  /**
@@ -58,8 +58,8 @@ public class VehiclesDataMapper {
    * 
    * @param VehicleID Record to be removed via Delete command
    */
-  public void removeVehiclesRecord(int VehicleID) {
-    vehiclesDataGateway.removeVehiclesEntry(VehicleID);
+  public void removeVehiclesRecord(int VehicleID, Long version) {
+    vehiclesDataGateway.removeVehiclesEntry(VehicleID, version);
   }
   
   /**
@@ -154,8 +154,20 @@ public class VehiclesDataMapper {
   * 
   * @param vehicleId  removing vehicle record
   */
- public void removeBooking(Long vehicleId) {
-   vehiclesDataGateway.setNull("bookingId", vehicleId);
+ public void removeBooking(Long vehicleId, Long version) {
+   vehiclesDataGateway.setNull("bookingId", vehicleId, version);
+ }
+ 
+ public int updateVersion(Long id, Long version) {
+   return vehiclesDataGateway.updateVersion(id, version);
+  }
+ 
+ public int getVehicleVersion(Long vehicleId) {
+   return Integer.parseInt(vehiclesDataGateway.getVersion(vehicleId));
+ }
+ 
+ public int updateVehicleBooked(Long vehicleId, Long vehicleVersion) {
+   return vehiclesDataGateway.updateVehicleVersion(vehicleId, vehicleVersion);
  }
   
 }

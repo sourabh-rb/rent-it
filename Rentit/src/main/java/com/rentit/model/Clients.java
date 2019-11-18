@@ -41,9 +41,12 @@ public class Clients {
   private Long bookingId;
   
   private Long vehicleId;
+  
+  private Long version;
 
 
   public Clients() {
+    this.version = 0L;
 
   }
   /**
@@ -65,10 +68,11 @@ public class Clients {
     this.licence_validity = licence_validity;
     this.phone = phone;
     this.clerkid = clerkid;
+    this.version = 0L;
   }
 
  /**
-  * Geeter client id.
+  * Getter client id.
   * @return
   */
  // @Id
@@ -214,6 +218,22 @@ public class Clients {
    */
   public void setVehicleId(Long vehicleId) {
     this.vehicleId = vehicleId;
+  }
+  
+  /**
+   * getter get version.
+   * @return version
+   */
+  public Long getVersion() {
+    return version;
+  }
+  
+  /**
+   * setter set version.
+   * @param version
+   */
+  public void setVersion(Long version) {
+    this.version = version;
   }
 
 }
