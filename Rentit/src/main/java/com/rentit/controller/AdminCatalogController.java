@@ -52,14 +52,7 @@ public class AdminCatalogController {
     session.setAttribute("mySessionAttribute1", username);
 
     if (username != null && usergroup .equals("admin")) {
-     // ModelWrapper listVehicles = vehicleService.listAll();
-      //model.addAttribute("vehicle", listVehicles);
-      
-     // vehiclesDataMapper = new VehiclesDataMapper();
       adminDataMapper= new AdminDataMapper();
-      
-      
-      //VehiclesList = vehiclesDataMapper.getVehiclesData();
       VehiclesList =adminDataMapper.getVehiclesData();
       model.addAttribute("vehicle", VehiclesList);
   
@@ -101,18 +94,11 @@ public class AdminCatalogController {
     String sModel = VehiclesAttributes.getModel();
     String sYear = VehiclesAttributes.getiYear();
     int iSize = listVehicles.getCatalogList().size();
-    // if (!(iSize == 0) || !(listVehicles.equals(null))) {
-    //
-    // listVehicles = vehicleService.ListAllSearches(sMake.trim(), sType.trim(), sModel.trim(),
-    // sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
-    // }
-    //vehiclesDataMapper = new VehiclesDataMapper();
     adminDataMapper= new AdminDataMapper();
     VehiclesList = adminDataMapper.getVehiclesDataViaSearch(sMake.trim(), sType.trim(),
         sModel.trim(), sYear.trim(), checkboxValue.trim(), checkboxValue1.trim());
 
     model.addAttribute("vehicle", VehiclesList);
-    // model.addAttribute("vehicle", listVehicles);
     return "admin";
 
   }
@@ -148,19 +134,14 @@ public class AdminCatalogController {
     
     try {
       if (vehicleDetails.getId() == 0) {
-        // vehicleService.AddVehicleInfo(vehicleDetails);
-        // vehiclesDataGateway.addVehicles(vehicleDetails);
-      //  vehiclesDataMapper.addVehiclesRecord(vehicleDetails);
         adminDataMapper.addVehiclesRecord(vehicleDetails);
-        // clientGateway.addEntry(client);
       } else {
-        //vehiclesDataMapper.updateVehiclesRecord(vehicleDetails);
-        Long version = (long) adminDataMapper.getVehicleVersion(vehicleDetails.getVersion());
-        adminDataMapper.updateVehiclesRecord(vehicleDetails, version);
-        //vehicleService.UpdateVehicleInfo(vehicleDetails);
+        long vid = vehicleDetails.getId();
+        Long version1 = (long) adminDataMapper.getVehicleVersion(vid);
+        adminDataMapper.updateVehiclesRecord(vehicleDetails, version1);
+        
       }
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return "redirect:/admin";
@@ -192,13 +173,13 @@ public class AdminCatalogController {
   @RequestMapping("/addEditAdminPage/{id}")
   public ModelAndView btnGetIdtoDetailedView(@PathVariable(name = "id") Long id, Model model,
       HttpSession session) {
-
+    
+    long version = (long) adminDataMapper.getVehicleVersion(id);
+    adminDataMapper.updateVersion(id, version);
     String actionString = "edit";
     session.setAttribute("sessionButtonAttribute", actionString);
 
     ModelAndView sDetailsmav = new ModelAndView("addEditAdmin");
-    //Vehicles VechilesDetails = vehicleService.getVechileInfo((id));
-   // Vehicles VechilesDetails=vehiclesDataMapper.getRecord(id);
     Vehicles VechilesDetails=adminDataMapper.getRecord(id);
     sDetailsmav.addObject("vehicleForEdit", VechilesDetails);
     return sDetailsmav;
@@ -212,8 +193,6 @@ public class AdminCatalogController {
    */
   @RequestMapping("/delete/{id}")
   public String deleteVehicleRecord(@PathVariable(name = "id") int id) {
-    // vehicleService.deleteVehicle(id);
-    //vehiclesDataMapper.removeVehiclesRecord(id);
     adminDataMapper.removeVehiclesRecord(id);
 
     return "redirect:/admin";
@@ -228,8 +207,6 @@ public class AdminCatalogController {
 
   @RequestMapping(value = "/admin", params = "btnManageTransactions", method = RequestMethod.POST)
   public String btnManageTransactions(Model model) {
-    
-    //System.out.println("In adminCatalogController");
     return "redirect:/transactions";
 
   }

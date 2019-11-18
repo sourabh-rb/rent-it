@@ -3,6 +3,7 @@ package com.rentit.model;
 import java.text.ParseException;
 import java.util.ArrayList;
 import com.rentit.data_source.AdminDataGateway;
+import com.rentit.data_source.VehiclesDataGateway;
 
 
 public class AdminDataMapper {
@@ -104,13 +105,16 @@ public class AdminDataMapper {
   * @param vehicles  Vechile object 
   * @throws ParseException Long to int parse exception
   */
- public void updateVehiclesRecord(Vehicles vehicles, Long version) throws ParseException{
-   adminDataGateway.updateVehiclesEntry(vehicles, version);
+ public int updateVehiclesRecord(Vehicles vehicles, Long version) throws ParseException{
+  return adminDataGateway.updateVehiclesEntry(vehicles, version);
  }
  
  public int getVehicleVersion(Long vehicleId) {
    return Integer.parseInt(adminDataGateway.getVersion(vehicleId));
  }
  
- 
+ public int updateVersion(Long id, Long version) {
+   VehiclesDataGateway vdm = new VehiclesDataGateway();
+   return vdm.updateVersion(id, version);
+  }
 }

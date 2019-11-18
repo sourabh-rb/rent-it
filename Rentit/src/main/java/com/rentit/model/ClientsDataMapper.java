@@ -77,9 +77,10 @@ public class ClientsDataMapper {
     return mapRecord(record);
   }
   
-  public void modifyRecord(Clients client) {
+  public int modifyRecord(Clients client) {
     
-    clientGateway.updateCLientsRow(client);
+   int upd= clientGateway.updateCLientsRow(client);
+   return upd;
   }
   
   /**
