@@ -1,0 +1,15 @@
+
+----------------------------------------------------------------------
+Release notes - Iteration 4
+----------------------------------------------------------------------
+Artifacts:-
+1. srs
+2. sad
+3. javadoc
+4. source code: https://github.com/sourabh-rb/SOEN6461    Release Tag: 
+
+Features:
+1. Persistence through object oriented mapping
+2. Concurrency through optimistic locks
+
+
