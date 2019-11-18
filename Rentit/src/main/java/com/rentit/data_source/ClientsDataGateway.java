@@ -149,7 +149,7 @@ public class ClientsDataGateway {
                     + " , vehicleId = " + client.getVehicleId() 
                     + " , version = " + (client.getVersion() + 1L)
                     + " WHERE id = " + client.getClientID() + " AND clients.version = " + client.getVersion() + ";" ;
-    System.out.println(sqlCmd);
+    
     
     return db.updateCommand(sqlCmd);
   }

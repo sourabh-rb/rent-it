@@ -128,7 +128,7 @@ public class VehiclesDataMapper {
    int currentID=0;
    
    for (Vehicles vehicle : getVehiclesData()) {
-     System.out.println(vehicle.getBookingId());
+     
      idList.add(vehicle.getId());
    }
 

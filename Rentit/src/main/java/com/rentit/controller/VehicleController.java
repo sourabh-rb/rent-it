@@ -281,23 +281,14 @@ public class VehicleController {
   public String bookingDetails(Model model,HttpSession session,  RedirectAttributes ra) {
     String username = (String) session.getAttribute("sessionusername");
     String bookingStatus="reserve";
-    System.out.println(bookingStatus);
+    
     session.setAttribute("sessionButtonAttribute11", bookingStatus);
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
 
-      Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
-      Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
-      
-      
-      int res = vehiclesDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
-      if(res > 0) {
+      model.addAttribute("bookingn", new ModelWrapper());
+
       return "bookingForm";
-      }
-      else {
-        ra.addAttribute("id", vehicleId);
-        return "redirect:/VehilceId/{id}";
-      }
     } else
       return "redirect:/loginpage";
 
@@ -319,18 +310,9 @@ public class VehicleController {
     if (username != null) {
       model.addAttribute("bookingn", new ModelWrapper());
       
-      Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
-      Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
-      
-      
-      int res = vehiclesDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
-      if(res > 0) {
+      model.addAttribute("bookingn", new ModelWrapper());
+
       return "bookingForm";
-      }
-      else {
-        ra.addAttribute("id", vehicleId);
-        return "redirect:/VehilceId/{id}";
-      }
     } else
       return "redirect:/loginpage";
 

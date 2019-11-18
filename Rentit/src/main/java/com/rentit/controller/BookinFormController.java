@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.rentit.data_source.BookingsDataGateway;
 import com.rentit.data_source.ClerksDataGateway;
 import com.rentit.data_source.ClientsDataGateway;
@@ -124,7 +125,7 @@ public class BookinFormController {
       @RequestParam("lastname") String lastname, @RequestParam("licenseNumber") String LicenseNo,
       @RequestParam("PhoneNo") String PhoneNo, @RequestParam("startDate") String startDate,
       @RequestParam("dueDate") String dueDate,
-      @RequestParam("licenceValidity") String licenceValidity, Model model, HttpSession session) {
+      @RequestParam("licenceValidity") String licenceValidity, Model model, HttpSession session,RedirectAttributes ra) {
 
     boolean valid = false;
     try {
@@ -169,6 +170,7 @@ public class BookinFormController {
       ClientsDataMapper clientsDataMap = new ClientsDataMapper();
       BookingsDataMapper bookingsDataMap = new BookingsDataMapper();
       
+      
       Long vehicleId = (Long) session.getAttribute("vehicleidAttribute");
       VehiclesDataMapper vehicleDataMapper = new VehiclesDataMapper();
 //      Long vehicleVersion = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
@@ -191,6 +193,10 @@ public class BookinFormController {
       book.setBookingTS(localtime);
       book.setCancelDate(null);
       book.setReturnDate(null);
+      
+      Long vehicleVersion = (Long) session.getAttribute("vehicleVersion");
+      int res = vehicleDataMapper.updateVehicleBooked(vehicleId, vehicleVersion);
+      if(res > 0) {
       clientsDataMap.addClientRecord(newClient);
       String id1 = ClientsDataGateway.val;
       Long id = Long.parseLong(id1);
@@ -199,11 +205,15 @@ public class BookinFormController {
       
       Long vehicleVersion1 = (long) vehicleDataMapper.getVehicleVersion(vehicleId);
       bookingsDataMap.addBookingRecord(book, clientVersion, vehicleVersion1);
-      
       return "redirect:/clients";
-    }
+      }else {
+        ra.addFlashAttribute("vehicleprocess", true);
+        return "redirect:/vehicle";
+      }
+      
 
 
+  }
   }
 
 }
